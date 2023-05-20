@@ -1,0 +1,49 @@
+version: 2.1
+orbs:
+  node: circleci/node@5.0.2
+jobs:
+  test-build:
+    docker:
+      - image: cimg/base:stable
+    steps:
+      - checkout
+      - run:
+          name: Say hello
+          command: echo Hello, World!
+  test-coverage:
+    executor: node/default
+    steps:
+      - checkout
+      - run:
+          name: install dependencies
+          command: npm ci
+          environment:
+            NODE_ENV: $NODE_ENV
+            PORT: $PORT
+            HOST: $HOST
+            CC_TEST_REPORTER_ID: $CC_TEST_REPORTER_ID
+      - run:
+          name: run tests and generate coverage
+          command: npm run coverage
+      - run:
+          name: Setup Code Climate test-reporter
+          command: >
+            curl -L
+            https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64
+            > ./cc-test-reporter
+
+            chmod +x ./cc-test-reporter
+
+            ./cc-test-reporter before-build
+      - run:
+          name: send coverage report to code climate
+          command: ./cc-test-reporter after-build -t lcov --exit-code $?
+      - store_artifacts:
+          path: ./coverage/lcov.info
+          prefix: tests
+workflows:
+  version: 2
+  test_build_workflow:
+    jobs:
+      - test-build
+      - test-coverage
