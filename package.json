@@ -70,14 +70,8 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "lint-staged"
+      "pre-commit": "npm run lint && npm run format && git add ."
     }
-  },
-  "lint-staged": {
-    "*.{js,jsx,.json,.scss}": [
-      "eslint --max-warnings 0",
-      "prettier --write",
-      "git add"
-    ]
   }
+
 }
