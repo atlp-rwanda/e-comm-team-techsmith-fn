@@ -11,15 +11,16 @@
 
 A repo containing the frontend code for the TechSmith team's e-commerce project.
 
-## Linking GitHub With PivotalTracker 
+## Linking GitHub With PivotalTracker
 
 The repository have been linked with the project's pivot tracker for:
 
 Monitotring task completion
 Status of the task accepted by pivotal tracker are in a :unstarted , started,finished,delivered,rejected,accepted.
 Commit message should start with the status of the taski.e:
+
 - git commit -m "[ delivers #storyId ] add more content"
 - git commit -m "[ finishes #storyId ] add more content"
 
-The status is authomatically updated on the pivotalTracker 
+The status is authomatically updated on the pivotalTracker
 The PR being merged,closed,or not merged is marked on the pivotalTracker.

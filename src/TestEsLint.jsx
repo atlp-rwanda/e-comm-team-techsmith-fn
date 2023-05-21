@@ -1,5 +1,5 @@
 const TestEsLint = () => {
-  const message = "Example message"
+  const message = 'Example message';
 
   return (
     <div>
@@ -10,15 +10,10 @@ const TestEsLint = () => {
 
 export default TestEsLint;
 
-
-
 function greet() {
   console.log('hello world!')
-  let name= 'first name'
+  let name = 'lame name'
   console.log('welcome, ', name)
 }
 
-greet()
-
-
-  
+greet();
