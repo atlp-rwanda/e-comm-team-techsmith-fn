@@ -75,10 +75,9 @@
   },
   "lint-staged": {
     "*.{js,jsx,.json,.scss}": [
-      "npm run lint",
-      "npm run format",
-      "git add ."
-    ],
-    "*.--write": "npm run format"
+      "eslint --max-warnings 0",
+      "prettier --write",
+      "git add"
+    ]
   }
 }
