@@ -12,13 +12,13 @@ export default TestEsLint;
 
 
 
-function greetings() {
+function greet() {
   console.log('hello world!')
   let name= 'first name'
   console.log('welcome, ', name)
 }
 
-greetings()
+greet()
 
 
   
