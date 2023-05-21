@@ -1,11 +1,3 @@
-# #!/usr/bin/sh
-
-
-# . "$(dirname "$0")/_/husky.sh"
-
-# npm run test
-# npx lint-staged 
-
 #!/bin/sh
 
 # Run ESLint
