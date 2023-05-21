@@ -1,5 +1,5 @@
 const TestEsLint = () => {
-  const message = "Example message";
+  const message = 'Example message'
 
   return (
     <div>

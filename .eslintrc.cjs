@@ -34,7 +34,9 @@ module.exports = {
     "prettier/prettier": "error",
     "arrow-body-style": "off",
     "prefer-arrow-callback": "off",
-    "react/react-in-jsx-scope": 2,
+    "no-unused-vars": "off",
+    "react/react-in-jsx-scope": 1,
     "react/jsx-filename-extension": [1, { extensions: [".js", ".jsx"] }],
   },
+
 };
