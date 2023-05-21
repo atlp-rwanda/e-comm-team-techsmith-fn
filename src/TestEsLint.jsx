@@ -1,5 +1,3 @@
-
-
 const TestEsLint = () => {
   const message = "Example message";
 
