@@ -9,3 +9,12 @@ const TestEsLint = () => {
 };
 
 export default TestEsLint;
+
+
+function greet() {
+  console.log('Hello, world!')
+    let name = 'John'
+      console.log('Welcome,', name)
+  }
+  greet()
+  
