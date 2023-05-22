@@ -1,12 +1,14 @@
-import React from 'react'
-import Loginbox from '../components/loginbox'
+import React from 'react';
+import Loginbox from '../components/loginbox';
 
-const LoginContainer = () => {
+function LoginContainer() {
   return (
-    <div> <h1>Login Container </h1> 
-    <Loginbox/>
+    <div>
+      {' '}
+      <h1>Login Container </h1>
+      <Loginbox />
     </div>
-  )
+  );
 }
 
-export default LoginContainer
+export default LoginContainer;
