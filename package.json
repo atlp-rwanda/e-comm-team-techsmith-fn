@@ -47,14 +47,15 @@
   },
   "dependencies": {
     "@reduxjs/toolkit": "^1.9.5",
+    "build": "^0.1.4",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-redux": "^8.0.5",
+    "react-router-config": "^5.1.1",
+    "react-router-dom": "^6.11.2",
     "redux": "^4.2.1",
     "redux-devtools-extension": "^2.13.9",
     "redux-thunk": "^2.4.2",
-    "react-router-config": "^5.1.1",
-    "react-router-dom": "^6.11.2",
     "sass": "^1.62.1"
   },
   "devDependencies": {
