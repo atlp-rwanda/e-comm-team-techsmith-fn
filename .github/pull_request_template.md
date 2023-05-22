@@ -4,7 +4,7 @@
 
 ## How should this be manually tested?
 
-- Clone the repository using `git clone` [link](https://github.com/atlp-rwanda/e-comm-team-techsmith-fn)
+- Clone the repository using `git clone https://github.com/atlp-rwanda/e-comm-team-techsmith-fn`
 
 - Checkout to the branch using `git checkout <branch-name>`
 

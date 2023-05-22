@@ -7,16 +7,16 @@ export default {
   tags: ['autodocs'],
   parameters: {
     // More on how to position stories at: https://storybook.js.org/docs/react/configure/story-layout
-    layout: 'fullscreen',
-  },
+    layout: 'fullscreen'
+  }
 };
 
 export const LoggedIn = {
   args: {
     user: {
-      name: 'Jane Doe',
-    },
-  },
+      name: 'Jane Doe'
+    }
+  }
 };
 
 export const LoggedOut = {};

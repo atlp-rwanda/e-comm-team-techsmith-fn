@@ -1,24 +1,22 @@
-*{
-    color: blue;
-
+* {
+  color: blue;
 }
-h2{
-    transition: all 0.8;
-    position: absolute;
-    top: 40%;
-    animation-name: mymoving;
-    animation-duration: 10s;
-    animation-iteration-count: infinite;
+h2 {
+  transition: all 0.8;
+  position: absolute;
+  top: 40%;
+  animation-name: mymoving;
+  animation-duration: 10s;
+  animation-iteration-count: infinite;
 }
 @keyframes mymoving {
-    0%{
-        left:0%
-    }
-    50%{
-        
-        left:60%
-    }
-    100%{
-        left: 0%;
-    }
+  0% {
+    left: 0%;
+  }
+  50% {
+    left: 60%;
+  }
+  100% {
+    left: 0%;
+  }
 }

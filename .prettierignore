@@ -1,0 +1,13 @@
+#Storybook
+/src/stories
+
+#Vite config
+vite.config.js
+
+#Tests
+/src/__tests__
+```
+
+#Coverage
+coverage/
+.nyc_output/

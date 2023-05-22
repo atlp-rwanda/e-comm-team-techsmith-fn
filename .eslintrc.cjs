@@ -1,20 +1,19 @@
 module.exports = {
   env: {
     browser: true,
-    es2020: true
+    es2021: true
   },
-  extends: ['eslint:recommended', 'plugin:react/recommended', 'plugin:react/jsx-runtime', 'plugin:react-hooks/recommended', 'plugin:storybook/recommended'],
+  extends: ['plugin:react/recommended', 'airbnb', 'prettier'],
+  overrides: [],
   parserOptions: {
     ecmaVersion: 'latest',
     sourceType: 'module'
   },
-  settings: {
-    react: {
-      version: '18.2'
-    }
-  },
-  plugins: ['react-refresh'],
+  plugins: ['react'],
   rules: {
-    'react-refresh/only-export-components': 'warn'
+    'default-param-last': 'off',
+    'comma-dangle': 'off',
+    'jsx-quotes': ['error', 'prefer-single'],
+    'arrow-parens': ['error', 'as-needed']
   }
 };

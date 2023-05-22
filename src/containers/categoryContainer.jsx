@@ -1,9 +1,7 @@
-import React from 'react'
+import React from 'react';
 
-const CategoryContainer = () => {
-  return (
-    <div>Product categories</div>
-  )
+function CategoryContainer() {
+  return <div>Product categories</div>;
 }
 
-export default CategoryContainer
+export default CategoryContainer;
