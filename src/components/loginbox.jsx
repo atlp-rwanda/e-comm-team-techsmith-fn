@@ -1,7 +1,7 @@
 import React from 'react';
 
-function Loginbox() {
+function LoginBox() {
   return <div>loginbox</div>;
 }
 
-export default Loginbox;
+export default LoginBox;

@@ -1,7 +1,7 @@
 import { GET_PRODUCTS, GET_PRODUCTS_ERROR } from '../actionTypes';
 
 // FETCH PRODUCT
-export default async dispatch => {
+const getProducts = () => async dispatch => {
   try {
     // fetch products
     const data = [
@@ -35,3 +35,5 @@ export default async dispatch => {
     });
   }
 };
+
+export default getProducts;

@@ -1,22 +1,43 @@
+@font-face {
+  font-family: 'Montserrat';
+  src: url('../fonts/Montserrat/Montserrat-VariableFont_wght.ttf')
+    format('truetype');
+  /* Add additional font weights and styles as needed */
+}
+
 * {
-  color: blue;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Montserrat', sans-serif;
 }
-h2 {
-  transition: all 0.8;
-  position: absolute;
-  top: 40%;
-  animation-name: mymoving;
-  animation-duration: 10s;
-  animation-iteration-count: infinite;
-}
-@keyframes mymoving {
-  0% {
-    left: 0%;
+
+.home {
+  padding: 3vh 2%;
+  background-image: url('https://res.cloudinary.com/nishimweprince/image/upload/v1684829244/ecommerce/homeImage_zcbm0y.jpg');
+  background-size: cover;
+  background-position: center;
+  height: 100vh;
+
+  &-title {
+    color: #fff;
+    padding: 3vh 0;
+    font-size: xx-large;
   }
-  50% {
-    left: 60%;
+  &-button {
+    background: rgb(5, 136, 150);
+    padding: 20px 25px;
+    display: block;
+    margin: 20px 0;
+    border-radius: 5px;
+    text-decoration: none;
+    text-align: center;
+    width: 12%;
+    color: #eee;
   }
-  100% {
-    left: 0%;
+  &-content {
+    width: 50%;
+    padding: 17vh 0;
+    color: #3e3e3e;
   }
 }
