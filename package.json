@@ -6,6 +6,7 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
+    "preview": "vite preview",
     "prettier:fix": "prettier --write .",
     "lint": "npm run prettier:fix && eslint --fix --ext .js,.jsx .",
     "test": "nyc jest --watchAll=false --testTimeout 10000 --verbose",
