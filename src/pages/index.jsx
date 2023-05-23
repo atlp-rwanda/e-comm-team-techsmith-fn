@@ -1,11 +1,11 @@
 import React from 'react';
-import AboutContainer from '../containers/aboutContainer';
-import CategoryContainer from '../containers/categoryContainer';
-import ContactContainer from '../containers/contactContainer';
-import HomeContainer from '../containers/homeContainer';
-import LoginContainer from '../containers/loginContainer';
-import Notfound from '../containers/notFound';
-import SignupContainer from '../containers/signupContainer';
+import AboutContainer from '../containers/AboutContainer';
+import CategoryContainer from '../containers/CategoryContainer';
+import ContactContainer from '../containers/ContactContainer';
+import HomeContainer from '../containers/HomeContainer';
+import LoginContainer from '../containers/LoginContainer';
+import Notfound from '../containers/NotFound';
+import SignupContainer from '../containers/SignupContainer';
 
 function HomePage() {
   return <HomeContainer />;

@@ -12,6 +12,8 @@ module.exports = {
   plugins: ['react'],
   rules: {
     'default-param-last': 'off',
+    'eact/jsx-filename-extension': 'off',
+    'no-unused-vars': 'warn',
     'comma-dangle': 'off',
     'jsx-quotes': ['error', 'prefer-single'],
     'arrow-parens': ['error', 'as-needed']

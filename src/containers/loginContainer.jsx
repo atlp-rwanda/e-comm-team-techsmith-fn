@@ -1,12 +1,11 @@
 import React from 'react';
-import Loginbox from '../components/loginbox';
+import LoginBox from '../components/LoginBox';
 
 function LoginContainer() {
   return (
     <div>
-      {' '}
       <h1>Login Container </h1>
-      <Loginbox />
+      <LoginBox />
     </div>
   );
 }

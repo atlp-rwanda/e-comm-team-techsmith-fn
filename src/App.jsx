@@ -33,6 +33,7 @@ function App() {
           <Route path='/category' element={<CategoryPage />} />
           <Route path='/login' element={<LoginPage />} />
           <Route path='/signup' element={<SingupPage />} />
+          <Route path='/none' element={<div>please call</div>} />
         </Routes>
       </Router>
     </div>
