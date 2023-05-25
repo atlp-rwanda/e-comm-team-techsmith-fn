@@ -16,7 +16,7 @@ An admin can manage all users ; changing roles and making a user as active or in
 
 ### Dependencies
 
-Make sure the node version you are running is `v-18` and above.
+Make sure the node version you are running is `v-18.x` and above.
 
 Make sure you have the following dependencies installed:
 

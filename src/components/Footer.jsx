@@ -21,7 +21,7 @@ const Footer = () => {
 
   return (
     <div className='updated_footer container max-w-full flex flex-col divide-y divide-transparent border border-none'>
-      <span className='flex justify-evenly screen-base:flex-col screen-mid:grid grid-cols-2 px-12 divide-x divide-transparent max-w-full'>
+      <span className='flex justify-evenly screen-base:flex-col screen-mid:grid grid-cols-2 px-12 divide-x divide-transparent max-w-full screen-base:grid-cols-1'>
         <section className='footer_logo container'>
           <img
             src={nameLogo}

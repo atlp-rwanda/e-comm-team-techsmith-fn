@@ -14,7 +14,8 @@ const BrowseByCategory = () => {
     rating: {
       rating: 3,
       count: 5
-    }
+    },
+    className: 'home_category_product_card flex flex-col justify-between my-4 w-fit max-w-1/5',
   };
 
   return (
@@ -23,7 +24,7 @@ const BrowseByCategory = () => {
         <h3>Browse by category</h3>
         <p>Discover your niche</p>
       </section>
-      <section className='home_browse_category_categories'>
+      <section className='home_browse_category_categories flex flex-wrap justify-center'>
         <Button
           className='home_browse_category_option active'
           route='#'
@@ -50,7 +51,7 @@ const BrowseByCategory = () => {
           value='Appliances'
         />
       </section>
-      <section className='home_browse_category_container'>
+      <section className='home_browse_category_container flex flex-wrap justify-around'>
         <HomeCategoryProductCard {...props} />
         <HomeCategoryProductCard {...props} />
         <HomeCategoryProductCard {...props} />

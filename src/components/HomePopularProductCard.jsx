@@ -17,7 +17,7 @@ const HomePopularProductCard = ({
     console.log('Add to wishlist');
   };
   return (
-    <section className='home_popular_product_card'>
+    <section className='home_popular_product_card max-w-16 w-fit mx-4'>
       <div className='popular_card_image'>
         <img src={image} alt='Popular product' />
       </div>

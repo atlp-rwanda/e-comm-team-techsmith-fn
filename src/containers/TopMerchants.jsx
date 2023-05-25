@@ -18,7 +18,7 @@ const TopMerchants = () => {
         <h3>Our Top merchants</h3>
         <p>People are buying from here</p>
       </section>
-      <section className='home_top_merchants_container'>
+      <section className='home_top_merchants_container flex flex-wrap justify-evenly'>
         <HomeTopSeller {...props} />
         <HomeTopSeller {...props} />
         <HomeTopSeller {...props} />

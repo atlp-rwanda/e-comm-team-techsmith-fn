@@ -38,7 +38,7 @@ const PopularProducts = () => {
             route='/category'
           />
         </section>
-        <section className='popular_product_container'>
+        <section className='popular_product_container flex flex-wrap justify-around'>
           {renderProductCard(5)}
         </section>
       </div>

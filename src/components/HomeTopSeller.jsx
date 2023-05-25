@@ -75,7 +75,7 @@ HomeTopSeller.defaultProps = {
   },
   categories: ['Electronics', 'Fashion', 'Sports'],
   buttonClassName: 'home_seller_cta_button',
-  className: 'home_top_seller'
+  className: 'home_top_seller w-fit m-0'
 };
 
 export default HomeTopSeller;
