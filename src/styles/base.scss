@@ -1,0 +1,159 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+// DEFAULT COLORS
+$primary-color: #243665;
+
+// DEFAULT FONTS
+$primary-font: 'Poppins', sans-serif;
+
+/**
+REUSABLE CLASSES
+**/
+
+* {
+  font-size: 62.5%;
+  font-family: $primary-font;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+// BODY
+body {
+  width: 100%;
+}
+
+// TEXTS
+p {
+  font-size: 1.6rem;
+  font-weight: 400;
+}
+
+h1 {
+  font-size: 4rem;
+  text-align: center;
+  font-weight: 700;
+}
+
+h2 {
+  font-size: 3rem;
+  text-align: center;
+  font-weight: 700;
+}
+
+h3 {
+  font-size: 2.5rem;
+  text-align: center;
+  font-weight: 700;
+}
+
+h4 {
+  font-size: 2rem;
+  text-align: center;
+  font-weight: 500;
+}
+
+a {
+  text-decoration: none;
+  color: black;
+  font-size: 1.5rem;
+}
+
+// ICONS
+svg {
+  font-size: 1.6rem;
+  width: 2rem;
+  height: 3rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+// PRIMARY BUTTON
+.primary-btn {
+  text-decoration: none;
+  color: white;
+  background-color: $primary-color;
+  padding: 1.5rem 2rem;
+  font-size: 1.8rem;
+  border-radius: 0.5rem;
+  display: block;
+  width: 100%;
+  max-width: 30rem;
+  text-align: center;
+  text-transform: uppercase;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  &:hover {
+    background-color: darken($primary-color, 10%);
+    transform: scale(1.02);
+  }
+}
+
+// BUTTON WITH ICON
+.button_with_icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  font-size: 1.6rem;
+}
+
+// RATING STARS
+.star_rating {
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+}
+
+// TESTING
+.home-rating {
+  margin: 4rem auto;
+  display: flex;
+  justify-content: center;
+}
+
+// HOME PRODUCT CATEGORY
+// PRODUCT CATEGORY
+.home_product_category {
+  font-size: 1.4rem;
+  font-weight: 300;
+  text-align: center;
+  max-width: 90%;
+  margin: 0 auto;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: $primary-color;
+  transition: all 0.3s ease-in-out;
+
+  &:hover {
+    text-decoration: underline;
+    transition: all 0.3s ease-in-out;
+  }
+}
+
+// SLIDING HOVER EFFECTS
+@mixin sliding-hover {
+  position: relative;
+  text-decoration: none;
+
+  &::before {
+    content: "";
+    position: absolute;
+    display: block;
+    width: 100%;
+    height: 2px;
+    top: 2rem;
+    bottom: 0;
+    left: 1px;
+    background-color: white;
+    transform: scaleX(0);
+    transition: transform 0.5s ease;
+  }
+
+  &:hover::before {
+    transform: scaleX(1);
+  }
+}

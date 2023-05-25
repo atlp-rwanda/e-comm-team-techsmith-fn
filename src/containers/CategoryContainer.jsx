@@ -1,7 +1,7 @@
 import React from 'react';
 
-function CategoryContainer() {
+const CategoryContainer = () => {
   return <div>Product categories</div>;
-}
+};
 
 export default CategoryContainer;

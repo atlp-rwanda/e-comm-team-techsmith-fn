@@ -1,6 +1,7 @@
 import React from 'react';
 
-export default function Notfound() {
+// eslint-disable-next-line react/function-component-definition
+const Notfound = () => {
   return (
     <main>
       <div>
@@ -8,4 +9,6 @@ export default function Notfound() {
       </div>
     </main>
   );
-}
+};
+
+export default Notfound;

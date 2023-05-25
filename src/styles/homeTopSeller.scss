@@ -1,0 +1,80 @@
+@use 'base';
+
+.home_top_seller {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  align-items: center;
+  width: 100%;
+  margin: 0 auto;
+  max-width: 30rem;
+  padding: 1rem;
+  box-shadow: 1px 1px 5px 1px rgba(0, 0, 0, 0.2);
+  border-radius: 1rem;
+
+  // HOME TOP SELLER IMAGE CONTAINER
+  .home_seller_image_container {
+    width: 60%;
+    margin: 0 auto;
+
+    img {
+      width: 100%;
+      object-fit: cover;
+
+      &:hover {
+        transform: scale(1.02);
+        cursor: pointer;
+      }
+    }
+  }
+
+  // HOME SELLER NAME
+  .home_seller_name {
+    font-size: 1.6rem;
+  }
+
+  // HOME SELLER RATING
+  .home_seller_rating {
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+    margin: 0.5rem auto;
+  }
+
+  // HOME SELLER CATEGORIES
+  .home_seller_categories {
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+    margin: 0.5rem auto;
+
+    // HOME SELLER CATEGORY
+    .home_seller_category {
+      padding: 0.5rem 1rem;
+      width: 100%;
+      border-radius: 1rem;
+      border: 0.5px solid base.$primary-color;
+      font-size: 1rem;
+
+      &:hover {
+        background-color: base.$primary-color;
+        color: white;
+      }
+    }
+  }
+
+  // HOME SELLER CTA
+  .home_seller_cta {
+    display: flex;
+    align-items: center;
+
+    // HOME SELLER CTA BUTTON
+    .home_seller_cta_button {
+      padding: 0.5rem 2rem;
+      width: 100%;
+      margin: 0.5rem auto;
+      font-size: 1.5rem;
+      text-transform: none;
+    }
+  }
+}

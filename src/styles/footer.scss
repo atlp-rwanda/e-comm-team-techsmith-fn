@@ -1,0 +1,131 @@
+@use 'base';
+@import 'base';
+
+.updated_footer {
+    background-color: base.$primary-color;
+    color: white;
+    width: 90%;
+    padding: 10rem 0 3rem 0;
+    margin: 0 auto;
+    border-radius: 20rem 0 0 0;
+
+    section {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        padding: 2rem 1rem;
+        gap: 2rem;
+        width: fit-content;
+    }
+
+    ul {
+        list-style: none;
+        padding: 1rem 0;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        gap: 2rem;
+        height: 100%;
+    }
+
+    li, a {
+        position: relative;
+        font-size: 1.4rem;
+        cursor: pointer;
+        @include sliding-hover;
+        width: fit-content;
+    }
+
+    h4 {
+        text-transform: uppercase;
+        font-size: 1.6rem;
+        font-weight: 700;
+        text-align: start;
+    }
+
+    // FOOTER SOCIAL MEDIA LIST
+    .footer_socials_list {
+        display: flex;
+        gap: 2rem;
+        justify-content: flex-start;
+        align-items: center;
+        flex-direction: row;
+        height: fit-content;
+
+        li {
+
+            padding: .2rem;
+
+            &:hover {
+                color: base.$primary-color;
+                background-color: white;
+                transform: scale(1.02);
+                border-radius: .5rem;
+            }
+        }
+    }
+}
+
+.footer_links,
+.footer_location,
+.footer_address {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 2rem 1rem;
+}
+
+.footer_input_container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    height: 100%;
+    max-height: 3rem;
+    gap: .5rem;
+    width: 100%;
+
+    .footer_newsletter_icon {
+        width: fit-content;
+        font-size: 2rem;
+        margin: 0;
+    }
+
+    .footer_newsletter {
+        padding: .5rem 1rem;
+        font-size: 1.5rem;
+        color: white;
+        background-color: base.$primary-color;
+        border-top: 0;
+        border-left: 0;
+        border-right: 0;
+        border-bottom: 1px solid white;
+        border-radius: 0;
+        outline: none;
+
+        &:focus {
+            color: white;
+            outline: none;
+            border-top: 0;
+            border-left: 0;
+            border-right: 0;
+        }
+    }
+
+}
+
+.footer_newsletter_submit {
+    background-color: white;
+    padding: 0 1rem;
+
+    &:hover {
+        background-color: base.$primary-color;
+        color: white;
+        transform: scale(.98);
+    }
+}
+
+@media (max-width: 900px) {
+    span {
+        flex-wrap: wrap;
+    }
+}

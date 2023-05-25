@@ -7,27 +7,27 @@ import LoginContainer from '../containers/LoginContainer';
 import Notfound from '../containers/NotFound';
 import SignupContainer from '../containers/SignupContainer';
 
-function HomePage() {
+const HomePage = () => {
   return <HomeContainer />;
-}
-function NotFoundPage() {
+};
+const NotFoundPage = () => {
   return <Notfound />;
-}
-function LoginPage() {
+};
+const LoginPage = () => {
   return <LoginContainer />;
-}
-function SingupPage() {
+};
+const SingupPage = () => {
   return <SignupContainer />;
-}
-function CategoryPage() {
+};
+const CategoryPage = () => {
   return <CategoryContainer />;
-}
-function AboutPage() {
+};
+const AboutPage = () => {
   return <AboutContainer />;
-}
-function ContactPage() {
+};
+const ContactPage = () => {
   return <ContactContainer />;
-}
+};
 export {
   HomePage,
   NotFoundPage,

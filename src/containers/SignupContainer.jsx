@@ -1,7 +1,7 @@
 import React from 'react';
 
-function SignupContainer() {
+const SignupContainer = () => {
   return <div>Signup</div>;
-}
+};
 
 export default SignupContainer;
