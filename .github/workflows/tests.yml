@@ -1,0 +1,42 @@
+# Description: Run tests on push
+
+# Workflow name
+name: Github actions tests
+# Workflow run name that will be displayed in the Actions tab.
+# Uses the name of the actor that triggered the workflow and the name of the repository.
+run-name: ${{ github.actor }} contributes to ${{ github.repository }}
+
+# Workflow triggers
+on: 
+  # Run tests on pull request to develop branch
+  pull_request:
+    branches: [develop]
+
+jobs:
+# Name of the job
+  github_tests:
+  
+    # Job runs on Ubuntu
+    runs-on: ubuntu-latest
+
+    # Job runs on the latest version of Node.js 18.x
+    strategy:
+      matrix:
+        node-version: [ 18.x ]
+
+    # Job steps
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
+    - name: Setup Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: ${{ matrix.node-version }}
+      
+      # Install dependencies and run tests
+    - name: Install dependencies
+      run: npm ci
+
+    - name: Run tests and generate coverage
+      run: npm run coverage
