@@ -84,4 +84,4 @@ const RevisitCollections = () => {
   );
 };
 
-export default HomeContainer;
+  export default HomeContainer;
