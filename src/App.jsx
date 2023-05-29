@@ -15,9 +15,6 @@ import {
 function App() {
   const products = useSelector(state => state.products);
   const dispatch = useDispatch();
-  // eslint-disable-next-line no-console
-  console.log(products);
-
   useEffect(() => {
     dispatch(getProducts());
   }, [dispatch]);
@@ -29,11 +26,10 @@ function App() {
           <Route path='/' element={<HomePage />} />
           <Route path='/about' element={<AboutPage />} />
           <Route path='/contact' element={<ContactPage />} />
-          <Route path='*' element={<NotFoundPage />} />
           <Route path='/category' element={<CategoryPage />} />
           <Route path='/login' element={<LoginPage />} />
           <Route path='/signup' element={<SingupPage />} />
-          <Route path='/none' element={<div>please call</div>} />
+          <Route path='*' element={<NotFoundPage />} />
         </Routes>
       </Router>
     </div>
