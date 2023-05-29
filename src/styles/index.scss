@@ -8,3 +8,8 @@
 @import 'tailwindcss/base';
 @import 'tailwindcss/components';
 @import 'tailwindcss/utilities';
+
+@use "home";
+@use "login";
+@use "authBlueSide";
+@use "loader"

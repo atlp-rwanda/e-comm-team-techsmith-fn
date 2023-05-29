@@ -27,10 +27,18 @@ module.exports = {
       }
     ],
     'prefer-default-export': 'off',
+<<<<<<< HEAD
     'react/require-default-props': 'off',
     'import/prefer-default-export': 'off',
     'no-plusplus': 'off',
     'react/jsx-props-no-spreading': 'off',
     'react/no-array-index-key': 'off',
+=======
+    'react/require-default-props': "off",
+    "import/prefer-default-export": "off",
+    "no-plusplus": "off",
+    "react/jsx-props-no-spreading": "off",
+    "jsx-a11y/label-has-associated-control": "off"
+>>>>>>> [delivers #185218916]
   }
 };
