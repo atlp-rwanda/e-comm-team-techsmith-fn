@@ -2,9 +2,10 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 
-const Button = ({ route, type, className, onClick, value }) => {
+const Button = ({ route, className, onClick, value }) => {
   return (
-    <Link to={route || '#'} type={type} className={className} onClick={onClick}>
+  
+    <Link to={route || '#'} className={className} onClick={onClick}>
       {value}
     </Link>
   );
@@ -17,8 +18,7 @@ Button.propTypes = {
   value: PropTypes.oneOfType([
     PropTypes.string.isRequired,
     PropTypes.object.isRequired
-  ]),
-  type: PropTypes.string
+  ])
 };
 
 Button.defaultProps = {
