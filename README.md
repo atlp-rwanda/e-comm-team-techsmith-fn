@@ -43,7 +43,7 @@ git clone `https://github.com/atlp-rwanda/e-comm-team-techsmith-fn.git`
 To run the Techsmith Frontend service locally, follow these steps:
 
 1. Start the development server:
-   `npm run dev`
+   `npm run start`
 
 2. Open your browser and visit `http://localhost:5173/` to see the application running.
 
