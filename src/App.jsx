@@ -17,6 +17,7 @@ import {
 } from './pages';
 import Footer from './components/Footer';
 import Navbar from './components/Navbar';
+import AdminManageUserContainer from './containers/UsersContainer';
 
 const App = () => {
   return (
