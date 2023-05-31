@@ -3,3 +3,7 @@
 
 # Vite config
 vite.config.js
+
+#Build
+dist/
+```

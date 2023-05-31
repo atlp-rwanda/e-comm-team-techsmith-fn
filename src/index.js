@@ -1,3 +1,5 @@
-const addTwoNumbers = (a, b) => a + b;
+const addTwoNumbers = (a, b) => {
+  return a + b;
+};
 
 export default addTwoNumbers;

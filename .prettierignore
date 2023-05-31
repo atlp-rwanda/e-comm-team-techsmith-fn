@@ -11,3 +11,6 @@ vite.config.js
 #Coverage
 coverage/
 .nyc_output/
+
+#Build
+/dist

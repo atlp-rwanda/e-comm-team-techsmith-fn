@@ -12,9 +12,9 @@
 
 - Create a `.env` file in the root directory and add all environment variables required to run the application. The required variables are listed in the `.env.example` file available in root directory of the application.
 
-- Start the application development server: `npm run dev`
+- Start the application development server: `npm start`
 
-- Check the application's documentation on Storybook: `npm run storybook`
+- Check out the components documentation: `npm run storybook`
 
 ## Any background context you want to provide?
 
