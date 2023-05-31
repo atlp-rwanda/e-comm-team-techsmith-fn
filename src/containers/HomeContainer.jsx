@@ -23,14 +23,14 @@ const HomeContainer = () => {
 // HOME BANNER COMPONENT
 const Banner = () => {
   return (
-    <div className='hero-banner'>
+    <div className='hero-banner flex screen-mid:flex-col py-8 px-8'>
       <section className='home-banner-text'>
-        <h2>OUR BIGGEST PROMOTION EVER IS HAPPENING NOW!</h2>
-        <p>GET UP TO 50% OFF EVEYR PURCHASE YOU MAKE</p>
+        <h2 className='max-w-10/12 screen-base:max-w-9/12'>OUR BIGGEST PROMOTION EVER IS HAPPENING NOW!</h2>
+        <p className='max-w-10/12 screen-base:max-w-9/12'>GET UP TO 50% OFF EVEYR PURCHASE YOU MAKE</p>
       </section>
       <section>
         <Button
-          className='banner-btn primary-btn'
+          className='banner-btn primary-btn px-8 py-4 text-18 screen-mid:px-6 text-16 screen-mid:py-3 text-15'
           value='Explore'
           route='/category'
           onClick={() => {}}
