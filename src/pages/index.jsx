@@ -10,6 +10,7 @@ import SignupContainer from '../containers/SignupContainer';
 import SingleProductContainer from '../containers/SingleProductContainer';
 import ProductReviewForm from '../containers/ProductReviewForm';
 import ProductReviewContainer from '../containers/ProductReviewContainer';
+import AdminManageUserContainer from '../containers/UsersContainer';
 
 const HomePage = () => {
   return <HomeContainer />;
@@ -44,7 +45,9 @@ const SingleProductPage = () => {
     </>
   );
 };
-
+const AdminManageUserPage = () => {
+  return <AdminManageUserContainer />;
+};
 export {
   HomePage,
   NotFoundPage,
@@ -53,5 +56,6 @@ export {
   CategoryPage,
   AboutPage,
   ContactPage,
-  SingleProductPage
+  SingleProductPage,
+  AdminManageUserPage
 };

@@ -2,14 +2,27 @@
 
 // DEFAULT COLORS
 $primary-color: #243665;
-
+$gray: #f1f1f1;
+$bluewishgray: rgba(36, 54, 101, 0.6);
+$white: #ffffff;
 // DEFAULT FONTS
 $primary-font: 'Inter', sans-serif;
 
 /**
 REUSABLE CLASSES
 **/
-
+// FUNCTIONS
+$transition: 0.3s;
+@mixin flexcolumncenter {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+@mixin flexrowcenter {
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+}
 * {
   font-size: 62.5%; // 1rem = 10px
   font-family: $primary-font;

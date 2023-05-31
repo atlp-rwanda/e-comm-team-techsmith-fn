@@ -1,6 +1,5 @@
 import React from 'react';
 
-// eslint-disable-next-line react/function-component-definition
 const Notfound = () => {
   return (
     <main className='py-[20vh]'>

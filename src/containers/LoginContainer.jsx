@@ -75,7 +75,6 @@ Authentication process.'
                   name='email'
                   {...register('email', {
                     pattern: {
-                      // eslint-disable-next-line no-useless-escape
                       value: /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/,
                       message: 'Invalid email'
                     },

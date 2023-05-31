@@ -1,6 +1,3 @@
-/* eslint-disable no-param-reassign */
-/* eslint-disable no-use-before-define */
-
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import authServices from './authServices';
 

@@ -6,6 +6,7 @@ import { fas } from '@fortawesome/free-solid-svg-icons';
 import { far } from '@fortawesome/free-regular-svg-icons';
 import {
   AboutPage,
+  AdminManageUserPage,
   CategoryPage,
   ContactPage,
   HomePage,
@@ -30,6 +31,8 @@ const App = () => {
           <Route path='/login' element={<LoginPage />} />
           <Route path='/signup' element={<SingupPage />} />
           <Route path='/product/:id' element={<SingleProductPage />} />
+          <Route path='/dashboard/users' element={<AdminManageUserPage />}
+          />
           <Route path='*' element={<NotFoundPage />} />
         </Routes>
         <Footer />
