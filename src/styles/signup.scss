@@ -1,0 +1,177 @@
+$main_color:#243665;
+$border_color:1px solid rgba(0, 0, 0, 0.25);
+*{
+    font-family: 'Poppins', sans-serif;
+}
+
+.col{
+    display: flex;
+    flex-direction: column;
+}
+.signupPage{
+    display: grid;
+    grid-template-columns: 65% 1fr;
+    .signupPage__mobileHeader{
+        display: none;
+    }
+    .signupPage__title{
+        padding-top: 150px;
+        text-align: center;
+        margin-bottom: 40px;
+       
+       h4{
+        color: $main_color;
+        
+       }
+    }
+
+    .signupPage__form{
+        display: flex;
+        justify-content: center;
+        form{
+            width: 40%;
+        }
+        .signupPage__input{
+            position: relative;
+            input{
+                width: 100%;    
+                padding:13px 10px;
+                border: $border_color;
+                background-color: transparent;
+                border-radius: 10px;
+                position: relative;
+                z-index: 11;
+                margin-bottom: 30px;
+                outline: none;
+            }
+            select{
+                width: 100%;    
+                padding:13px 10px;
+                border: $border_color;
+                border-radius: 10px;
+                color: $main_color;
+                margin-bottom: 30px;
+            }
+            label{
+                position: absolute;
+                top: 11px;
+                z-index:10;
+                left: 10px;
+                display: block;
+                transition: all 0.3s;
+                color: #243665ba;
+            }
+            input:focus + label
+            ,input:valid + label
+            {
+                top: -15px;
+                z-index: 14;
+                background-color: white;
+                padding: 0 5px;
+            }
+        }
+        .signupPage_label{
+           margin-left: 10px;
+             color: #243665ba;
+             margin-bottom: 40px;
+        }
+        .error{
+            color: rgb(246, 34, 101);
+        }
+        .first_last_name,.gender_role_box{
+            display: flex;
+            justify-content: space-between;
+            width: 100%;
+            gap: 10px;
+        }
+        .signupPage__forgotcode,.signupPage__button{
+            text-align: center;
+        }
+        .signupPage__forgotcode{
+            p{
+                color: $main_color;
+            }
+        }
+        .signupPage__button button{
+            margin-top: 20px;
+            width: 60%;
+            background-color: $main_color;
+            border-radius: 20px;
+            transition: all 0.4s;
+        }
+     
+    }
+    .signupPage__googleAuth{
+        display: flex;
+        justify-content: center;
+        
+       .signupPage__googleButton{
+        display: flex;
+        justify-content: center;
+        gap: 5px;
+        padding:7px 0;
+        border-radius: 7px;
+        margin-top: 60px;
+        width: 40%;
+        border: 1px solid rgba(0, 0, 0, 0.202);
+       p{
+        font-size: 17px;
+        color: $main_color;
+       }
+        img{
+            width: 20px;
+            height: 20px;
+        }
+       }
+    }
+}
+@media (max-width: 768px) {
+    .signupPage{
+        grid-template-columns: 55% 1fr;
+        .signupPage__form{
+            display: flex;
+            justify-content: center;
+            form{
+                width: 65%;
+            }
+            .signupPage__button button{
+                margin-top: 30px;
+                width: 70%;
+            }
+        }
+        .signupPage__googleAuth{
+           .signupPage__googleButton{
+          
+            width: 60%;
+            border:$border_color ;
+    
+           }
+        }
+    }
+}
+@media (max-width: 500px) {
+    .signupPage{
+       display: block;
+       .signupPage__mobileHeader{
+        padding: 10px 15px;
+        display: flex;
+        justify-content:space-between;
+        align-items: center;
+        img{
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            padding: 5px;
+            border: 2px solid $main_color;
+        }
+        button{
+            background-color: $main_color;
+            border-radius: 10px;
+        }
+        }
+        .signupPage__title{
+            padding-top: 40px;
+        }
+    }
+ 
+}
