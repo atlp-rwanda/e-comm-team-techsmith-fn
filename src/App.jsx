@@ -13,6 +13,7 @@ import {
   LoginPage,
   NotFoundPage,
   SingleProductPage,
+  SellerProductsPage,
   SingupPage
 } from './pages';
 import Footer from './components/Footer';
@@ -33,6 +34,7 @@ const App = () => {
           <Route path='/product/:id' element={<SingleProductPage />} />
           <Route path='/dashboard/users' element={<AdminManageUserPage />}
           />
+          <Route path='/seller' element={<SellerProductsPage />} />
           <Route path='*' element={<NotFoundPage />} />
         </Routes>
         <Footer />

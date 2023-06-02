@@ -12,3 +12,4 @@ export { default as lock } from './Lock.svg';
 export { default as loading } from './loading.svg';
 export { default as Left } from './Left.svg';
 export { default as Right } from './Right.svg';
+export { default as chairs } from './assi4.jpg';

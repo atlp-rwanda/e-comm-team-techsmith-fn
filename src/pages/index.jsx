@@ -11,6 +11,7 @@ import SingleProductContainer from '../containers/SingleProductContainer';
 import ProductReviewForm from '../containers/ProductReviewForm';
 import ProductReviewContainer from '../containers/ProductReviewContainer';
 import AdminManageUserContainer from '../containers/UsersContainer';
+import SellerProducts  from '../containers/SellerProducts';
 
 const HomePage = () => {
   return <HomeContainer />;
@@ -47,6 +48,9 @@ const SingleProductPage = () => {
 };
 const AdminManageUserPage = () => {
   return <AdminManageUserContainer />;
+}
+const SellerProductsPage = () => {
+  return <SellerProducts />;
 };
 export {
   HomePage,
@@ -57,5 +61,6 @@ export {
   AboutPage,
   ContactPage,
   SingleProductPage,
-  AdminManageUserPage
+  AdminManageUserPage,
+  SellerProductsPage
 };
