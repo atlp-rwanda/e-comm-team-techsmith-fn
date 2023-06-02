@@ -1,3 +1,4 @@
+/* eslint-disable import/no-extraneous-dependencies */
 import React, { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
@@ -13,6 +14,7 @@ import {
   HomePage,
   LoginPage,
   NotFoundPage,
+  SellerProductsPage,
   SingupPage
 } from './pages';
 import Footer from './components/Footer';
@@ -33,6 +35,7 @@ const App = () => {
           <Route path='/category' element={<CategoryPage />} />
           <Route path='/login' element={<LoginPage />} />
           <Route path='/signup' element={<SingupPage />} />
+          <Route path='/seller' element={<SellerProductsPage />} />
           <Route path='*' element={<NotFoundPage />} />
         </Routes>
         <Footer />

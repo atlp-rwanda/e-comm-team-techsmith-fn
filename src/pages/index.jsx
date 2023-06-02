@@ -6,6 +6,7 @@ import HomeContainer from '../containers/HomeContainer';
 import LoginContainer from '../containers/LoginContainer';
 import Notfound from '../containers/NotFound';
 import SignupContainer from '../containers/SignupContainer';
+import SellerProducts  from '../containers/SellerProducts';
 
 const HomePage = () => {
   return <HomeContainer />;
@@ -28,6 +29,9 @@ const AboutPage = () => {
 const ContactPage = () => {
   return <ContactContainer />;
 };
+const SellerProductsPage = () => {
+  return <SellerProducts />;
+};
 export {
   HomePage,
   NotFoundPage,
@@ -35,5 +39,6 @@ export {
   SingupPage,
   CategoryPage,
   AboutPage,
-  ContactPage
+  ContactPage,
+  SellerProductsPage
 };
