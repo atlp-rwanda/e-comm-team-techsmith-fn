@@ -7,6 +7,9 @@ export default {
       colors: {
         primary: '#243665'
       },
+      printColorAdjust: {
+        exact: 'exact'
+      },
       screens: {
         'screen-lg': { max: '1020px' },
         'screen-mid': { max: '800px' },

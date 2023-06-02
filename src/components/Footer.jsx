@@ -1,7 +1,7 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEnvelope } from '@fortawesome/free-regular-svg-icons';
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link,useLocation } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import { links, location, socials } from '../constants/Footer';
 import { nameLogo } from '../assets';
@@ -10,6 +10,7 @@ import Button from './Button';
 import { primaryColor } from '../constants';
 
 const Footer = () => {
+  const { pathname } = useLocation();
   const { register, handleSubmit } = useForm();
   const [formData, setFormData] = useState({ email: '' });
 
@@ -18,7 +19,7 @@ const Footer = () => {
     setFormData({ ...formData, email: e.target.value });
   };
 
-
+  if (pathname === '/login') return null;
   return (
     <div className='updated_footer container max-w-full flex flex-col divide-y divide-transparent border border-none'>
       <span className='flex justify-evenly screen-base:flex-col screen-mid:grid grid-cols-2 px-12 divide-x divide-transparent max-w-full screen-base:grid-cols-1'>
