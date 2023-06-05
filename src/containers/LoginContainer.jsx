@@ -2,6 +2,7 @@
 /* eslint-disable import/no-unresolved */
 /* eslint-disable import/no-extraneous-dependencies */
 /* eslint-disable import/order */
+
 import React, { useState, useEffect } from 'react';
 import { Typography, Button } from '@mui/material';
 import { useForm } from 'react-hook-form';
@@ -17,23 +18,23 @@ import { API_URL } from '../constants';
 import InputPopup from '../components/InputPopup';
 
 const LoginContainer = () => {
-  const [loading, setLoading] = useState(false);
-  const [incorrectCred, setIncorrectCred] = useState(null);
-  const form = useForm();
-  const navigate = useNavigate();
-  const dispatch = useDispatch();
-  const { register, handleSubmit, setValue, formState } = form;
-  const { errors } = formState;
+const [loading, setLoading] = useState(false);
+const [incorrectCred, setIncorrectCred] = useState(null);
+const form = useForm();
+const navigate = useNavigate();
+const dispatch = useDispatch();
+const { register, handleSubmit, setValue, formState } = form;
+const { errors } = formState;
 
-  const mySubmit = async (data) => {
-    // remember the inputed data and save them in local storage
-    if (data.rememberMe) {
-      localStorage.setItem('rememberedEmail', data.email);
-      localStorage.setItem('rememberedPassword', data.password);
-    } else {
-      localStorage.removeItem('rememberedEmail');
-      localStorage.removeItem('rememberedPassword');
-    }
+const mySubmit = async (data) => {
+// remember the inputed data and save them in local storage
+if (data.rememberMe) {
+localStorage.setItem('rememberedEmail', data.email);
+localStorage.setItem('rememberedPassword', data.password);
+} else {
+localStorage.removeItem('rememberedEmail');
+localStorage.removeItem('rememberedPassword');
+}
 
     setLoading(true);
     await axios
@@ -60,31 +61,33 @@ const LoginContainer = () => {
         }, 3500);
         setLoading(false);
       });
-  };
 
-  useEffect(() => {
-    const rememberedEmail = localStorage.getItem('rememberedEmail');
-    const rememberedPassword = localStorage.getItem('rememberedPassword');
-    if (rememberedEmail && rememberedPassword) {
-      setValue('email', rememberedEmail);
-      setValue('password', rememberedPassword);
-    }
-  }, [register]);
+};
 
-  return (
-    <>
-      <div>
-        <InputPopup
-          title='2FA Verification'
-          api={`${API_URL}/users/login`}
-          method='get'
-          details='Please check your email for the token to complete the Two-Factor
-                   Authentication process.'
-          inputError='Please Enter Token'
-          button='Verify'
-          placeholder='Enter Token'
-        />
-      </div>
+useEffect(() => {
+const rememberedEmail = localStorage.getItem('rememberedEmail');
+const rememberedPassword = localStorage.getItem('rememberedPassword');
+if (rememberedEmail && rememberedPassword) {
+setValue('email', rememberedEmail);
+setValue('password', rememberedPassword);
+}
+}, [register]);
+
+return (
+<>
+
+<div>
+<InputPopup
+title='2FA Verification'
+api={`${API_URL}/users/login`}
+method='get'
+details='Please check your email for the token to complete the Two-Factor
+Authentication process.'
+inputError='Please Enter Token'
+button='Verify'
+placeholder='Enter Token'
+/>
+</div>
 
       <div className='loginPage'>
         <div>
@@ -97,7 +100,7 @@ const LoginContainer = () => {
             </div>
           </div>
           <div className='loginPage__title'>
-            <Typography variant='h4'>Sign In</Typography>
+            <Typography variant='h4' sx={{fontSize: 'x-large'}}>Sign In</Typography>
           </div>
 
           <div className='loginPage__form'>
@@ -181,7 +184,8 @@ const LoginContainer = () => {
         <AuthBlueSide button='Sign UP' heading='Create Your Account' />
       </div>
     </>
-  );
+
+);
 };
 
 export default LoginContainer;

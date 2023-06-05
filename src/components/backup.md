@@ -75,6 +75,7 @@ setValue('password', rememberedPassword);
 
 return (
 <>
+
 <div>
 <InputPopup
 title='2FA Verification'
@@ -233,6 +234,7 @@ setValidity('Try Again Later! Server Error.');
 };
 
 return (
+
 <div className='overlay' ref={popup}>
 <div className='popup'>
 <p className='text-gray-700 text-3xl py-3 capitalize'>{title}</p>
