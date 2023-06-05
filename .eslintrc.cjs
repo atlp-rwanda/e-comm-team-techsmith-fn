@@ -31,6 +31,6 @@ module.exports = {
     'import/prefer-default-export': 'off',
     'no-plusplus': 'off',
     'react/jsx-props-no-spreading': 'off',
-    'react/no-array-index-key': 'off',
+    'react/no-array-index-key': 'off'
   }
 };

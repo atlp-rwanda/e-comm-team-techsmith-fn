@@ -1,7 +1,7 @@
 /* eslint-disable import/no-extraneous-dependencies */
 /* eslint-disable import/no-unresolved */
 import React from 'react';
-import { Typography, Button } from '@mui/material';
+import { Typography } from '@mui/material';
 import TLogo from '../assets/images/TlogoW.png';
 
 const AuthBlueSide = () => {
@@ -22,7 +22,12 @@ const AuthBlueSide = () => {
           </div>
         </div>
         <div className='blueSide__button'>
-          <Button>Sign up</Button>
+          <button
+            type='submit'
+            className='bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 border border-blue-700 rounded'
+          >
+            SIGN UP
+          </button>
         </div>
       </div>
     </div>

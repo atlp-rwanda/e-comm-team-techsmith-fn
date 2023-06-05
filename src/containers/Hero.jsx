@@ -28,7 +28,12 @@ const Hero = () => {
       </span>
       <span className='home-hero-slider flex flex-wrap justify-evenly'>
         {location.map((address) => {
-          return <i key={address.name} className='w-full max-w-12 screen-mid:w-4 screen-base:w-1/10' />;
+          return (
+            <i
+              key={address.name}
+              className='w-full max-w-12 screen-mid:w-4 screen-base:w-1/10'
+            />
+          );
         })}
       </span>
     </div>
