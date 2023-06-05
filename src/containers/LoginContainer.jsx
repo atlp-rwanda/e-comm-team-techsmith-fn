@@ -184,7 +184,6 @@ placeholder='Enter Token'
         <AuthBlueSide button='Sign UP' heading='Create Your Account' />
       </div>
     </>
-
 );
 };
 
