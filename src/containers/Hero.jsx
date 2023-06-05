@@ -7,14 +7,16 @@ const Hero = () => {
     <div className='home-hero flex flex-col screen-mid:flex-col'>
       <span className='home-hero-container grid grid-cols-2 screen-mid:grid-cols-1'>
         <section className='home-hero-text'>
-          <p>New Arrivals</p>
+          <p style={{
+            textTransform: 'uppercase',
+          }}>New Arrivals</p>
           <div>
             <h1>Feed Your Passion</h1>
             <p>And get a bargain in the process</p>
           </div>
           <p>$24</p>
           <Button
-            route='/shop'
+            route='/login'
             className='hero-btn primary-btn'
             value='Buy now'
           />

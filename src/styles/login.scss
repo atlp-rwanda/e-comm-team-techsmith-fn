@@ -1,9 +1,7 @@
 @use 'base';
 
 $border_color:1px solid rgba(0, 0, 0, 0.25);
-*{
-    font-size: 14px;
-}
+
 .loginPage{
     display: grid;
     grid-template-columns: 65% 1fr;
@@ -17,6 +15,16 @@ $border_color:1px solid rgba(0, 0, 0, 0.25);
        h4{
         color: base.$primary-color;
        }
+    }
+
+    p, button {
+        font-size: 1.6rem;
+    }
+
+    h4 {
+        font-size: 3rem;
+        text-align: center;
+        font-weight: 500;
     }
 
     .loginPage__form{
@@ -41,7 +49,7 @@ $border_color:1px solid rgba(0, 0, 0, 0.25);
             label{
                 position: absolute;
                 top: 12px;
-                font-size: 12px;
+                font-size: 1.4rem;
                 z-index:10;
                 left: 10px;
                 display: block;

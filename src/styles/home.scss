@@ -43,6 +43,12 @@
   margin: 1rem auto;
   text-align: center;
 
+  h1 {
+    font-size: 4rem;
+    font-weight: 500;
+    text-transform: uppercase;
+  }
+
   div {
     display: flex;
     flex-direction: column;
@@ -259,6 +265,7 @@
     border-radius: 0.5rem;
     padding: 0.5rem 2rem;
     transition: all 0.3s ease-in-out;
+    width: fit-content;
 
     &:hover {
       background-color: base.$primary-color;
