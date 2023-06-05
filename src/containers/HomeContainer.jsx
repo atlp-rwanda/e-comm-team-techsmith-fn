@@ -25,7 +25,7 @@ const Banner = () => {
   return (
     <div className='hero-banner flex screen-mid:flex-col py-8 px-8'>
       <section className='home-banner-text'>
-        <h2 className='max-w-10/12 screen-base:max-w-9/12'>OUR BIGGEST PROMOTION EVER IS HAPPENING NOW!</h2>
+        <h2 className='max-w-10/12 text-5xl screen-base:max-w-9/12 text-3xl screen-mid:text-4xl'>OUR BIGGEST PROMOTION EVER IS HAPPENING NOW!</h2>
         <p className='max-w-10/12 screen-base:max-w-9/12'>GET UP TO 50% OFF EVEYR PURCHASE YOU MAKE</p>
       </section>
       <section>

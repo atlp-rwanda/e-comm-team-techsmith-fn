@@ -13,6 +13,7 @@ import { useNavigate } from 'react-router-dom';
 import Loading from '../components/Loading';
 import { useDispatch } from 'react-redux';
 import { getToken } from '../states/features/login/actions';
+import { API_URL } from '../constants';
 
 const LoginContainer = () => {
   const [loading, setLoading] = useState(false);
@@ -26,7 +27,7 @@ const LoginContainer = () => {
     setLoading(true);
     await axios
       .post(
-        'https://e-comm-team-techsmith-bn-staging-fmp3.onrender.com/api/users/login',
+        `${API_URL}/users/login`,
         data
       )
       .then((response) => {
@@ -120,7 +121,7 @@ const LoginContainer = () => {
           </div>
         </div>
       </div>
-      <AuthBlueSide />
+      <AuthBlueSide button='Sign Up' heading='Create your account' />
     </div>
   );
 };
