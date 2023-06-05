@@ -15,7 +15,8 @@ const BrowseByCategory = () => {
       rating: 3,
       count: 5
     },
-    className: 'home_category_product_card flex flex-col justify-between my-4 w-fit max-w-1/5',
+    className:
+      'home_category_product_card flex flex-col justify-between my-4 w-fit max-w-1/5'
   };
 
   return (

@@ -25,7 +25,7 @@ Button.defaultProps = {
   route: '#',
   className: 'primary-btn',
   onClick: () => {},
-  value: '',
+  value: ''
 };
 
 export default Button;

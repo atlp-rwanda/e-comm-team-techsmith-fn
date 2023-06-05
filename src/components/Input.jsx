@@ -1,8 +1,16 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const Input = ({ type, className, placeholder, onChange, value, required, onClick, name }) => {
-
+const Input = ({
+  type,
+  className,
+  placeholder,
+  onChange,
+  value,
+  required,
+  onClick,
+  name
+}) => {
   return (
     <input
       type={type}
@@ -17,7 +25,6 @@ const Input = ({ type, className, placeholder, onChange, value, required, onClic
   );
 };
 
-
 Input.propTypes = {
   type: PropTypes.string.isRequired,
   className: PropTypes.string,
@@ -26,7 +33,7 @@ Input.propTypes = {
   value: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
   required: PropTypes.bool,
   onClick: PropTypes.func,
-  name: PropTypes.string,
+  name: PropTypes.string
 };
 
 Input.defaultProps = {
@@ -36,7 +43,7 @@ Input.defaultProps = {
   value: '',
   required: false,
   onClick: () => {},
-  name: '',
+  name: ''
 };
 
 export default Input;

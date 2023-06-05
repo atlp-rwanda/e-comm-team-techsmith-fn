@@ -5,13 +5,12 @@
 @use 'homePopularProductCard';
 @use 'homeCategoryProductCard';
 @use 'homeTopSeller';
-@use "login";
-@use "authBlueSide";
-@use "loader";
+@use 'login';
+@use 'authBlueSide';
+@use 'loader';
 @import 'tailwindcss/base';
 @import 'tailwindcss/components';
 @import 'tailwindcss/utilities';
-*{
-    font-family: 'Poppins', sans-serif !important;
+* {
+  font-family: 'Poppins', sans-serif !important;
 }
-
