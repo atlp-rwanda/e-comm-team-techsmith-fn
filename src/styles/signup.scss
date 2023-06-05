@@ -1,0 +1,219 @@
+@use 'base';
+
+$border_color: 1px solid rgba(0, 0, 0, 0.25);
+
+.signupPage {
+  display: grid;
+  grid-template-columns: 65% 1fr;
+
+  label {
+    font-size: 1.4rem;
+  }
+
+  p {
+    font-size: 1.6rem;
+  }
+
+  button {
+    font-size: 1.5rem;
+  }
+
+  .signupPage__mobileHeader {
+    display: none;
+  }
+
+  .signupPage__title {
+    padding: 50px 0 20px 40px;
+    text-align: center;
+    margin-bottom: 20px;
+    h4 {
+      color: base.$primary-color;
+      font-weight:bold /* Added bold font weight */
+    }
+  }
+  .signupPage_label,.gender_role_box label{
+     color:  #243665ba;
+     margin: 10px;
+  }
+  .gender_role_box,.password_confirmPassword_form{
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    select {
+        width: 100%;
+        padding: 13px 120px 13px 10px;
+        border: $border_color;
+        border-radius: 10px;
+        color: #243665ba;
+        margin-bottom: 25px;
+      }
+      label {
+        color: #243665ba;
+      }
+
+}
+  .signupPage__form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    form {
+      width: 40%;
+    }
+
+    .signupPage__input {
+      position: relative;
+      margin-bottom: 25px;
+
+      input {
+        width: 100%;
+        padding: 13px 30px 13px 10px;
+        border: $border_color;
+        background-color: transparent;
+        border-radius: 10px;
+        position: relative;
+        z-index: 11;
+        outline: none;
+      }
+      label {
+        position: absolute;
+        top: 12px;
+        font-size: 12px;
+        z-index: 10;
+        left: 10px;
+        display: block;
+        transition: all 0.3s;
+        color: #243665ba;
+      }
+      .input-label-group {
+        display: flex;
+        justify-content: space-between;
+        margin-right: 20px;
+      }
+      .input-label {
+        margin-bottom: 5px;
+      }
+      .input-field {
+        select {
+          padding: 13px 60px;
+        }
+    }
+      input:focus + label,
+      input:valid + label {
+        top: -12px;
+        z-index: 14;
+        background-color: rgba(255, 255, 255, 0.733);
+        padding: 0 5px;
+      }
+      .signupPage__error {
+        color: rgba(255, 99, 71, 0.797);
+        padding: 0px;
+        font-style: italic;
+        font-weight: 500;
+        font-size: 12px !important;
+      }
+    }
+    .signupPage__forgotcode,
+    .signupPage__button {
+      text-align: center;
+    }
+    .signupPage__button button {
+      margin-top: 10px;
+      width: 60%;
+      background-color: base.$primary-color;
+      border-radius: 20px;
+      transition: all 0.4s;
+      font-weight: bold; /* Added bold font weight */
+    }
+    .signup_response{
+        display:flex ;
+        width: 40%;
+        margin: 1.8rem 0;
+    }
+}
+}
+@media (max-width: 1289px) {
+  .signupPage {
+    grid-template-columns: 55% 1fr;
+
+    .signupPage__form {
+      display: flex;
+      justify-content: center;
+
+      form {
+        width: 65%;
+      }
+
+      .signupPage__button button {
+        margin-top: 30px;
+        width: 70%;
+      }
+    .gender_role_box,.password_confirmPassword_form{
+        display: flex;
+        justify-content: space-between;
+        select{
+            padding: 13px 90px 10px 8px;
+          }
+    }
+        .signup_response{
+            width: 65%;
+        }
+    }
+    .signupPage__title {
+        padding-top: 10px;
+    }  
+}
+}
+
+@media (max-width: 831px) {
+  .signupPage {
+    display: block;
+    .signupPage__mobileHeader {
+      padding: 10px 15px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+
+      img {
+        width: 45px;
+        height: 45px;
+        border-radius: 50%;
+        padding: 5px;
+        border: 2px solid base.$primary-color;
+      }
+
+      button {
+        background-color: base.$primary-color;
+        border-radius: 10px;
+        font-weight: bold; /* Added bold font weight */
+      }
+    }
+    .gender_role_box,.password_confirmPassword_form{
+        display: flex;
+        justify-content: space-between;
+        width: 100%;
+        select {
+            padding:13px 126px 13px 10px;
+          }
+    }
+    .signupPage__form {
+        .signup_response{
+            width: 65%;
+            p{
+                font-size: 1.3rem;
+                color:rgb(5, 118, 179);
+                padding: 0.5rem;
+            }
+        }
+    }
+    .signupPage__title {
+        padding-top: 2rem;
+    }
+    .signupPage__title {
+        padding:0px;
+        text-align: center;
+        margin-bottom: 20px;
+      }
+  }
+}

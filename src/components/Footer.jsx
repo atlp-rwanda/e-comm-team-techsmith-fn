@@ -19,7 +19,7 @@ const Footer = () => {
     setFormData({ ...formData, email: e.target.value });
   };
 
-  if (pathname === '/login') return null;
+  if (pathname === '/login' || pathname==='/signup') return null;
   return (
     <div className='updated_footer container max-w-full flex flex-col divide-y divide-transparent border border-none'>
       <span className='flex justify-evenly screen-base:flex-col screen-mid:grid grid-cols-2 px-12 divide-x divide-transparent max-w-full screen-base:grid-cols-1'>

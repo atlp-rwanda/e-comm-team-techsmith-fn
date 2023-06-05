@@ -1,14 +1,13 @@
-import React, { useRef, useState } from 'react';
+import React, { useRef, useEffect } from 'react';
 import { useForm } from 'react-hook-form';
-import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
 import PropTypes from 'prop-types';
 import Loading from './Loading';
+import { login2FA } from '../states/features/auth/authSlice';
 
 const InputPopup = ({
   title,
-  api,
-  method,
   details,
   inputError,
   button,
@@ -18,26 +17,19 @@ const InputPopup = ({
   const form = useForm();
   const { register, handleSubmit, formState } = form;
   const { errors } = formState;
-  const [validity, setValidity] = useState(null);
   const navigate = useNavigate();
-  const [loading, setLoading] = useState(false);
+  const dispatch = useDispatch()
+  const {isSeller, message, isError, isLoading} = useSelector((state) => {return state.auth}) 
 
   const Verify = async (data) => {
-    setLoading(true);
-    await axios[method](`${api}/${data.token}`)
-      .then((response) => {
-        if (!response.data.Authorization) {
-          setValidity('Token Expired. Generate a new token!');
-          setLoading(false);
-          return;
-        }
-        navigate('/');
-      })
-      .catch(() => {
-        setLoading(false);
-        setValidity('Try Again Later! Invalid Token!');
-      });
+    dispatch(login2FA(data.token))
   };
+
+  useEffect(()=>{
+    if(isSeller){
+      navigate('/')
+    }
+  },[dispatch, isSeller])
 
   return (
     <div className='overlay' ref={popup}>
@@ -64,12 +56,14 @@ const InputPopup = ({
           >
             {errors.token?.message}
           </p>
-          <p
+
+          {isError && <p
             className='text-red-700 text-sm px-1 py-1 rounded relative'
             role='alert'
           >
-            {validity}
-          </p>
+            {message}
+          </p>}
+          
 
           <p className='text-gray-500 text-xl '>{details}</p>
 
@@ -87,7 +81,7 @@ const InputPopup = ({
               className='px-4 py-2 bg-blue-900 text-white rounded text-xl'
               type='submit'
             >
-              {loading ? <Loading /> : button}
+              {isLoading ? <Loading /> : button}
             </button>
           </div>
         </form>
@@ -100,8 +94,6 @@ export default InputPopup;
 
 InputPopup.propTypes = {
   title: PropTypes.string.isRequired,
-  api: PropTypes.string.isRequired,
-  method: PropTypes.string.isRequired,
   details: PropTypes.string.isRequired,
   inputError: PropTypes.string.isRequired,
   button: PropTypes.string.isRequired,
