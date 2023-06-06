@@ -3,7 +3,7 @@
 /* eslint-disable import/no-extraneous-dependencies */
 /* eslint-disable import/order */
 
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { Typography, Button } from '@mui/material';
 import { useForm } from 'react-hook-form';
 import Google from '../assets/images/google.png';
@@ -18,25 +18,17 @@ import { API_URL } from '../constants';
 import InputPopup from '../components/InputPopup';
 
 const LoginContainer = () => {
-const [loading, setLoading] = useState(false);
-const [incorrectCred, setIncorrectCred] = useState(null);
-const form = useForm();
-const navigate = useNavigate();
-const dispatch = useDispatch();
-const { register, handleSubmit, setValue, formState } = form;
-const { errors } = formState;
+  const [loading, setLoading] = useState(false);
+  const [incorrectCred, setIncorrectCred] = useState(null);
+  const form = useForm();
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const { register, handleSubmit, formState } = form;
+  const { errors } = formState;
 
-const mySubmit = async (data) => {
-// remember the inputed data and save them in local storage
-if (data.rememberMe) {
-localStorage.setItem('rememberedEmail', data.email);
-localStorage.setItem('rememberedPassword', data.password);
-} else {
-localStorage.removeItem('rememberedEmail');
-localStorage.removeItem('rememberedPassword');
-}
-
+  const mySubmit = async (data) => {
     setLoading(true);
+
     await axios
       .post(`${API_URL}/users/login`, data)
       .then((response) => {
@@ -61,33 +53,22 @@ localStorage.removeItem('rememberedPassword');
         }, 3500);
         setLoading(false);
       });
+  };
 
-};
-
-useEffect(() => {
-const rememberedEmail = localStorage.getItem('rememberedEmail');
-const rememberedPassword = localStorage.getItem('rememberedPassword');
-if (rememberedEmail && rememberedPassword) {
-setValue('email', rememberedEmail);
-setValue('password', rememberedPassword);
-}
-}, [register]);
-
-return (
-<>
-
-<div>
-<InputPopup
-title='2FA Verification'
-api={`${API_URL}/users/login`}
-method='get'
-details='Please check your email for the token to complete the Two-Factor
+  return (
+    <>
+      <div>
+        <InputPopup
+          title='2FA Verification'
+          api={`${API_URL}/users/login`}
+          method='get'
+          details='Please check your email for the token to complete the Two-Factor
 Authentication process.'
-inputError='Please Enter Token'
-button='Verify'
-placeholder='Enter Token'
-/>
-</div>
+          inputError='Please Enter Token'
+          button='Verify'
+          placeholder='Enter Token'
+        />
+      </div>
 
       <div className='loginPage'>
         <div>
@@ -100,7 +81,9 @@ placeholder='Enter Token'
             </div>
           </div>
           <div className='loginPage__title'>
-            <Typography variant='h4' sx={{fontSize: 'x-large'}}>Sign In</Typography>
+            <Typography variant='h4' sx={{ fontSize: 'x-large' }}>
+              Sign In
+            </Typography>
           </div>
 
           <div className='loginPage__form'>
@@ -142,27 +125,13 @@ placeholder='Enter Token'
                 )}
               </div>
 
-              {/* ______ remember me _________ */}
-
-              <div className='flex items-center mb-4'>
-                <input
-                  type='checkbox'
-                  {...register('rememberMe')}
-                  className='mr-2 rounded cursor-pointer text-blue-500 text-2xl'
-                  id='remember'
-                />
-                <label htmlFor='remember' className='text-gray-500 text-2xl'>
-                  Remember me
-                </label>
-              </div>
-
               <div className='loginPage__forgotcode'>
                 <Typography variant='body1'>Forgot your password?</Typography>
               </div>
               <div className='loginPage__button'>
                 <button
                   type='submit'
-                  className='bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 border border-blue-200 rounded'
+                  className='bg-blue-500 hover:bg-blue-700 text-white font-medium py-2 px-4 border border-blue-200 rounded'
                 >
                   {loading ? <Loading /> : 'SIGN IN'}
                 </button>
@@ -181,11 +150,10 @@ placeholder='Enter Token'
             </div>
           </div>
         </div>
-        <AuthBlueSide button='Sign UP' heading='Create Your Account' />
+        <AuthBlueSide button='SIGN UP' heading='Create Your Account' />
       </div>
     </>
-
-);
+  );
 };
 
 export default LoginContainer;

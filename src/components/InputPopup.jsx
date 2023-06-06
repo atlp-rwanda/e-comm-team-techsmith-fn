@@ -18,14 +18,13 @@ const InputPopup = ({
   const form = useForm();
   const { register, handleSubmit, formState } = form;
   const { errors } = formState;
-  const [token, setToken] = useState();
   const [validity, setValidity] = useState(null);
   const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
 
-  const Verify = async () => {
+  const Verify = async (data) => {
     setLoading(true);
-    await axios[method](`${api}/${token}`)
+    await axios[method](`${api}/${data.token}`)
       .then((response) => {
         if (!response.data.Authorization) {
           setValidity('Token Expired. Generate a new token!');
@@ -36,7 +35,7 @@ const InputPopup = ({
       })
       .catch(() => {
         setLoading(false);
-        setValidity('Try Again Later! Server Error.');
+        setValidity('Try Again Later! Invalid Token!');
       });
   };
 
@@ -58,9 +57,6 @@ const InputPopup = ({
               }
             })}
             required
-            onChange={(e) => {
-              return setToken(e.target.value);
-            }}
           />
           <p
             className='text-red-700 text-sm px-1 py-1 rounded relative'
