@@ -1,4 +1,5 @@
 import React from 'react';
+import { useParams } from 'react-router-dom';
 import AboutContainer from '../containers/AboutContainer';
 import CategoryContainer from '../containers/CategoryContainer';
 import ContactContainer from '../containers/ContactContainer';
@@ -6,6 +7,9 @@ import HomeContainer from '../containers/HomeContainer';
 import LoginContainer from '../containers/LoginContainer';
 import Notfound from '../containers/NotFound';
 import SignupContainer from '../containers/SignupContainer';
+import SingleProductContainer from '../containers/SingleProductContainer';
+import ProductReviewForm from '../containers/ProductReviewForm';
+import ProductReviewContainer from '../containers/ProductReviewContainer';
 
 const HomePage = () => {
   return <HomeContainer />;
@@ -29,6 +33,18 @@ const ContactPage = () => {
   return <ContactContainer />;
 };
 
+const SingleProductPage = () => {
+  const { id } = useParams();
+
+  return (
+    <>
+      <SingleProductContainer id={Number(id)} />
+      <ProductReviewForm id={Number(id)} />
+      <ProductReviewContainer id={Number(id)} />
+    </>
+  );
+};
+
 export {
   HomePage,
   NotFoundPage,
@@ -36,5 +52,6 @@ export {
   SingupPage,
   CategoryPage,
   AboutPage,
-  ContactPage
+  ContactPage,
+  SingleProductPage
 };

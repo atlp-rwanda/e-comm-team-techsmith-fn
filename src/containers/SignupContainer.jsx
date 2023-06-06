@@ -237,7 +237,9 @@ const SignupContainer = () => {
           </form>
         </div>
       </div>
-      <AuthBlueSide heading='Already have an account' button='Sign in' description='To keep connected with us please login in here!' />
+      <AuthBlueSide heading='Already have an account' button='Sign in' onClick={() => {
+        navigate('/login')
+      }} description='To keep connected with us please login in here!' />
     </div>
   );
 };
