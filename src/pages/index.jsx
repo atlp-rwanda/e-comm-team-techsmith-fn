@@ -28,6 +28,7 @@ const AboutPage = () => {
 const ContactPage = () => {
   return <ContactContainer />;
 };
+
 export {
   HomePage,
   NotFoundPage,

@@ -1,9 +1,9 @@
-.loader{
-    display: flex;
-    place-items:inherit;
-    padding: 2px 0;
-    img{
-        width: 20px;
-        height: 20px;
-    }
+.loader {
+  display: flex;
+  justify-content: center;
+  padding: 2px 0;
+  img {
+    width: 20px;
+    height: 20px;
+  }
 }
