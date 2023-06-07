@@ -1,59 +1,34 @@
-/* eslint-disable jsx-a11y/label-has-associated-control */
-/* eslint-disable import/no-unresolved */
-/* eslint-disable import/no-extraneous-dependencies */
-/* eslint-disable import/order */
-
-import React, { useState } from 'react';
+import React, { useEffect} from 'react';
 import { Typography, Button } from '@mui/material';
 import { useForm } from 'react-hook-form';
+import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 import Google from '../assets/images/google.png';
 import AuthBlueSide from '../components/AuthBlueSide';
 import TLogo from '../assets/images/T_Logo.png';
-import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
 import Loading from '../components/Loading';
-import { useDispatch } from 'react-redux';
-import { getToken } from '../states/features/login/actions';
 import { API_URL } from '../constants';
 import InputPopup from '../components/InputPopup';
+import { login, reset } from '../states/features/auth/authSlice';
 
 const LoginContainer = () => {
-  const [loading, setLoading] = useState(false);
-  const [incorrectCred, setIncorrectCred] = useState(null);
   const form = useForm();
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const { register, handleSubmit, formState } = form;
   const { errors } = formState;
+  const {isLoading,isError,isSuccess}=useSelector((state)=>{return state.auth})
 
   const mySubmit = async (data) => {
-    setLoading(true);
-
-    await axios
-      .post(`${API_URL}/users/login`, data)
-      .then((response) => {
-        const mytoken = response.data.Authorization;
-
-        dispatch(getToken(mytoken));
-
-        if (!response.data.user) {
-          document.querySelector('.overlay').style.display = 'flex';
-          setLoading(false);
-
-          return;
-        }
-
-        navigate('/');
-        setLoading(false);
-      })
-      .catch((err) => {
-        setIncorrectCred(err.response.data.message);
-        setTimeout(() => {
-          setIncorrectCred(null);
-        }, 3500);
-        setLoading(false);
-      });
+    dispatch(login(data))
   };
+
+  useEffect(()=>{
+    if(isSuccess){
+      navigate('/')
+      dispatch(reset())
+    }
+  },[dispatch, isSuccess])
 
   return (
     <>
@@ -120,8 +95,8 @@ Authentication process.'
                 />
                 <label htmlFor='password'>Password</label>
                 <p className='loginPage__error'>{errors.password?.message}</p>
-                {incorrectCred && (
-                  <p className='loginPage__error'> {incorrectCred}</p>
+                {isError && (
+                  <p className='loginPage__error'> Wrong email or password!</p>
                 )}
               </div>
 
@@ -133,7 +108,7 @@ Authentication process.'
                   type='submit'
                   className='bg-blue-500 hover:bg-blue-700 text-white font-medium py-2 px-4 border border-blue-200 rounded'
                 >
-                  {loading ? <Loading /> : 'SIGN IN'}
+                  {isLoading ? <Loading /> : 'SIGN IN'}
                 </button>
               </div>
             </form>
