@@ -1,15 +1,10 @@
-import {
-  legacy_createStore as createStore,
-  applyMiddleware,
-  compose
-} from 'redux';
-import thunk from 'redux-thunk';
-import allReducers from './allReducers';
+/* eslint-disable import/no-extraneous-dependencies */
+import { configureStore } from '@reduxjs/toolkit';
 
-const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
-const store = createStore(
-  allReducers,
-  composeEnhancers(applyMiddleware(thunk))
-);
+import authReducer from './features/auth/authSlice';
 
-export default store;
+export const store = configureStore({
+  reducer: {
+    auth: authReducer
+  }
+});
