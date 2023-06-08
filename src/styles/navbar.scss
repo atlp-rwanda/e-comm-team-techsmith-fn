@@ -1,0 +1,139 @@
+@use 'base';
+
+.navbar {
+  width: 100%;
+  padding: 30px;
+  margin: 0px;
+  background-color: base.$primary-color;
+  box-shadow: 0px 0px 20px 0px  base.$primary-color;
+  margin-bottom: 10rem;
+ transition: all 2s;
+
+  ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+  }
+  ul li a {
+    color:white;
+    padding: 14px 16px;
+    font-size: 2.0rem;
+  }
+  
+  .navbar-category-submenu,.navbar-contact-submenu,.navbar-about-submenu{
+    transition: all 0.6s;
+
+  }
+  .navbar-category-submenu:hover{
+    .categoryclass {
+      display: block !important;
+    }
+  }
+.navbar-contact-submenu:hover{
+  .contactClass{
+    display: block !important;
+  }
+}
+.navbar-about-submenu:hover{
+ .aboutClass{
+  display: block !important;
+ }
+}
+  transition: all 0.6s;
+.categoryclass li{
+        
+        display: block;
+          }
+.categoryclass a{
+           color:white;
+           font-weight: 400;
+           display: block;
+           font-size: 2.0rem;
+           font-family: 'poppins',sans-serif;
+           padding: 15px;
+             }
+
+.li:hover ul#categorySubmenu{
+  opacity: 1;
+  top: 10rem;
+  visibility: visible;
+}
+#categorySubmenu li{
+  width: 100%;
+}
+  input.buttonSearch {
+
+    padding:0.7rem 0rem 0.7rem 0.8rem;
+    color: base.$primary-color;
+    border-radius: 8rem;
+    font-size: 1.5rem;
+  }
+  .searchbtnLogo{
+    right: 1rem;
+    width: 2rem;
+
+  }
+  .profileIcon{
+    width: 3rem;
+  }
+  .navbar-profileMenu ul{
+    background-color: base.$primary-color;
+    list-style: none;
+    text-align: center;
+    width: 100%;
+  }
+  .navbar-profileMenu ul:hover{
+background: white;
+color:base.$primary-color;
+  }
+  .navbar-profileMenu li{
+float: left;
+position: relative;
+width: auto;
+
+  }
+.navbar-profileMenu a{
+ color:white; 
+font-weight: 400;
+display: block;
+font-size: 2.0rem;
+text-align: center !important;
+font-family: 'poppins',sans-serif;
+padding: 15px 50px 15px 5px!important;
+
+  }
+  #navbar-Psubmenu{
+    left: 0;
+    opacity: 0;
+    position: absolute;
+    top: 7rem;
+    visibility: hidden;
+    z-index: 1;
+  }
+  li:hover ul#navbar-Psubmenu{
+    opacity: 1;
+    top: 5rem;
+    visibility: visible;
+  }
+  #navbar-Psubmenu li{
+width: 100%;
+  }
+#navbar-Psubmenu a:hover{
+background-color :white;
+color: black;
+}
+#navbar-Psubmenu a{
+  background-color:base.$primary-color;
+  color: white;
+}
+  .navbar-profileMenu ul li a{
+    color: white;
+    font-size: 1.7rem;
+  }
+  .searchbtnLogoProfileText{
+    display: flex;
+   align-items: center;
+  }
+}
+
+    

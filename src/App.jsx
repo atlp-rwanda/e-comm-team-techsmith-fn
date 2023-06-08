@@ -6,7 +6,7 @@ import { fas } from '@fortawesome/free-solid-svg-icons';
 import { far } from '@fortawesome/free-regular-svg-icons';
 
 import {
-  AboutPage,
+AboutPage,
   CategoryPage,
   ContactPage,
   HomePage,
@@ -15,12 +15,15 @@ import {
   SingupPage
 } from './pages';
 import Footer from './components/Footer';
+import Navbar from './components/Navbar';
+
 
 const App = () => {
   
   return (
     <div className='App'>
       <Router>
+      <Navbar/>
         <Routes>
           <Route path='/' element={<HomePage />} />
           <Route path='/about' element={<AboutPage />} />
