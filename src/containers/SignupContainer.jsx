@@ -13,18 +13,21 @@ const SignupContainer = () => {
   const dispatch = useDispatch();
   const [open, setOpen] = React.useState(false);
   const form = useForm();
-  const { register, handleSubmit, formState,watch } = form;
+  const { register, handleSubmit, formState, watch } = form;
   const { errors } = formState;
   const password = watch('password');
   const confirmPassword = watch('cPassword');
-  
-  const { isLoading,isSuccess, isError, message } = useSelector((state) => {return state.auth});
+
+  const { isLoading, isSuccess, isError, message } = useSelector((state) => {
+    return state.auth;
+  });
 
   const mySubmit = async (data) => {
-    if(password === confirmPassword){
-    dispatch(signup(data));
-    setOpen(true);
-  }};
+    if (password === confirmPassword) {
+      dispatch(signup(data));
+      setOpen(true);
+    }
+  };
 
   const handleClose = (reason) => {
     if (reason === 'clickaway') {
@@ -37,7 +40,7 @@ const SignupContainer = () => {
     if (isSuccess || isError) {
       setTimeout(() => {
         dispatch(reset());
-        navigate('/login')
+        navigate('/login');
       }, 5000); // Delay of 2000 milliseconds (5 seconds)
     }
   }, [dispatch, isSuccess]);
@@ -54,18 +57,37 @@ const SignupContainer = () => {
           </div>
         </div>
         <div className='signupPage__title'>
-          <Typography variant='h4'>Create your account on Techsmiths!</Typography>
+          <Typography variant='h4'>
+            Create your account on Techsmiths!
+          </Typography>
         </div>
         {isSuccess && (
-          <Snackbar open={open} anchorOrigin={{vertical: 'bottom', horizontal: 'left'}} autoHideDuration={8000} onClose={handleClose}>
-          <Alert variant='standard' style={{  fontSize: '20px', padding:'6px 8px' }}>
-            {message}
-          </Alert>
-        </Snackbar>
+          <Snackbar
+            open={open}
+            anchorOrigin={{ vertical: 'bottom', horizontal: 'left' }}
+            autoHideDuration={8000}
+            onClose={handleClose}
+          >
+            <Alert
+              variant='standard'
+              style={{ fontSize: '20px', padding: '6px 8px' }}
+            >
+              {message}
+            </Alert>
+          </Snackbar>
         )}
         {isError && (
-          <Snackbar open={open} anchorOrigin={{vertical: 'bottom', horizontal: 'left'}} autoHideDuration={9000} onClose={handleClose} >
-            <Alert variant='standard' severity='error' style={{  fontSize: '20px', padding:'6px 8px' }}>
+          <Snackbar
+            open={open}
+            anchorOrigin={{ vertical: 'bottom', horizontal: 'left' }}
+            autoHideDuration={9000}
+            onClose={handleClose}
+          >
+            <Alert
+              variant='standard'
+              severity='error'
+              style={{ fontSize: '20px', padding: '6px 8px' }}
+            >
               {message}
             </Alert>
           </Snackbar>
@@ -80,8 +102,10 @@ const SignupContainer = () => {
                 {...register('name', {
                   required: {
                     value: true,
-                    message: <p className='signupPage__error'>Full name is required</p>,
-                  },
+                    message: (
+                      <p className='signupPage__error'>Full name is required</p>
+                    )
+                  }
                 })}
               />
               <label htmlFor='lname'>Full Name</label>
@@ -97,12 +121,14 @@ const SignupContainer = () => {
                   pattern: {
                     // eslint-disable-next-line no-useless-escape
                     value: /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/,
-                    message: <p className='signupPage__error'>Invalid email</p>,
+                    message: <p className='signupPage__error'>Invalid email</p>
                   },
                   required: {
                     value: true,
-                    message: <p className='signupPage__error'>Email is required</p>,
-                  },
+                    message: (
+                      <p className='signupPage__error'>Email is required</p>
+                    )
+                  }
                 })}
               />
               <label htmlFor='email'>Email</label>
@@ -118,8 +144,10 @@ const SignupContainer = () => {
                 {...register('birthday', {
                   required: {
                     value: true,
-                    message: <p className='signupPage__error'>Birthday is required</p>,
-                  },
+                    message: (
+                      <p className='signupPage__error'>Birthday is required</p>
+                    )
+                  }
                 })}
               />
               <p>{errors.birthday?.message}</p>
@@ -133,8 +161,12 @@ const SignupContainer = () => {
                 {...register('address', {
                   required: {
                     value: true,
-                    message: <p className='signupPage__error'>Please enter the address</p>,
-                  },
+                    message: (
+                      <p className='signupPage__error'>
+                        Please enter the address
+                      </p>
+                    )
+                  }
                 })}
               />
               <label htmlFor='address'>Address</label>
@@ -153,8 +185,12 @@ const SignupContainer = () => {
                     {...register('gender', {
                       required: {
                         value: true,
-                        message: <p className='signupPage__error'>Select your gender</p>,
-                      },
+                        message: (
+                          <p className='signupPage__error'>
+                            Select your gender
+                          </p>
+                        )
+                      }
                     })}
                   >
                     <option value=''>None</option>
@@ -184,8 +220,12 @@ const SignupContainer = () => {
                 {...register('language', {
                   required: {
                     value: true,
-                    message: <p className='signupPage__error'>Enter your preferred language</p>,
-                  },
+                    message: (
+                      <p className='signupPage__error'>
+                        Enter your preferred language
+                      </p>
+                    )
+                  }
                 })}
               />
               <label htmlFor='language'>Language</label>
@@ -201,8 +241,12 @@ const SignupContainer = () => {
                   {...register('password', {
                     required: {
                       value: true,
-                      message: <p className='signupPage__error'>Password is required</p>,
-                    },
+                      message: (
+                        <p className='signupPage__error'>
+                          Password is required
+                        </p>
+                      )
+                    }
                   })}
                 />
                 <label htmlFor='password'>Password</label>
@@ -216,30 +260,37 @@ const SignupContainer = () => {
                   {...register('cPassword', {
                     required: {
                       value: true,
-                      message: 'Re-enter the password to confirm',
-                    },
+                      message: 'Re-enter the password to confirm'
+                    }
                   })}
                   required
                 />
                 <label htmlFor='password'>Confirm password</label>
-                {password !== confirmPassword && <p className='signupPage__error'>Passwords do not match</p>}
+                {password !== confirmPassword && (
+                  <p className='signupPage__error'>Passwords do not match</p>
+                )}
                 <p className='signupPage__error'>{errors.cpassword?.message}</p>
-              </div>  
+              </div>
             </div>
-            <div className='signupPage__button' >
-            <button
-            type='submit'
-            className='bg-blue-500 hover:bg-blue-700 text-white font-medium py-2 px-4 border border-blue-200 rounded'
-          >
-            {isLoading ? <Loading /> : 'SUBMIT'}
-          </button>
+            <div className='signupPage__button'>
+              <button
+                type='submit'
+                className='bg-blue-500 hover:bg-blue-700 text-white font-medium py-2 px-4 border border-blue-200 rounded'
+              >
+                {isLoading ? <Loading /> : 'SUBMIT'}
+              </button>
             </div>
           </form>
         </div>
       </div>
-      <AuthBlueSide heading='Already have an account' button='Sign in' onClick={() => {
-        navigate('/login')
-      }} description='To keep connected with us please login in here!' />
+      <AuthBlueSide
+        heading='Already have an account'
+        button='Sign in'
+        onClick={() => {
+          navigate('/login');
+        }}
+        description='To keep connected with us please login in here!'
+      />
     </div>
   );
 };

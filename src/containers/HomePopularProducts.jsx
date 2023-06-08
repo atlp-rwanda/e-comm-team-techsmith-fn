@@ -33,7 +33,7 @@ const PopularProducts = () => {
           <p>Everyone is buying this</p>
         </div>
         <Button
-          value='Browse >>'
+          value='Browse '
           className='popular_products_cta'
           route='/category'
         />

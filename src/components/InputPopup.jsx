@@ -6,30 +6,26 @@ import PropTypes from 'prop-types';
 import Loading from './Loading';
 import { login2FA } from '../states/features/auth/authSlice';
 
-const InputPopup = ({
-  title,
-  details,
-  inputError,
-  button,
-  placeholder
-}) => {
+const InputPopup = ({ title, details, inputError, button, placeholder }) => {
   const popup = useRef(null);
   const form = useForm();
   const { register, handleSubmit, formState } = form;
   const { errors } = formState;
   const navigate = useNavigate();
-  const dispatch = useDispatch()
-  const {isSeller, message, isError, isLoading} = useSelector((state) => {return state.auth}) 
+  const dispatch = useDispatch();
+  const { isSeller, message, isError, isLoading } = useSelector((state) => {
+    return state.auth;
+  });
 
   const Verify = async (data) => {
-    dispatch(login2FA(data.token))
+    dispatch(login2FA(data.token));
   };
 
-  useEffect(()=>{
-    if(isSeller){
-      navigate('/')
+  useEffect(() => {
+    if (isSeller) {
+      navigate('/');
     }
-  },[dispatch, isSeller])
+  }, [dispatch, isSeller]);
 
   return (
     <div className='overlay' ref={popup}>
@@ -57,13 +53,14 @@ const InputPopup = ({
             {errors.token?.message}
           </p>
 
-          {isError && <p
-            className='text-red-700 text-sm px-1 py-1 rounded relative'
-            role='alert'
-          >
-            {message}
-          </p>}
-          
+          {isError && (
+            <p
+              className='text-red-700 text-sm px-1 py-1 rounded relative'
+              role='alert'
+            >
+              {message}
+            </p>
+          )}
 
           <p className='text-gray-500 text-xl '>{details}</p>
 
