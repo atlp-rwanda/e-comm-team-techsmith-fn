@@ -8,6 +8,7 @@ import { searchlog, techLogW } from '../assets';
 import Button from './Button';
 import logOut from '../utils/logOut';
 import { useGetAllCategoriesQuery } from '../states/api/apiSlice';
+import { currentToken as Auth } from '../states/features/auth/authSlice';
 import Input from './Input';
 import {
   addCategories,
@@ -16,6 +17,7 @@ import {
 } from '../states/features/search/searchSlice';
 
 const Navbar = () => {
+  const navigate = useNavigate();
   const { pathname } = useLocation();
   const [close, setClose] = useState(false);
   const { token } = useSelector((state) => {
@@ -45,6 +47,15 @@ const Navbar = () => {
   const hideprofile = () => {
     document.querySelector('.navbar__profileView').classList.remove('visible');
   };
+
+  const showCart = () => {
+    if(! Auth){ 
+       navigate('/unauthorized')
+       return;
+    }
+    document.querySelector('.cart_overlay').style.display =
+      'flex';  
+  }
 
   return (
     <div className='navbar py-0 mb-4'>
@@ -92,12 +103,20 @@ const Navbar = () => {
          )
           : 
           (<div className='navbar__authBtn flex items-center'>
-          <div>
-            <Link to='/signup'>
-              <p>Sign up</p>
-            </Link>
-          </div>
-          <Button value='Login' route='/login' className='navBtn' />
+          <div className='navbar__authBtn flex items-center'>
+            <div className='flex'>
+            <p
+                className='inline cursor-pointer'
+                onClick={showCart}
+              >
+                Cart
+              </p>
+              <Link className='ml-10' to='/signup'>
+                <p>Sign up</p>
+              </Link>
+            </div>
+            <Button value='Login' route='/login' className='navBtn' />
+            </div> 
         </div>
          )}
   
@@ -106,6 +125,14 @@ const Navbar = () => {
           <div className='navbar__profileView absolute' onMouseLeave={hideprofile} >
           <div>
            <Button route={`/users/${JSON.parse(localStorage.getItem('user')).id}`} className='primary-btn-no-hover-scale' value='Profile'/>
+          </div>
+          <div>
+              <Button
+                route='#'
+                value='Cart'
+                className='primary-btn-no-hover-scale'
+                onClick={showCart}
+              />
           </div>
           <div>
           <Button route='/login' value='Sign out' className='primary-btn-no-hover-scale' onClick={loggingOut}/>
@@ -222,3 +249,5 @@ const Search = () => {
   );
 };
 export default Navbar;
+
+

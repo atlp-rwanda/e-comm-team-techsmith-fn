@@ -6,12 +6,14 @@ import userReducer from './features/users/usersSlice';
 import productReducer from './features/search/searchSlice';
 import sellerReducer from './features/seller/sellerSlice';
 import categorySlice from './features/categories/categorySlice';
+import cartReducer from './features/cart/cartSlice';
 
 const store = configureStore({
   reducer: {
     [apiSlice.reducerPath]: apiSlice.reducer,
     chat: chatReducer,
     auth: authReducer,
+    cart: cartReducer,
     users: userReducer,
     search: productReducer,
     seller: sellerReducer,

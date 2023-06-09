@@ -23,6 +23,7 @@ import {
 } from './pages';
 import Footer from './components/Footer';
 import Navbar from './components/Navbar';
+import Cart from './components/Cart';
 import JoinChat from './components/Chatroom/JoinChat';
 import Navigate from './outlets/Navigate';
 import ProtectedRoutes from './outlets/ProtectedRoutes';
@@ -35,6 +36,7 @@ const App = () => {
     <div className='App'>
       <Router>
         <Navbar />
+        <Cart />
         <Routes>
           <Route path='/' element={<HomePage />} />
           <Route path='/about' element={<AboutPage />} />
@@ -60,8 +62,8 @@ const App = () => {
           <Route path='/seller/unauthorized' element={<SellerNavigation />} />
         </Routes>
         <div style={{ position: 'fixed', bottom: '4rem', right: '4rem' }}>
-        <ChatFloadtingButton />
-      </div>
+          <ChatFloadtingButton />
+        </div>
         <Footer />
       </Router>
     </div>
