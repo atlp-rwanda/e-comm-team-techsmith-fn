@@ -5,7 +5,9 @@ export default {
   theme: {
     extend: {
       colors: {
-        primary: '#243665'
+        primary: '#243665',
+        grayText: '#ababab',
+        thickGrayText: '#666666'
       },
       printColorAdjust: {
         exact: 'exact'
