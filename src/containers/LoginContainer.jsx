@@ -129,7 +129,9 @@ Authentication process.'
             </div>
           </div>
         </div>
-        <AuthBlueSide button='SIGN UP' heading='Create Your Account' />
+        <AuthBlueSide button='Sign up' onClick={() => {
+          navigate('/signup');
+        }} heading='Create Your Account' />
       </div>
     </>
   );

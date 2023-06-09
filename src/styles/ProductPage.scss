@@ -1,0 +1,19 @@
+@use 'base';
+
+.product_images_container {
+
+    box-shadow: 0 0 2px 2px rgba(0, 0, 0, 0.1);
+
+    .product_images_small {
+        img {
+            height: 100%;
+            object-fit: cover;
+        }
+    }
+}
+
+#product_add_wishlist {
+    &:hover {
+        transform: scale(1.02);
+    }
+}
