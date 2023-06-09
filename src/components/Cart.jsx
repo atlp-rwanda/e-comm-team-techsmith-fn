@@ -1,88 +1,47 @@
-import React, { useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { RxCrossCircled } from 'react-icons/rx';
-import SingleProduct from './SingleProductCart';
-import { getCart } from '../states/features/cart/cartSlice';
-
-const SubTotal = () => {
-  return (
-    <div className='md:w-3/4 sm:w-full bg-white rounded-lg px-4 my-4 py-5'>
-      <h2 className='text-xl font-bold text-thickGrayText'>Cart Subtotal</h2>
-      <div className='flex justify-between'>
-        <h3 className='text-sm text-black my-2'>Item(s)total</h3>
-        <h3 className='text-sm text-black my-2'>USD</h3>
-      </div>
-      <div className='flex'>
-        <h3>Shipping</h3>
-        <h3>USD</h3>
-      </div>
-
-      <div className='w-full text-center'>
-        <button
-          type='submit'
-          className='bg-primary hover:opacity-9 cursor-pointer text-white font-medium py-2 px-4 border border-blue-200 rounded'
-        >
-          PROCEED
-        </button>
-      </div>
-    </div>
-  );
-};
+import React from 'react';
+import { whiteshoes } from '../assets';
 
 const Cart = () => {
-  const [count, setCount] = useState(5);
-  const dispatch = useDispatch();
-
-  const cart = useSelector((state) => {
-    return state.cart;
-  });
-
-  useEffect(() => {
-    dispatch(getCart());
-    console.log(cart);
-  }, [dispatch]);
-
   return (
-    <div className='cart_overlay w-full px-[10%] py-[10%] relative flex'>
-      <div className='mx-4 ml-10 w-3/4'>
-        <SingleProduct
-          name='Nike Air Max 270 React ENG'
-          details='Men’s Shoe and it is one of the best shoes in the world'
-          piecePrice='USD 122.00'
-          quantity={count}
-        />
-        <SingleProduct
-          name='Nike Air Max 270 React ENG'
-          details='Men’s Shoe and it is one of the best shoes in the world'
-          piecePrice='USD 122.00'
-          quantity={count}
-        />
-        <SingleProduct
-          name='Nike Air Max 270 React ENG'
-          details='Men’s Shoe and it is one of the best shoes in the world'
-          piecePrice='USD 122.00'
-          quantity={count}
-        />
-        <SingleProduct
-          name='Nike Air Max 270 React ENG'
-          details='Men’s Shoe and it is one of the best shoes in the world'
-          piecePrice='USD 122.00'
-          quantity={count}
-        />
+    <div className='cart_overlay'>
+      <div className='singleItem bg-white flex item-top w-1/2 mx-4 ml-10 py-3 my-3 rounded-xl relative'>
+        <div className='bg-gray-200 mx-5'>
+          <img src={whiteshoes} alt='white shoes' className='w-40' />
+        </div>
+
+        <div className='itemDetails flex justify-between flex-col'>
+          <h2 className='text-lg'>White Shoes</h2>
+          <p className=''>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit.
+          </p>
+
+          <div className='price'>
+            <h4>Price: 722$</h4>
+          </div>
+        </div>
       </div>
 
-      <div className='mx-4 ml-10 w-1/2'>
-        <SubTotal />
-      </div>
+      <div className='flex bg-white'>
+        <div className='flex-none'>
+          <img src={whiteshoes} alt='P' className='h-48 w-48' />
+        </div>
+        <div className='flex-grow p-4'>
+          <h3 className='text-xl font-bold'>Product Name</h3>
+          <div className='mt-2'>
+            <p className='text-gray-600'>Price: $19.99</p>
+            <p className='text-gray-600'>Quantity: 10</p>
+          </div>
+        </div>
 
-      <div className='absolute top-20 right-15 text-xl'>
-        <RxCrossCircled
-          className='text-4xl text-thickGrayText'
-          style={{ fontSize: '100px' }}
-        />
+        <div className='flex item-center justify-between my-3 bg-gray-400 w-[60px] px-2 rounded-md text-white'>
+          <p className=''>+</p>
+          <hr className='h-5 w-[1px] border-none bg-white' />
+          <p>3</p>
+          <hr className='h-5 w-[1px] border-none bg-white' />
+          <p>-</p>
+        </div>
       </div>
     </div>
-
   );
 };
 
