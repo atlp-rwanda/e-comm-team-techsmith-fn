@@ -7,7 +7,6 @@ import Google from '../assets/images/google.png';
 import AuthBlueSide from '../components/AuthBlueSide';
 import TLogo from '../assets/images/T_Logo.png';
 import Loading from '../components/Loading';
-import { API_URL } from '../constants';
 import InputPopup from '../components/InputPopup';
 import { login, reset } from '../states/features/auth/authSlice';
 
@@ -20,23 +19,28 @@ const LoginContainer = () => {
   const {isLoading,isError,isSuccess}=useSelector((state)=>{return state.auth})
 
   const mySubmit = async (data) => {
+    
     dispatch(login(data))
   };
 
   useEffect(()=>{
     if(isSuccess){
-      navigate('/')
-      dispatch(reset())
+      // is he a seller
+      if(localStorage.getItem('isSeller')){
+        // create popup
+        document.querySelector('.overlay').style.display= 'flex';
+      }else{
+        navigate('/');
+      }
+      dispatch(reset());
     }
   },[dispatch, isSuccess])
 
   return (
     <>
       <div>
-        <InputPopup
+        <InputPopup 
           title='2FA Verification'
-          api={`${API_URL}/users/login`}
-          method='get'
           details='Please check your email for the token to complete the Two-Factor
 Authentication process.'
           inputError='Please Enter Token'

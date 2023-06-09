@@ -34,14 +34,15 @@
   }
 }
 @media (max-width: 768px) {
-  .blueSide {
-    .blueSide--width {
-      width: 60%;
+    .blueSide{
+        height: 100%;
+        .blueSide--width{
+            width: 60%;
+        }
     }
   }
-}
-@media (max-width: 500px) {
-  .blueSide {
-    display: none;
-  }
+@media (max-width: 831px) {
+    .blueSide{
+       display: none;
+    }
 }

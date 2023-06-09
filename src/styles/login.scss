@@ -114,19 +114,28 @@ $border_color: 1px solid rgba(0, 0, 0, 0.25);
     }
   }
 }
-@media (max-width: 768px) {
-  .loginPage {
-    grid-template-columns: 55% 1fr;
-    .loginPage__form {
-      display: flex;
-      justify-content: center;
-      form {
-        width: 65%;
-      }
-      .loginPage__button button {
-        margin-top: 30px;
-        width: 70%;
-      }
+@media (max-width: 1289px) {
+    .loginPage{
+        grid-template-columns: 55% 1fr;
+        .loginPage__form{
+            display: flex;
+            justify-content: center;
+            form{
+                width: 65%;
+            }
+            .loginPage__button button{
+                margin-top: 30px;
+                width: 70%;
+            }
+        }
+        .loginPage__googleAuth{
+           .loginPage__googleButton{
+          
+            width: 60%;
+            border:$border_color ;
+    
+           }
+        }
     }
     .loginPage__googleAuth {
       .loginPage__googleButton {
@@ -135,32 +144,32 @@ $border_color: 1px solid rgba(0, 0, 0, 0.25);
       }
     }
   }
-}
-@media (max-width: 500px) {
-  .loginPage {
-    display: block;
-    .loginPage__mobileHeader {
-      padding: 10px 15px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      img {
-        width: 45px;
-        height: 45px;
-        border-radius: 50%;
-        padding: 5px;
-        border: 2px solid base.$primary-color;
-      }
-      button {
-        background-color: base.$primary-color;
-        border-radius: 10px;
-      }
-    }
-    .loginPage__title {
-      padding-top: 80px;
+@media (max-width: 831px) {
+    .loginPage{
+       display: block;
+       .loginPage__mobileHeader{
+        padding: 10px 15px;
+        display: flex;
+        justify-content:space-between;
+        align-items: center;
+        img{
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            padding: 5px;
+            border: 2px solid base.$primary-color;
+        }
+        button{
+            background-color: base.$primary-color;
+            border-radius: 10px;
+        }
+        }
+        .loginPage__title{
+            padding-top: 80px;
+           
+        }
     }
   }
-}
 
 // _____ for the popup _______-
 

@@ -11,6 +11,7 @@ module.exports = {
   },
   plugins: ['react'],
   rules: {
+    'spaced-comment': 'off',
     'default-param-last': 'off',
     'eact/jsx-filename-extension': 'off',
     'react/jsx-no-constructed-context-values': 'off',
