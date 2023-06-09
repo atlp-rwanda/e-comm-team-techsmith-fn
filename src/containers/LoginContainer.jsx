@@ -1,4 +1,4 @@
-import React, { useEffect} from 'react';
+import React, { useEffect } from 'react';
 import { Typography, Button } from '@mui/material';
 import { useForm } from 'react-hook-form';
 import { useDispatch, useSelector } from 'react-redux';
@@ -16,30 +16,31 @@ const LoginContainer = () => {
   const dispatch = useDispatch();
   const { register, handleSubmit, formState } = form;
   const { errors } = formState;
-  const {isLoading,isError,isSuccess}=useSelector((state)=>{return state.auth})
+  const { isLoading, isError, isSuccess } = useSelector((state) => {
+    return state.auth;
+  });
 
   const mySubmit = async (data) => {
-    
-    dispatch(login(data))
+    dispatch(login(data));
   };
 
-  useEffect(()=>{
-    if(isSuccess){
+  useEffect(() => {
+    if (isSuccess) {
       // is he a seller
-      if(localStorage.getItem('isSeller')){
+      if (localStorage.getItem('isSeller')) {
         // create popup
-        document.querySelector('.overlay').style.display= 'flex';
-      }else{
+        document.querySelector('.overlay').style.display = 'flex';
+      } else {
         navigate('/');
       }
       dispatch(reset());
     }
-  },[dispatch, isSuccess])
+  }, [dispatch, isSuccess]);
 
   return (
     <>
       <div>
-        <InputPopup 
+        <InputPopup
           title='2FA Verification'
           details='Please check your email for the token to complete the Two-Factor
 Authentication process.'
@@ -129,9 +130,13 @@ Authentication process.'
             </div>
           </div>
         </div>
-        <AuthBlueSide button='Sign up' onClick={() => {
-          navigate('/signup');
-        }} heading='Create Your Account' />
+        <AuthBlueSide
+          button='Sign up'
+          onClick={() => {
+            navigate('/signup');
+          }}
+          heading='Create Your Account'
+        />
       </div>
     </>
   );

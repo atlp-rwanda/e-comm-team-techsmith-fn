@@ -14,8 +14,9 @@ const ProductReviewContainer = ({ id }) => {
   } = useGetProductReviewsQuery({ id, token });
 
   if (isLoading) {
-    return <div className='min-h-[30vh] flex items-center justify-center'>
-      <svg
+    return (
+      <div className='min-h-[30vh] flex items-center justify-center'>
+        <svg
           aria-hidden='true'
           className='w-[3rem] h-[3rem] mr-2 text-gray-200 animate-spin dark:text-gray-600 fill-blue-600'
           viewBox='0 0 100 101'
@@ -31,14 +32,18 @@ const ProductReviewContainer = ({ id }) => {
             fill='currentFill'
           />
         </svg>
-    </div>;
+      </div>
+    );
   }
 
   if (isError) {
-    return <div className='min-h-[30vh] flex items-center justify-center'>
-
-      <h1>Could not fetch product reviews. Please make sure you are logged in..</h1>
-    </div>;
+    return (
+      <div className='min-h-[30vh] flex items-center justify-center'>
+        <h1>
+          Could not fetch product reviews. Please make sure you are logged in..
+        </h1>
+      </div>
+    );
   }
 
   return (

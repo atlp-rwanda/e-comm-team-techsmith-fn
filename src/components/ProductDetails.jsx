@@ -69,7 +69,9 @@ const ProductDetails = ({ product }) => {
         <hr className='px-4 my-4 bg-black w-11/12 mx-auto' />
         <div className='product_seller w-full flex flex-col items-start justify-center my-4 mx-auto screen-mid:items-center'>
           <div className='product_seller_description flex gap-4 items-center screen-base:flex-col'>
-            <h4 className='text-base font-medium text-start'>Product added by</h4>
+            <h4 className='text-base font-medium text-start'>
+              Product added by
+            </h4>
             <Button
               to='#'
               href='#'

@@ -31,8 +31,9 @@ const ProductReviewForm = ({ id }) => {
       .catch(() => {});
   };
 
-  const inputsClassName =
-    `review_input w-11/12 px-8 py-4 text-base outline-none rounded-[.5rem] ${isError ? 'border-red-700': 'none'}`;
+  const inputsClassName = `review_input w-11/12 px-8 py-4 text-base outline-none rounded-[.5rem] ${
+    isError ? 'border-red-700' : 'none'
+  }`;
   const inputsContainerClassName =
     'review_input_container flex flex-col justify-center text-base gap-4 items-start w-full mx-auto screen-mid:items-center';
 
@@ -90,12 +91,21 @@ const ProductReviewForm = ({ id }) => {
               />
             </label>
           </span>
-          <p className='text-base text-red-800 align-middle text-center my-4 hidden' style={
-            isError ? {display: 'block'} : {display: 'none'}
-          } id='product_review_error'>Could not add your review. We only allow users who have purchased the product to share feedback to prevent spam.</p>
-          <p className='text-base text-green-600 text-center my-4 hidden' style={
-            isSuccess ? {display: 'block'} : {display: 'none'}
-          } id='product_review_success'>Your review has been submitted successfully</p>
+          <p
+            className='text-base text-red-800 align-middle text-center my-4 hidden'
+            style={isError ? { display: 'block' } : { display: 'none' }}
+            id='product_review_error'
+          >
+            Could not add your review. We only allow users who have purchased
+            the product to share feedback to prevent spam.
+          </p>
+          <p
+            className='text-base text-green-600 text-center my-4 hidden'
+            style={isSuccess ? { display: 'block' } : { display: 'none' }}
+            id='product_review_success'
+          >
+            Your review has been submitted successfully
+          </p>
           <Button
             value={
               isLoading ? (
@@ -123,7 +133,9 @@ const ProductReviewForm = ({ id }) => {
               )
             }
             type='submit'
-            className={`primary-btn product_review_button px-8 py-3 m-4 w-fit text-base normal-case mx-auto  ${isSuccess ? 'bg-green-600':'bg-primary'}`}
+            className={`primary-btn product_review_button px-8 py-3 m-4 w-fit text-base normal-case mx-auto  ${
+              isSuccess ? 'bg-green-600' : 'bg-primary'
+            }`}
             onClick={handleSubmit(onSubmit)}
           />
         </form>
