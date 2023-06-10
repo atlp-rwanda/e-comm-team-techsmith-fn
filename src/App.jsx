@@ -15,17 +15,18 @@ import {
   SingupPage
 } from './pages';
 import Footer from './components/Footer';
+import Navbar from './components/Navbar';
 
 const App = () => {
-  
   return (
     <div className='App'>
       <Router>
+        <Navbar />
         <Routes>
           <Route path='/' element={<HomePage />} />
           <Route path='/about' element={<AboutPage />} />
           <Route path='/contact' element={<ContactPage />} />
-          <Route path='/category' element={<CategoryPage />} />
+          <Route path='/categories' element={<CategoryPage />} />
           <Route path='/login' element={<LoginPage />} />
           <Route path='/signup' element={<SingupPage />} />
           <Route path='/product/:id' element={<SingleProductPage />} />

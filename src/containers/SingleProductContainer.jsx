@@ -25,7 +25,9 @@ const SingleProductContainer = ({ id }) => {
             fill='currentFill'
           />
         </svg>
-        <h1 className='text-4xl font-bold text-center flex flex-col'>We are getting your product&apos;s information</h1>
+        <h1 className='text-4xl font-bold text-center flex flex-col'>
+          We are getting your product&apos;s information
+        </h1>
       </div>
     );
   }
@@ -33,7 +35,10 @@ const SingleProductContainer = ({ id }) => {
   if (isError) {
     return (
       <div className='flex items-center justify-center h-screen'>
-        <h1 className='text-4xl font-bold text-center'>This time we failed to get it right. Please refresh your screen to try again</h1>
+        <h1 className='text-4xl font-bold text-center'>
+          This time we failed to get it right. Please refresh your screen to try
+          again
+        </h1>
       </div>
     );
   }
