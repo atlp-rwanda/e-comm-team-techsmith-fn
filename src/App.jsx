@@ -11,6 +11,7 @@ import {
   ContactPage,
   HomePage,
   LoginPage,
+  SellerPage,
   NotFoundPage,
   SingleProductPage,
   SingupPage
@@ -30,6 +31,7 @@ const App = () => {
           <Route path='/categories' element={<CategoryPage />} />
           <Route path='/login' element={<LoginPage />} />
           <Route path='/signup' element={<SingupPage />} />
+          <Route path='/seller/add-product' element={<SellerPage />} />
           <Route path='/product/:id' element={<SingleProductPage />} />
           <Route path='/dashboard/users' element={<AdminManageUserPage />}
           />

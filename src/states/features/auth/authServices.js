@@ -3,7 +3,6 @@ import { API_URL } from '../../../constants';
 
 const login = async (data) => {
   const response = await API.post(`${API_URL}/users/login`, data);
-
   if (!response.data.user) {
     localStorage.setItem('isSeller', 'true');
     localStorage.removeItem('myToken');
@@ -11,11 +10,19 @@ const login = async (data) => {
     localStorage.setItem('myToken', response.data.Authorization);
     localStorage.removeItem('isSeller');
   }
+  console.log(response.data.token);
   return response.data.Authorization;
 };
 
 const login2FA = async (data) => {
   const response = await API.get(`${API_URL}/users/login/${data}`);
+  if (!response.data.user) {
+    localStorage.setItem('isSeller', 'true');
+    localStorage.removeItem('myToken');
+  } else {
+    localStorage.setItem('myToken', response.data.Authorization);
+    localStorage.removeItem('isSeller');
+  }
   return response.data.message;
 };
 

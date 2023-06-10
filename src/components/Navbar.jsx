@@ -11,7 +11,8 @@ const Navbar = () => {
   if (
     pathname === '/login' ||
     pathname === '/signup' ||
-    pathname === '/dashboard/users'
+    pathname === '/dashboard/users'||
+    pathname.startsWith('/signup/')
   )
     return null;
   const changeIcon = () => {
@@ -39,17 +40,17 @@ const Navbar = () => {
           <div>
             <ul className='flex  items-center '>
               <li>
-                <NavLink activeClassName='active' to='categories'>
+                <NavLink activeclassname='active' to='categories'>
                   Categories
                 </NavLink>
               </li>
               <li>
-                <NavLink activeClassName='active' to='contact'>
+                <NavLink activeclassname='active' to='contact'>
                   Contact us
                 </NavLink>
               </li>
               <li>
-                <NavLink activeClassName='active' to='about'>
+                <NavLink activeclassname='active' to='about'>
                   About us
                 </NavLink>
               </li>

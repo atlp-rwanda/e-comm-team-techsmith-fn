@@ -10,7 +10,7 @@ const ProductDetails = ({ product }) => {
   const { name, image, price, condition, description, user } = product;
 
   return (
-    <div className='product_container flex items-center h-fit justify-between gap-12 w-10/12 m-auto my-12 screen-mid:flex-col'>
+    <div className='product_container flex items-center justify-between gap-12 w-10/12 mx-auto my-12 screen-mid:flex-col'>
       <section className='product_images_container flex items-center gap-6 w-full h-full my-8 mx-4 p-8'>
         <ul className='product_images_small flex flex-col w-1/3 justify-between gap-4 h-full'>
           {image &&

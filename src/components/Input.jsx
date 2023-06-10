@@ -14,7 +14,7 @@ const Input = ({
   return (
     <input
       type={type}
-      className={className}
+      className={`${className} w-11/12 px-8 py-4 text-sm outline-none border-primary rounded-[.5rem]`}
       placeholder={placeholder}
       onChange={onChange}
       defaultValue={value}
@@ -37,7 +37,7 @@ Input.propTypes = {
 };
 
 Input.defaultProps = {
-  className: '',
+  className: 'default-input',
   placeholder: '',
   onChange: () => {},
   value: '',
