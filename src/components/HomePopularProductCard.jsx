@@ -13,8 +13,6 @@ const HomePopularProductCard = ({
 }) => {
   const addToWishlist = (e) => {
     e.preventDefault();
-    // eslint-disable-next-line no-console
-    console.log('Add to wishlist');
   };
   return (
     <section className='home_popular_product_card max-w-16 w-fit mx-4'>

@@ -119,7 +119,6 @@ const SignupContainer = () => {
                 name='email'
                 {...register('email', {
                   pattern: {
-                    // eslint-disable-next-line no-useless-escape
                     value: /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/,
                     message: <p className='signupPage__error'>Invalid email</p>
                   },

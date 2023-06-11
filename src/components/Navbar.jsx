@@ -8,7 +8,12 @@ import Button from './Button';
 const Navbar = () => {
   const { pathname } = useLocation();
   const [close, setClose] = useState(false);
-  if (pathname === '/login' || pathname === '/signup') return null;
+  if (
+    pathname === '/login' ||
+    pathname === '/signup' ||
+    pathname === '/dashboard/users'
+  )
+    return null;
   const changeIcon = () => {
     document.querySelector('.navbar__dropdown').classList.toggle('rm');
     if (!close) {

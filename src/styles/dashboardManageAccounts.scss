@@ -1,0 +1,209 @@
+@use 'base';
+@import 'base';
+.manage_accounts_wrapper {
+  background-color: #f1f1f1;
+  display: flex;
+  flex-direction: row;
+}
+.bigTitle_users {
+  font-size: 2.5rem;
+  font-size: clamp(2.5rem, 2.2rem + 1.5vw, 4rem);
+}
+.listOfUsers {
+  font-size: 1.2rem;
+  font-size: clamp(1.2rem, 1.04rem + 0.8vw, 2rem);
+}
+.create_user_btn_small {
+  font-size: 1.8rem;
+  font-size: clamp(1.8rem, 1.56rem + 1.2vw, 3rem);
+  display: none;
+  background-color: $primary-color;
+  color: white;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+}
+.manage_accounts_content {
+  width: 100%;
+  margin-left: 25px;
+  margin-right: 43px;
+}
+.createUserBox {
+  @include flexrowcenter;
+  justify-content: space-between;
+  width: 100%;
+  margin-top: 20px;
+}
+.table_titles {
+  display: grid;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  width: 100%;
+  margin-bottom: 20px;
+  color: $bluewishgray;
+  p {
+    display: flex;
+    justify-content: flex-start;
+    font-size: 1rem;
+    font-size: clamp(1rem, 0.9rem + 0.5vw, 1.5rem);
+  }
+}
+.manage_accounts_content_table {
+  background-color: white;
+  padding-top: 15px;
+}
+.out {
+  @include flexrowcenter;
+}
+.theUser {
+  display: grid;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+
+  margin-bottom: 15px;
+  color: $bluewishgray;
+  p {
+    font-size: 1.2rem;
+    font-size: clamp(
+      1.2rem,
+      1.1199999999999999rem + 0.4000000000000002vw,
+      1.6rem
+    );
+  }
+}
+.create_user_btn {
+  width: 12.5em;
+  border-radius: 10px;
+}
+.select {
+  width: 9.7rem;
+  height: 3rem;
+  background-color: $bluewishgray;
+}
+.loading_div {
+  margin-top: 10rem;
+  font-size: 2.3rem;
+  z-index: 10;
+  position: absolute;
+  @include flexcolumncenter;
+  img {
+    width: 50px;
+    animation: rotate 1.5s linear infinite;
+  }
+}
+.pagination {
+  display: flex;
+  justify-content: flex-end;
+  margin-right: 60px;
+  padding-bottom:20px;
+ 
+}
+.pagination-text {
+  padding: 0px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  width: 15rem;
+  font-size: 25px;
+}
+.secondary-btn-small {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 5rem;
+  height: 5rem;
+  border-radius: 50%;
+  background-color: white;
+
+  &:hover {
+    background-color: $primary-color;
+    color: white;
+  }
+}
+.current-btn {
+  background-color: $primary-color;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 5rem;
+  height: 5rem;
+  border-radius: 50%;
+}
+
+@keyframes rotate {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+@media (max-width: 800px) {
+  .manage_accounts_content {
+    width: 92%;
+  }
+
+  .manage_accounts_wrapper {
+    flex-direction: column;
+    justify-content: space-around;
+  }
+  .text-4xl {
+    font-size: 2.5rem;
+  }
+  .select {
+    width: 7rem;
+  }
+  .table_titles {
+    display: grid;
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+  }
+  .theUser {
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+  }
+  .userdate {
+    display: none;
+  }
+  #date {
+    display: none;
+  }
+  .create_user_btn {
+    display: none;
+  }
+  .create_user_btn_small {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+  }
+}
+@media (max-width: 640px) {
+  .username {
+    display: none;
+  }
+  #username {
+    display: none;
+  }
+  .table_titles {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+  .theUser {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
+@media (max-width: 540px) {
+  .table_titles {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+  .theUser {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+  .create_user_btn_small {
+    width: 30px;
+    height: 30px;
+  }
+  .select {
+    width: 6rem;
+  }
+}

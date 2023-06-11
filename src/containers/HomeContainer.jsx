@@ -6,6 +6,7 @@ import PopularProducts from './HomePopularProducts';
 import BrowseByCategory from './HomeBrowseCategory';
 import TopMerchants from './TopMerchants';
 import Hero from './Hero';
+import Footer from '../components/Footer';
 
 const HomeContainer = () => {
   return (
@@ -16,6 +17,7 @@ const HomeContainer = () => {
       <BrowseByCategory />
       <TopMerchants />
       <RevisitCollections />
+      <Footer />
     </>
   );
 };
