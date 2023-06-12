@@ -35,7 +35,7 @@ const LoginContainer = () => {
         // create popup
         document.querySelector('.overlay').style.display = 'flex';
       } else {
-        navigate('/');
+        navigate('/ ');
       }
       dispatch(reset());
     }
