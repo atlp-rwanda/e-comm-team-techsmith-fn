@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect,useState } from 'react';
 import { Typography, Button, Snackbar, Alert } from '@mui/material';
 import { useForm } from 'react-hook-form';
 import { useDispatch, useSelector } from 'react-redux';
@@ -17,6 +17,8 @@ const SignupContainer = () => {
   const { errors } = formState;
   const password = watch('password');
   const confirmPassword = watch('cPassword');
+  const [emailFromParams, setEmail] = useState(' ');
+  const [namefromParams, setName] = useState(' ');
 
   const { isLoading, isSuccess, isError, message } = useSelector((state) => {
     return state.auth;
@@ -37,6 +39,16 @@ const SignupContainer = () => {
   };
 
   useEffect(() => {
+    const urlParams = new URLSearchParams(window.location.search);
+    const emailParam = urlParams.get('email');
+    const nameParam = urlParams.get('name');
+    const decodedEmail = emailParam ? decodeURIComponent(emailParam) : '';
+    const decodedName = nameParam ? decodeURIComponent(nameParam) : '';
+
+    // console.log(decodedEmail, decodedName);
+    setEmail(decodedEmail);
+    setName(decodedName);
+
     if (isSuccess || isError) {
       setTimeout(() => {
         dispatch(reset());
@@ -99,6 +111,8 @@ const SignupContainer = () => {
                 type='text'
                 id='lname'
                 name='name'
+                value={namefromParams}
+                onChange={(e) => { return setEmail(e.target.value)}}
                 {...register('name', {
                   required: {
                     value: true,
@@ -117,6 +131,8 @@ const SignupContainer = () => {
                 type='text'
                 id='email'
                 name='email'
+                value={emailFromParams}
+                onChange={(e) => { return setEmail(e.target.value)}}
                 {...register('email', {
                   pattern: {
                     value: /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/,

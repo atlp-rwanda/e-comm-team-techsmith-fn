@@ -11,7 +11,8 @@ const Navbar = () => {
   if (
     pathname === '/login' ||
     pathname === '/signup' ||
-    pathname === '/dashboard/users'
+    pathname === '/dashboard/users'||
+    pathname.startsWith('/reset-password')
   )
     return null;
   const changeIcon = () => {

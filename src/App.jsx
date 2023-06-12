@@ -12,6 +12,7 @@ import {
   HomePage,
   LoginPage,
   NotFoundPage,
+  ResetPasswordPage,
   SingleProductPage,
   SingupPage
 } from './pages';
@@ -31,8 +32,9 @@ const App = () => {
           <Route path='/login' element={<LoginPage />} />
           <Route path='/signup' element={<SingupPage />} />
           <Route path='/product/:id' element={<SingleProductPage />} />
-          <Route path='/dashboard/users' element={<AdminManageUserPage />}
-          />
+          <Route path='/dashboard/users' element={<AdminManageUserPage />} />
+          <Route path='/reset-password/:token' element={<ResetPasswordPage />} />
+          
           <Route path='*' element={<NotFoundPage />} />
         </Routes>
         <Footer />

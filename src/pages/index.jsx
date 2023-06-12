@@ -4,13 +4,14 @@ import AboutContainer from '../containers/AboutContainer';
 import CategoryContainer from '../containers/CategoryContainer';
 import ContactContainer from '../containers/ContactContainer';
 import HomeContainer from '../containers/HomeContainer';
-import LoginContainer from '../containers/LoginContainer';
+import LoginContainer from '../containers/LoginContainer'
 import Notfound from '../containers/NotFound';
 import SignupContainer from '../containers/SignupContainer';
 import SingleProductContainer from '../containers/SingleProductContainer';
 import ProductReviewForm from '../containers/ProductReviewForm';
 import ProductReviewContainer from '../containers/ProductReviewContainer';
 import AdminManageUserContainer from '../containers/UsersContainer';
+import ResetPasswordContainer from '../containers/ResetPasswordContainer';
 
 const HomePage = () => {
   return <HomeContainer />;
@@ -33,6 +34,9 @@ const AboutPage = () => {
 const ContactPage = () => {
   return <ContactContainer />;
 };
+const ResetPasswordPage =()=>{
+  return <ResetPasswordContainer />
+}
 
 const SingleProductPage = () => {
   const { id } = useParams();
@@ -57,5 +61,6 @@ export {
   AboutPage,
   ContactPage,
   SingleProductPage,
+  ResetPasswordPage,
   AdminManageUserPage
 };

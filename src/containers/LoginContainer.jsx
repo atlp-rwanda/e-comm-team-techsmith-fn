@@ -2,18 +2,22 @@ import React, { useEffect } from 'react';
 import { Typography, Button } from '@mui/material';
 import { useForm } from 'react-hook-form';
 import { useDispatch, useSelector } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import Google from '../assets/images/google.png';
 import AuthBlueSide from '../components/AuthBlueSide';
 import TLogo from '../assets/images/T_Logo.png';
 import Loading from '../components/Loading';
 import InputPopup from '../components/InputPopup';
+import PopupMaker from '../components/PopupMaker';
+import ForgetPassword from '../components/ForgetPassword';
 import { login, reset } from '../states/features/auth/authSlice';
+import { API_URL } from '../constants';
 
 const LoginContainer = () => {
   const form = useForm();
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const [openPopUp, setOpenPopUp] = React.useState(false);
   const { register, handleSubmit, formState } = form;
   const { errors } = formState;
   const { isLoading, isError, isSuccess } = useSelector((state) => {
@@ -36,9 +40,13 @@ const LoginContainer = () => {
       dispatch(reset());
     }
   }, [dispatch, isSuccess]);
+  const showForgotPass = () => {
+    setOpenPopUp(true);
+  };
 
   return (
     <>
+    {openPopUp && <PopupMaker open={openPopUp} Component={ForgetPassword} setOpen={setOpenPopUp} />}
       <div>
         <InputPopup
           title='2FA Verification'
@@ -105,7 +113,7 @@ Authentication process.'
               </div>
 
               <div className='loginPage__forgotcode'>
-                <Typography variant='body1'>Forgot your password?</Typography>
+                <Typography variant='body1'onClick={showForgotPass}>Forgot your password?</Typography>
               </div>
               <div className='loginPage__button'>
                 <button
@@ -117,7 +125,7 @@ Authentication process.'
               </div>
             </form>
           </div>
-
+           <Link to={`${API_URL}/auth/google`}>
           <div className='loginPage__googleAuth'>
             <div className='loginPage__googleButton'>
               <div>
@@ -128,6 +136,7 @@ Authentication process.'
               </div>
             </div>
           </div>
+          </Link>
         </div>
         <AuthBlueSide
           button='Sign up'
