@@ -118,17 +118,17 @@ Authentication process.'
               </div>
             </form>
           </div>
-           <Link to={`${API_URL}/auth/google`}>
-          <div className='loginPage__googleAuth'>
-            <div className='loginPage__googleButton'>
-              <div>
-                <img src={Google} alt='' />
-              </div>
-              <div>
-                <Typography variant='body2'>Sign in with google</Typography>
+          <Link to={`${API_URL}/auth/google`}>
+            <div className='loginPage__googleAuth'>
+              <div className='loginPage__googleButton'>
+                <div>
+                  <img src={Google} alt='' />
+                </div>
+                <div>
+                  <Typography variant='body2'>Sign in with google</Typography>
+                </div>
               </div>
             </div>
-          </div>
           </Link>
         </div>
         <AuthBlueSide

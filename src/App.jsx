@@ -1,3 +1,4 @@
+/* eslint-disable import/no-extraneous-dependencies */
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { library } from '@fortawesome/fontawesome-svg-core';
@@ -13,11 +14,11 @@ import {
   LoginPage,
   NotFoundPage,
   SingleProductPage,
+  SellerProductsPage,
   SingupPage
 } from './pages';
 import Footer from './components/Footer';
 import Navbar from './components/Navbar';
-import AdminManageUserContainer from './containers/UsersContainer';
 
 const App = () => {
   return (
@@ -32,8 +33,8 @@ const App = () => {
           <Route path='/login' element={<LoginPage />} />
           <Route path='/signup' element={<SingupPage />} />
           <Route path='/product/:id' element={<SingleProductPage />} />
-          <Route path='/dashboard/users' element={<AdminManageUserPage />}
-          />
+          <Route path='/dashboard/users' element={<AdminManageUserPage />} />
+          <Route path='/dashboard/seller' element={<SellerProductsPage />} />
           <Route path='*' element={<NotFoundPage />} />
         </Routes>
         <Footer />

@@ -16,6 +16,7 @@ const login = async (data) => {
 
 const login2FA = async (data) => {
   const response = await API.get(`${API_URL}/users/login/${data}`);
+  localStorage.setItem('myToken', response.data.Authorization);
   return response.data.message;
 };
 

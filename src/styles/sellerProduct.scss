@@ -1,0 +1,39 @@
+$lightBorder: 1px solid rgba(0, 0, 0, 0.154);
+.sellingProd {
+  .sellingProd__subtitle {
+    p {
+      font-size: 18px;
+      font-weight: 500;
+    }
+    .sellingProd-createbtn {
+      padding: 1rem;
+    }
+  }
+  .sellingProd__card {
+    background-color: #eee;
+    padding: 15px; 
+    width: 43%;
+    border-radius: 10px;
+  }
+
+  .sellingProd__cardImage {
+    padding: 30px 70px;
+    background-color: white;
+    img {
+      width: 100px;
+      height: 150px;
+    }
+  }
+  .sellingProd__cardDetails {
+    .sellingProd__cardDetailsPara {
+      border-top: $lightBorder;
+    }
+    p {
+      border: none;
+      border-bottom: $lightBorder;
+      span {
+        font-size: 1.3rem;
+      }
+    }
+  }
+}

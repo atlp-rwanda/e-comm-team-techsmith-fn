@@ -5,12 +5,11 @@ $border_color: 1px solid rgba(0, 0, 0, 0.25);
 .loginPage {
   display: grid;
   grid-template-columns: 65% 1fr;
-  .loginPage__section{
+  .loginPage__section {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    
-}
+  }
   .loginPage__mobileHeader {
     display: none;
   }
