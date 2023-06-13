@@ -25,6 +25,7 @@ module.exports = {
     "jsx-a11y/no-noninteractive-element-interactions": "off",
     "jsx-a11y/click-events-have-key-events": "off",
     'jsx-quotes': 'off',
+    "jsx-a11y/no-static-element-interactions": "off",
     "react/forbid-prop-types": ["error", { "forbid": [] }],
     'arrow-parens': ['error', 'always'],
     'arrow-body-style': ['error', 'always'],

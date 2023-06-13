@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
-import { Select, MenuItem, Alert,Snackbar} from '@mui/material';
+import { Select, MenuItem} from '@mui/material';
+import { ToastContainer } from 'react-toastify';
 import PropTypes from 'prop-types';
 import { useDispatch, useSelector } from 'react-redux';
 import { defaultProfilePic, lock, unlock } from '../assets';
+import { successNotification } from '../components/Notification';
 import {
   disableUser,
   enableUser,
@@ -14,13 +16,7 @@ export const Userlist = ({ userList }) => {
   const { isLoading, accountStatus, message } = useSelector((state) => {
     return state.users;
   });
-  const [open, setOpen] = useState(false);
-  const handleClose = (reason) => {
-    if (reason === 'clickaway') {
-      return;
-    }
-    setOpen(false);
-  };
+  
 
   const [role, setrole] = useState(2);
   
@@ -31,30 +27,17 @@ export const Userlist = ({ userList }) => {
   const blockUnblockUser = (e) => {
     if (accountStatus) {
       dispatch(disableUser(e.target.id));
+      successNotification("Account disabled!")
       e.target.src = lock;
     } else {
       e.target.src = unlock;
       dispatch(enableUser(e.target.id));
+      successNotification("Account enabled!")
     }
   };
   return (
     <div>
-      {message && (
-                <Snackbar
-                open={open}
-                anchorOrigin={{ vertical: 'bottom', horizontal: 'left' }}
-                autoHideDuration={9000}
-                onClose={handleClose}
-              >
-                <Alert
-                  variant='standard'
-                  severity='error'
-                  style={{ fontSize: '20px', padding: '6px 8px' }}
-                >
-                  {message}
-                </Alert>
-              </Snackbar>
-      )}
+      {message && <ToastContainer/>}
       {isLoading && <Loading />}
       {userList?.map((user) => {return (
         <div

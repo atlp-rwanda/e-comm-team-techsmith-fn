@@ -17,7 +17,8 @@ const resetStates = {
   isError: false,
   isSuccess: false,
   isLoading: false,
-  isSeller: false
+  isSeller: false,
+  token: currentToken
 };
 
 // Creating authslice

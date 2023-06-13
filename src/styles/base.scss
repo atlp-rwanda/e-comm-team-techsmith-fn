@@ -105,6 +105,26 @@ svg {
   }
 }
 
+// PRIMARY BUTTON WITH NO HOVER EFFECT
+.primary-btn-no-hover-scale{
+  text-decoration: none;
+  color: white;
+  background-color: $primary-color;
+  padding: 1.5rem 2rem;
+  font-size: 1.6rem;
+  border-radius: 0.5rem;
+  display: block;
+  width: 100%;
+  max-width: 30rem;
+  text-align: center;
+  text-transform: uppercase;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  &:hover {
+    background-color: darken($primary-color, 5%);
+  }
+}
 // BUTTON WITH ICON
 .button_with_icon {
   display: flex;

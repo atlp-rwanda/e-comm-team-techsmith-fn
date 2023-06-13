@@ -1,27 +1,27 @@
 import React from 'react';
 import { Typography } from '@mui/material';
 import PropTypes from 'prop-types';
-import TLogo from '../assets/images/TlogoW.png';
+import { TlogoW } from '../assets';
 
 const AuthBlueSide = ({ button, heading, description, onClick }) => {
   return (
     <div className='blueSide'>
       <div className='blueSide--width'>
         <div className='blueSide__logo flex justify-center'>
-          <img src={TLogo} alt='' />
+          <img src={TlogoW} alt='' />
         </div>
-        <div className='blueSide__details'>
-          <div className='blueSide__title'>
+        <div className='blueSide__details '>
+          <div className='blueSide__title pb-12'>
             <Typography variant='h4'>{heading}</Typography>
           </div>
-          <div className='blueSide__info'>
+          <div className='blueSide__info pb-12'>
             <Typography variant='body1'>{description}</Typography>
           </div>
         </div>
         <div className='blueSide__button'>
           <button
+          className='py-2 px-4 font-medium mt-3'
             type='submit'
-            className='bg-blue-500 hover:bg-blue-700 text-white font-medium py-2 px-4 border border-blue-700 rounded'
             onClick={onClick}
           >
             {button}

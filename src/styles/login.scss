@@ -14,7 +14,11 @@ $border_color: 1px solid rgba(0, 0, 0, 0.25);
   .loginPage__mobileHeader {
     display: none;
   }
+  .loginPage__parent{
+    width: 100%;
+  }
   .loginPage__title {
+    
     text-align: center;
     margin-bottom: 40px;
     h4 {
@@ -37,7 +41,7 @@ $border_color: 1px solid rgba(0, 0, 0, 0.25);
     display: flex;
     justify-content: center;
     form {
-      width: 40%;
+      width: 55% !important;
     }
     .loginPage__input {
       position: relative;
@@ -46,6 +50,8 @@ $border_color: 1px solid rgba(0, 0, 0, 0.25);
         width: 100%;
         padding: 13px 10px;
         border: $border_color;
+        font-size: 1.6rem;
+        color: base.$primary-color;
         background-color: transparent;
         border-radius: 10px;
         position: relative;
@@ -106,7 +112,7 @@ $border_color: 1px solid rgba(0, 0, 0, 0.25);
       padding: 7px 0;
       border-radius: 7px;
       margin-top: 60px;
-      width: 40%;
+      width: 55%;
       border: 1px solid rgba(0, 0, 0, 0.202);
       p {
         font-size: 17px;
@@ -125,17 +131,13 @@ $border_color: 1px solid rgba(0, 0, 0, 0.25);
     .loginPage__form {
       display: flex;
       justify-content: center;
-      form {
-        width: 65%;
-      }
+   
       .loginPage__button button {
         margin-top: 30px;
-        width: 70%;
       }
     }
     .loginPage__googleAuth {
       .loginPage__googleButton {
-        width: 60%;
         border: $border_color;
       }
     }
@@ -213,4 +215,5 @@ $border_color: 1px solid rgba(0, 0, 0, 0.25);
   .popup {
     min-width: 95%;
   }
+
 }
