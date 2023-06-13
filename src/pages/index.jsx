@@ -4,7 +4,7 @@ import AboutContainer from '../containers/AboutContainer';
 import CategoryContainer from '../containers/CategoryContainer';
 import ContactContainer from '../containers/ContactContainer';
 import HomeContainer from '../containers/HomeContainer';
-import LoginContainer from '../containers/LoginContainer'
+import LoginContainer from '../containers/LoginContainer';
 import Notfound from '../containers/NotFound';
 import SellerContainer from '../containers/SellerContainer';
 import SignupContainer from '../containers/SignupContainer';
@@ -13,6 +13,7 @@ import ProductReviewForm from '../containers/ProductReviewForm';
 import ProductReviewContainer from '../containers/ProductReviewContainer';
 import AdminManageUserContainer from '../containers/UsersContainer';
 import ProfileContainer from '../containers/ProfileContainer';
+import SearchContainer from '../containers/SearchContainer';
 
 const HomePage = () => {
   return <HomeContainer />;
@@ -35,12 +36,15 @@ const AboutPage = () => {
 const ContactPage = () => {
   return <ContactContainer />;
 };
-const ProfilePage =()=>{
-  return <ProfileContainer/>
-}
+const ProfilePage = () => {
+  return <ProfileContainer />;
+};
 const SellerPage = () => {
   return <SellerContainer />;
-}
+};
+const SearchPage = () => {
+  return <SearchContainer />;
+};
 
 const SingleProductPage = () => {
   const { id } = useParams();
@@ -56,6 +60,7 @@ const SingleProductPage = () => {
 const AdminManageUserPage = () => {
   return <AdminManageUserContainer />;
 };
+
 export {
   HomePage,
   NotFoundPage,
@@ -67,9 +72,6 @@ export {
   SingleProductPage,
   SellerPage,
   AdminManageUserPage,
-  ProfilePage
+  ProfilePage,
+  SearchPage
 };
-
-
-
-

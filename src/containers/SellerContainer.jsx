@@ -5,7 +5,6 @@ import { useCreateProductMutation } from '../states/api/apiSlice';
 import Input from '../components/Input';
 import Button from '../components/Button';
 
-
 const SellerContainer = () => {
   const [formData, setFormData] = useState({
     condition: '',
@@ -143,7 +142,7 @@ const SellerContainer = () => {
                 placeholder='Name of the product'
                 name='dateOfExpiration'
                 style={{
-                  fontSize: '1.1rem',
+                  fontSize: '1.1rem'
                 }}
                 {...register('expiryDate', {
                   required: 'Expiration date of the product is required',
@@ -175,18 +174,18 @@ const SellerContainer = () => {
             <label htmlFor='productImage h-full flex flex-col text-sm'>
               Upload images
               <span className='h-[10rem] flex flex-col items-start justify-center'>
-              <Input
-                multiple
-                style={{
-                  fontSize: '1.1rem',
-                }}
-                type='file'
-                className='imageItem text-[1.1rem] px-0'
-                name='productImage'
-                {...register('image', {
-                  required: 'Image of product is required'
-                })}
-              />
+                <Input
+                  multiple
+                  style={{
+                    fontSize: '1.1rem'
+                  }}
+                  type='file'
+                  className='imageItem text-[1.1rem] px-0'
+                  name='productImage'
+                  {...register('image', {
+                    required: 'Image of product is required'
+                  })}
+                />
               </span>
             </label>
           </div>
@@ -233,7 +232,7 @@ const SellerContainer = () => {
         <div className='containerButton'>
           <Button
             value={isLoading ? 'Loading...' : 'Create Product'}
-           className='primary-btn py-4 px-8 w-fit'
+            className='primary-btn py-4 px-8 w-fit'
           />
         </div>
       </form>

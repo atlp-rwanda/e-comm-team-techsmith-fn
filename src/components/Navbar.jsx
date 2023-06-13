@@ -1,40 +1,50 @@
-import React, {  useState } from 'react';
-import { Link, useLocation} from 'react-router-dom';
-import { useSelector } from 'react-redux';
+import React, { useEffect, useState } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { GiHamburgerMenu } from 'react-icons/gi';
 import { BiDownArrow } from 'react-icons/bi';
 import { AiOutlineClose } from 'react-icons/ai';
 import { searchlog, techLogW } from '../assets';
 import Button from './Button';
 import checkIsLogged from '../utils/isLoggedin';
-import logOut  from '../utils/logOut';
-
+import logOut from '../utils/logOut';
+import { useGetAllCategoriesQuery } from '../states/api/apiSlice';
+import Input from './Input';
+import {
+  addCategories,
+  addSearchData,
+  searchProduct
+} from '../states/features/search/searchSlice';
 
 const Navbar = () => {
   const { pathname } = useLocation();
   const [close, setClose] = useState(false);
-  const {token}=useSelector((state)=>{return state.auth})
+  const { token } = useSelector((state) => {
+    return state.auth;
+  });
   if (
     pathname === '/login' ||
     pathname === '/signup' ||
-    pathname === '/dashboard/users'||
+    pathname === '/dashboard/users' ||
     pathname.startsWith('/signup')
   )
-   return null;
-  const credentials = checkIsLogged()
+    return null;
+  const credentials = checkIsLogged();
   const changeIcon = () => {
     document.querySelector('.navbar__dropdown').classList.toggle('rm');
-    setClose((prevState) => {return !prevState});
+    setClose((prevState) => {
+      return !prevState;
+    });
   };
   const viewProfile = () => {
     document.querySelector('.navbar__profileView').classList.toggle('visible');
   };
-  const hideprofile=()=>{
+  const hideprofile = () => {
     document.querySelector('.navbar__profileView').classList.remove('visible');
-  }
+  };
 
   return (
-    <div className='navbar'>
+    <div className='navbar py-0 mb-4'>
       <div className='navbar_logoContainerNavbar-menuList flex justify-around items-center'>
         <section className='navbar_logoContainer'>
           <Link to='/'>
@@ -51,72 +61,74 @@ const Navbar = () => {
           <div>
             <ul className='flex  items-center '>
               <li>
-                <Link to='categories'>
-                  Categories
-                </Link>
+                <Link to='categories'>Categories</Link>
               </li>
               <li>
-                <Link  to='contact'>
-                  Contact us
-                </Link>
+                <Link to='contact'>Contact us</Link>
               </li>
               <li>
-                <Link to='about'>
-                  About us
-                </Link>
+                <Link to='about'>About us</Link>
               </li>
             </ul>
           </div>
         </div>
 
-        <div className='navbar-searchbtnSearchbtnLogo flex items-center relative'>
-          <div className='navbar-searchButton'>
-            <input
-              type='text'
-              placeholder='Search...'
-              className='buttonSearch'
-            />
-          </div>
-          <div className='searchbtnLogo absolute '>
-            <img src={searchlog} alt='' />
-          </div>
-        </div>
+        <Search />
 
-       {
-        token?
-       ( <div className='navbar__profile__letter flex justify-center items-center' onClick={viewProfile}>
-        <div className='navbar__profile flex justify-center items-center'>
-             <div>
-              <p>{credentials.profileName}</p>
-             </div>
-          </div>
-           <div>
-             <BiDownArrow style={{color:'white',width:'1.5rem',height:'1.5rem',paddingLeft:'0.2rem'}}/>
+        {token ? (
+          <div
+            className='navbar__profile__letter flex justify-center items-center'
+            onClick={viewProfile}
+          >
+            <div className='navbar__profile flex justify-center items-center'>
+              <div>
+                <p>{credentials.profileName}</p>
+              </div>
             </div>
-         </div>
-       )
-        : 
-        (<div className='navbar__authBtn flex items-center'>
-        <div>
-          <Link to='/signup'>
-            <p>Sign up</p>
-          </Link>
-        </div>
-        <Button value='Login' route='/login' className='navBtn' />
-      </div>
-       )}
+            <div>
+              <BiDownArrow
+                style={{
+                  color: 'white',
+                  width: '1.5rem',
+                  height: '1.5rem',
+                  paddingLeft: '0.2rem'
+                }}
+              />
+            </div>
+          </div>
+        ) : (
+          <div className='navbar__authBtn flex items-center'>
+            <div>
+              <Link to='/signup'>
+                <p>Sign up</p>
+              </Link>
+            </div>
+            <Button value='Login' route='/login' className='navBtn' />
+          </div>
+        )}
 
-      {
-        token && 
-        <div className='navbar__profileView absolute' onMouseLeave={hideprofile} >
-        <div>
-         <Button route={`/users/${credentials.id}`} className='primary-btn-no-hover-scale' value='Profile'/>
-        </div>
-        <div>
-        <Button route='/login' value='Sign out' className='primary-btn-no-hover-scale' onClick={logOut}/>
-        </div>
-      </div>
-      }
+        {token && (
+          <div
+            className='navbar__profileView absolute'
+            onMouseLeave={hideprofile}
+          >
+            <div>
+              <Button
+                route={`/users/${credentials.id}`}
+                className='primary-btn-no-hover-scale'
+                value='Profile'
+              />
+            </div>
+            <div>
+              <Button
+                route='/login'
+                value='Sign out'
+                className='primary-btn-no-hover-scale'
+                onClick={logOut}
+              />
+            </div>
+          </div>
+        )}
 
         <button className='menuIcon' onClick={changeIcon}>
           {close ? (
@@ -151,6 +163,79 @@ const Navbar = () => {
         </div>
       </div>
     </div>
+  );
+};
+
+const Search = () => {
+  const { data, isLoading, isError } = useGetAllCategoriesQuery();
+  const [categories, setCategories] = useState([]);
+
+  useEffect(() => {
+    if (data) {
+      setCategories(data.data);
+    }
+  }, [data]);
+
+  const dispatch = useDispatch();
+
+  const [formData, setFormData] = useState({
+    name: 'Product',
+    categoryIds: null,
+    price: null,
+    size: null,
+    page: null
+  });
+
+  const navigate = useNavigate();
+  return (
+    <form className='nav-search2 flex items-center p-0 h-full'>
+      <Input
+        type='text'
+        name='name'
+        placeholder='Enter product name...'
+        className='py-4 px-6 text-[1.3rem] h-full outline-none border-none outline-transparent focus:border-none rounded-l-[5rem] rounded-r-0'
+        style={{
+          outline: 'none',
+          borderRadius: '0 0 5rem 5rem'
+        }}
+        onChange={(e) => {
+          setFormData({ ...formData, name: e.target.value });
+        }}
+      />
+      <select
+        className='w-fit text-[1rem] h-full py-4 outline-none border-none rounded-0 border-l-[.2rem] border-l-primary focus:border-none'
+        onChange={(e) => {
+          setFormData({ ...formData, categoryIds: Number(e.target.value) });
+        }}
+      >
+        <option value={null}>All Categories</option>
+        {isLoading ? (
+          <option>{isError ? 'Loading...' : 'Categories not found'}</option>
+        ) : (
+          categories &&
+          categories.map((item) => {
+            return (
+              <option className='px-4' key={item.id} value={item.id}>
+                {item.name}
+              </option>
+            );
+          })
+        )}
+      </select>
+      <Button
+        value='SEARCH'
+        className='btn-search2 text-white px-8 flex items-center justify-center border-1/4 border-white bg-primary h-full rounded-r-[5rem] hover:scale-102 p-2.5'
+        onClick={(e) => {
+          e.preventDefault();
+          if (formData.name !== '' && formData.name !== 'Product') {
+            dispatch(addSearchData(formData));
+            dispatch(searchProduct());
+            dispatch(addCategories(categories));
+            navigate('/search');
+          } 
+        }}
+      />
+    </form>
   );
 };
 

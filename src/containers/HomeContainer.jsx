@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCartShopping, faHeart } from '@fortawesome/free-solid-svg-icons';
 import Button from '../components/Button';
@@ -8,7 +8,6 @@ import TopMerchants from './TopMerchants';
 import Hero from './Hero';
 
 const HomeContainer = () => {
- 
   return (
     <>
       <Hero />

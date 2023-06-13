@@ -1,5 +1,3 @@
-
-
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { library } from '@fortawesome/fontawesome-svg-core';
@@ -17,7 +15,8 @@ import {
   ProfilePage,
   NotFoundPage,
   SingleProductPage,
-  SingupPage
+  SingupPage,
+  SearchPage
 } from './pages';
 import Footer from './components/Footer';
 import Navbar from './components/Navbar';
@@ -36,9 +35,9 @@ const App = () => {
           <Route path='/signup' element={<SingupPage />} />
           <Route path='/seller/add-product' element={<SellerPage />} />
           <Route path='/product/:id' element={<SingleProductPage />} />
-          <Route path='/users/:id' element={<ProfilePage/>}/>
-          <Route path='/dashboard/users' element={<AdminManageUserPage />}
-          />
+          <Route path='/users/:id' element={<ProfilePage />} />
+          <Route path='/dashboard/users' element={<AdminManageUserPage />} />
+          <Route path='/search' element={<SearchPage />} />
           <Route path='*' element={<NotFoundPage />} />
         </Routes>
         <Footer />

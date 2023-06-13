@@ -1,5 +1,5 @@
-import React, { useEffect,useState } from 'react';
-import { Typography, Button, Snackbar, Alert } from '@mui/material';
+import React, { useEffect, useState } from 'react';
+import { Typography, Button } from '@mui/material';
 import { useForm } from 'react-hook-form';
 import { ToastContainer } from 'react-toastify';
 import { useDispatch, useSelector } from 'react-redux';
@@ -8,45 +8,39 @@ import { signup, reset } from '../states/features/auth/authSlice';
 import TLogo from '../assets/images/T_Logo.png';
 import Loading from '../components/Loading';
 import AuthBlueSide from '../components/AuthBlueSide';
-import { successNotification,ErrorNotification } from '../components/Notification';
+import {
+  successNotification,
+  ErrorNotification
+} from '../components/Notification';
 
 const SignupContainer = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const [open, setOpen] = React.useState(false);
+  const [, setOpen] = useState(false);
   const form = useForm();
   const { register, handleSubmit, formState, watch } = form;
   const { errors } = formState;
   const password = watch('password');
   const confirmPassword = watch('cPassword');
-  const [emailFromParams, setEmail] = useState(' ');
-  const [namefromParams, setName] = useState(' ');
+  const [, setEmail] = useState(' ');
+  const [, setName] = useState(' ');
 
-  const { isLoading, isSuccess, isError, message } = useSelector((state) => {
+  const { isLoading, isSuccess, isError } = useSelector((state) => {
     return state.auth;
   });
-
 
   const mySubmit = async (data) => {
     if (password === confirmPassword) {
       dispatch(signup(data));
 
-      if(isSuccess){
-        successNotification("Successfully created!")
+      if (isSuccess) {
+        successNotification('Successfully created!');
+      } else {
+        ErrorNotification('Error try again!');
       }
-      else{
-        ErrorNotification("Error try again!")
-      }
-      
+
       setOpen(true);
     }
-  };
-
-  const handleClose = (reason) => {
-    if (reason === 'clickaway') {
-      return;
-    }
-    setOpen(false);
   };
 
   useEffect(() => {
@@ -84,8 +78,8 @@ const SignupContainer = () => {
             Create your account on Techsmiths!
           </Typography>
         </div>
-        {isSuccess && <ToastContainer/>}
-        {isError && <ToastContainer/>}
+        {isSuccess && <ToastContainer />}
+        {isError && <ToastContainer />}
         <div className='signupPage__form'>
           <form onSubmit={handleSubmit(mySubmit)}>
             <div className='signupPage__input'>
@@ -94,7 +88,9 @@ const SignupContainer = () => {
                 id='lname'
                 name='name'
                 // value={namefromParams}
-                onChange={(e) => { return setEmail(e.target.value)}}
+                onChange={(e) => {
+                  return setEmail(e.target.value);
+                }}
                 {...register('name', {
                   required: {
                     value: true,
@@ -115,7 +111,9 @@ const SignupContainer = () => {
                 id='email'
                 name='email'
                 // value={emailFromParams}
-                onChange={(e) => { return setEmail(e.target.value)}}
+                onChange={(e) => {
+                  return setEmail(e.target.value);
+                }}
                 {...register('email', {
                   pattern: {
                     value: /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/,
@@ -193,7 +191,6 @@ const SignupContainer = () => {
                         )
                       }
                     })}
-                    
                   >
                     <option value=''>None</option>
                     <option value='male'>Male</option>
