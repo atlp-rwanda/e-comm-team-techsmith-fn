@@ -34,7 +34,7 @@ Loading.propTypes = {
 
 Loading.defaultProps = {
   color: '#243665',
-  width: 10
+  width: 5
 };
 
 export default Loading;

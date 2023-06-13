@@ -18,8 +18,13 @@ const login = async (data) => {
 
 const login2FA = async (data) => {
   const response = await API.get(`${API_URL}/users/login/${data}`);
-  localStorage.setItem('myToken', response.data.Authorization);
-  return response.data.message;
+  if (response.data.user) {
+    const { id, name, email } = response.data.user;
+    localStorage.setItem('user', JSON.stringify({ id, name, email }));
+    localStorage.setItem('myToken', response.data.Authorization);
+  }
+
+  return response.data.Authorization;
 };
 
 const signup = async (data) => {

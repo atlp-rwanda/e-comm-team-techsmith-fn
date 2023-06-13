@@ -8,9 +8,10 @@ run-name: ${{ github.actor }} contributes to ${{ github.repository }}
 
 # Workflow triggers
 on:
-  # Run tests on pull request to develop branch
-  pull_request:
-    branches: [develop]
+  # Trigger the workflow on push events on all branches
+  push:
+    branches-ignore:
+      - '*'
 
 jobs:
   # Name of the job
@@ -26,7 +27,7 @@ jobs:
     # Job steps
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
 
       - name: Setup Node.js
         uses: actions/setup-node@v3

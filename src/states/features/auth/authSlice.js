@@ -1,7 +1,7 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import authServices from './authServices';
 
-const currentToken = localStorage.getItem('myToken');
+export const currentToken = localStorage.getItem('myToken');
 const role = false;
 
 const initialState = {
@@ -17,8 +17,7 @@ const resetStates = {
   isError: false,
   isSuccess: false,
   isLoading: false,
-  isSeller: false,
-  token: currentToken
+  isSeller: false
 };
 
 // Creating authslice

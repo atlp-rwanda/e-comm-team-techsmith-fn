@@ -1,0 +1,34 @@
+@use 'base';
+@import 'base';
+@import 'tailwindcss/utilities';
+
+.join_chat_container {
+  .info_description_heading {
+    @include gradient-text(black, base.$primary-color, base.$bluewishgray);
+  }
+}
+
+::--webkit-scrollbar {
+  width: 0px;
+  background: transparent;
+  color: red;
+  background-color: red;
+}
+
+@layer utilities {
+  .mid-chatbox {
+    width: 100%;
+    min-width: 70%;
+    border-left-width: 0;
+    height: 75%;
+  }
+
+  .base-chatroom {
+    height: 100vh;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+  }
+}

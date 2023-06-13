@@ -14,6 +14,7 @@ import ProductReviewContainer from '../containers/ProductReviewContainer';
 import AdminManageUserContainer from '../containers/UsersContainer';
 import ProfileContainer from '../containers/ProfileContainer';
 import SearchContainer from '../containers/SearchContainer';
+import ChatContainer from '../containers/ChatContainer';
 
 const HomePage = () => {
   return <HomeContainer />;
@@ -45,6 +46,9 @@ const SellerPage = () => {
 const SearchPage = () => {
   return <SearchContainer />;
 };
+const ChatPage = () => {
+  return <ChatContainer />;
+};
 
 const SingleProductPage = () => {
   const { id } = useParams();
@@ -71,7 +75,8 @@ export {
   ContactPage,
   SingleProductPage,
   SellerPage,
-  AdminManageUserPage,
   ProfilePage,
-  SearchPage
+  AdminManageUserPage,
+  SearchPage,
+  ChatPage
 };

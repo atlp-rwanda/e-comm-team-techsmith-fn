@@ -33,10 +33,10 @@ const SignupContainer = () => {
     if (password === confirmPassword) {
       dispatch(signup(data));
 
-      if (isSuccess) {
-        successNotification('Successfully created!');
-      } else {
+      if (isError) {
         ErrorNotification('Error try again!');
+      } else {
+        successNotification('Successfully created!');
       }
 
       setOpen(true);
@@ -50,7 +50,6 @@ const SignupContainer = () => {
     const decodedEmail = emailParam ? decodeURIComponent(emailParam) : '';
     const decodedName = nameParam ? decodeURIComponent(nameParam) : '';
 
-    // console.log(decodedEmail, decodedName);
     setEmail(decodedEmail);
     setName(decodedName);
 
@@ -58,7 +57,7 @@ const SignupContainer = () => {
       setTimeout(() => {
         dispatch(reset());
         navigate('/login');
-      }, 5000); // Delay of 2000 milliseconds (5 seconds)
+      }, 5000);
     }
   }, [dispatch, isSuccess]);
 
@@ -87,7 +86,6 @@ const SignupContainer = () => {
                 type='text'
                 id='lname'
                 name='name'
-                // value={namefromParams}
                 onChange={(e) => {
                   return setEmail(e.target.value);
                 }}
@@ -110,7 +108,6 @@ const SignupContainer = () => {
                 type='text'
                 id='email'
                 name='email'
-                // value={emailFromParams}
                 onChange={(e) => {
                   return setEmail(e.target.value);
                 }}

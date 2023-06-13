@@ -31,7 +31,7 @@ export const apiSlice = createApi({
       getProductReviews: builder.query({
         query: ({ id }) => {
           return {
-            url: `feedback/${id}`,
+            url: `feedback/${id}?size=${40}&page=${3}`,
             headers: {
               'Content-Type': 'application/json',
               authorization: `${token}`

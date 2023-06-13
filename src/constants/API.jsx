@@ -1,4 +1,6 @@
 const API_URL = import.meta.env.VITE_API_URL;
 const LOCAL_API_URL = import.meta.env.VITE_LOCAL_API_URL;
+const WEBSOCKET_URL = import.meta.env.VITE_WEBSOCKET_URL;
+const WEBSOCKET_LOCAL_URL = import.meta.env.VITE_WEBSOCKET_LOCAL_URL;
 
-export { API_URL, LOCAL_API_URL };
+export { API_URL, LOCAL_API_URL, WEBSOCKET_URL, WEBSOCKET_LOCAL_URL };

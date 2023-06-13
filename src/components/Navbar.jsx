@@ -232,7 +232,7 @@ const Search = () => {
             dispatch(searchProduct());
             dispatch(addCategories(categories));
             navigate('/search');
-          } 
+          }
         }}
       />
     </form>

@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import moment from 'moment';
 import { useCreateProductMutation } from '../states/api/apiSlice';
-import Input from '../components/Input';
 import Button from '../components/Button';
 
 const SellerContainer = () => {
@@ -38,6 +37,10 @@ const SellerContainer = () => {
     };
     createProduct(modifiedData);
   };
+
+  const inputClassName =
+    'w-11/12 px-8 py-4 text-sm outline-none border-primary rounded-[.5rem]';
+
   return (
     <div className='containerSeller'>
       <h1 className='sellerPageTitle my-4 text-[3rem] text-primary font-black'>
@@ -48,7 +51,8 @@ const SellerContainer = () => {
           <div className='input-group'>
             <label htmlFor='productName'>
               Names
-              <Input
+              <input
+                className={inputClassName}
                 type='text'
                 id='productName'
                 name='productName'
@@ -84,7 +88,8 @@ const SellerContainer = () => {
           <div className='input-group'>
             <label htmlFor='productQuantity'>
               Quantity
-              <Input
+              <input
+                className={inputClassName}
                 type='text'
                 id='quantity'
                 required
@@ -99,7 +104,8 @@ const SellerContainer = () => {
           <div className='input-group'>
             <label htmlFor='productPrice'>
               Price per product
-              <Input
+              <input
+                className={inputClassName}
                 type='text'
                 id='productPrice'
                 required
@@ -134,11 +140,11 @@ const SellerContainer = () => {
           <div className='input-group'>
             <label htmlFor='dateOfExpiration'>
               Expiration Date
-              <Input
+              <input
+                className={inputClassName}
                 type='date'
                 id='dateOfExpiration'
                 required
-                className='dateOfExpiration w-11/12 px-8 py-4 outline-none rounded-[.5rem]'
                 placeholder='Name of the product'
                 name='dateOfExpiration'
                 style={{
@@ -174,13 +180,13 @@ const SellerContainer = () => {
             <label htmlFor='productImage h-full flex flex-col text-sm'>
               Upload images
               <span className='h-[10rem] flex flex-col items-start justify-center'>
-                <Input
+                <input
+                  className={inputClassName}
                   multiple
                   style={{
                     fontSize: '1.1rem'
                   }}
                   type='file'
-                  className='imageItem text-[1.1rem] px-0'
                   name='productImage'
                   {...register('image', {
                     required: 'Image of product is required'
@@ -190,16 +196,7 @@ const SellerContainer = () => {
             </label>
           </div>
         </div>
-        <div
-          className='add_product_feedbacks mx-auto w-full flex flex-col items-center my-8'
-          style={
-            !isSuccess || !isError
-              ? {
-                  display: 'none'
-                }
-              : { display: 'flex' }
-          }
-        >
+        <div className='add_product_feedbacks mx-auto w-full flex flex-col items-center my-8'>
           <p
             className='text-base text-green-500 hidden'
             style={
