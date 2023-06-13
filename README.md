@@ -82,3 +82,12 @@ To update the Techsmith Frontend codebase, follow these steps:
 3. You can find the deployed application by visiting `https://e-comm-team-techsmith-fn.vercel.app/`
 
 For any inquiries or feedback, please reach out to our team at `https://atlp-workspace.slack.com/archives/C04K7P2AA5D`.
+
+## Viewing product per category
+
+One of the schema to view products on the landing page from Techsmith App
+
+1. From this app , the user on anding page should be abe to view products in the same category
+2. Once no category specified, a user can view the products from different categories randomly on landing page
+
+For any inquiries or feedback, please reach out to our team at `https://atlp-workspace.slack.com/archives/C04K7P2AA5D`.

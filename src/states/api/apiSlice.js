@@ -65,6 +65,16 @@ export const apiSlice = createApi({
             body: { name, categoryIds, price }
           };
         }
+      }),
+      getProductsCategory: builder.query({
+        query: ({ categoryId, size, page }) => {
+          return `category/${categoryId}/?size=${size}&page=${page}`;
+        }
+      }),
+      getAllProducts: builder.query({
+        query: ({ size, page }) => {
+          return `products/?size=${size}&page=${page}`;
+        }
       })
     };
   }
@@ -76,5 +86,7 @@ export const {
   useGetProductReviewsQuery,
   useCreateProductMutation,
   useGetAllCategoriesQuery,
-  usePostProductSearchMutation
+  usePostProductSearchMutation,
+  useLazyGetProductsCategoryQuery,
+  useLazyGetAllProductsQuery
 } = apiSlice;

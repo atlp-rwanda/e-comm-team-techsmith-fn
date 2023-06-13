@@ -15,6 +15,7 @@ module.exports = {
 
     'jsx-a11y/no-static-element-interactions': 'off',
 
+    ' import/no-unresolved':'off',
     'react/button-has-type': 'off',
     'no-use-before-define': 'off',
     'default-param-last': 'off',
@@ -24,6 +25,7 @@ module.exports = {
     'no-useless-escape': 'off',
     'comma-dangle': 'off',
     'no-param-reassign': 'off',
+    'jsx-a11y/interactive-supports-focus':'off',
     'jsx-a11y/label-has-associated-control': 'off',
     'jsx-a11y/no-noninteractive-element-interactions': 'off',
     'jsx-a11y/click-events-have-key-events': 'off',

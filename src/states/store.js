@@ -5,6 +5,7 @@ import authReducer from './features/auth/authSlice';
 import userReducer from './features/users/usersSlice';
 import productReducer from './features/search/searchSlice';
 import sellerReducer from './features/seller/sellerSlice';
+import categorySlice from './features/categories/categorySlice';
 
 const store = configureStore({
   reducer: {
@@ -13,7 +14,8 @@ const store = configureStore({
     auth: authReducer,
     users: userReducer,
     search: productReducer,
-    seller: sellerReducer
+    seller: sellerReducer,
+    categories: categorySlice
   },
   middleware: (getDefaultMiddleware) => {
     return getDefaultMiddleware().concat(apiSlice.middleware);

@@ -3,10 +3,9 @@ import { useSelector, useDispatch } from 'react-redux';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { GiHamburgerMenu } from 'react-icons/gi';
 import { BiDownArrow } from 'react-icons/bi';
-import { AiOutlineClose } from 'react-icons/ai';
+import { AiOutlineClose,AiOutlineUser } from 'react-icons/ai';
 import { searchlog, techLogW } from '../assets';
 import Button from './Button';
-import checkIsLogged from '../utils/isLoggedin';
 import logOut from '../utils/logOut';
 import { useGetAllCategoriesQuery } from '../states/api/apiSlice';
 import Input from './Input';
@@ -22,6 +21,9 @@ const Navbar = () => {
   const { token } = useSelector((state) => {
     return state.auth;
   });
+  const loggingOut=()=>{
+    logOut()
+  }
   if (
     pathname === '/login' ||
     pathname === '/signup' ||
@@ -31,7 +33,6 @@ const Navbar = () => {
     pathname === '/dashboard/seller'
   )
     return null;
-  const credentials = checkIsLogged();
   const changeIcon = () => {
     document.querySelector('.navbar__dropdown').classList.toggle('rm');
     setClose((prevState) => {
@@ -63,7 +64,7 @@ const Navbar = () => {
           <div>
             <ul className='flex  items-center '>
               <li>
-                <Link to='categories'>Categories</Link>
+                <Link to='category'>Categories</Link>
               </li>
               <li>
                 <Link to='contact'>Contact us</Link>
@@ -74,63 +75,43 @@ const Navbar = () => {
             </ul>
           </div>
         </div>
-
         <Search />
 
-        {token ? (
-          <div
-            className='navbar__profile__letter flex justify-center items-center'
-            onClick={viewProfile}
-          >
-            <div className='navbar__profile flex justify-center items-center'>
-              <div>
-                <p>{credentials.profileName}</p>
+        {
+          token?
+         ( <div className='navbar__profile__letter flex justify-center items-center' onClick={viewProfile}>
+          <div className='navbar__profile flex justify-center items-center'>
+               <div>
+                <AiOutlineUser/>
+               </div>
+            </div>
+             <div>
+               <BiDownArrow style={{color:'white',width:'1.5rem',height:'1.5rem',paddingLeft:'0.2rem'}}/>
               </div>
-            </div>
-            <div>
-              <BiDownArrow
-                style={{
-                  color: 'white',
-                  width: '1.5rem',
-                  height: '1.5rem',
-                  paddingLeft: '0.2rem'
-                }}
-              />
-            </div>
+           </div>
+         )
+          : 
+          (<div className='navbar__authBtn flex items-center'>
+          <div>
+            <Link to='/signup'>
+              <p>Sign up</p>
+            </Link>
           </div>
-        ) : (
-          <div className='navbar__authBtn flex items-center'>
-            <div>
-              <Link to='/signup'>
-                <p>Sign up</p>
-              </Link>
-            </div>
-            <Button value='Login' route='/login' className='navBtn' />
+          <Button value='Login' route='/login' className='navBtn' />
+        </div>
+         )}
+  
+        {
+          token && 
+          <div className='navbar__profileView absolute' onMouseLeave={hideprofile} >
+          <div>
+           <Button route={`/users/${JSON.parse(localStorage.getItem('user')).id}`} className='primary-btn-no-hover-scale' value='Profile'/>
           </div>
-        )}
-
-        {token && (
-          <div
-            className='navbar__profileView absolute'
-            onMouseLeave={hideprofile}
-          >
-            <div>
-              <Button
-                route={`/users/${credentials.id}`}
-                className='primary-btn-no-hover-scale'
-                value='Profile'
-              />
-            </div>
-            <div>
-              <Button
-                route='/login'
-                value='Sign out'
-                className='primary-btn-no-hover-scale'
-                onClick={logOut}
-              />
-            </div>
+          <div>
+          <Button route='/login' value='Sign out' className='primary-btn-no-hover-scale' onClick={loggingOut}/>
           </div>
-        )}
+        </div>
+        }
 
         <button className='menuIcon' onClick={changeIcon}>
           {close ? (
@@ -240,5 +221,4 @@ const Search = () => {
     </form>
   );
 };
-
 export default Navbar;

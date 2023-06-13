@@ -1,6 +1,9 @@
-import React from 'react';
+import React,{useEffect} from 'react';
 import Button from '../components/Button';
+import Loading from '../components/Loading';
 import HomeCategoryProductCard from '../components/HomeCategoryProductCard';
+import { useGetAllCategoriesQuery} from '../states/api/apiSlice';
+import { setCategories } from '../states/features/categories/categorySlice';
 
 // BROWSE BY CATEGORY
 const BrowseByCategory = () => {
@@ -24,34 +27,9 @@ const BrowseByCategory = () => {
       <section className='home_browse_category_header'>
         <h3>Browse by category</h3>
         <p>Discover your niche</p>
+        
       </section>
-      <section className='home_browse_category_categories flex flex-wrap justify-center'>
-        <Button
-          className='home_browse_category_option active'
-          route='#'
-          value='Electronics'
-        />
-        <Button
-          className='home_browse_category_option'
-          route='#'
-          value='Beauty'
-        />
-        <Button
-          className='home_browse_category_option'
-          route='#'
-          value='Sports'
-        />
-        <Button
-          className='home_browse_category_option'
-          route='#'
-          value='Fashion'
-        />
-        <Button
-          className='home_browse_category_option'
-          route='#'
-          value='Appliances'
-        />
-      </section>
+      <Categories />
       <section className='home_browse_category_container flex flex-wrap justify-around'>
         <HomeCategoryProductCard {...props} />
         <HomeCategoryProductCard {...props} />
@@ -59,8 +37,64 @@ const BrowseByCategory = () => {
         <HomeCategoryProductCard {...props} />
         <HomeCategoryProductCard {...props} />
       </section>
+      <section className='home_browse_category_categories flex flex-wrap justify-center'>
+      <Button
+        className='home_browse_category_option'
+        route='/category'
+        value='View more >>'
+      />
+    </section>
     </div>
   );
 };
 
 export default BrowseByCategory;
+
+
+
+
+const Categories = () => {
+  const {
+    data: categories,
+    isLoading,
+    isError,
+    isSuccess
+  } = useGetAllCategoriesQuery();
+
+  useEffect(() => {
+    if(isSuccess) {
+      setCategories(categories.data);
+    }
+  }, [categories]);
+
+  if (isLoading) {
+    return <div className='w-full max-w-[100%] min-w-[50%] min-h-[100vh] flex items-center justify-center'><Loading width={50} /></div>;
+  }
+
+  if (isError) {
+    return <div>Error...</div>;
+  }
+  if (isSuccess) {
+    return (
+    <section className='home_browse_category_categories flex flex-wrap justify-center'>
+        {categories.data.map((category) => {
+          const { id, name } = category;
+          return (
+            <Button
+            key={id}
+            className='home_browse_category_option '
+            route='/category'
+            value={name}
+          />
+          );
+        })}
+      </section>
+
+    );
+  }
+  if (isError) {
+    return <div>Error...</div>;
+  }
+
+  return null;
+};

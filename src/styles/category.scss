@@ -1,0 +1,17 @@
+@use 'base';
+
+.category_section{
+    display: flex;
+    flex-direction: row;
+    padding-top: 100px;
+}
+
+.category_title{
+    font-size: 1.5rem;
+}
+
+@media (max-width: 831px) {
+    .category_section{
+     flex-direction: column;
+    }
+   }
