@@ -23,6 +23,7 @@ module.exports = {
     'import/no-named-as-default': 'off',
     'react/prop-types': 'warn',
     'default-param-last': 'off',
+    'no-self-compare': 'off',
     'eact/jsx-filename-extension': 'off',
     'react/jsx-no-constructed-context-values': 'off',
     'no-unused-vars': 'warn',
@@ -35,6 +36,7 @@ module.exports = {
     'jsx-quotes': 'off',
     'react/forbid-prop-types': ['error', { forbid: [] }],
     'arrow-parens': ['error', 'always'],
+    'eol-last': 'off',
     'arrow-body-style': ['error', 'always'],
     'react/function-component-definition': [
       2,

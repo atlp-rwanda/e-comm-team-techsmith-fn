@@ -52,9 +52,9 @@ const ChatPage = () => {
   return <ChatContainer />;
 };
 
-const ResetPasswordPage =()=>{
-  return <ResetPasswordContainer />
-}
+const ResetPasswordPage = () => {
+  return <ResetPasswordContainer />;
+};
 
 const SingleProductPage = () => {
   const { id } = useParams();

@@ -44,7 +44,10 @@ const App = () => {
           <Route path='/category' element={<CategoryPage />} />
           <Route path='/login' element={<LoginPage />} />
           <Route path='/signup' element={<SingupPage />} />
-          <Route path='/reset-password/:token' element={<ResetPasswordPage />} />
+          <Route
+            path='/reset-password/:token'
+            element={<ResetPasswordPage />}
+          />
           <Route element={<SellerRoutes />}>
             <Route path='/seller/add-product' element={<SellerPage />} />
             <Route path='/dashboard/seller' element={<SellerProductsPage />} />
@@ -56,6 +59,7 @@ const App = () => {
           <Route element={<ProtectedRoutes />}>
             <Route path='/chat' element={<JoinChat />} />
             <Route path='/chat/room' element={<ChatPage />} />
+            <Route path='/dashboard/users' element={<AdminManageUserPage />} />
           </Route>
           <Route path='*' element={<NotFoundPage />} />
           <Route path='/unauthorized' element={<Navigate />} />

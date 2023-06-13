@@ -47,7 +47,13 @@ const LoginContainer = () => {
 
   return (
     <>
-    {openPopUp && <PopupMaker open={openPopUp} Component={ForgetPassword} setOpen={setOpenPopUp} />}
+      {openPopUp && (
+        <PopupMaker
+          open={openPopUp}
+          Component={ForgetPassword}
+          setOpen={setOpenPopUp}
+        />
+      )}
       <div>
         <InputPopup
           title='2FA Verification'
@@ -118,8 +124,10 @@ Authentication process.'
                 </div>
 
                 <div className='loginPage__forgotcode'>
-                <Typography variant='body1'onClick={showForgotPass}>Forgot your password?</Typography>
-              </div>
+                  <Typography variant='body1' onClick={showForgotPass}>
+                    Forgot your password?
+                  </Typography>
+                </div>
                 <div className='loginPage__button'>
                   <button
                     type='submit'

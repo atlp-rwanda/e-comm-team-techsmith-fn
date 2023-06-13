@@ -1,8 +1,8 @@
-import React,{useEffect} from 'react';
+import React, { useEffect } from 'react';
 import Button from '../components/Button';
 import Loading from '../components/Loading';
 import HomeCategoryProductCard from '../components/HomeCategoryProductCard';
-import { useGetAllCategoriesQuery} from '../states/api/apiSlice';
+import { useGetAllCategoriesQuery } from '../states/api/apiSlice';
 import { setCategories } from '../states/features/categories/categorySlice';
 
 // BROWSE BY CATEGORY
@@ -27,7 +27,6 @@ const BrowseByCategory = () => {
       <section className='home_browse_category_header'>
         <h3>Browse by category</h3>
         <p>Discover your niche</p>
-        
       </section>
       <Categories />
       <section className='home_browse_category_container flex flex-wrap justify-around'>
@@ -38,20 +37,17 @@ const BrowseByCategory = () => {
         <HomeCategoryProductCard {...props} />
       </section>
       <section className='home_browse_category_categories flex flex-wrap justify-center'>
-      <Button
-        className='home_browse_category_option'
-        route='/category'
-        value='View more >>'
-      />
-    </section>
+        <Button
+          className='home_browse_category_option'
+          route='/category'
+          value='View more >>'
+        />
+      </section>
     </div>
   );
 };
 
 export default BrowseByCategory;
-
-
-
 
 const Categories = () => {
   const {
@@ -62,13 +58,17 @@ const Categories = () => {
   } = useGetAllCategoriesQuery();
 
   useEffect(() => {
-    if(isSuccess) {
+    if (isSuccess) {
       setCategories(categories.data);
     }
   }, [categories]);
 
   if (isLoading) {
-    return <div className='w-full max-w-[100%] min-w-[50%] min-h-[100vh] flex items-center justify-center'><Loading width={50} /></div>;
+    return (
+      <div className='w-full max-w-[100%] min-w-[50%] min-h-[100vh] flex items-center justify-center'>
+        <Loading width={50} />
+      </div>
+    );
   }
 
   if (isError) {
@@ -76,20 +76,19 @@ const Categories = () => {
   }
   if (isSuccess) {
     return (
-    <section className='home_browse_category_categories flex flex-wrap justify-center'>
+      <section className='home_browse_category_categories flex flex-wrap justify-center'>
         {categories.data.map((category) => {
           const { id, name } = category;
           return (
             <Button
-            key={id}
-            className='home_browse_category_option '
-            route='/category'
-            value={name}
-          />
+              key={id}
+              className='home_browse_category_option '
+              route='/category'
+              value={name}
+            />
           );
         })}
       </section>
-
     );
   }
   if (isError) {

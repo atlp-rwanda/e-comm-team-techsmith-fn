@@ -19,7 +19,11 @@ const ResetPasswordContainer = () => {
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const { register, handleSubmit, formState: { errors } } = useForm();
+  const {
+    register,
+    handleSubmit,
+    formState: { errors }
+  } = useForm();
   const { isLoading, isError, isSuccess, message } = useSelector((state) => {
     return state.auth;
   });
@@ -53,8 +57,8 @@ const ResetPasswordContainer = () => {
 
   return (
     <div className='loginPage'>
-    <div className='flex justify-center items-center'>
-    <div className='loginPage__parent'>
+      <div className='flex justify-center items-center'>
+        <div className='loginPage__parent'>
           <div className='loginPage__mobileHeader'>
             <div className='loginPage__imgHeader'>
               <img src={TLogo} alt='#' />
@@ -74,8 +78,7 @@ const ResetPasswordContainer = () => {
 
           <div className='loginPage__form'>
             <form onSubmit={handleSubmit(onSubmit)} noValidate>
-              
-            <div className='loginPage__input'>
+              <div className='loginPage__input'>
                 <input
                   type='password'
                   id='password'
@@ -84,7 +87,11 @@ const ResetPasswordContainer = () => {
                   className='text-xl'
                 />
                 <label htmlFor='new-password'>New Password</label>
-                {errors.password && <p className='loginPage__error'>Password must be at least 8 characters long.</p>}
+                {errors.password && (
+                  <p className='loginPage__error'>
+                    Password must be at least 8 characters long.
+                  </p>
+                )}
               </div>
               <div className='loginPage__input'>
                 <input
@@ -95,7 +102,9 @@ const ResetPasswordContainer = () => {
                   className='text-xl'
                 />
                 <label htmlFor='confirm-password'>Confirm Password</label>
-                {errors.confirmPassword && <p className='loginPage__error'>Passwords do not match.</p>}
+                {errors.confirmPassword && (
+                  <p className='loginPage__error'>Passwords do not match.</p>
+                )}
               </div>
 
               <div className='loginPage__button'>
@@ -113,12 +122,12 @@ const ResetPasswordContainer = () => {
         </div>
       </div>
       <AuthBlueSide
-      button='SIGN UP'
-      onClick={() => {
-        navigate('/signup');
-      }}
-      heading='Create Your Account'
-    />
+        button='SIGN UP'
+        onClick={() => {
+          navigate('/signup');
+        }}
+        heading='Create Your Account'
+      />
     </div>
   );
 };

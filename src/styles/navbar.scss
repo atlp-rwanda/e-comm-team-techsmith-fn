@@ -236,3 +236,39 @@
 .active {
   border-bottom: 2px solid white;
 }
+.active_notification {
+  border-bottom: 2px solid base.$primary-color;
+}
+.subTitlesNotify {
+  button {
+    box-shadow: 0 0 4px rgba(0, 0, 0, 0.2);
+    &:hover {
+      cursor: pointer;
+    }
+    font-size: 1.3rem;
+  }
+}
+@keyframes wiggle {
+  0% {
+    transform: rotate(-10deg);
+  }
+  50% {
+    transform: rotate(10deg);
+  }
+  100% {
+    transform: rotate(-10deg);
+  }
+}
+
+.hover\:animate-wiggle:hover {
+  animation: wiggle 0.3s ease-in-out infinite;
+}
+.notice {
+  .fb-accordion .fb-accordion-title:focus {
+    outline: none;
+    box-shadow: none;
+  }
+  svg {
+    display: none;
+  }
+}

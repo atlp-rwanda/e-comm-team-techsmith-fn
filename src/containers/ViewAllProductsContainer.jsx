@@ -3,25 +3,27 @@ import { useDispatch, useSelector } from 'react-redux';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCartShopping, faHeart } from '@fortawesome/free-solid-svg-icons';
 import Button from '../components/Button';
-import Loading from '../components/Loading'
+import Loading from '../components/Loading';
 import HomeCategoryProductCard from '../components/HomeCategoryProductCard';
 import {
   useGetAllCategoriesQuery,
   useLazyGetAllProductsQuery,
   useLazyGetProductsCategoryQuery
 } from '../states/api/apiSlice';
-import { setCategories, setCategoryProducts } from '../states/features/categories/categorySlice';
+import {
+  setCategories,
+  setCategoryProducts
+} from '../states/features/categories/categorySlice';
 import { getCatName } from '../utils/categories';
 
 const ViewAllProductsContainer = () => {
   const [getAllProducts] = useLazyGetAllProductsQuery();
   const [products, setProducts] = useState([]);
   const [productCategories, setProductCategories] = useState([]);
-  const categoryProducts = useSelector((state) => {return state.categories.products});
-  const {
-    data: categories,
-    isSuccess
-  } = useGetAllCategoriesQuery();
+  const categoryProducts = useSelector((state) => {
+    return state.categories.products;
+  });
+  const { data: categories, isSuccess } = useGetAllCategoriesQuery();
 
   useEffect(() => {
     const size = 20;
@@ -31,7 +33,7 @@ const ViewAllProductsContainer = () => {
         setProducts(data.data.products);
       })
       .catch((err) => {
-        return err
+        return err;
       });
   }, []);
 
@@ -40,7 +42,7 @@ const ViewAllProductsContainer = () => {
   }, [categoryProducts]);
 
   useEffect(() => {
-    if(isSuccess) {
+    if (isSuccess) {
       setProductCategories(categories.data);
     }
   }, [categories]);
@@ -51,19 +53,19 @@ const ViewAllProductsContainer = () => {
         <Categories />
         <div>
           <div className='home_browse_category_container flex flex-wrap justify-around'>
-       {products.map((item) => {
-        return (
-          <HomeCategoryProductCard
-          image={item.image[randomImage(item.image.length)]}
-          key={item.id}
-            description={item.description}
-            name={item.name}
-            category={getCatName(item.categoryId, productCategories)}
-            price={item.price}
-            quantity={item.quantity}
-          />
-        );
-      })}
+            {products.map((item) => {
+              return (
+                <HomeCategoryProductCard
+                  image={item.image[randomImage(item.image.length)]}
+                  key={item.id}
+                  description={item.description}
+                  name={item.name}
+                  category={getCatName(item.categoryId, productCategories)}
+                  price={item.price}
+                  quantity={item.quantity}
+                />
+              );
+            })}
           </div>
         </div>
       </div>
@@ -87,13 +89,17 @@ const Categories = () => {
   const [getProductsCategory] = useLazyGetProductsCategoryQuery();
 
   useEffect(() => {
-    if(isSuccess) {
+    if (isSuccess) {
       setCategories(categories.data);
     }
   }, [categories]);
 
   if (isLoading) {
-    return <div className='w-full max-w-[100%] min-w-[50%] min-h-[100vh] flex items-center justify-center'><Loading width={50} /></div>;
+    return (
+      <div className='w-full max-w-[100%] min-w-[50%] min-h-[100vh] flex items-center justify-center'>
+        <Loading width={50} />
+      </div>
+    );
   }
 
   if (isError) {
@@ -103,7 +109,9 @@ const Categories = () => {
   if (isSuccess) {
     return (
       <div className='flex flex-col p-8 w-full max-w-[20%] items-start gap-8'>
-        <h1 className='category_title text-left text-[2.5rem] font-bold'>All Categories</h1>
+        <h1 className='category_title text-left text-[2.5rem] font-bold'>
+          All Categories
+        </h1>
         {categories.data.map((category) => {
           const { id, name } = category;
           const isSelected = selectedCategoryId === id;
@@ -118,18 +126,20 @@ const Categories = () => {
                 onClick={() => {
                   if (isSelected) {
                     setSelectedCategoryId(null);
-                  }else{
-                  const size = 20;
-                  const page = 1;
-                  getProductsCategory({ categoryId: id, size, page })
-                    .then(({ data: categoryProducts}) => {
-                      dispatch(setCategoryProducts(categoryProducts.data.rows));
-                      setCategories(categories.data);
-                      setSelectedCategoryId(id);
-                    })
-                    .catch((err) => {
-                      return err
-                    });
+                  } else {
+                    const size = 20;
+                    const page = 1;
+                    getProductsCategory({ categoryId: id, size, page })
+                      .then(({ data: categoryProducts }) => {
+                        dispatch(
+                          setCategoryProducts(categoryProducts.data.rows)
+                        );
+                        setCategories(categories.data);
+                        setSelectedCategoryId(id);
+                      })
+                      .catch((err) => {
+                        return err;
+                      });
                   }
                 }}
                 checked={isSelected}
@@ -145,9 +155,11 @@ const Categories = () => {
   }
 
   if (isError) {
-    return <div className='h-[80vh] flex flex-col items-center justify-center'>
-    <h1 className='text-[5rem] text-primary'>Could not fetch products</h1>
-  </div>
+    return (
+      <div className='h-[80vh] flex flex-col items-center justify-center'>
+        <h1 className='text-[5rem] text-primary'>Could not fetch products</h1>
+      </div>
+    );
   }
 
   return null;
@@ -197,6 +209,6 @@ const RevisitCollections = () => {
   );
 };
 
-const randomImage=(size)=>{
-  return(Math.floor(Math.random() * size))
-}
+const randomImage = (size) => {
+  return Math.floor(Math.random() * size);
+};
