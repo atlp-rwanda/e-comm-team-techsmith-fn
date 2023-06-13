@@ -9,21 +9,17 @@ const AddRemoveButton = ({ count1 }) => {
       <div className='inline-flex space-x-1'>
         <button
           type='button'
-          className='hover:bg-[rgb(36,54,101)] hover:text-white cursor-pointer px-3 py-2 border'
-          onClick={() => {
-            if (count > 0) return setCount(count - 1);
-            return setCount(0);
-          }}
+          className='bg-[#ccc] text-[#888] cursor-not-allowed px-3 py-2 border'
         >
           -
         </button>
         <span className='px-5 py-2 border'>{count}</span>
         <button
           type='button'
-          className='hover:bg-[#243665] hover:text-white cursor-pointer px-3 py-2 border'
-          onClick={() => {
-            return setCount(count + 1);
-          }}
+          className='bg-[#ccc] text-[#888] cursor-not-allowed px-3 py-2 border'
+          // onClick={() => {
+          //   return setCount(count + 1);
+          // }}
         >
           +
         </button>
@@ -37,3 +33,6 @@ export default AddRemoveButton;
 AddRemoveButton.propTypes = {
   count1: PropTypes.number.isRequired
 };
+
+// "email": "joshua1@gmail.com",
+// "password": "Testing@123",

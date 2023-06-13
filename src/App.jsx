@@ -17,12 +17,14 @@ import {
 } from './pages';
 import Footer from './components/Footer';
 import Navbar from './components/Navbar';
+import Cart from './components/Cart';
 
 const App = () => {
   return (
     <div className='App'>
       <Router>
         <Navbar />
+        <Cart />
         <Routes>
           <Route path='/' element={<HomePage />} />
           <Route path='/about' element={<AboutPage />} />

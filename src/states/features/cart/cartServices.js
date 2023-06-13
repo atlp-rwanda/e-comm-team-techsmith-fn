@@ -1,17 +1,18 @@
 import API from '../../api';
 import { API_URL } from '../../../constants';
-import checkIsLogged from '../../../utils/isLoggedin';
 
 const getCart = async () => {
-  const { token } = checkIsLogged();
-  const response = await API.get(`${API_URL}/cart`, {
-    headers: {
-      Authorization: `token=${token}`
-    }
-  });
-  return response.data.itemsInCart;
+  const response = await API.get(`${API_URL}/cart`);
+
+  return response.data.data.itemsInCart;
 };
 
-const cartServices = { getCart };
+const clearCart = async () => {
+  const response = await API.delete(`${API_URL}/cart`);
+
+  return response.data.data;
+};
+
+const cartServices = { getCart, clearCart };
 
 export default cartServices;

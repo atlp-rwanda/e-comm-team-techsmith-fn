@@ -21,6 +21,12 @@ const Navbar = () => {
     }
     return setClose(false);
   };
+
+  const displayCart = () => {
+    // ____ check first if the user is logged in ________
+
+    document.querySelector('.cart_overlay').style.display = 'block';
+  };
   return (
     <div className='navbar'>
       <div className='navbar_logoContainerNavbar-menuList flex justify-around items-center'>
@@ -71,7 +77,11 @@ const Navbar = () => {
         </div>
 
         <div className='navbar__authBtn flex items-center'>
-          <div>
+          <div className='flex'>
+            <button type='button' onClick={displayCart} className='mr-5'>
+              <p>Cart</p>
+            </button>
+
             <Link to='/signup'>
               <p>Sign up</p>
             </Link>
