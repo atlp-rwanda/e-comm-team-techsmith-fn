@@ -21,7 +21,7 @@ export const getCart = createAsyncThunk(
   async (data, thunkAPI) => {
     try {
       const response = await cartServices.getCart();
-      console.log(response);
+      console.log('we are here');
       return response;
     } catch (error) {
       let message;
