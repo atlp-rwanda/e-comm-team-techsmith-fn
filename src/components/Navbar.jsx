@@ -25,8 +25,9 @@ const Navbar = () => {
   if (
     pathname === '/login' ||
     pathname === '/signup' ||
-    pathname === '/dashboard/users' ||
-    pathname.startsWith('/signup')
+    pathname === '/dashboard/users'||
+    pathname.startsWith('/signup') ||
+    pathname.startsWith('/reset-password')
   )
     return null;
   const credentials = checkIsLogged();

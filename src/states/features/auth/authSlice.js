@@ -6,6 +6,7 @@ const role = false;
 
 const initialState = {
   token: currentToken,
+  email: false,
   isError: false,
   isSuccess: false,
   isLoading: false,
@@ -14,6 +15,8 @@ const initialState = {
 };
 
 const resetStates = {
+  email: false,
+  incorrectCred: false,
   isError: false,
   isSuccess: false,
   isLoading: false,
@@ -77,6 +80,41 @@ export const authSlice = createSlice({
         state.isError = true;
         state.message = payload;
         state.isSeller = false;
+      })
+      // REQUEST RESET PASSWORD
+
+      .addCase(requestPasswordReset.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(requestPasswordReset.fulfilled, (state, { payload }) => {
+        state.isLoading = false;
+        state.isSuccess = true;
+        state.isError = false;
+        state.message = payload;
+      })
+      .addCase(requestPasswordReset.rejected, (state, { payload }) => {
+        state.isLoading = false;
+        state.isError = true;
+        state.isSuccess = false;
+        state.message = payload;
+      })
+      //RESET PASSWORD
+
+      .addCase(resetPassword.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(resetPassword.fulfilled, (state, { payload }) => {
+        state.isLoading = true;
+        state.isError = false;
+        state.isSuccess = true;
+        state.message = payload;
+      })
+      .addCase(resetPassword.rejected, (state, { payload }) => {
+        state.isLoading = false;
+        state.isError = true;
+        state.isSuccess = false;
+
+        state.message = payload;
       });
   }
 });
@@ -127,7 +165,41 @@ export const signup = createAsyncThunk(
     }
   }
 );
-
+// RESET PASSWORD REQUEST
+export const requestPasswordReset = createAsyncThunk(
+  'resetPasswordResquest-thunk',
+  async (data, thunkAPI) => {
+    try {
+      return await authServices.requestPasswordReset(data);
+    } catch (error) {
+      let message;
+      if (error.code === 'ERR_NETWORK') {
+        message = 'Make sure you are connected to the internet';
+      } else if (error.response) {
+        message = error.response.data.message;
+      }
+      return thunkAPI.rejectWithValue(message);
+    }
+  }
+);
+//RESET PASSWORD
+export const resetPassword = createAsyncThunk(
+  'auth/resetPassword',
+  async (data, thunkAPI) => {
+    const { token, password } = data;
+    try {
+      return await authServices.resetPassword(token, password);
+    } catch (error) {
+      let message;
+      if (error.code === 'ERR_NETWORK') {
+        message = 'Make sure you are connected to the internet';
+      } else if (error.response) {
+        message = error.response.data.message;
+      }
+      return thunkAPI.rejectWithValue(message);
+    }
+  }
+);
 // export auth slice
 export const { reset } = authSlice.actions;
 export default authSlice.reducer;
