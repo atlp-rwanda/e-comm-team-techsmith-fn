@@ -1,4 +1,4 @@
-import React, { useEffect,useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Typography, Button, Snackbar, Alert } from '@mui/material';
 import { useForm } from 'react-hook-form';
 import { useDispatch, useSelector } from 'react-redux';
@@ -112,7 +112,9 @@ const SignupContainer = () => {
                 id='lname'
                 name='name'
                 value={namefromParams}
-                onChange={(e) => { return setEmail(e.target.value)}}
+                onChange={(e) => {
+                  return setEmail(e.target.value);
+                }}
                 {...register('name', {
                   required: {
                     value: true,
@@ -132,7 +134,9 @@ const SignupContainer = () => {
                 id='email'
                 name='email'
                 value={emailFromParams}
-                onChange={(e) => { return setEmail(e.target.value)}}
+                onChange={(e) => {
+                  return setEmail(e.target.value);
+                }}
                 {...register('email', {
                   pattern: {
                     value: /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/,

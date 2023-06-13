@@ -1,36 +1,37 @@
 @use 'base';
 
-.blueSide{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: base.$primary-color;
-    height: 100vh;
-    color: rgba(255, 255, 255, 0.893);
-    text-align: center;
-    .blueSide--width{
-        width: 50%;
+.blueSide {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: base.$primary-color;
+  height: 100vh;
+  color: rgba(255, 255, 255, 0.893);
+  text-align: center;
+  .blueSide--width {
+    width: 50%;
+  }
+  .blueSide__logo {
+    img {
+      padding: 10px;
+      border-radius: 50%;
+      border: 2px solid white;
+      margin-bottom: 50px;
     }
-    .blueSide__logo{
-        img{
-            padding: 10px;
-            border-radius: 50%;
-            border: 2px solid white;
-            margin-bottom: 50px;
-        }
+  }
+  .blueSide__title,
+  .blueSide__info {
+    margin-bottom: 15px;
+  }
+  .blueSide__button {
+    button {
+      background-color: #fff;
+      color: base.$primary-color;
+      margin: 40px 20px;
+      width: 80%;
+      border-radius: 20px;
     }
-    .blueSide__title,.blueSide__info{
-        margin-bottom: 15px;
-    }
-    .blueSide__button{
-        button{
-            background-color: #fff;
-            color: base.$primary-color;
-            margin: 40px 20px;
-            width: 80%;
-            border-radius: 20px;
-        }
-    }
+  }
 }
 @media (max-width: 768px) {
   .blueSide {
@@ -38,10 +39,10 @@
     .blueSide--width {
       width: 60%;
     }
-}
-@media (max-width: 831px) {
-  .blueSide {
-    display: none;
   }
-}
+  @media (max-width: 831px) {
+    .blueSide {
+      display: none;
+    }
+  }
 }

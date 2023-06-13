@@ -31,8 +31,7 @@ const App = () => {
           <Route path='/login' element={<LoginPage />} />
           <Route path='/signup' element={<SingupPage />} />
           <Route path='/product/:id' element={<SingleProductPage />} />
-          <Route path='/dashboard/users' element={<AdminManageUserPage />}
-          />
+          <Route path='/dashboard/users' element={<AdminManageUserPage />} />
           <Route path='*' element={<NotFoundPage />} />
         </Routes>
         <Footer />

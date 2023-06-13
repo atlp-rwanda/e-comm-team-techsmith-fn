@@ -1,13 +1,14 @@
 import API from '../../api';
 import { API_URL } from '../../../constants';
-
-const headers = {
-  'Content-Type': 'application/json',
-  Cookie: localStorage.getItem('myToken')
-};
+import checkIsLogged from '../../../utils/isLoggedin';
 
 const getCart = async () => {
-  const response = await API.get(`${API_URL}/cart`, { headers });
+  const { token } = checkIsLogged();
+  const response = await API.get(`${API_URL}/cart`, {
+    headers: {
+      Authorization: `token=${token}`
+    }
+  });
   return response.data.itemsInCart;
 };
 

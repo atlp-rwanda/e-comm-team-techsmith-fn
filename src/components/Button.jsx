@@ -4,7 +4,6 @@ import { Link } from 'react-router-dom';
 
 const Button = ({ route, className, onClick, value }) => {
   return (
-  
     <Link to={route || '#'} className={className} onClick={onClick}>
       {value}
     </Link>
