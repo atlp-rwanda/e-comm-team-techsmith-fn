@@ -5,13 +5,12 @@ import ProductReview from '../components/ProductReview';
 import { useGetProductReviewsQuery } from '../states/api/apiSlice';
 
 const ProductReviewContainer = ({ id }) => {
-  const token = `token=${localStorage.getItem('myToken')}`;
 
   const {
     data: feedbacks,
     isLoading,
-    isError
-  } = useGetProductReviewsQuery({ id, token });
+    isError,
+  } = useGetProductReviewsQuery(id);
 
   if (isLoading) {
     return (
@@ -39,7 +38,7 @@ const ProductReviewContainer = ({ id }) => {
   if (isError) {
     return (
       <div className='min-h-[30vh] flex items-center justify-center'>
-        <h1>
+        <h1 className='text-[2rem]'>
           Could not fetch product reviews. Please make sure you are logged in..
         </h1>
       </div>
@@ -48,24 +47,25 @@ const ProductReviewContainer = ({ id }) => {
 
   return (
     <div className='product_review_container w-10/12 mx-auto flex flex-wrap gap-8 border-primary my-12 screen-mid:justify-evenly'>
-      {feedbacks.data.map((feedback) => {
-        const {
-          id: feedbackId,
-          rating,
-          feedback: comment,
-          updatedAt,
-          user
-        } = feedback;
-        return (
-          <ProductReview
-            key={feedbackId}
-            rating={rating}
-            feedback={comment}
-            updatedAt={moment(updatedAt).format('YYYY/MM/DD, HH:mm:ss')}
-            user={user}
-          />
-        );
-      })}
+      {!isError &&
+        feedbacks.data.map((feedback) => {
+          const {
+            id: feedbackId,
+            rating,
+            feedback: comment,
+            updatedAt,
+            user
+          } = feedback;
+          return (
+            <ProductReview
+              key={feedbackId}
+              rating={rating}
+              feedback={comment}
+              updatedAt={moment(updatedAt).format('YYYY/MM/DD, HH:mm:ss')}
+              user={user}
+            />
+          );
+        })}
     </div>
   );
 };

@@ -1,13 +1,14 @@
+
 @use 'base';
 
 // HERO
 .home-hero {
-  max-height: auto;
+  height: fit-content;
   .home-hero-container {
-    height: auto;
+    height: fit-content;
     gap: 5%;
     width: 90%;
-    margin: 12rem auto;
+    margin: 5rem auto;
   }
 
   .home-hero-slider {

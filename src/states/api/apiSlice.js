@@ -1,6 +1,8 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 import { API_URL } from '../../constants';
 
+const token = `token=${localStorage.getItem('myToken')}`;
+
 export const apiSlice = createApi({
   reducerPath: 'api',
   baseQuery: fetchBaseQuery({ baseUrl: API_URL }),
@@ -13,7 +15,7 @@ export const apiSlice = createApi({
         }
       }),
       postProductReview: builder.mutation({
-        query: ({ id, review, token }) => {
+        query: ({ id, review }) => {
           return {
             url: `feedback/${id}`,
             method: 'POST',
@@ -27,9 +29,22 @@ export const apiSlice = createApi({
         invalidatesTags: ['Products']
       }),
       getProductReviews: builder.query({
-        query: ({ id, token }) => {
+        query: ({ id }) => {
           return {
             url: `feedback/${id}`,
+            headers: {
+              'Content-Type': 'application/json',
+              authorization: `${token}`
+            }
+          };
+        }
+      }),
+      createProduct: builder.mutation({
+        query: (data) => {
+          return {
+            url: 'products',
+            method: 'POST',
+            body: data,
             headers: {
               'Content-Type': 'application/json',
               authorization: `${token}`
@@ -44,5 +59,6 @@ export const apiSlice = createApi({
 export const {
   useGetSingleProductQuery,
   usePostProductReviewMutation,
-  useGetProductReviewsQuery
+  useGetProductReviewsQuery,
+  useCreateProductMutation
 } = apiSlice;
