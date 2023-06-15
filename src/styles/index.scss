@@ -7,13 +7,13 @@
 @use 'homeTopSeller';
 @use 'login';
 @use 'signup';
-@use 'seller';
 @use 'authBlueSide';
 @use 'navbar';
 @use 'loader';
 @use 'ProductPage';
 @use 'navigationDashboard';
 @use 'dashboardManageAccounts';
+@use 'profile';
 @import 'tailwindcss/base';
 @import 'tailwindcss/components';
 @import 'tailwindcss/utilities';

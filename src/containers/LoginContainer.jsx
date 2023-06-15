@@ -11,7 +11,9 @@ import InputPopup from '../components/InputPopup';
 import { login, reset } from '../states/features/auth/authSlice';
 import { API_URL } from '../constants';
 
+
 const LoginContainer = () => {
+ 
   const form = useForm();
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -20,7 +22,6 @@ const LoginContainer = () => {
   const { isLoading, isError, isSuccess } = useSelector((state) => {
     return state.auth;
   });
-
   const mySubmit = async (data) => {
     dispatch(login(data));
   };
@@ -32,8 +33,10 @@ const LoginContainer = () => {
         // create popup
         document.querySelector('.overlay').style.display = 'flex';
       } else {
-        navigate('/');
+        navigate('/')
+        window.location.reload()
       }
+      
       dispatch(reset());
     }
   }, [dispatch, isSuccess]);
@@ -52,7 +55,8 @@ Authentication process.'
       </div>
 
       <div className='loginPage'>
-        <div>
+        <div className='flex justify-center items-center'>
+          <div className='loginPage__parent'>
           <div className='loginPage__mobileHeader'>
             <div className='loginPage__imgHeader'>
               <img src={TLogo} alt='' />
@@ -118,7 +122,7 @@ Authentication process.'
               </div>
             </form>
           </div>
-           <Link to={`${API_URL}/auth/google`}>
+          <Link to={`${API_URL}/auth/google`}>
           <div className='loginPage__googleAuth'>
             <div className='loginPage__googleButton'>
               <div>
@@ -130,9 +134,10 @@ Authentication process.'
             </div>
           </div>
           </Link>
+          </div>
         </div>
         <AuthBlueSide
-          button='Sign up'
+          button='SIGN UP'
           onClick={() => {
             navigate('/signup');
           }}
