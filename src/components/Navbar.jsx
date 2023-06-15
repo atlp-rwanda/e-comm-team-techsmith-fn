@@ -1,38 +1,28 @@
-import React, {  useState } from 'react';
-import { Link, useLocation} from 'react-router-dom';
-import { useSelector } from 'react-redux';
+import React, { useState } from 'react';
 import { GiHamburgerMenu } from 'react-icons/gi';
-import { BiDownArrow } from 'react-icons/bi';
 import { AiOutlineClose } from 'react-icons/ai';
+import { Link, NavLink, useLocation } from 'react-router-dom';
 import { searchlog, techLogW } from '../assets';
 import Button from './Button';
-import checkIsLogged from '../utils/isLoggedin';
-import logOut  from '../utils/logOut';
-
 
 const Navbar = () => {
   const { pathname } = useLocation();
   const [close, setClose] = useState(false);
-  const {token}=useSelector((state)=>{return state.auth})
   if (
     pathname === '/login' ||
-    pathname === '/signup' ||
-    pathname === '/dashboard/users'||
-    pathname.startsWith('/signup')
+    pathname.startsWith('/signup') ||
+    pathname.startsWith('/signup/') ||
+    pathname === '/dashboard/users' ||
+    pathname === '/dashboard/seller'
   )
-   return null;
-  const credentials = checkIsLogged()
+    return null;
   const changeIcon = () => {
     document.querySelector('.navbar__dropdown').classList.toggle('rm');
-    setClose((prevState) => {return !prevState});
+    if (!close) {
+      return setClose(true);
+    }
+    return setClose(false);
   };
-  const viewProfile = () => {
-    document.querySelector('.navbar__profileView').classList.toggle('visible');
-  };
-  const hideprofile=()=>{
-    document.querySelector('.navbar__profileView').classList.remove('visible');
-  }
-
   return (
     <div className='navbar'>
       <div className='navbar_logoContainerNavbar-menuList flex justify-around items-center'>
@@ -51,19 +41,19 @@ const Navbar = () => {
           <div>
             <ul className='flex  items-center '>
               <li>
-                <Link to='categories'>
+                <NavLink activeClassName='active' to='categories'>
                   Categories
-                </Link>
+                </NavLink>
               </li>
               <li>
-                <Link  to='contact'>
+                <NavLink activeClassName='active' to='contact'>
                   Contact us
-                </Link>
+                </NavLink>
               </li>
               <li>
-                <Link to='about'>
+                <NavLink activeClassName='active' to='about'>
                   About us
-                </Link>
+                </NavLink>
               </li>
             </ul>
           </div>
@@ -82,42 +72,14 @@ const Navbar = () => {
           </div>
         </div>
 
-       {
-        token?
-       ( <div className='navbar__profile__letter flex justify-center items-center' onClick={viewProfile}>
-        <div className='navbar__profile flex justify-center items-center'>
-             <div>
-              <p>{credentials.profileName}</p>
-             </div>
+        <div className='navbar__authBtn flex items-center'>
+          <div>
+            <Link to='/signup'>
+              <p>Sign up</p>
+            </Link>
           </div>
-           <div>
-             <BiDownArrow style={{color:'white',width:'1.5rem',height:'1.5rem',paddingLeft:'0.2rem'}}/>
-            </div>
-         </div>
-       )
-        : 
-        (<div className='navbar__authBtn flex items-center'>
-        <div>
-          <Link to='/signup'>
-            <p>Sign up</p>
-          </Link>
+          <Button value='Login' route='/login' className='navBtn ' />
         </div>
-        <Button value='Login' route='/login' className='navBtn' />
-      </div>
-       )}
-
-      {
-        token && 
-        <div className='navbar__profileView absolute' onMouseLeave={hideprofile} >
-        <div>
-         <Button route={`/users/${credentials.id}`} className='primary-btn-no-hover-scale' value='Profile'/>
-        </div>
-        <div>
-        <Button route='/login' value='Sign out' className='primary-btn-no-hover-scale' onClick={logOut}/>
-        </div>
-      </div>
-      }
-
         <button className='menuIcon' onClick={changeIcon}>
           {close ? (
             <AiOutlineClose style={{ color: 'white' }} />

@@ -1,5 +1,4 @@
-
-
+/* eslint-disable import/no-extraneous-dependencies */
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { library } from '@fortawesome/fontawesome-svg-core';
@@ -13,10 +12,9 @@ import {
   ContactPage,
   HomePage,
   LoginPage,
-  SellerPage,
-  ProfilePage,
   NotFoundPage,
   SingleProductPage,
+  SellerProductsPage,
   SingupPage
 } from './pages';
 import Footer from './components/Footer';
@@ -34,11 +32,9 @@ const App = () => {
           <Route path='/categories' element={<CategoryPage />} />
           <Route path='/login' element={<LoginPage />} />
           <Route path='/signup' element={<SingupPage />} />
-          <Route path='/seller/add-product' element={<SellerPage />} />
           <Route path='/product/:id' element={<SingleProductPage />} />
-          <Route path='/users/:id' element={<ProfilePage/>}/>
-          <Route path='/dashboard/users' element={<AdminManageUserPage />}
-          />
+          <Route path='/dashboard/users' element={<AdminManageUserPage />} />
+          <Route path='/dashboard/seller' element={<SellerProductsPage />} />
           <Route path='*' element={<NotFoundPage />} />
         </Routes>
         <Footer />
@@ -49,3 +45,4 @@ const App = () => {
 export default App;
 
 library.add(fab, fas, far);
+

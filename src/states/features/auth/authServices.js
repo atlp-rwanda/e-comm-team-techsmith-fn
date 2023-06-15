@@ -8,12 +8,10 @@ const login = async (data) => {
     localStorage.setItem('isSeller', 'true');
     localStorage.removeItem('myToken');
   } else {
-    const { id, name } = response.data.user;
-    localStorage.setItem('user', JSON.stringify({ id, name }));
     localStorage.setItem('myToken', response.data.Authorization);
     localStorage.removeItem('isSeller');
   }
-  return response.data;
+  return response.data.Authorization;
 };
 
 const login2FA = async (data) => {

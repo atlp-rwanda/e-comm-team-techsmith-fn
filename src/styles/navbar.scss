@@ -4,8 +4,10 @@
   width: 100%;
   margin: 0px;
   box-shadow: 0px 0px 20px 0px base.$primary-color;
+  transition-property: height;
+  transition-duration: 0.3s;
+  transition-timing-function: ease-in-out;
   position: relative;
-  z-index:999;
   .navbar_logoContainerNavbar-menuList {
     gap: 6rem;
     position: fixed;
@@ -151,32 +153,6 @@
   .searchbtnLogoProfileText {
     display: flex;
     align-items: center;
-  }
-
-  .navbar__profile{
-    width: 25px;
-    height: 25px;
-    border-radius: 50%;
-    background-color: white;
-    color: base.$primary-color;
-
-  }
-  .navbar__profileView{
-    right: 6rem;
-    top: 6.5rem;
-    background-color: base.$primary-color;
-    color: white;
-    opacity: 0;
-    transition:all 0.3s;
-    p{
-      padding: 0.9rem 2rem;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.17);
-      cursor: pointer;
-    }
-  
-  }
-  .visible{
-    opacity: 1 !important;
   }
 }
 @media (max-width: 912px) {

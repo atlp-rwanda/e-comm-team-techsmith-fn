@@ -1,14 +1,12 @@
-import React, { useEffect,useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Typography, Button, Snackbar, Alert } from '@mui/material';
 import { useForm } from 'react-hook-form';
-import { ToastContainer } from 'react-toastify';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { signup, reset } from '../states/features/auth/authSlice';
 import TLogo from '../assets/images/T_Logo.png';
 import Loading from '../components/Loading';
 import AuthBlueSide from '../components/AuthBlueSide';
-import { successNotification,ErrorNotification } from '../components/Notification';
 
 const SignupContainer = () => {
   const navigate = useNavigate();
@@ -26,18 +24,9 @@ const SignupContainer = () => {
     return state.auth;
   });
 
-
   const mySubmit = async (data) => {
     if (password === confirmPassword) {
       dispatch(signup(data));
-
-      if(isSuccess){
-        successNotification("Successfully created!")
-      }
-      else{
-        ErrorNotification("Error try again!")
-      }
-      
       setOpen(true);
     }
   };
@@ -84,8 +73,37 @@ const SignupContainer = () => {
             Create your account on Techsmiths!
           </Typography>
         </div>
-        {isSuccess && <ToastContainer/>}
-        {isError && <ToastContainer/>}
+        {isSuccess && (
+          <Snackbar
+            open={open}
+            anchorOrigin={{ vertical: 'bottom', horizontal: 'left' }}
+            autoHideDuration={8000}
+            onClose={handleClose}
+          >
+            <Alert
+              variant='standard'
+              style={{ fontSize: '20px', padding: '6px 8px' }}
+            >
+              {message}
+            </Alert>
+          </Snackbar>
+        )}
+        {isError && (
+          <Snackbar
+            open={open}
+            anchorOrigin={{ vertical: 'bottom', horizontal: 'left' }}
+            autoHideDuration={9000}
+            onClose={handleClose}
+          >
+            <Alert
+              variant='standard'
+              severity='error'
+              style={{ fontSize: '20px', padding: '6px 8px' }}
+            >
+              {message}
+            </Alert>
+          </Snackbar>
+        )}
         <div className='signupPage__form'>
           <form onSubmit={handleSubmit(mySubmit)}>
             <div className='signupPage__input'>
@@ -93,8 +111,10 @@ const SignupContainer = () => {
                 type='text'
                 id='lname'
                 name='name'
-                // value={namefromParams}
-                onChange={(e) => { return setEmail(e.target.value)}}
+                value={namefromParams}
+                onChange={(e) => {
+                  return setEmail(e.target.value);
+                }}
                 {...register('name', {
                   required: {
                     value: true,
@@ -103,7 +123,6 @@ const SignupContainer = () => {
                     )
                   }
                 })}
-                required
               />
               <label htmlFor='lname'>Full Name</label>
               <p>{errors.name?.message}</p>
@@ -114,8 +133,10 @@ const SignupContainer = () => {
                 type='text'
                 id='email'
                 name='email'
-                // value={emailFromParams}
-                onChange={(e) => { return setEmail(e.target.value)}}
+                value={emailFromParams}
+                onChange={(e) => {
+                  return setEmail(e.target.value);
+                }}
                 {...register('email', {
                   pattern: {
                     value: /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/,
@@ -128,7 +149,6 @@ const SignupContainer = () => {
                     )
                   }
                 })}
-                required
               />
               <label htmlFor='email'>Email</label>
               <p className='signupPage__error'>{errors.email?.message}</p>
@@ -148,7 +168,6 @@ const SignupContainer = () => {
                     )
                   }
                 })}
-                required
               />
               <p>{errors.birthday?.message}</p>
             </div>
@@ -168,7 +187,6 @@ const SignupContainer = () => {
                     )
                   }
                 })}
-                required
               />
               <label htmlFor='address'>Address</label>
               <p>{errors.address?.message}</p>
@@ -193,7 +211,6 @@ const SignupContainer = () => {
                         )
                       }
                     })}
-                    
                   >
                     <option value=''>None</option>
                     <option value='male'>Male</option>
@@ -229,7 +246,6 @@ const SignupContainer = () => {
                     )
                   }
                 })}
-                required
               />
               <label htmlFor='language'>Language</label>
               <p>{errors.language?.message}</p>
@@ -251,7 +267,6 @@ const SignupContainer = () => {
                       )
                     }
                   })}
-                  required
                 />
                 <label htmlFor='password'>Password</label>
                 <p>{errors.password?.message}</p>
@@ -289,7 +304,7 @@ const SignupContainer = () => {
       </div>
       <AuthBlueSide
         heading='Already have an account'
-        button='SIGN IN'
+        button='Sign in'
         onClick={() => {
           navigate('/login');
         }}

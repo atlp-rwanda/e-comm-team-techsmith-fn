@@ -8,7 +8,7 @@ const SingleProductContainer = ({ id }) => {
 
   if (isLoading) {
     return (
-      <div className='flex flex-col items-center justify-center'>
+      <div className='flex flex-col items-center justify-center h-screen'>
         <svg
           aria-hidden='true'
           className='w-[3rem] h-[3rem] mr-2 text-gray-200 animate-spin dark:text-gray-600 fill-blue-600'

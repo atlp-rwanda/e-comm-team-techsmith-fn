@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 const DashButton = ({ route, type, className, onClick, value, svg }) => {
   return (
     <Link to={route || '#'} type={type} className={className} onClick={onClick}>
-      {svg} <p>{value}</p>
+      {svg} <p className='text-left min-w-[50px]'>{value}</p>
     </Link>
   );
 };

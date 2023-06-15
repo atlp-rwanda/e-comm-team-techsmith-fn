@@ -11,9 +11,7 @@ import InputPopup from '../components/InputPopup';
 import { login, reset } from '../states/features/auth/authSlice';
 import { API_URL } from '../constants';
 
-
 const LoginContainer = () => {
- 
   const form = useForm();
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -22,6 +20,7 @@ const LoginContainer = () => {
   const { isLoading, isError, isSuccess } = useSelector((state) => {
     return state.auth;
   });
+
   const mySubmit = async (data) => {
     dispatch(login(data));
   };
@@ -33,10 +32,8 @@ const LoginContainer = () => {
         // create popup
         document.querySelector('.overlay').style.display = 'flex';
       } else {
-        navigate('/')
-        window.location.reload()
+        navigate('/');
       }
-      
       dispatch(reset());
     }
   }, [dispatch, isSuccess]);
@@ -55,8 +52,7 @@ Authentication process.'
       </div>
 
       <div className='loginPage'>
-        <div className='flex justify-center items-center'>
-          <div className='loginPage__parent'>
+        <div>
           <div className='loginPage__mobileHeader'>
             <div className='loginPage__imgHeader'>
               <img src={TLogo} alt='' />
@@ -123,21 +119,20 @@ Authentication process.'
             </form>
           </div>
           <Link to={`${API_URL}/auth/google`}>
-          <div className='loginPage__googleAuth'>
-            <div className='loginPage__googleButton'>
-              <div>
-                <img src={Google} alt='' />
-              </div>
-              <div>
-                <Typography variant='body2'>Sign in with google</Typography>
+            <div className='loginPage__googleAuth'>
+              <div className='loginPage__googleButton'>
+                <div>
+                  <img src={Google} alt='' />
+                </div>
+                <div>
+                  <Typography variant='body2'>Sign in with google</Typography>
+                </div>
               </div>
             </div>
-          </div>
           </Link>
-          </div>
         </div>
         <AuthBlueSide
-          button='SIGN UP'
+          button='Sign up'
           onClick={() => {
             navigate('/signup');
           }}
