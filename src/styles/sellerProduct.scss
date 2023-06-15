@@ -1,45 +1,39 @@
-$lightBorder:1px solid rgba(0, 0, 0, 0.154);
-.sellingProd{
-    .selllingProd__maintitle{
-        p{
-            font-size: 23px;
-            font-weight: 500;
-        }
+$lightBorder: 1px solid rgba(0, 0, 0, 0.154);
+.sellingProd {
+  .sellingProd__subtitle {
+    p {
+      font-size: 18px;
+      font-weight: 500;
     }
-    .sellingProd__subtitle{
-        p{
-            font-size: 18px;
-            font-weight: 500;
-        }
-        .sellingProd-createbtn{
-            padding: 1rem;
-        }
+    .sellingProd-createbtn {
+      padding: 1rem;
     }
-    .sellingProd__card{
-        background-color: #eee;
-        padding: 15px;
-        width: 47%;
-        border-radius: 10px;
+  }
+  .sellingProd__card {
+    background-color: #eee;
+    padding: 15px; 
+    width: 43%;
+    border-radius: 10px;
+  }
+
+  .sellingProd__cardImage {
+    padding: 30px 70px;
+    background-color: white;
+    img {
+      width: 100px;
+      height: 150px;
     }
-  
-    .sellingProd__cardImage{
-        padding: 30px 70px;
-        background-color: white;
-        img{
-            width:100px;
-            height:150px
-        }
+  }
+  .sellingProd__cardDetails {
+    .sellingProd__cardDetailsPara {
+      border-top: $lightBorder;
     }
-    .sellingProd__cardDetails{
-        .sellingProd__cardDetailsPara{
-            border-top: $lightBorder;
-        }
-        p{
-            border: none;
-            border-bottom: $lightBorder;
-            span{
-                font-size: 1.3rem;
-            }
-        }
+    p {
+      border: none;
+      border-bottom: $lightBorder;
+      span {
+        font-size: 1.3rem;
+      }
     }
+  }
 }

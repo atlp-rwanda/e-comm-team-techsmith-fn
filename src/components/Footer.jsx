@@ -20,8 +20,9 @@ const Footer = () => {
   };
   if (
     pathname === '/login' ||
-    pathname === '/signup' ||
-    pathname === '/dashboard/users'
+    pathname.startsWith('/signup/') ||
+    pathname === '/dashboard/users' ||
+    pathname === '/dashboard/seller'
   )
     return null;
   return (

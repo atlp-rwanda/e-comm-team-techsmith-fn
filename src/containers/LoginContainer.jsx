@@ -2,13 +2,14 @@ import React, { useEffect } from 'react';
 import { Typography, Button } from '@mui/material';
 import { useForm } from 'react-hook-form';
 import { useDispatch, useSelector } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import Google from '../assets/images/google.png';
 import AuthBlueSide from '../components/AuthBlueSide';
 import TLogo from '../assets/images/T_Logo.png';
 import Loading from '../components/Loading';
 import InputPopup from '../components/InputPopup';
 import { login, reset } from '../states/features/auth/authSlice';
+import { API_URL } from '../constants';
 
 const LoginContainer = () => {
   const form = useForm();
@@ -117,17 +118,18 @@ Authentication process.'
               </div>
             </form>
           </div>
-
-          <div className='loginPage__googleAuth'>
-            <div className='loginPage__googleButton'>
-              <div>
-                <img src={Google} alt='' />
-              </div>
-              <div>
-                <Typography variant='body2'>Sign in with google</Typography>
+          <Link to={`${API_URL}/auth/google`}>
+            <div className='loginPage__googleAuth'>
+              <div className='loginPage__googleButton'>
+                <div>
+                  <img src={Google} alt='' />
+                </div>
+                <div>
+                  <Typography variant='body2'>Sign in with google</Typography>
+                </div>
               </div>
             </div>
-          </div>
+          </Link>
         </div>
         <AuthBlueSide
           button='Sign up'

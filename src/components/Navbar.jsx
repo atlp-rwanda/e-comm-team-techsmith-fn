@@ -10,8 +10,10 @@ const Navbar = () => {
   const [close, setClose] = useState(false);
   if (
     pathname === '/login' ||
-    pathname === '/signup' ||
-    pathname === '/dashboard/users'
+    pathname.startsWith('/signup') ||
+    pathname.startsWith('/signup/') ||
+    pathname === '/dashboard/users' ||
+    pathname === '/dashboard/seller'
   )
     return null;
   const changeIcon = () => {

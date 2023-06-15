@@ -3,10 +3,10 @@
 .blueSide {
   display: flex;
   justify-content: center;
+  align-items: center;
   background-color: base.$primary-color;
   height: 100vh;
   color: rgba(255, 255, 255, 0.893);
-  padding-top: 100px;
   text-align: center;
   .blueSide--width {
     width: 50%;
@@ -40,9 +40,9 @@
       width: 60%;
     }
   }
-}
-@media (max-width: 831px) {
-  .blueSide {
-    display: none;
+  @media (max-width: 831px) {
+    .blueSide {
+      display: none;
+    }
   }
 }
