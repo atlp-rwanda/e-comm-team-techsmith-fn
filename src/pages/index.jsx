@@ -16,6 +16,7 @@ import ProfileContainer from '../containers/ProfileContainer';
 import SearchContainer from '../containers/SearchContainer';
 import ChatContainer from '../containers/ChatContainer';
 import ResetPasswordContainer from '../containers/ResetPasswordContainer';
+import SellerProductsContainer from '../containers/SellerProductsContainer';
 
 const HomePage = () => {
   return <HomeContainer />;
@@ -70,6 +71,9 @@ const AdminManageUserPage = () => {
   return <AdminManageUserContainer />;
 };
 
+const SellerProductsPage = () => {
+  return <SellerProductsContainer />;
+};
 export {
   HomePage,
   NotFoundPage,
@@ -84,5 +88,6 @@ export {
   SearchPage,
   ChatPage,
   ResetPasswordPage,
-  AdminManageUserPage
+  AdminManageUserPage,
+  SellerProductsPage
 };
