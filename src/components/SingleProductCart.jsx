@@ -1,9 +1,8 @@
 import React from 'react';
-import { RxCrossCircled } from 'react-icons/rx';
 import AddRemoveButton from './AddRemoveButton';
 import { whiteshoes } from '../assets';
 
-const SingleProduct = ({ image, name, details, piecePrice, quantity }) => {
+const SingleProduct = ({ name, details, piecePrice, quantity }) => {
   return (
     <div>
       <div className='singleItem bg-white flex space-x-10 item-top  py-3 my-3 rounded-xl relative'>
@@ -26,12 +25,15 @@ const SingleProduct = ({ image, name, details, piecePrice, quantity }) => {
 
             <AddRemoveButton count1={quantity} />
 
-            <p className='text-sm'>USD 122.00</p>
+            <p className='text-sm'>{quantity * piecePrice}</p>
           </div>
         </div>
 
-        <div className='absolute top-2 right-4 inline-flex'>
-          <RxCrossCircled className='text-2xl text-grayText  hover:text-primary cursor-pointer' />
+        <div
+          role='button'
+          className='absolute top-2 right-4 inline-flex bg-primary rounded-md cursor-pointer px-2 py-2'
+        >
+          <p className='text-xs text-white'>Order Now</p>
         </div>
       </div>
       <hr className='border-none bg-white  w-full h-2' />

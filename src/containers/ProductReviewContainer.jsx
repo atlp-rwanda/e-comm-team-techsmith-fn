@@ -5,12 +5,7 @@ import ProductReview from '../components/ProductReview';
 import { useGetProductReviewsQuery } from '../states/api/apiSlice';
 
 const ProductReviewContainer = ({ id }) => {
-
-  const {
-    data: feedbacks,
-    isLoading,
-    isError,
-  } = useGetProductReviewsQuery(id);
+  const { data: feedbacks, isLoading, isError } = useGetProductReviewsQuery(id);
 
   if (isLoading) {
     return (

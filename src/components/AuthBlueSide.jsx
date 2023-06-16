@@ -20,7 +20,7 @@ const AuthBlueSide = ({ button, heading, description, onClick }) => {
         </div>
         <div className='blueSide__button'>
           <button
-          className='py-2 px-4 font-medium mt-3'
+            className='py-2 px-4 font-medium mt-3'
             type='submit'
             onClick={onClick}
           >

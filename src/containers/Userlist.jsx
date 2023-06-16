@@ -1,14 +1,11 @@
 import React, { useState } from 'react';
-import { Select, MenuItem} from '@mui/material';
+import { Select, MenuItem } from '@mui/material';
 import { ToastContainer } from 'react-toastify';
 import PropTypes from 'prop-types';
 import { useDispatch, useSelector } from 'react-redux';
 import { defaultProfilePic, lock, unlock } from '../assets';
 import { successNotification } from '../components/Notification';
-import {
-  disableUser,
-  enableUser,
-} from '../states/features/users/usersSlice';
+import { disableUser, enableUser } from '../states/features/users/usersSlice';
 import Loading from '../components/Loading';
 
 export const Userlist = ({ userList }) => {
@@ -16,7 +13,6 @@ export const Userlist = ({ userList }) => {
   const { isLoading, accountStatus, message } = useSelector((state) => {
     return state.users;
   });
-  
 
   const [role, setrole] = useState(2);
 
@@ -27,17 +23,17 @@ export const Userlist = ({ userList }) => {
   const blockUnblockUser = (e) => {
     if (accountStatus) {
       dispatch(disableUser(e.target.id));
-      successNotification("Account disabled!")
+      successNotification('Account disabled!');
       e.target.src = lock;
     } else {
       e.target.src = unlock;
       dispatch(enableUser(e.target.id));
-      successNotification("Account enabled!")
+      successNotification('Account enabled!');
     }
   };
   return (
     <div>
-      {message && <ToastContainer/>}
+      {message && <ToastContainer />}
       {isLoading && <Loading />}
       {userList?.map((user) => {
         return (

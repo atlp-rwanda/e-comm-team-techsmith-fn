@@ -35,12 +35,12 @@ const AboutPage = () => {
 const ContactPage = () => {
   return <ContactContainer />;
 };
-const ProfilePage =()=>{
-  return <ProfileContainer/>
-}
+const ProfilePage = () => {
+  return <ProfileContainer />;
+};
 const SellerPage = () => {
   return <SellerContainer />;
-}
+};
 
 const SingleProductPage = () => {
   const { id } = useParams();
@@ -69,7 +69,3 @@ export {
   AdminManageUserPage,
   ProfilePage
 };
-
-
-
-

@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { ToastContainer } from 'react-toastify';
 import { successNotification } from '../components/Notification';
 import Button from '../components/Button';
-import { userInfo,updateUser, } from '../states/features/users/usersSlice';
+import { userInfo, updateUser } from '../states/features/users/usersSlice';
 import Loading from '../components/Loading';
 
 const ProfileContainer = () => {
@@ -12,42 +12,47 @@ const ProfileContainer = () => {
   const [editing, setEditing] = useState(false);
   const dispatch = useDispatch();
   const { register, handleSubmit, setValue } = form;
-  const { isSuccess, isLoading,isError, message } = useSelector((state) =>{return state.users});
-  const { name, gender, preferredLanguage, physicalAddress, preferredCurrency } = message;
-
+  const { isSuccess, isLoading, isError, message } = useSelector((state) => {
+    return state.users;
+  });
+  const {
+    name,
+    gender,
+    preferredLanguage,
+    physicalAddress,
+    preferredCurrency
+  } = message;
 
   useEffect(() => {
-    
     dispatch(userInfo());
-    editValues()
-  }, [dispatch, isSuccess,isError]);
+    editValues();
+  }, [dispatch, isSuccess, isError]);
 
-  const editValues=()=>{
+  const editValues = () => {
     setValue('name', name);
     setValue('gender', gender);
     setValue('preferredLanguage', preferredLanguage);
     setValue('physicalAddress', physicalAddress);
     setValue('preferredCurrency', preferredCurrency);
-  }
+  };
   const handleEdit = () => {
     setEditing(true);
   };
 
   const handleCancel = () => {
-      setEditing(false);
-      editValues()
-
+    setEditing(false);
+    editValues();
   };
 
-  const handleSave =(data) => {
-    dispatch(updateUser(data))
-    setEditing(false);  
-    successNotification('Successfully updated!')
-    }
+  const handleSave = (data) => {
+    dispatch(updateUser(data));
+    setEditing(false);
+    successNotification('Successfully updated!');
+  };
 
   return (
     <div className='myprofile flex justify-center items-center mt-48 mb-24 '>
-       <form onSubmit={handleSubmit(handleSave)}>
+      <form onSubmit={handleSubmit(handleSave)}>
         <div className='myprofile__header flex px-4 py-3 justify-between items-center'>
           <div className='myprofile__headerTitle'>
             <p>MY PROFILE</p>
@@ -57,8 +62,18 @@ const ProfileContainer = () => {
               <Button value='EDIT' onClick={handleEdit} />
             ) : (
               <div className='flex'>
-                <Button value='Cancel' className='myprofile__cancelBtn' onClick={handleCancel} />
-                <button className='myprofile__updBtn' type='submit' value='Save' ><p>Save</p></button>
+                <Button
+                  value='Cancel'
+                  className='myprofile__cancelBtn'
+                  onClick={handleCancel}
+                />
+                <button
+                  className='myprofile__updBtn'
+                  type='submit'
+                  value='Save'
+                >
+                  <p>Save</p>
+                </button>
               </div>
             )}
           </div>
@@ -102,7 +117,6 @@ const ProfileContainer = () => {
                 </div>
               </div>
 
-
               <div className='flex myprofilee__formsection_input items-center'>
                 <label>PreferredLanguage</label>
                 <div className=''>
@@ -130,7 +144,6 @@ const ProfileContainer = () => {
                     {...register('physicalAddress')}
                     defaultValue={physicalAddress}
                     disabled={!editing}
-                    
                   />
                 </div>
               </div>
@@ -138,7 +151,7 @@ const ProfileContainer = () => {
               <div className='flex myprofilee__formsection_input items-center'>
                 <label>Preferred currency</label>
                 <div>
-                <select
+                  <select
                     id='preferredCurrency'
                     name='preferredCurrency'
                     {...register('preferredCurrency')}
@@ -154,8 +167,8 @@ const ProfileContainer = () => {
             </div>
           </div>
         )}
-       </form>
-       {isSuccess&&<ToastContainer />}
+      </form>
+      {isSuccess && <ToastContainer />}
     </div>
   );
 };

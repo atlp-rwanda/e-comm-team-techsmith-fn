@@ -4,12 +4,14 @@ import cartServices from './cartServices';
 const initialState = {
   cart: [],
   isLoading: false,
+  isClearing: false,
   isError: false,
   isSuccess: false,
   message: ''
 };
 
 const resetStates = {
+  cart: [],
   isLoading: false,
   isError: false,
   isSuccess: false,
@@ -21,7 +23,7 @@ export const getCart = createAsyncThunk(
   async (data, thunkAPI) => {
     try {
       const response = await cartServices.getCart();
-      console.log('we are here');
+
       return response;
     } catch (error) {
       let message;
@@ -29,7 +31,25 @@ export const getCart = createAsyncThunk(
         message = 'Request timeout';
       } else {
         message = error.response.data.message;
-        console.log(error.response.data);
+      }
+      return thunkAPI.rejectWithValue(message);
+    }
+  }
+);
+
+export const clearCart = createAsyncThunk(
+  'cart/clearCart',
+  async (data, thunkAPI) => {
+    try {
+      const response = await cartServices.clearCart();
+
+      return response;
+    } catch (error) {
+      let message;
+      if (error.code === 'ERR_NETWORK') {
+        message = 'Request timeout';
+      } else {
+        message = error.response.data.message;
       }
       return thunkAPI.rejectWithValue(message);
     }
@@ -58,6 +78,19 @@ export const cartSlice = createSlice({
         state.isLoading = false;
         state.isError = true;
         state.message = payload;
+      })
+
+      // CLEAR CART
+      .addCase(clearCart.pending, (state) => {
+        state.isClearing = true;
+      })
+      .addCase(clearCart.fulfilled, (state) => {
+        state.isClearing = false;
+        state.cart = [];
+      })
+      .addCase(clearCart.rejected, (state) => {
+        state.isClearing = false;
+        state.isError = true;
       });
   }
 });

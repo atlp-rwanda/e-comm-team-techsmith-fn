@@ -1,74 +1,74 @@
 @use 'base';
 
-.myprofile{
-    position: relative;
-    form{
-        width: 50%;
+.myprofile {
+  position: relative;
+  form {
+    width: 50%;
+  }
+  .myprofile__header {
+    background-color: base.$primary-color;
+    border-radius: 0.5rem 0.5rem 0 0;
+    .myprofile__headerTitle {
+      p {
+        font-size: 1.5rem;
+        color: white;
+      }
     }
-    .myprofile__header{
-        background-color:base.$primary-color;
-        border-radius: 0.5rem 0.5rem 0 0;
-        .myprofile__headerTitle{
-            p{
-                font-size: 1.5rem;
-                color: white;
-            }
-        }
-    }
-    .myProfile__formsection{
-        border: 1px solid base.$primary-color;
-        
-    }
-   .myprofilee__formsection_input{
+  }
+  .myProfile__formsection {
+    border: 1px solid base.$primary-color;
+  }
+  .myprofilee__formsection_input {
     gap: 7rem;
     padding: 1.5rem 0;
-    label{
-        text-align: start;
-        width: 10rem;
-        font-size: 1.5rem;
+    label {
+      text-align: start;
+      width: 10rem;
+      font-size: 1.5rem;
     }
-    input,select{
-        width: 30rem;
-        padding: 0.9rem 0.7rem;
-        font-size: 1.5rem;
-        border: 1px solid rgba(0, 0, 0, 0.293);
-        border-radius: 1rem;
-        outline:none
+    input,
+    select {
+      width: 30rem;
+      padding: 0.9rem 0.7rem;
+      font-size: 1.5rem;
+      border: 1px solid rgba(0, 0, 0, 0.293);
+      border-radius: 1rem;
+      outline: none;
     }
-    input:focus,select:focus{
-        border: 1px solid rgba(0, 0, 0, 0.293);
+    input:focus,
+    select:focus {
+      border: 1px solid rgba(0, 0, 0, 0.293);
     }
-   }
-   .myprofile__updBtn{
-    p{
-        padding: 0.6rem 2rem;
-        border-radius: 0.4rem;
-        color: white;
-        font-size: 1.6rem;
-        border: 1px solid white;
-        transition: all 0.4s;
+  }
+  .myprofile__updBtn {
+    p {
+      padding: 0.6rem 2rem;
+      border-radius: 0.4rem;
+      color: white;
+      font-size: 1.6rem;
+      border: 1px solid white;
+      transition: all 0.4s;
     }
-    p:hover{
-        background-color: #101e40;
+    p:hover {
+      background-color: #101e40;
     }
-   }
-   .myprofile__cancelBtn{
-        padding: 0.6rem 2rem;
-        color: white;
-        font-size: 1.6rem;
-   }
-   .response{
+  }
+  .myprofile__cancelBtn {
+    padding: 0.6rem 2rem;
+    color: white;
+    font-size: 1.6rem;
+  }
+  .response {
     position: absolute;
     padding: 10rem 15rem;
     opacity: 0;
-    background:white;
+    background: white;
     color: green;
-
-   }
-   .respo{
+  }
+  .respo {
     opacity: 1;
-   }
-   .ant-message {
+  }
+  .ant-message {
     font-size: 26px; /* Set the desired font size */
   }
 }

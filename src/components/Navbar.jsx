@@ -1,5 +1,5 @@
-import React, {  useState } from 'react';
-import { Link, useLocation} from 'react-router-dom';
+import React, { useState } from 'react';
+import { Link, useLocation } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { GiHamburgerMenu } from 'react-icons/gi';
 import { BiDownArrow } from 'react-icons/bi';
@@ -7,31 +7,34 @@ import { AiOutlineClose } from 'react-icons/ai';
 import { searchlog, techLogW } from '../assets';
 import Button from './Button';
 import checkIsLogged from '../utils/isLoggedin';
-import logOut  from '../utils/logOut';
-
+import logOut from '../utils/logOut';
 
 const Navbar = () => {
   const { pathname } = useLocation();
   const [close, setClose] = useState(false);
-  const {token}=useSelector((state)=>{return state.auth})
+  const { token } = useSelector((state) => {
+    return state.auth;
+  });
   if (
     pathname === '/login' ||
     pathname === '/signup' ||
-    pathname === '/dashboard/users'||
+    pathname === '/dashboard/users' ||
     pathname.startsWith('/signup')
   )
-   return null;
-  const credentials = checkIsLogged()
+    return null;
+  const credentials = checkIsLogged();
   const changeIcon = () => {
     document.querySelector('.navbar__dropdown').classList.toggle('rm');
-    setClose((prevState) => {return !prevState});
+    setClose((prevState) => {
+      return !prevState;
+    });
   };
   const viewProfile = () => {
     document.querySelector('.navbar__profileView').classList.toggle('visible');
   };
-  const hideprofile=()=>{
+  const hideprofile = () => {
     document.querySelector('.navbar__profileView').classList.remove('visible');
-  }
+  };
 
   return (
     <div className='navbar'>
@@ -51,19 +54,13 @@ const Navbar = () => {
           <div>
             <ul className='flex  items-center '>
               <li>
-                <Link to='categories'>
-                  Categories
-                </Link>
+                <Link to='categories'>Categories</Link>
               </li>
               <li>
-                <Link  to='contact'>
-                  Contact us
-                </Link>
+                <Link to='contact'>Contact us</Link>
               </li>
               <li>
-                <Link to='about'>
-                  About us
-                </Link>
+                <Link to='about'>About us</Link>
               </li>
             </ul>
           </div>
@@ -82,41 +79,69 @@ const Navbar = () => {
           </div>
         </div>
 
-       {
-        token?
-       ( <div className='navbar__profile__letter flex justify-center items-center' onClick={viewProfile}>
-        <div className='navbar__profile flex justify-center items-center'>
-             <div>
-              <p>{credentials.profileName}</p>
-             </div>
-          </div>
-           <div>
-             <BiDownArrow style={{color:'white',width:'1.5rem',height:'1.5rem',paddingLeft:'0.2rem'}}/>
+        {token ? (
+          <div
+            className='navbar__profile__letter flex justify-center items-center'
+            onClick={viewProfile}
+          >
+            <div className='navbar__profile flex justify-center items-center'>
+              <div>
+                <p>{credentials.profileName}</p>
+              </div>
             </div>
-         </div>
-       )
-        : 
-        (<div className='navbar__authBtn flex items-center'>
-        <div>
-          <Link to='/signup'>
-            <p>Sign up</p>
-          </Link>
-        </div>
-        <Button value='Login' route='/login' className='navBtn' />
-      </div>
-       )}
+            <div>
+              <BiDownArrow
+                style={{
+                  color: 'white',
+                  width: '1.5rem',
+                  height: '1.5rem',
+                  paddingLeft: '0.2rem'
+                }}
+              />
+            </div>
+          </div>
+        ) : (
+          <div className='navbar__authBtn flex items-center'>
+            <div className='flex'>
+              <p
+                className='inline cursor-pointer'
+                onClick={() => {
+                  document.querySelector('.cart_overlay').style.display =
+                    'flex';
+                }}
+              >
+                Cart
+              </p>
+              <Link className='ml-10' to='/signup'>
+                <p>Sign up</p>
+              </Link>
+            </div>
+            <Button value='Login' route='/login' className='navBtn' />
+          </div>
+        )}
 
-      {
-        token && 
-        <div className='navbar__profileView absolute' onMouseLeave={hideprofile} >
-        <div>
-         <Button route={`/users/${credentials.id}`} className='primary-btn-no-hover-scale' value='Profile'/>
-        </div>
-        <div>
-        <Button route='/login' value='Sign out' className='primary-btn-no-hover-scale' onClick={logOut}/>
-        </div>
-      </div>
-      }
+        {token && (
+          <div
+            className='navbar__profileView absolute'
+            onMouseLeave={hideprofile}
+          >
+            <div>
+              <Button
+                route={`/users/${credentials.id}`}
+                className='primary-btn-no-hover-scale'
+                value='Profile'
+              />
+            </div>
+            <div>
+              <Button
+                route='/login'
+                value='Sign out'
+                className='primary-btn-no-hover-scale'
+                onClick={logOut}
+              />
+            </div>
+          </div>
+        )}
 
         <button className='menuIcon' onClick={changeIcon}>
           {close ? (
