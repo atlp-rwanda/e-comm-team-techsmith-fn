@@ -29,6 +29,7 @@ $transition: 0.3s;
   box-sizing: border-box;
   margin: 0;
   padding: 0;
+  transition: all 0.3s;
 }
 
 // BODY
@@ -160,6 +161,10 @@ svg {
     text-decoration: underline;
     transition: all 0.3s ease-in-out;
   }
+}
+
+.blurry{
+  filter: blur(3px);
 }
 
 // SLIDING HOVER EFFECTS
