@@ -51,6 +51,20 @@ export const apiSlice = createApi({
             }
           };
         }
+      }),
+      getAllCategories: builder.query({
+        query: () => {
+          return `category`;
+        }
+      }),
+      postProductSearch: builder.mutation({
+        query: ({ name, categoryIds, price, size, page }) => {
+          return {
+            url: `products/search/?size=${size}&page=${page}`,
+            method: 'POST',
+            body: { name, categoryIds, price }
+          };
+        }
       })
     };
   }
@@ -60,5 +74,7 @@ export const {
   useGetSingleProductQuery,
   usePostProductReviewMutation,
   useGetProductReviewsQuery,
-  useCreateProductMutation
+  useCreateProductMutation,
+  useGetAllCategoriesQuery,
+  usePostProductSearchMutation
 } = apiSlice;

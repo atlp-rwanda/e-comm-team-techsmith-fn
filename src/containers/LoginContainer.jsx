@@ -11,9 +11,7 @@ import InputPopup from '../components/InputPopup';
 import { login, reset } from '../states/features/auth/authSlice';
 import { API_URL } from '../constants';
 
-
 const LoginContainer = () => {
- 
   const form = useForm();
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -33,10 +31,10 @@ const LoginContainer = () => {
         // create popup
         document.querySelector('.overlay').style.display = 'flex';
       } else {
-        navigate('/')
-        window.location.reload()
+        navigate('/');
+        window.location.reload();
       }
-      
+
       dispatch(reset());
     }
   }, [dispatch, isSuccess]);
@@ -57,83 +55,86 @@ Authentication process.'
       <div className='loginPage'>
         <div className='flex justify-center items-center'>
           <div className='loginPage__parent'>
-          <div className='loginPage__mobileHeader'>
-            <div className='loginPage__imgHeader'>
-              <img src={TLogo} alt='' />
+            <div className='loginPage__mobileHeader'>
+              <div className='loginPage__imgHeader'>
+                <img src={TLogo} alt='' />
+              </div>
+              <div className='loginPage__signInHeader'>
+                <Button variant='contained'>Sign up</Button>
+              </div>
             </div>
-            <div className='loginPage__signInHeader'>
-              <Button variant='contained'>Sign up</Button>
+            <div className='loginPage__title'>
+              <Typography variant='h4' sx={{ fontSize: 'x-large' }}>
+                Sign In
+              </Typography>
             </div>
-          </div>
-          <div className='loginPage__title'>
-            <Typography variant='h4' sx={{ fontSize: 'x-large' }}>
-              Sign In
-            </Typography>
-          </div>
 
-          <div className='loginPage__form'>
-            <form onSubmit={handleSubmit(mySubmit)} noValidate>
-              <div className='loginPage__input'>
-                <input
-                  type='text'
-                  id='email'
-                  name='email'
-                  {...register('email', {
-                    pattern: {
-                      value: /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/,
-                      message: 'Invalid email'
-                    },
-                    required: 'Email is required'
-                  })}
-                  className='text-xl'
-                  required
-                />
-                <label htmlFor='email'>Email</label>
-                <p className='loginPage__error'>{errors.email?.message}</p>
-              </div>
-              <div className='loginPage__input'>
-                <input
-                  type='password'
-                  id='password'
-                  name='password'
-                  {...register('password', {
-                    required: 'Password is required'
-                  })}
-                  className='text-xl'
-                  required
-                />
-                <label htmlFor='password'>Password</label>
-                <p className='loginPage__error'>{errors.password?.message}</p>
-                {isError && (
-                  <p className='loginPage__error'> Wrong email or password!</p>
-                )}
-              </div>
+            <div className='loginPage__form'>
+              <form onSubmit={handleSubmit(mySubmit)} noValidate>
+                <div className='loginPage__input'>
+                  <input
+                    type='text'
+                    id='email'
+                    name='email'
+                    {...register('email', {
+                      pattern: {
+                        value: /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/,
+                        message: 'Invalid email'
+                      },
+                      required: 'Email is required'
+                    })}
+                    className='text-xl'
+                    required
+                  />
+                  <label htmlFor='email'>Email</label>
+                  <p className='loginPage__error'>{errors.email?.message}</p>
+                </div>
+                <div className='loginPage__input'>
+                  <input
+                    type='password'
+                    id='password'
+                    name='password'
+                    {...register('password', {
+                      required: 'Password is required'
+                    })}
+                    className='text-xl'
+                    required
+                  />
+                  <label htmlFor='password'>Password</label>
+                  <p className='loginPage__error'>{errors.password?.message}</p>
+                  {isError && (
+                    <p className='loginPage__error'>
+                      {' '}
+                      Wrong email or password!
+                    </p>
+                  )}
+                </div>
 
-              <div className='loginPage__forgotcode'>
-                <Typography variant='body1'>Forgot your password?</Typography>
-              </div>
-              <div className='loginPage__button'>
-                <button
-                  type='submit'
-                  className='bg-blue-500 hover:bg-blue-700 text-white font-medium py-2 px-4 border border-blue-200 rounded'
-                >
-                  {isLoading ? <Loading /> : 'SIGN IN'}
-                </button>
-              </div>
-            </form>
-          </div>
-          <Link to={`${API_URL}/auth/google`}>
-          <div className='loginPage__googleAuth'>
-            <div className='loginPage__googleButton'>
-              <div>
-                <img src={Google} alt='' />
-              </div>
-              <div>
-                <Typography variant='body2'>Sign in with google</Typography>
-              </div>
+                <div className='loginPage__forgotcode'>
+                  <Typography variant='body1'>Forgot your password?</Typography>
+                </div>
+                <div className='loginPage__button'>
+                  <button
+                    type='submit'
+                    className='bg-blue-500 hover:bg-blue-700 text-white font-medium py-2 px-4 border border-blue-200 rounded'
+                  >
+                    {isLoading ? <Loading /> : 'SIGN IN'}
+                  </button>
+                </div>
+              </form>
             </div>
-          </div>
-          </Link>
+            <Link to={`${API_URL}/auth/google`}>
+              <div className='loginPage__googleAuth'>
+                <div className='loginPage__googleButton'>
+                  <div>
+                    <img src={Google} alt='' />
+                  </div>
+                  <div>
+                    <Typography variant='body2'>Sign in with google</Typography>
+                  </div>
+                </div>
+              </div>
+            </Link>
           </div>
         </div>
         <AuthBlueSide

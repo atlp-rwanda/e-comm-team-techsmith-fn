@@ -77,47 +77,48 @@ const AdminManageUserContainer = () => {
               <FontAwesomeIcon icon='fa-solid fa-exclamation-circle' />
             </div>
           )}
-          {{ userList } && ( 
+          {{ userList } && (
             <div>
               <Userlist userList={userList} />
             </div>
-          ) }
-          {!isPending && (      <div className='pagination'>
-            <button
-              type='submit'
-              className='pagination-btn'
-              onClick={() => {
-                setpage(page - 1);
-                setpage2(page2 - 1);
-                setpage3(page3 - 1);
-              }}
-              disabled={page === 1}
-            >
-              <img src={Left} alt='' />
-            </button>
-            <div className='pagination-text'>
-              <span className='flex justify-center bg-blue-900 text-white w-[15px] rounded-md'>
-                {page}
-              </span>
-              <span>{page2}</span>
-              <span>{page3}</span>
-              <span>...</span>
-              <span>{totalpages}</span>
+          )}
+          {!isPending && (
+            <div className='pagination'>
+              <button
+                type='submit'
+                className='pagination-btn'
+                onClick={() => {
+                  setpage(page - 1);
+                  setpage2(page2 - 1);
+                  setpage3(page3 - 1);
+                }}
+                disabled={page === 1}
+              >
+                <img src={Left} alt='' />
+              </button>
+              <div className='pagination-text'>
+                <span className='flex justify-center bg-blue-900 text-white w-[15px] rounded-md'>
+                  {page}
+                </span>
+                <span>{page2}</span>
+                <span>{page3}</span>
+                <span>...</span>
+                <span>{totalpages}</span>
+              </div>
+              <button
+                type='submit'
+                className='pagination-btn'
+                disabled={page === totalpages - 3}
+                onClick={() => {
+                  setpage(page + 1);
+                  setpage2(page2 + 1);
+                  setpage3(page3 + 1);
+                }}
+              >
+                <img src={Right} alt='' />
+              </button>
             </div>
-            <button
-              type='submit'
-              className='pagination-btn'
-              disabled={page === totalpages - 3}
-              onClick={() => {
-                setpage(page + 1);
-                setpage2(page2 + 1);
-                setpage3(page3 + 1);
-              }}
-            >
-              <img src={Right} alt='' />
-            </button>
-          </div>)}
-    
+          )}
         </div>
       </div>
       <NavigationDashboardSmall />

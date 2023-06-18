@@ -18,16 +18,18 @@ const HomeCategoryProductCard = ({
   rating
 }) => {
   return (
-    <div className={className}>
+    <div className={`home_category_product_card ${className}`}>
       <section className='category_product_image_container'>
         <img src={image} alt={name} />
       </section>
       <section className='product_category_text_container'>
         <div className='category_product_name_price'>
-          <h4>{name}</h4>
+          <h4 className='truncate text-ellipsis text-[1.6rem]'>{name}</h4>
           <p>{price}</p>
         </div>
-        <p className='product_category_description'>{description}</p>
+        <p className='product_category_description max-w-[90%] truncate text-ellipsis'>
+          {description}
+        </p>
         <div className='product_category_rating'>
           <Rating rating={rating.rating} performrating={rating.performRating} />
         </div>
@@ -73,7 +75,7 @@ HomeCategoryProductCard.propTypes = {
   buttonClassName: PropTypes.string,
   price: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
-  category: PropTypes.string.isRequired,
+  category: PropTypes.string,
   description: PropTypes.string,
   image: PropTypes.string,
   route: PropTypes.string,
@@ -105,7 +107,8 @@ HomeCategoryProductCard.defaultProps = {
       unfilled: '#DCDCDC'
     },
     performRating: false
-  }
+  },
+  category: 'Category'
 };
 
 export default HomeCategoryProductCard;
