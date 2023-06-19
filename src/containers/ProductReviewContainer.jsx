@@ -30,6 +30,14 @@ const ProductReviewContainer = ({ id }) => {
     );
   }
 
+  if (feedbacks.data.rows.length === 0) {
+    return (
+      <div className='min-h-[30vh] flex items-center justify-center'>
+        <h1 className='text-[2rem]'>This product does not have any reviews yet!</h1>
+      </div>
+    );
+  }
+
   return (
     <div className='product_review_container w-10/12 mx-auto flex flex-wrap gap-8 border-primary my-12 screen-mid:justify-evenly'>
       {!isError &&

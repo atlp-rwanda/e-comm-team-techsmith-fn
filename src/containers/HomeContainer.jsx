@@ -8,6 +8,7 @@ import TopMerchants from './TopMerchants';
 import Hero from './Hero';
 
 const HomeContainer = () => {
+
   return (
     <>
       <Hero />

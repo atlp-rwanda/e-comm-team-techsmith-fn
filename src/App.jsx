@@ -19,7 +19,8 @@ import {
   SingleProductPage,
   SingupPage,
   SearchPage,
-  SellerProductsPage
+  SellerProductsPage,
+  CheckoutPage
 } from './pages';
 import Footer from './components/Footer';
 import Navbar from './components/Navbar';
@@ -30,6 +31,8 @@ import ProtectedRoutes from './outlets/ProtectedRoutes';
 import SellerRoutes from './outlets/SellerRoutes';
 import SellerNavigation from './outlets/SellerNavigation';
 import ChatFloadtingButton from './components/Chatroom/ChatFloatingButton';
+import AdminNavigation from './outlets/AdminNavigation';
+import AdminRoutes from './outlets/AdminRoutes';
 
 const App = () => {
   return (
@@ -48,22 +51,25 @@ const App = () => {
             path='/reset-password/:token'
             element={<ResetPasswordPage />}
           />
+          <Route path='/product/:id' element={<SingleProductPage />} />
+          <Route path='/users/:id' element={<ProfilePage />} />
+          <Route path='/search' element={<SearchPage />} />
+          <Route path='*' element={<NotFoundPage />} />
+          <Route path='/unauthorized' element={<Navigate />} />
+          <Route path='/seller/unauthorized' element={<SellerNavigation />} />
+          <Route path='/admin/unauthorized' element={<AdminNavigation />} />
+          <Route element={<ProtectedRoutes />}>
+            <Route path='/chat' element={<JoinChat />} />
+            <Route path='/chat/room' element={<ChatPage />} />
+            <Route path='/order/:id' element={<CheckoutPage />} />
+          </Route>
           <Route element={<SellerRoutes />}>
             <Route path='/seller/add-product' element={<SellerPage />} />
             <Route path='/dashboard/seller' element={<SellerProductsPage />} />
           </Route>
-          <Route path='/product/:id' element={<SingleProductPage />} />
-          <Route path='/users/:id' element={<ProfilePage />} />
+          <Route element={<AdminRoutes />}>
           <Route path='/dashboard/users' element={<AdminManageUserPage />} />
-          <Route path='/search' element={<SearchPage />} />
-          <Route element={<ProtectedRoutes />}>
-            <Route path='/chat' element={<JoinChat />} />
-            <Route path='/chat/room' element={<ChatPage />} />
-            <Route path='/dashboard/users' element={<AdminManageUserPage />} />
           </Route>
-          <Route path='*' element={<NotFoundPage />} />
-          <Route path='/unauthorized' element={<Navigate />} />
-          <Route path='/seller/unauthorized' element={<SellerNavigation />} />
         </Routes>
         <div style={{ position: 'fixed', bottom: '4rem', right: '4rem' }}>
           <ChatFloadtingButton />

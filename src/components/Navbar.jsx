@@ -170,98 +170,115 @@ const Navbar = () => {
   };
 
   const showCart = () => {
-    if(! Auth){ 
-       navigate('/unauthorized')
-       return;
+    if (!Auth) {
+      navigate('/unauthorized');
+      return;
     }
-    document.querySelector('.cart_overlay').style.display =
-      'flex';  
-  }
+    document.querySelector('.cart_overlay').style.display = 'flex';
+  };
 
   return (
     <div>
-          <div className='navbar py-0 mb-4'>
-      <div className='navbar_logoContainerNavbar-menuList flex justify-around items-center'>
-        <section className='navbar_logoContainer'>
-          <Link to='/'>
-            <img
-              src={techLogW}
-              alt='Techmisth large logo'
-              style={{
-                cursor: 'pointer'
-              }}
-            />
-          </Link>
-        </section>
-        <div className='navbar-allMenuPro  flex justify-between items-center'>
-          <div>
-            <ul className='flex  items-center '>
-              <li>
-                <Link to='category'>Categories</Link>
-              </li>
-              <li>
-                <Link to='contact'>Contact us</Link>
-              </li>
-              <li>
-                <Link to='about'>About us</Link>
-              </li>
-            </ul>
-          </div>
-        </div>
-        <Search />
-
-        {
-          token?
-         ( <div className='navbar__profile__letter flex justify-center items-center' onClick={viewProfile}>
-          <div className='navbar__profile flex justify-center items-center'>
-               <div>
-                <AiOutlineUser/>
-               </div>
-            </div>
-             <div>
-               <BiDownArrow style={{color:'white',width:'1.5rem',height:'1.5rem',paddingLeft:'0.2rem'}}/>
-              </div>
-           </div>
-         )
-          : 
-          (<div className='navbar__authBtn flex items-center'>
-          <div className='navbar__authBtn flex items-center'>
-            <div className='flex'>
-            <p
-                className='inline cursor-pointer'
-                onClick={showCart}
-              >
-                Cart
-              </p>
-              <Link className='ml-10' to='/signup'>
-                <p>Sign up</p>
-              </Link>
-            </div>
-            <Button value='Login' route='/login' className='navBtn' />
-            </div> 
-        </div>
-         )}
-  
-        {
-          token && 
-          <div className='navbar__profileView absolute' onMouseLeave={hideprofile} >
-          <div>
-           <Button route={`/users/${JSON.parse(localStorage.getItem('user')).id}`} className='primary-btn-no-hover-scale' value='Profile'/>
-          </div>
-          <div>
-              <Button
-                route='#'
-                value='Cart'
-                className='primary-btn-no-hover-scale'
-                onClick={showCart}
+      <div className='navbar py-0 mb-4'>
+        <div className='navbar_logoContainerNavbar-menuList flex justify-around items-center'>
+          <section className='navbar_logoContainer'>
+            <Link to='/'>
+              <img
+                src={techLogW}
+                alt='Techmisth large logo'
+                style={{
+                  cursor: 'pointer'
+                }}
               />
+            </Link>
+          </section>
+          <div className='navbar-allMenuPro  flex justify-between items-center'>
+            <div>
+              <ul className='flex  items-center '>
+                <li>
+                  <Link to='category'>Categories</Link>
+                </li>
+                <li>
+                  <Link to='contact'>Contact us</Link>
+                </li>
+                <li>
+                  <Link to='about'>About us</Link>
+                </li>
+              </ul>
+            </div>
           </div>
-          <div>
-          <Button route='/login' value='Sign out' className='primary-btn-no-hover-scale' onClick={loggingOut}/>
-          </div>
-        </div>
-        }
-                  {isSeller && (
+          <Search />
+
+          {token ? (
+            <div
+              className='navbar__profile__letter flex justify-center items-center'
+              onClick={viewProfile}
+            >
+              <div className='navbar__profile flex justify-center items-center'>
+                <div>
+                  <AiOutlineUser />
+                </div>
+              </div>
+              <div>
+                <BiDownArrow
+                  style={{
+                    color: 'white',
+                    width: '1.5rem',
+                    height: '1.5rem',
+                    paddingLeft: '0.2rem'
+                  }}
+                />
+              </div>
+            </div>
+          ) : (
+            <div className='navbar__authBtn flex items-center'>
+              <div className='navbar__authBtn flex items-center'>
+                <div className='flex'>
+                  <p className='inline cursor-pointer' onClick={showCart}>
+                    Cart
+                  </p>
+                  <Link className='ml-10' to='/signup'>
+                    <p>Sign up</p>
+                  </Link>
+                </div>
+                <Button value='Login' route='/login' className='navBtn' />
+              </div>
+            </div>
+          )}
+
+          {token && (
+            <div
+              className='navbar__profileView absolute'
+              onMouseLeave={hideprofile}
+            >
+              <div>
+                <Button
+                  route={`/users/${
+                    JSON.parse(localStorage.getItem('user')).id
+                  }`}
+                  className='primary-btn-no-hover-scale'
+                  value='Profile'
+                />
+              </div>
+              <div>
+                <Button
+                  route='#'
+                  value='Cart'
+                  className='primary-btn-no-hover-scale'
+                  onClick={showCart}
+                />
+              </div>
+              <div>
+                <Button
+                  route='/login'
+                  value='Sign out'
+                  className='primary-btn-no-hover-scale'
+                  onClick={loggingOut}
+                />
+              </div>
+            </div>
+          )}
+          {isSeller && (
             <div className='notifications-navbar flex flex-end text-white mr-[1rem]'>
               <IoIosNotificationsOutline
                 onClick={notifyMe}
@@ -272,40 +289,39 @@ const Navbar = () => {
             </div>
           )}
 
+          <button className='menuIcon' onClick={changeIcon}>
+            {close ? (
+              <AiOutlineClose style={{ color: 'white' }} />
+            ) : (
+              <GiHamburgerMenu style={{ color: 'white' }} />
+            )}
+          </button>
 
-        <button className='menuIcon' onClick={changeIcon}>
-          {close ? (
-            <AiOutlineClose style={{ color: 'white' }} />
-          ) : (
-            <GiHamburgerMenu style={{ color: 'white' }} />
-          )}
-        </button>
-
-        <div className='navbar__dropdown rm flex justify-end flex-col'>
-          <ul className='flex justify-end flex-col'>
-            <li className='navbar__dropdown_search'>
-              <div className='navbar__dropdown_input'>
-                <input
-                  type='text'
-                  placeholder='Search...'
-                  className='buttonSearchResp'
-                />
-              </div>
-              <div className='navbar__dropdown_input_Img'>
-                <img
-                  src={searchlog}
-                  alt='searchImage'
-                  className='navbar__dropdown_input_Icon'
-                />
-              </div>
-            </li>
-            <li>Category</li>
-            <li>About </li>
-            <li>Contact</li>
-          </ul>
+          <div className='navbar__dropdown rm flex justify-end flex-col'>
+            <ul className='flex justify-end flex-col'>
+              <li className='navbar__dropdown_search'>
+                <div className='navbar__dropdown_input'>
+                  <input
+                    type='text'
+                    placeholder='Search...'
+                    className='buttonSearchResp'
+                  />
+                </div>
+                <div className='navbar__dropdown_input_Img'>
+                  <img
+                    src={searchlog}
+                    alt='searchImage'
+                    className='navbar__dropdown_input_Icon'
+                  />
+                </div>
+              </li>
+              <li>Category</li>
+              <li>About </li>
+              <li>Contact</li>
+            </ul>
+          </div>
         </div>
       </div>
-    </div>
       {notify && (
         <div className='w-full  flex justify-end screen-mid:justify-center'>
           <div className=' w-[30%] screen-mid:w-[70%] fixed  bg-white border border-primary rounded-lg h-[57%] flex flex-col  mr-[5%] screen-mid:mr-[0%] '>
@@ -436,16 +452,13 @@ const Search = () => {
 
   const navigate = useNavigate();
   return (
-    <form className='nav-search2 screen-mid:ml-[-15px] flex items-center p-0 h-full'>
+    <form className='nav-search2 screen-mid:ml-[-15px] divide-white flex items-center p-0 h-full'>
       <Input
         type='text'
         name='name'
-        placeholder='Enter product name...'
-        className='py-4 px-6 text-[1.3rem] h-full outline-none border-none outline-transparent focus:border-none rounded-l-[5rem] rounded-r-0'
-        style={{
-          outline: 'none',
-          borderRadius: '0 0 5rem 5rem'
-        }}
+        placeholder='Enter product name'
+        backgroundColor='white'
+        className='outline-none border-none text-sm rounded-none rounded-l-lg focus:border-none'
         onChange={(e) => {
           setFormData({ ...formData, name: e.target.value });
         }}
@@ -472,7 +485,10 @@ const Search = () => {
       </select>
       <Button
         value='SEARCH'
-        className='btn-search2 text-white px-8 flex items-center justify-center border-1/4 border-white bg-primary h-full rounded-r-[5rem] hover:scale-102 p-2.5'
+        style={{
+          border: '1px solid white'
+        }}
+        className='btn-search2 text-white px-8 flex items-center justify-center border-2/4 border-white bg-primary h-full rounded-r-[5rem] hover:scale-102 p-2.5'
         onClick={(e) => {
           e.preventDefault();
           if (formData.name !== '' && formData.name !== 'Product') {
@@ -488,5 +504,3 @@ const Search = () => {
 };
 
 export default Navbar;
-
-

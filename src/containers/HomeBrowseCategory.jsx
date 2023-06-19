@@ -38,7 +38,7 @@ const BrowseByCategory = () => {
       </section>
       <section className='home_browse_category_categories flex flex-wrap justify-center'>
         <Button
-          className='home_browse_category_option'
+          className='home_browse_category_option bg-transparent'
           route='/category'
           value='View more >>'
         />
@@ -82,7 +82,7 @@ const Categories = () => {
           return (
             <Button
               key={id}
-              className='home_browse_category_option '
+              className='home_browse_category_option bg-transparent'
               route='/category'
               value={name}
             />

@@ -34,7 +34,7 @@ const PopularProducts = () => {
         </div>
         <Button
           value='Browse '
-          className='popular_products_cta'
+          className='popular_products_cta bg-transparent'
           route='/category'
         />
       </section>

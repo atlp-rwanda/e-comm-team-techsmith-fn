@@ -7,6 +7,7 @@ import productReducer from './features/search/searchSlice';
 import sellerReducer from './features/seller/sellerSlice';
 import categorySlice from './features/categories/categorySlice';
 import cartReducer from './features/cart/cartSlice';
+import orderSlice from './features/orders/orderSlice';
 
 const store = configureStore({
   reducer: {
@@ -17,7 +18,8 @@ const store = configureStore({
     users: userReducer,
     search: productReducer,
     seller: sellerReducer,
-    categories: categorySlice
+    categories: categorySlice,
+    orders: orderSlice
   },
   middleware: (getDefaultMiddleware) => {
     return getDefaultMiddleware().concat(apiSlice.middleware);

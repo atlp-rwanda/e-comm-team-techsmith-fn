@@ -38,7 +38,7 @@ const HomeCategoryProductCard = ({
           <Rating rating={rating.rating} performrating={rating.performRating} />
         </div>
         <Button
-          className='home_product_category'
+          className='home_product_category bg-transparent'
           route={route}
           value={category}
         />
@@ -67,7 +67,7 @@ const HomeCategoryProductCard = ({
               transform: 'scale(1.02)'
             }
           }}
-          className=''
+          className='bg-transparent'
         />
       </section>
     </div>
@@ -77,7 +77,7 @@ const HomeCategoryProductCard = ({
 HomeCategoryProductCard.propTypes = {
   className: PropTypes.string,
   buttonClassName: PropTypes.string,
-  price: PropTypes.number.isRequired,
+  price: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
   name: PropTypes.string.isRequired,
   category: PropTypes.string,
   description: PropTypes.string,
