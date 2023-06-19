@@ -1,29 +1,26 @@
-import React from 'react';
+import React, { forwardRef } from 'react';
 import PropTypes from 'prop-types';
 
-const Input = ({
-  type,
-  className,
-  placeholder,
-  onChange,
-  value,
-  required,
-  onClick,
-  name
-}) => {
-  return (
-    <input
-      type={type}
-      className={`${className} w-11/12 px-8 py-4 text-sm border-primary rounded-[.5rem]`}
-      placeholder={placeholder}
-      onChange={onChange}
-      defaultValue={value}
-      required={required}
-      onClick={onClick}
-      name={name}
-    />
-  );
-};
+const Input = forwardRef(
+  (
+    { type, className, placeholder, onChange, value, required, onClick, name },
+    ref
+  ) => {
+    return (
+      <input
+        ref={ref}
+        type={type}
+        className={`${className} w-11/12 px-8 py-4 text-sm outline-none border-primary rounded-[.5rem]`}
+        placeholder={placeholder}
+        onChange={onChange}
+        defaultValue={value}
+        required={required}
+        onClick={onClick}
+        name={name}
+      />
+    );
+  }
+);
 
 Input.propTypes = {
   type: PropTypes.string.isRequired,

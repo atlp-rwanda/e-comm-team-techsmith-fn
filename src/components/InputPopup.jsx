@@ -24,6 +24,7 @@ const InputPopup = ({ title, details, inputError, button, placeholder }) => {
   useEffect(() => {
     if (isSeller) {
       navigate('/');
+      window.location.reload();
     }
   }, [dispatch, isSeller]);
 

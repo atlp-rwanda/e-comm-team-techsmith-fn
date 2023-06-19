@@ -28,6 +28,7 @@
       "src/**/*.{js,jsx}",
       "!**/node_modules/**",
       "!src/**/*.test.js",
+      "!src/outlets/**",
       "!src/stories/**",
       "!src/__tests__/**",
       "!src/states/**",
