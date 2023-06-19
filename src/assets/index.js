@@ -13,3 +13,7 @@ export { default as lock } from './svg/Lock.svg';
 export { default as loading } from './svg/loading.svg';
 export { default as Left } from './svg/Left.svg';
 export { default as Right } from './svg/Right.svg';
+export { default as w } from './images/w.jpg';
+export { default as wi } from './images/wi.png';
+export { default as wis } from './images/wis.jpg';
+export { default as wish } from './images/wish.jpg';

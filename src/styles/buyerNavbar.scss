@@ -1,0 +1,81 @@
+@use 'base';
+@import 'base';
+
+.navbar_dashboard_small {
+  display: none;
+}
+.navbar_dashboard {
+  width: 143px;
+  background-color: white;
+  transition: $transition;
+
+  @include flexcolumncenter;
+
+  &:hover {
+    width: 286px;
+    transition: $transition;
+
+    p {
+      display: block;
+      margin-left: 30px;
+      transition: $transition;
+    }
+    svg {
+      fill: white;
+      transition: $transition;
+    }
+  }
+
+  p {
+    display: none;
+  }
+
+  .Logout {
+    margin-top: 300px;
+  }
+}
+
+.secondary-btn {
+  text-decoration: none;
+  color: $primary-color;
+  background-color: white;
+  padding: 1.5rem 2rem;
+  font-size: 1.6rem;
+  border-radius: 0.5rem;
+  display: block;
+  width: 80%;
+  max-width: 30rem;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50px;
+
+  &:hover {
+    background-color: darken($primary-color, 10%);
+    transform: scale(1.02);
+    color: white;
+  }
+}
+
+@media (max-width: 800px) {
+  .navbar_dashboard {
+    display: none;
+  }
+  .navbar_dashboard_small {
+    display: flex;
+    flex-direction: row;
+    background-color: white;
+    justify-content: space-around;
+    align-items: center;
+    span {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-around;
+      align-items: center;
+      p {
+        margin-top: 7px;
+      }
+    }
+  }
+}

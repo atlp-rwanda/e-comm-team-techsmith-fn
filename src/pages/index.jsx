@@ -15,6 +15,7 @@ import AdminManageUserContainer from '../containers/UsersContainer';
 import ProfileContainer from '../containers/ProfileContainer';
 import SearchContainer from '../containers/SearchContainer';
 import ChatContainer from '../containers/ChatContainer';
+import BuyerWishlistContainer from '../containers/BuyerWishlistContainer';
 
 const HomePage = () => {
   return <HomeContainer />;
@@ -43,9 +44,13 @@ const ProfilePage = () => {
 const SellerPage = () => {
   return <SellerContainer />;
 };
+const WishlistPage = () => {
+  return <BuyerWishlistContainer />;
+};
 const SearchPage = () => {
   return <SearchContainer />;
 };
+
 const ChatPage = () => {
   return <ChatContainer />;
 };
@@ -78,5 +83,6 @@ export {
   ProfilePage,
   AdminManageUserPage,
   SearchPage,
-  ChatPage
+  ChatPage,
+  WishlistPage
 };

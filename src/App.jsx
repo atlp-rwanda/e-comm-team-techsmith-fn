@@ -17,7 +17,9 @@ import {
   NotFoundPage,
   SingleProductPage,
   SingupPage,
-  SearchPage
+  SearchPage,
+  WishlistPage
+  
 } from './pages';
 import Footer from './components/Footer';
 import Navbar from './components/Navbar';
@@ -29,6 +31,7 @@ import SellerNavigation from './outlets/SellerNavigation';
 import ChatFloadtingButton from './components/Chatroom/ChatFloatingButton';
 
 const App = () => {
+  
   return (
     <div className='App'>
       <Router>
@@ -51,13 +54,16 @@ const App = () => {
             <Route path='/chat' element={<JoinChat />} />
             <Route path='/chat/room' element={<ChatPage />} />
           </Route>
-          <Route path='*' element={<NotFoundPage />} />
           <Route path='/unauthorized' element={<Navigate />} />
           <Route path='/seller/unauthorized' element={<SellerNavigation />} />
+          
+          <Route path='/wishlist' element={<WishlistPage />} />
+          
+          <Route path='*' element={<NotFoundPage />} />
         </Routes>
         <div style={{ position: 'fixed', bottom: '4rem', right: '4rem' }}>
-        <ChatFloadtingButton />
-      </div>
+          <ChatFloadtingButton />
+        </div>
         <Footer />
       </Router>
     </div>
