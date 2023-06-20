@@ -2,16 +2,37 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 
-const Button = ({ route, className, onClick, value, type, input, target }) => {
+const Button = ({
+  route,
+  className,
+  onClick,
+  value,
+  type,
+  input,
+  target,
+  buttonId
+}) => {
   if (input) {
     return (
-      <button type={type} target={target ? '_blank' : ''} className={`${className} bg-primary`} onClick={onClick}>
+      <button
+        type={type}
+        target={target ? '_blank' : ''}
+        className={`${className} bg-primary`}
+        onClick={onClick}
+      >
         {value}
       </button>
     );
   }
   return (
-    <Link type={type} to={route || ''} target={target ? '_blank' : null} className={`${className} bg-primary`} onClick={onClick}>
+    <Link
+      type={type}
+      to={route || ''}
+      target={target ? '_blank' : null}
+      id={buttonId}
+      className={`${className} bg-primary`}
+      onClick={onClick}
+    >
       {value}
     </Link>
   );
@@ -19,6 +40,7 @@ const Button = ({ route, className, onClick, value, type, input, target }) => {
 
 Button.propTypes = {
   route: PropTypes.string,
+  buttonId: PropTypes.number,
   className: PropTypes.string,
   onClick: PropTypes.func,
   value: PropTypes.oneOfType([

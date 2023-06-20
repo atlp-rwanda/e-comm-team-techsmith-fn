@@ -48,12 +48,12 @@ const SubTotal = ({ cart, sum }) => {
         <button
           type='submit'
           className='bg-primary hover:opacity-9 cursor-pointer text-white font-medium py-3 px-4 rounded-md hover:opacity-3 mt-2'
-          disabled = {cart.length !== 0}
+          disabled={cart.length !== 0}
           onClick={() => {
             // create order and navigate to the order page
           }}
         >
-          {cart.length !== 0 ? 'Proceed To Order': 'Nothing t👀👀 Order'}
+          {cart.length !== 0 ? 'Proceed To Order' : 'Nothing t👀👀 Order'}
         </button>
       </div>
     </div>
@@ -94,8 +94,6 @@ const Cart = () => {
         </span>
       ) : (
         <div className='cart_container bg-[#f2f1ef] w-[100%] sm:w-[60%] h-full absolute right-0'>
-
-
           <div
             role='button'
             className='absolute right-10 top-10 bg-primary px-10 py-2 cursor-pointer rounded-md'
@@ -126,7 +124,7 @@ const Cart = () => {
                     <SingleProduct
                       name={item.name}
                       key={item.name}
-                      quantity = {1}
+                      quantity={1}
                       details='Get this quality product by from your fingertip. Order it now.'
                       piecePrice='USD 122.00'
                     />
@@ -134,8 +132,6 @@ const Cart = () => {
                 })
               )}
             </div>
-
-
 
             <div className='subtotal'>
               <SubTotal
@@ -169,16 +165,9 @@ const Cart = () => {
   );
 };
 
-
 SubTotal.propTypes = {
   cart: PropTypes.arrayOf(PropTypes.object),
   sum: PropTypes.number
 };
 
 export default Cart;
-
-
-
-
-
-

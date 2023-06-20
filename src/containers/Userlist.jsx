@@ -14,10 +14,8 @@ export const Userlist = ({ userList }) => {
     return state.users;
   });
 
-
-  const [putUserRole, { isSuccess, isLoading: loading }] = usePutUserRoleMutation();
-
-
+  const [putUserRole, { isSuccess, isLoading: loading }] =
+    usePutUserRoleMutation();
 
   const blockUnblockUser = (e) => {
     if (accountStatus) {
@@ -56,7 +54,6 @@ export const Userlist = ({ userList }) => {
               <p>{user.createdAt}</p>
             </span>
             <span className='userrole flex justify-center  '>
-            
               {isSuccess}
               <select
                 onChange={(e) => {
@@ -75,7 +72,6 @@ export const Userlist = ({ userList }) => {
                 <option value='' selected disabled hidden>
                   {' '}
                   {loading ? 'Loading...' : user.role.name}
-                  
                 </option>
                 <option value={1}>
                   <p>Admin</p>
@@ -88,7 +84,6 @@ export const Userlist = ({ userList }) => {
                 </option>
               </select>
             </span>
-
 
             <button className='image-button flex justify-center ' type='button'>
               {user.isActive === false ? (

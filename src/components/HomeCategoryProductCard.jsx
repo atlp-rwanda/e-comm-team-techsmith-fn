@@ -1,10 +1,15 @@
 import PropTypes from 'prop-types';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faHeart } from '@fortawesome/free-regular-svg-icons';
+import { faHeart } from '@fortawesome/free-solid-svg-icons';
 import Rating from './Rating';
 import Button from './Button';
 import { primaryColor } from '../constants';
+import {
+  useGetAllWishlistQuery,
+  usePostAddToWishlistMutation
+} from '../states/api/apiSlice';
+import { findInArrayWishList } from '../utils/Arrays';
 
 const HomeCategoryProductCard = ({
   className,
@@ -15,8 +20,28 @@ const HomeCategoryProductCard = ({
   description,
   image,
   route,
-  rating
+  rating,
+  pId
 }) => {
+  const [isWishListed, setIsWishListed] = useState(false);
+
+  const [postAddToWishList, { isSuccess }] = usePostAddToWishlistMutation();
+
+  const { data: wishListData, isSuccess: wishListSuccess } =
+    useGetAllWishlistQuery();
+
+  useEffect(() => {
+    if (wishListSuccess) {
+      const id = findInArrayWishList(wishListData.data.availableProducts, pId);
+      if (id) {
+        setIsWishListed(true);
+      }
+    }
+    if (isSuccess) {
+      setIsWishListed(true);
+    }
+  }, [isSuccess, wishListSuccess, wishListData]);
+
   return (
     <div className={`home_category_product_card ${className}`}>
       <section className='category_product_image_container '>
@@ -45,27 +70,36 @@ const HomeCategoryProductCard = ({
       </section>
       <section className='product_category_cta'>
         <Button value='Buy now' className={`primary-btn ${buttonClassName}`} />
-        <Button
-          value={
-            <FontAwesomeIcon
-              style={{
-                height: '100%',
-                width: '3rem',
-                maxWidth: '3rem',
-                fontWeight: 'light',
-                color: 'black',
-
-                '&:hover': {
-                  transform: 'scale(1.02)'
+        <FontAwesomeIcon
+          style={
+            isSuccess || isWishListed
+              ? {
+                  height: '100%',
+                  width: '3rem',
+                  maxWidth: '3rem',
+                  fontWeight: 'light',
+                  color: 'tomato',
+                  cursor: 'pointer',
+                  '&:hover': {
+                    transform: 'scale(1.02)'
+                  }
                 }
-              }}
-              icon={faHeart}
-            />
+              : {
+                  height: '100%',
+                  width: '3rem',
+                  maxWidth: '3rem',
+                  fontWeight: 'light',
+                  color: primaryColor,
+                  cursor: 'pointer',
+                  '&:hover': {
+                    transform: 'scale(1.02)'
+                  }
+                }
           }
-          style={{
-            '&:hover': {
-              transform: 'scale(1.02)'
-            }
+          icon={faHeart}
+          onClick={(e) => {
+            e.preventDefault();
+            postAddToWishList({ productId: pId });
           }}
           className='bg-transparent'
         />
@@ -82,6 +116,7 @@ HomeCategoryProductCard.propTypes = {
   category: PropTypes.string,
   description: PropTypes.string,
   image: PropTypes.string,
+  pId: PropTypes.number,
   route: PropTypes.string,
   rating: PropTypes.shape({
     rating: PropTypes.number,
@@ -112,7 +147,8 @@ HomeCategoryProductCard.defaultProps = {
     },
     performRating: false
   },
-  category: 'Category'
+  category: 'Category',
+  pId: 0
 };
 
 export default HomeCategoryProductCard;

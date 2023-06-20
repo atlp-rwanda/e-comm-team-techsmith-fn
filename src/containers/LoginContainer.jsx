@@ -24,7 +24,7 @@ const LoginContainer = () => {
     return state.auth;
   });
   const mySubmit = async (data) => {
-    dispatch(login(data)) 
+    dispatch(login(data));
   };
 
   useEffect(() => {

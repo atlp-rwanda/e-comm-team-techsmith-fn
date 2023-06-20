@@ -21,9 +21,12 @@ const Footer = () => {
   if (
     pathname === '/login' ||
     pathname === '/signup' ||
+    pathname === '/wishlist' ||
     pathname === '/dashboard/users' ||
     pathname.startsWith('/signup/') ||
     pathname.startsWith('/reset-password') ||
+    pathname.startsWith('/reset-password') ||
+    pathname.startsWith('/wishlist/') ||
     pathname === '/dashboard/seller'
   )
     return null;

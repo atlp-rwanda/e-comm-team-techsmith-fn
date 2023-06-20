@@ -20,7 +20,8 @@ import {
   SingupPage,
   SearchPage,
   SellerProductsPage,
-  CheckoutPage
+  CheckoutPage,
+  WishlistPage
 } from './pages';
 import Footer from './components/Footer';
 import Navbar from './components/Navbar';
@@ -47,7 +48,7 @@ const App = () => {
           <Route path='/contact' element={<ContactPage />} />
           <Route path='/category' element={<CategoryPage />} />
           <Route element={<IsLoggedIn />}>
-          <Route path='/login' element={<LoginPage />} />
+            <Route path='/login' element={<LoginPage />} />
           </Route>
           <Route path='/signup' element={<SingupPage />} />
           <Route
@@ -62,6 +63,7 @@ const App = () => {
           <Route path='/seller/unauthorized' element={<SellerNavigation />} />
           <Route path='/admin/unauthorized' element={<AdminNavigation />} />
           <Route element={<ProtectedRoutes />}>
+            <Route path='/wishlist/' element={<WishlistPage />} />
             <Route path='/chat' element={<JoinChat />} />
             <Route path='/chat/room' element={<ChatPage />} />
             <Route path='/order/:id' element={<CheckoutPage />} />
@@ -71,10 +73,17 @@ const App = () => {
             <Route path='/dashboard/seller' element={<SellerProductsPage />} />
           </Route>
           <Route element={<AdminRoutes />}>
-          <Route path='/dashboard/users' element={<AdminManageUserPage />} />
+            <Route path='/dashboard/users' element={<AdminManageUserPage />} />
           </Route>
+          <Route path='/unauthorized' element={<Navigate />} />
+          <Route path='/seller/unauthorized' element={<SellerNavigation />} />
+
+          <Route path='*' element={<NotFoundPage />} />
         </Routes>
-        <div className='screen-base:right-6' style={{ position: 'fixed', bottom: '4rem', right: '4rem' }}>
+        <div
+          className='screen-base:right-6'
+          style={{ position: 'fixed', bottom: '4rem', right: '4rem' }}
+        >
           <ChatFloadtingButton />
         </div>
         <Footer />

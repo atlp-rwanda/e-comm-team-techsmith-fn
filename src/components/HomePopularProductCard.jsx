@@ -32,7 +32,10 @@ const HomePopularProductCard = ({
             id='home-star-rating'
           />
         </span>
-        <Button className='home_product_category bg-transparent' value={category} />
+        <Button
+          className='home_product_category bg-transparent'
+          value={category}
+        />
       </div>
       <div>
         <Button

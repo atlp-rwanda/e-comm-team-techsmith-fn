@@ -24,7 +24,7 @@ const CheckoutContainer = ({ id }) => {
     isLoading,
     isSuccess,
     isError,
-    error,
+    error
   } = useGetSingleOrderQuery(id);
 
   useEffect(() => {
@@ -32,7 +32,6 @@ const CheckoutContainer = ({ id }) => {
       dispatch(updateSingleOrder(orderDetails.data));
     }
   }, [orderDetails]);
-
 
   if (isError) {
     if (error.status === 404) {
@@ -71,7 +70,9 @@ const CheckoutContainer = ({ id }) => {
           </div>
           <div className='order_total_amount flex w-full justify-between gap-4'>
             <h3 className='text-[2rem] font-medium'>Total</h3>
-            <p className='text-[1.8rem] font-black'>{isLoading ? 'Loading...' : `$ ${orderDetails.data.amount}`}</p>
+            <p className='text-[1.8rem] font-black'>
+              {isLoading ? 'Loading...' : `$ ${orderDetails.data.amount}`}
+            </p>
           </div>
         </div>
         <div className='shipping_details_container flex flex-col w-full max-w-[70%] items-start gap-8 screen-mid:max-w-[90%]'>
@@ -82,9 +83,15 @@ const CheckoutContainer = ({ id }) => {
                 <Input
                   className={inputsClassName}
                   label=''
-                  placeholder={isLoading ? 'Loading...' : `${orderDetails.data.user.name}`}
+                  placeholder={
+                    isLoading ? 'Loading...' : `${orderDetails.data.user.name}`
+                  }
                 />
-                <Input className={inputsClassName} label='' value='0788 888 888' />
+                <Input
+                  className={inputsClassName}
+                  label=''
+                  value='0788 888 888'
+                />
               </span>
             </div>
             <Input className={inputsClassName} value='Kigali, Rwanda' />
@@ -106,12 +113,18 @@ const CheckoutContainer = ({ id }) => {
             <div className='shopping_details_cta flex items-center w-full justify-between gap-6'>
               <Button
                 value={saveDetails ? 'Saved' : 'Save details'}
-                className={`primary-btn normal-case ${saveDetails ? 'bg-green-600' : 'bg-primary'}`}
-                onClick={() => {return setSaveDetails(!saveDetails)}}
+                className={`primary-btn normal-case ${
+                  saveDetails ? 'bg-green-600' : 'bg-primary'
+                }`}
+                onClick={() => {
+                  return setSaveDetails(!saveDetails);
+                }}
               />
               <Button
                 value={saveDetails ? 'Cancel' : 'Return'}
-                route={saveDetails ? '#' : `/product/${ isSuccess && order.productId}`}
+                route={
+                  saveDetails ? '#' : `/product/${isSuccess && order.productId}`
+                }
                 onClick={() => {
                   if (saveDetails) {
                     return setSaveDetails(!saveDetails);

@@ -1,44 +1,44 @@
 @use 'base';
 
 .order_details_container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 2rem;
+
+  h1 {
+    font-size: 3rem;
+    font-weight: 700;
+  }
+
+  .order_details {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    gap: 2rem;
+    gap: 1rem;
+    width: 100%;
 
-    h1 {
-        font-size: 3rem;
+    .order_details_item {
+      display: flex;
+      align-items: center;
+      width: 100%;
+      justify-content: space-between;
+
+      h3 {
+        font-size: 1.5rem;
+        font-weight: 400;
+      }
+
+      p {
+        font-size: 1.5rem;
         font-weight: 700;
+      }
     }
-
-    .order_details {
-        display: flex;
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 1rem;
-        width: 100%;
-
-        .order_details_item {
-            display: flex;
-            align-items: center;
-            width: 100%;
-            justify-content: space-between;
-
-            h3 {
-                font-size: 1.5rem;
-                font-weight: 400;
-            }
-
-            p {
-                font-size: 1.5rem;
-                font-weight: 700;
-            }
-        }
-    }
+  }
 }
 
 .shopping_details_cta {
-    a:hover {
-        transform: scale(1.02);
-    }
+  a:hover {
+    transform: scale(1.02);
+  }
 }

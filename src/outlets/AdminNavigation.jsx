@@ -5,7 +5,8 @@ const AdminNavigation = () => {
   return (
     <div className='navigate_page min-h-[80vh] flex flex-col items-center justify-center gap-12 max-w-[90%] mx-auto'>
       <h1 className='text-[3rem] text-center normal-case font-bold screen-mid:text-[2.5rem] screen-base:text-[2rem]'>
-        This page is only accessible to administrators. Please log into your account.
+        This page is only accessible to administrators. Please log into your
+        account.
       </h1>
       <Button
         value='Go to login page'

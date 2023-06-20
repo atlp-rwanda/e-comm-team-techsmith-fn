@@ -4,4 +4,10 @@ const removeDuplicates = (array) => {
   });
 };
 
-export { removeDuplicates };
+const findInArrayWishList = (array, value) => {
+  return array.find((element) => {
+    return element.productId === value;
+  });
+};
+
+export { removeDuplicates, findInArrayWishList };

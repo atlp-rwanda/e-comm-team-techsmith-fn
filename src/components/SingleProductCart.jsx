@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import AddRemoveButton from './AddRemoveButton';
 import { whiteshoes } from '../assets';
 
@@ -39,6 +40,14 @@ const SingleProduct = ({ name, details, piecePrice, quantity }) => {
       <hr className='border-none bg-white  w-full h-2' />
     </div>
   );
+};
+
+SingleProduct.propTypes = {
+  name: PropTypes.string.isRequired,
+  details: PropTypes.string.isRequired,
+  piecePrice: PropTypes.oneOfType([PropTypes.number, PropTypes.string])
+    .isRequired,
+  quantity: PropTypes.oneOfType([PropTypes.number, PropTypes.string]).isRequired
 };
 
 export default SingleProduct;
