@@ -47,6 +47,16 @@ export const apiSlice = createApi({
             body: data,
             headers: {
               'Content-Type': 'application/json',
+            }
+          };
+        }
+      }),
+      putUserRole: builder.mutation({
+        query: ({ id, roleId }) => {
+          return {
+            url: `users/${id}/role/${roleId}`,
+            method: 'PUT',
+            headers: {
               authorization: `${token}`
             }
           };
@@ -88,5 +98,6 @@ export const {
   useGetAllCategoriesQuery,
   usePostProductSearchMutation,
   useLazyGetProductsCategoryQuery,
-  useLazyGetAllProductsQuery
+  useLazyGetAllProductsQuery,
+  usePutUserRoleMutation
 } = apiSlice;

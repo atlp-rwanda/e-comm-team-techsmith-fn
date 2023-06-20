@@ -1,5 +1,4 @@
-import React, { useState } from 'react';
-import { Select, MenuItem } from '@mui/material';
+import React from 'react';
 import { ToastContainer } from 'react-toastify';
 import PropTypes from 'prop-types';
 import { useDispatch, useSelector } from 'react-redux';
@@ -7,6 +6,7 @@ import { defaultProfilePic, lock, unlock } from '../assets';
 import { successNotification } from '../components/Notification';
 import { disableUser, enableUser } from '../states/features/users/usersSlice';
 import Loading from '../components/Loading';
+import { usePutUserRoleMutation } from '../states/api/apiSlice';
 
 export const Userlist = ({ userList }) => {
   const dispatch = useDispatch();
@@ -14,11 +14,10 @@ export const Userlist = ({ userList }) => {
     return state.users;
   });
 
-  const [role, setrole] = useState(2);
 
-  const handleChange = (event) => {
-    setrole(event.target.value);
-  };
+  const [putUserRole, { isSuccess, isLoading: loading }] = usePutUserRoleMutation();
+
+
 
   const blockUnblockUser = (e) => {
     if (accountStatus) {
@@ -57,19 +56,39 @@ export const Userlist = ({ userList }) => {
               <p>{user.createdAt}</p>
             </span>
             <span className='userrole flex justify-center  '>
-              <Select
-                labelId='demo-simple-select-label'
-                id='demo-simple-select'
-                value={role}
-                className='select'
-                onChange={handleChange}
-                sx={{ color: 'white' }}
+              {/* <p>{user.role.name}</p> */}
+              {isSuccess}
+              <select
+                onChange={(e) => {
+                  const roleId = e.target.value;
+                  const { id } = user;
+                  putUserRole({ id, roleId });
+                }}
+                id={user.id}
+                disabled={loading}
+                className={
+                  loading
+                    ? 'bg-red-50 border border-red-300'
+                    : 'bg-green-50 border border-green-300'
+                }
               >
-                <MenuItem value={1}>Admin</MenuItem>
-                <MenuItem value={2}>Buyer</MenuItem>
-                <MenuItem value={3}>Seller</MenuItem>
-              </Select>
+                <option value='' selected disabled hidden>
+                  {' '}
+                  {loading ? 'Loading...' : user.role.name}
+                  {/* { user.role.name } */}
+                </option>
+                <option value={1}>
+                  <p>Admin</p>
+                </option>
+                <option value={2}>
+                  <p>Seller</p>
+                </option>
+                <option value={3}>
+                  <p>Buyer</p>
+                </option>
+              </select>
             </span>
+
 
             <button className='image-button flex justify-center ' type='button'>
               {user.isActive === false ? (
