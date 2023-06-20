@@ -31,7 +31,26 @@ const signup = async (data) => {
   const response = await API.post(`${API_URL}/users/signup`, data);
   return response.data.message;
 };
+const requestPasswordReset = async (email) => {
+  const response = await API.post(`${API_URL}/password/requestReset`, {
+    email
+  });
+  return response.data.message;
+};
+const resetPassword = async (token, password) => {
+  const response = await API.post(
+    `${API_URL}/password/resetPassword/${token}`,
+    { password }
+  );
+  return response.data;
+};
 
-const authServices = { login, login2FA, signup };
+const authServices = {
+  login,
+  login2FA,
+  signup,
+  requestPasswordReset,
+  resetPassword
+};
 
 export default authServices;

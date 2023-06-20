@@ -15,6 +15,7 @@ import AdminManageUserContainer from '../containers/UsersContainer';
 import ProfileContainer from '../containers/ProfileContainer';
 import SearchContainer from '../containers/SearchContainer';
 import ChatContainer from '../containers/ChatContainer';
+import ResetPasswordContainer from '../containers/ResetPasswordContainer';
 
 const HomePage = () => {
   return <HomeContainer />;
@@ -50,6 +51,10 @@ const ChatPage = () => {
   return <ChatContainer />;
 };
 
+const ResetPasswordPage =()=>{
+  return <ResetPasswordContainer />
+}
+
 const SingleProductPage = () => {
   const { id } = useParams();
 
@@ -76,7 +81,8 @@ export {
   SingleProductPage,
   SellerPage,
   ProfilePage,
-  AdminManageUserPage,
   SearchPage,
-  ChatPage
+  ChatPage,
+  ResetPasswordPage,
+  AdminManageUserPage
 };

@@ -15,6 +15,7 @@ import {
   SellerPage,
   ProfilePage,
   NotFoundPage,
+  ResetPasswordPage,
   SingleProductPage,
   SingupPage,
   SearchPage
@@ -40,6 +41,7 @@ const App = () => {
           <Route path='/categories' element={<CategoryPage />} />
           <Route path='/login' element={<LoginPage />} />
           <Route path='/signup' element={<SingupPage />} />
+          <Route path='/reset-password/:token' element={<ResetPasswordPage />} />
           <Route element={<SellerRoutes />}>
             <Route path='/seller/add-product' element={<SellerPage />} />
           </Route>

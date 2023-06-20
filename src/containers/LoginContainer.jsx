@@ -8,6 +8,8 @@ import AuthBlueSide from '../components/AuthBlueSide';
 import TLogo from '../assets/images/T_Logo.png';
 import Loading from '../components/Loading';
 import InputPopup from '../components/InputPopup';
+import PopupMaker from '../components/PopupMaker';
+import ForgetPassword from '../components/ForgetPassword';
 import { login, reset } from '../states/features/auth/authSlice';
 import { API_URL } from '../constants';
 
@@ -15,6 +17,7 @@ const LoginContainer = () => {
   const form = useForm();
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const [openPopUp, setOpenPopUp] = React.useState(false);
   const { register, handleSubmit, formState } = form;
   const { errors } = formState;
   const { isLoading, isError, isSuccess } = useSelector((state) => {
@@ -38,9 +41,13 @@ const LoginContainer = () => {
       dispatch(reset());
     }
   }, [dispatch, isSuccess]);
+  const showForgotPass = () => {
+    setOpenPopUp(true);
+  };
 
   return (
     <>
+    {openPopUp && <PopupMaker open={openPopUp} Component={ForgetPassword} setOpen={setOpenPopUp} />}
       <div>
         <InputPopup
           title='2FA Verification'
@@ -111,8 +118,8 @@ Authentication process.'
                 </div>
 
                 <div className='loginPage__forgotcode'>
-                  <Typography variant='body1'>Forgot your password?</Typography>
-                </div>
+                <Typography variant='body1'onClick={showForgotPass}>Forgot your password?</Typography>
+              </div>
                 <div className='loginPage__button'>
                   <button
                     type='submit'
