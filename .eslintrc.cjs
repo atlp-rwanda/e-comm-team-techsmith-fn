@@ -14,10 +14,14 @@ module.exports = {
     'spaced-comment': 'off',
 
     'jsx-a11y/no-static-element-interactions': 'off',
-
+    'jsx-a11y/interactive-supports-focus': 'off',
+    'jsx-a11y/mouse-events-have-key-events': 'off',
     ' import/no-unresolved':'off',
     'react/button-has-type': 'off',
     'no-use-before-define': 'off',
+    'import/no-named-as-default-member': 'off',
+    'import/no-named-as-default': 'off',
+    'react/prop-types': 'warn',
     'default-param-last': 'off',
     'eact/jsx-filename-extension': 'off',
     'react/jsx-no-constructed-context-values': 'off',
@@ -25,7 +29,6 @@ module.exports = {
     'no-useless-escape': 'off',
     'comma-dangle': 'off',
     'no-param-reassign': 'off',
-    'jsx-a11y/interactive-supports-focus':'off',
     'jsx-a11y/label-has-associated-control': 'off',
     'jsx-a11y/no-noninteractive-element-interactions': 'off',
     'jsx-a11y/click-events-have-key-events': 'off',

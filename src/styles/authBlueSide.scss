@@ -18,31 +18,16 @@
       border: 2px solid white;
       margin-bottom: 50px;
     }
-    .blueSide__logo {
-      img {
-        padding: 10px;
-        border-radius: 50%;
-        border: 2px solid white;
-        margin-bottom: 50px;
-      }
-    }
-    .blueSide__title,
-    .blueSide__info {
-      margin-bottom: 15px;
-    }
+  }
+  .blueSide__title,
+  .blueSide__info {
+    margin-bottom: 15px;
   }
   .blueSide__button {
     button {
       background-color: #fff;
       color: base.$primary-color;
-      width: 80%;
-      border-radius: 20px;
-    }
-  }
-  .blueSide__button {
-    button {
-      background-color: #fff;
-      color: base.$primary-color;
+      margin: 40px 20px;
       width: 80%;
       border-radius: 20px;
     }

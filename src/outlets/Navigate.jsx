@@ -5,7 +5,7 @@ const Navigate = () => {
   return (
     <div className='navigate_page min-h-[80vh] flex flex-col items-center justify-center gap-12 max-w-[90%] mx-auto'>
       <h1 className='text-[3rem] text-center normal-case font-bold screen-mid:text-[2.5rem] screen-base:text-[2rem]'>
-        Please log into your account to view this page.
+        Please log into your account to view this.
       </h1>
       <Button
         value='Go to login page'

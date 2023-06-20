@@ -13,3 +13,4 @@ export { default as lock } from './svg/Lock.svg';
 export { default as loading } from './svg/loading.svg';
 export { default as Left } from './svg/Left.svg';
 export { default as Right } from './svg/Right.svg';
+export { default as whiteshoes } from './whiteshoes.png';

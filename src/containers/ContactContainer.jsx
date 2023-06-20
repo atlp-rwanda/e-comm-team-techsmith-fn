@@ -1,9 +1,10 @@
 import React from 'react';
+import Cart from '../components/Cart';
 
 const ContactContainer = () => {
   return (
-    <div className='text-3xl text-slate-500 font-bold text-center underline py-[20vh]'>
-      <p>Contact us</p>
+    <div>
+      <Cart />
     </div>
   );
 };
