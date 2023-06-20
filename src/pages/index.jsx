@@ -1,7 +1,6 @@
 import React from 'react';
 import { useParams } from 'react-router-dom';
 import AboutContainer from '../containers/AboutContainer';
-import CategoryContainer from '../containers/CategoryContainer';
 import ContactContainer from '../containers/ContactContainer';
 import HomeContainer from '../containers/HomeContainer';
 import LoginContainer from '../containers/LoginContainer';
@@ -17,6 +16,7 @@ import SearchContainer from '../containers/SearchContainer';
 import ChatContainer from '../containers/ChatContainer';
 import ResetPasswordContainer from '../containers/ResetPasswordContainer';
 import SellerProductsContainer from '../containers/SellerProductsContainer';
+import ViewAllProductsContainer from '../containers/ViewAllProductsContainer';
 
 const HomePage = () => {
   return <HomeContainer />;
@@ -31,7 +31,7 @@ const SingupPage = () => {
   return <SignupContainer />;
 };
 const CategoryPage = () => {
-  return <CategoryContainer />;
+  return <ViewAllProductsContainer />;
 };
 const AboutPage = () => {
   return <AboutContainer />;

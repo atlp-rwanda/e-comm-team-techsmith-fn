@@ -19,8 +19,8 @@ const HomeCategoryProductCard = ({
 }) => {
   return (
     <div className={`home_category_product_card ${className}`}>
-      <section className='category_product_image_container'>
-        <img src={image} alt={name} />
+      <section className='category_product_image_container '>
+        <img src={image} alt={name} className='transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 duration-500' />
       </section>
       <section className='product_category_text_container'>
         <div className='category_product_name_price'>
@@ -73,7 +73,7 @@ const HomeCategoryProductCard = ({
 HomeCategoryProductCard.propTypes = {
   className: PropTypes.string,
   buttonClassName: PropTypes.string,
-  price: PropTypes.string.isRequired,
+  price: PropTypes.number.isRequired,
   name: PropTypes.string.isRequired,
   category: PropTypes.string,
   description: PropTypes.string,
