@@ -29,8 +29,6 @@ const PopularProducts = () => {
       setAllWishlistData(removeDuplicates(allWishlist.data?.availableProducts))
     }
   }, [newWishlist, allWishlist]);
-
-
   return (
     <div className='popular_products'>
       <section className='popular_product_header'>
@@ -53,7 +51,7 @@ const PopularProducts = () => {
             name={wishlist.product.name}
             price={wishlist.product.price}
             pId={wishlist.productId}
-            image={wishlist.product.image[0]}
+            image={wishlist.product.image[random(wishlist.product.image.length)]}
             />
           );
         })}
@@ -61,5 +59,8 @@ const PopularProducts = () => {
     </div>
   );
 };
-
 export default PopularProducts;
+
+const random=(size)=>{
+  return(Math.floor(Math.random() * size));
+}
