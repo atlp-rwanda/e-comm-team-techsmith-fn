@@ -56,7 +56,7 @@ export const Userlist = ({ userList }) => {
               <p>{user.createdAt}</p>
             </span>
             <span className='userrole flex justify-center  '>
-              {/* <p>{user.role.name}</p> */}
+            
               {isSuccess}
               <select
                 onChange={(e) => {
@@ -75,7 +75,7 @@ export const Userlist = ({ userList }) => {
                 <option value='' selected disabled hidden>
                   {' '}
                   {loading ? 'Loading...' : user.role.name}
-                  {/* { user.role.name } */}
+                  
                 </option>
                 <option value={1}>
                   <p>Admin</p>

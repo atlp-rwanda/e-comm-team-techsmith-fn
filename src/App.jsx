@@ -33,6 +33,7 @@ import SellerNavigation from './outlets/SellerNavigation';
 import ChatFloadtingButton from './components/Chatroom/ChatFloatingButton';
 import AdminNavigation from './outlets/AdminNavigation';
 import AdminRoutes from './outlets/AdminRoutes';
+import IsLoggedIn from './outlets/IsLoggedIn';
 
 const App = () => {
   return (
@@ -45,7 +46,9 @@ const App = () => {
           <Route path='/about' element={<AboutPage />} />
           <Route path='/contact' element={<ContactPage />} />
           <Route path='/category' element={<CategoryPage />} />
+          <Route element={<IsLoggedIn />}>
           <Route path='/login' element={<LoginPage />} />
+          </Route>
           <Route path='/signup' element={<SingupPage />} />
           <Route
             path='/reset-password/:token'
