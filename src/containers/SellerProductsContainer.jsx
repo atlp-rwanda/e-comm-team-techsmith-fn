@@ -156,8 +156,13 @@ const SellerProductsContainer = () => {
 
             {networkError && (
               <div className='loading_div flex items-center min-h-[50%] my-12 justify-center gap-12 w-[80%]'>
-                Could not retrieve products. You may not have any products in your catalogue{' '}
-                <Button className='primary-btn px-8 py-4' value='Add products' route='/seller/add-product' />
+                Could not retrieve products. You may not have any products in
+                your catalogue{' '}
+                <Button
+                  className='primary-btn px-8 py-4'
+                  value='Add products'
+                  route='/seller/add-product'
+                />
               </div>
             )}
 
