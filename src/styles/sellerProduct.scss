@@ -34,6 +34,10 @@ $lightBorder: 1px solid rgba(0, 0, 0, 0.154);
       font-size: 1.3rem;
     }
   }
+  .details_icons{
+    padding: 1.5rem;
+  }
+
   .sellingProd__cardImage {
     background-color: white;
     height: 100%;
@@ -131,7 +135,6 @@ $lightBorder: 1px solid rgba(0, 0, 0, 0.154);
   }
   .sellingProd__lists {
     flex-direction: column !important;
-    //background-color: #fff !important;
   }
   .sellingProd__singleView {
     flex-direction: column;
