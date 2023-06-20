@@ -4,6 +4,7 @@ import chatReducer from './features/chat/chatSlice';
 import authReducer from './features/auth/authSlice';
 import userReducer from './features/users/usersSlice';
 import productReducer from './features/search/searchSlice';
+import sellerReducer from './features/seller/sellerSlice';
 
 const store = configureStore({
   reducer: {
@@ -11,7 +12,8 @@ const store = configureStore({
     chat: chatReducer,
     auth: authReducer,
     users: userReducer,
-    search: productReducer
+    search: productReducer,
+    seller: sellerReducer
   },
   middleware: (getDefaultMiddleware) => {
     return getDefaultMiddleware().concat(apiSlice.middleware);

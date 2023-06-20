@@ -18,7 +18,8 @@ import {
   ResetPasswordPage,
   SingleProductPage,
   SingupPage,
-  SearchPage
+  SearchPage,
+  SellerProductsPage
 } from './pages';
 import Footer from './components/Footer';
 import Navbar from './components/Navbar';
@@ -44,6 +45,7 @@ const App = () => {
           <Route path='/reset-password/:token' element={<ResetPasswordPage />} />
           <Route element={<SellerRoutes />}>
             <Route path='/seller/add-product' element={<SellerPage />} />
+            <Route path='/dashboard/seller' element={<SellerProductsPage />} />
           </Route>
           <Route path='/product/:id' element={<SingleProductPage />} />
           <Route path='/users/:id' element={<ProfilePage />} />
