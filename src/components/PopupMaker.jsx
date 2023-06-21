@@ -14,7 +14,7 @@ const PopupMaker = (props) => {
     <div>
       <Dialog open={open} onClose={handleClose}>
         <DialogContent>
-          <Component {...props}/>
+          <Component {...props} />
         </DialogContent>
       </Dialog>
     </div>
@@ -24,7 +24,7 @@ const PopupMaker = (props) => {
 PopupMaker.propTypes = {
   Component: PropTypes.elementType.isRequired,
   setOpen: PropTypes.func.isRequired,
-  open: PropTypes.bool.isRequired,
+  open: PropTypes.bool.isRequired
 };
 
 export default PopupMaker;

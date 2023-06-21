@@ -1,5 +1,5 @@
-const forms = require('@tailwindcss/forms');
-/** @type {import('tailwindcss').Config} */
+import forms from '@tailwindcss/forms';
+
 export default {
   content: ['./src/**/*.js', './src/**/*.jsx'],
   theme: {
@@ -7,10 +7,24 @@ export default {
       colors: {
         primary: '#243665',
         grayText: '#ababab',
-        thickGrayText: '#666666'
+        thickGrayText: '#666666',
+        bluewishGray: '#24386599'
       },
       printColorAdjust: {
         exact: 'exact'
+      },
+      keyframes: {
+        wiggle: {
+          '0%': {
+            transform: 'rotate(-5deg)'
+          },
+          '50%': {
+            transform: 'rotate(5deg)'
+          },
+          '100%': {
+            transform: 'rotate(-5deg)'
+          }
+        }
       },
       screens: {
         'screen-lg': { max: '1020px' },

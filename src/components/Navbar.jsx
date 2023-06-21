@@ -1,35 +1,156 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
+import { ToastContainer } from 'react-toastify';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { GiHamburgerMenu } from 'react-icons/gi';
 import { BiDownArrow } from 'react-icons/bi';
-import { AiOutlineClose,AiOutlineUser } from 'react-icons/ai';
+import { BsCheckCircle } from 'react-icons/bs';
+import { IoIosNotificationsOutline } from 'react-icons/io';
+import {
+  AiOutlineClose,
+  AiOutlineUser,
+  AiOutlineCloseCircle
+} from 'react-icons/ai';
 import { searchlog, techLogW } from '../assets';
 import Button from './Button';
 import logOut from '../utils/logOut';
+import Loading from './Loading';
 import { useGetAllCategoriesQuery } from '../states/api/apiSlice';
 import { currentToken as Auth } from '../states/features/auth/authSlice';
 import Input from './Input';
+import { successNotification } from './Notification';
 import {
   addCategories,
   addSearchData,
   searchProduct
 } from '../states/features/search/searchSlice';
+import {
+  fetchingAllNotification,
+  fetchingAllUnreadNotification,
+  deleteSingleNotification,
+  readSingleNotification,
+  markNotificationAsRead
+} from '../states/features/seller/sellerSlice';
+import { removeDuplicates } from '../utils/Arrays';
+import { socket } from '../socket';
 
 const Navbar = () => {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
   const { pathname } = useLocation();
   const [close, setClose] = useState(false);
+  const [isActive1, setIsActive1] = useState(false);
+  const [isActive2, setIsActive2] = useState(false);
+  const [isEmpty, setIsEmpty] = useState(false);
+  const [isEmpty2, setIsEmpty2] = useState(false);
+  const [currentNotifications, setNotifications] = useState([]);
+  const [currentUnreadNotifications, setUnreadNotifications] = useState([]);
+  const [notify, setNotify] = useState(false);
+  const [isSeller, setIsSeller] = useState(false);
+  const { isLoading, notifications, unreadNotifications, newUnread, message } =
+    useSelector((state) => {
+      return state.seller;
+    });
+  useEffect(() => {
+    displayNotifications();
+  }, [newUnread, message]);
+
+  const displayNotifications = () => {
+    if (localStorage.getItem('isSeller')) {
+      setIsSeller(true);
+      dispatch(fetchingAllNotification());
+      dispatch(fetchingAllUnreadNotification());
+      setNotifications(removeDuplicates(notifications));
+      setUnreadNotifications(removeDuplicates(unreadNotifications));
+      if (newUnread === 0 || newUnread === undefined) {
+        setIsEmpty2(true);
+      } else {
+        setIsEmpty2(false);
+      }
+      if (notifications === undefined) {
+        setIsEmpty(true);
+      } else {
+        setIsEmpty(false);
+      }
+    } else {
+      setIsSeller(false);
+    }
+  };
+  socket.on('createProductSuccess', (data) => {
+    successNotification('New Product Created');
+    unreadNotifications.push(removeDuplicates(data));
+  });
+  socket.on('productExpired', (data) => {
+    successNotification('Product expired');
+    unreadNotifications.push(removeDuplicates(data));
+  });
+  socket.on('deleteProductSuccess', (data) => {
+    successNotification('Product Deleted successfuly');
+    unreadNotifications.push(removeDuplicates(data));
+  });
+  socket.on('updateProductSuccess', (data) => {
+    successNotification('Product Updated successfuly');
+    unreadNotifications.push(removeDuplicates(data));
+  });
+
+  const getAllNotifications = () => {
+    setIsActive1(true);
+    setIsActive2(false);
+    dispatch(fetchingAllNotification());
+    setNotifications(notifications);
+  };
+  const getAllUnreadNotifications = () => {
+    setIsActive2(true);
+    setIsActive1(false);
+    dispatch(fetchingAllUnreadNotification());
+    setUnreadNotifications(unreadNotifications);
+  };
+  const deleteNotif = (id) => {
+    dispatch(deleteSingleNotification(id));
+    const updatedNotifications = notifications.filter((item) => {
+      return item.id !== id;
+    });
+    setNotifications(updatedNotifications);
+  };
+  const readOne = (id) => {
+    dispatch(readSingleNotification(id));
+    const updatedUnreadNotifications = unreadNotifications.filter((item) => {
+      return item.id !== id;
+    });
+    setUnreadNotifications(updatedUnreadNotifications);
+    if (unreadNotifications.length === 1) {
+      setIsEmpty2(true);
+    }
+  };
+  const clearAll = () => {
+    dispatch(markNotificationAsRead());
+    dispatch(fetchingAllUnreadNotification());
+    setUnreadNotifications([]);
+    setIsEmpty2(true);
+  };
+  const notifyMe = () => {
+    setNotify(true);
+    dispatch(fetchingAllUnreadNotification());
+    dispatch(fetchingAllNotification());
+    setNotifications(notifications);
+    setUnreadNotifications(unreadNotifications);
+    setIsActive1(true);
+    setIsActive2(false);
+    if (notify) {
+      setNotify(false);
+    }
+  };
+
   const { token } = useSelector((state) => {
     return state.auth;
   });
-  const loggingOut=()=>{
-    logOut()
-  }
+  const loggingOut = () => {
+    logOut();
+  };
   if (
     pathname === '/login' ||
     pathname === '/signup' ||
-    pathname === '/dashboard/users'||
+    pathname === '/dashboard/users' ||
     pathname.startsWith('/signup') ||
     pathname.startsWith('/reset-password') ||
     pathname === '/dashboard/seller'
@@ -58,7 +179,8 @@ const Navbar = () => {
   }
 
   return (
-    <div className='navbar py-0 mb-4'>
+    <div>
+          <div className='navbar py-0 mb-4'>
       <div className='navbar_logoContainerNavbar-menuList flex justify-around items-center'>
         <section className='navbar_logoContainer'>
           <Link to='/'>
@@ -139,6 +261,17 @@ const Navbar = () => {
           </div>
         </div>
         }
+                  {isSeller && (
+            <div className='notifications-navbar flex flex-end text-white mr-[1rem]'>
+              <IoIosNotificationsOutline
+                onClick={notifyMe}
+                color='white'
+                className=' navIcon w-[30px]   hover:animate-wiggle  duration-2000 '
+              />
+              {currentUnreadNotifications.length}
+            </div>
+          )}
+
 
         <button className='menuIcon' onClick={changeIcon}>
           {close ? (
@@ -173,6 +306,111 @@ const Navbar = () => {
         </div>
       </div>
     </div>
+      {notify && (
+        <div className='w-full  flex justify-end screen-mid:justify-center'>
+          <div className=' w-[30%] screen-mid:w-[70%] fixed  bg-white border border-primary rounded-lg h-[57%] flex flex-col  mr-[5%] screen-mid:mr-[0%] '>
+            <div className='bigNotify text-[1.6rem] ml-[2rem] mt-[2rem]'>
+              Nofications
+            </div>
+            <div className='subTitlesNotify text-[1.6rem] w-[100%] ml-[2rem]  flex justify-start mt-[10px] '>
+              <button
+                style={{ boxShadow: 'none' }}
+                onClick={getAllNotifications}
+                className={isActive1 ? 'active_notification' : ''}
+              >
+                View all
+              </button>
+              <button
+                style={{ marginLeft: '2rem', boxShadow: 'none' }}
+                onClick={getAllUnreadNotifications}
+                className={isActive2 ? 'active_notification' : ''}
+              >
+                New message
+              </button>
+            </div>
+            <div className='notify overflow-scroll pb-[20px]'>
+              {isLoading && <Loading className='mt-[3rem]' />}
+              {isActive1 &&
+                currentNotifications &&
+                currentNotifications?.map((item) => {
+                  return (
+                    <div
+                      key={Math.random()}
+                      className='flex flex-col justify-center  '
+                    >
+                      <div className='flex justify-start items-center w-[full] mt-[1.5rem] '>
+                        <div className='notifyText w-full ml-[2rem] mr-[2rem] px-[1rem] border border-bluewishGray rounded'>
+                          <div className='flex flex-row justify-between text-primary'>
+                            <p className='text-[1.4rem]'>{item.title}</p>
+                            <AiOutlineCloseCircle
+                              onClick={() => {
+                                return deleteNotif(item.id);
+                              }}
+                              style={{ color: 'red' }}
+                            />
+                          </div>
+                          <p className='text-[1rem] text-bluewishGray'>
+                            {item.body}
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                  );
+                })}
+              {isActive2 && isEmpty2 && (
+                <div className='w-full flex justify-center items-center text-base mt-8'>
+                  No new notification found !
+                </div>
+              )}
+              {isActive1 && isEmpty && (
+                <div className='w-full flex justify-center items-center text-base mt-8'>
+                  No notification found !
+                </div>
+              )}
+              {isActive2 &&
+                currentUnreadNotifications &&
+                currentUnreadNotifications.map((item) => {
+                  return (
+                    <div
+                      key={item.id}
+                      className='flex flex-col justify-center   '
+                    >
+                      <div className='flex justify-start items-center w-[full] mt-[1.5rem] '>
+                        <div className='notifyText w-full ml-[2rem] mr-[2rem] px-[1rem] border border-bluewishGray rounded'>
+                          <div className='flex flex-row justify-between text-primary'>
+                            <p className='text-[1.4rem]'>{item.title}</p>
+                            <BsCheckCircle
+                              onClick={() => {
+                                return readOne(item.id);
+                              }}
+                              style={{ color: 'green' }}
+                            />
+                          </div>
+                          <p className='text-[1rem] text-bluewishGray'>
+                            {item.body}
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                  );
+                })}
+            </div>
+            {isActive2 && !isEmpty2 && (
+              <div className='clearUnread flex flex-row justify-end'>
+                <Button
+                  onClick={clearAll}
+                  value='Clear all'
+                  className='primary-btn w-[11rem] h-[3.4rem] text-[1.2rem] mt-[1.5rem] mr-[2rem] mb-[1.5rem] '
+                />
+              </div>
+            )}
+
+            {message && <ToastContainer />}
+          </div>
+        </div>
+      )}
+      <ToastContainer />
+    </div>
   );
 };
 
@@ -198,7 +436,7 @@ const Search = () => {
 
   const navigate = useNavigate();
   return (
-    <form className='nav-search2 flex items-center p-0 h-full'>
+    <form className='nav-search2 screen-mid:ml-[-15px] flex items-center p-0 h-full'>
       <Input
         type='text'
         name='name'
@@ -248,6 +486,7 @@ const Search = () => {
     </form>
   );
 };
+
 export default Navbar;
 
 

@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import PropTypes from 'prop-types';
 import { RxCrossCircled } from 'react-icons/rx';
 import { BsCart4 } from 'react-icons/bs';
 import SingleProduct from './SingleProductCart';
@@ -166,6 +167,12 @@ const Cart = () => {
       )}
     </div>
   );
+};
+
+
+SubTotal.propTypes = {
+  cart: PropTypes.arrayOf(PropTypes.object),
+  sum: PropTypes.number
 };
 
 export default Cart;

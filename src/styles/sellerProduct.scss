@@ -12,20 +12,19 @@ $lightBorder: 1px solid rgba(0, 0, 0, 0.154);
   }
   .sellingProd__card {
     background-color: #fff;
-    padding: 15px; 
+    padding: 15px;
     width: 43%;
     height: 25rem;
     border-radius: 10px;
     cursor: pointer;
   }
-  .sellingProd__singleView{
+  .sellingProd__singleView {
     background-color: #fff;
     border-radius: 5px;
-    
   }
-  .inputField{
-    p{
-      background-color: #eee ;
+  .inputField {
+    p {
+      background-color: #eee;
       padding: 0.5rem 0.7rem;
       margin-bottom: 2rem;
       border-radius: 5px;
@@ -42,7 +41,7 @@ $lightBorder: 1px solid rgba(0, 0, 0, 0.154);
     img {
       height: 100%;
       width: 100%;
-      padding: 0px 1.5rem; 
+      padding: 0px 1.5rem;
     }
   }
   .sellingProd__cardDetails {
@@ -52,7 +51,7 @@ $lightBorder: 1px solid rgba(0, 0, 0, 0.154);
     }
     p {
       border-radius: 5px;
-      background-color: #eee ;
+      background-color: #eee;
       margin-bottom: 2rem;
       font-size: 1.3rem;
       span {
@@ -60,92 +59,93 @@ $lightBorder: 1px solid rgba(0, 0, 0, 0.154);
       }
     }
   }
-  .close_responsive{
-    display:none;
+  .close_responsive {
+    display: none;
   }
-  .edit{
+  .edit {
     padding: 10px 0 !important;
   }
 }
-@media (max-width: 1000px){
-  .sellingProd__card{
+@media (max-width: 1000px) {
+  .sellingProd__card {
     width: 70% !important;
     background-color: #fff !important;
   }
-  .sellingProd__lists,.sellingProd__singleView{
+  .sellingProd__lists,
+  .sellingProd__singleView {
     flex-direction: column !important;
-    align-items: center!important;
+    align-items: center !important;
   }
-  .sellingProd__singleView{
+  .sellingProd__singleView {
     width: 80% !important;
     left: 10% !important;
   }
-  .close_responsive{
+  .close_responsive {
     width: 100%;
     padding-right: 20px;
-    display:flex !important;
-   
+    display: flex !important;
   }
-  .close{
+  .close {
     display: none !important;
   }
 }
-@media (max-width: 600px){
-  .sellingProd__subheading{
+@media (max-width: 600px) {
+  .sellingProd__subheading {
     padding: 0 2rem !important;
   }
-  .sellingProd__card{
+  .sellingProd__card {
     display: block !important;
     width: 70% !important;
     height: auto !important;
     background-color: #fff !important;
   }
-  .sellingProd__cardDetailsPara{
+  .sellingProd__cardDetailsPara {
     padding-top: 2rem !important;
     padding-left: 0 !important;
   }
-  .sellingProd__cardImage{
+  .sellingProd__cardImage {
     width: 100% !important;
-    img{
+    img {
       height: 20rem !important;
       width: 100% !important;
     }
   }
-  .imageField,.details{
+  .imageField,
+  .details {
     width: 90% !important;
   }
-  .imageField{
+  .imageField {
     flex-direction: column-reverse !important;
   }
-  .four_img{
+  .four_img {
     flex-direction: row !important;
     justify-content: space-between !important;
     width: 100% !important;
     margin-top: 1rem;
   }
-  .inputField{
+  .inputField {
     margin-top: 2rem;
-    p{
-    margin-left: 0 !important;
+    p {
+      margin-left: 0 !important;
     }
   }
-  .sellingProd__lists{
+  .sellingProd__lists {
     flex-direction: column !important;
     //background-color: #fff !important;
   }
-  .sellingProd__singleView{
+  .sellingProd__singleView {
     flex-direction: column;
-    align-items: center!important;
+    align-items: center !important;
     background-color: #fff !important;
     padding: 1rem !important;
   }
-  .edit{
-    padding: 10px 0 !important
+  .edit {
+    padding: 10px 0 !important;
   }
-  .close_responsive{
+  .close_responsive {
     padding-bottom: 1rem;
   }
-  .sellingProd__editIcons{
+  .sellingProd__editIcons {
     margin-top: 15px;
   }
 }

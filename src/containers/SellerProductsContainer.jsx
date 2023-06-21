@@ -1,13 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import TextField from '@mui/material/TextField';
 import { AiOutlineCloseCircle } from 'react-icons/ai';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import {
-  faPenToSquare,
-  faTrash,
-  faPlus
-} from '@fortawesome/free-solid-svg-icons';
+import {faPlus} from '@fortawesome/free-solid-svg-icons';
 import Button from '../components/Button';
 import { loading, Left, Right } from '../assets';
 import {
@@ -18,19 +13,19 @@ import SellerNavigationDashbooard from './SellerNavigation';
 
 const SellerProductsContainer = () => {
   const [poping, setpoping] = useState(false);
-  const [items,setItem] = useState('');
+  const [items, setItem] = useState('');
   const dispatch = useDispatch();
-  const { isPending, myCollection, networkError, totalpages, item } =
+  const { isPending, myCollection, networkError, totalpages } =
     useSelector((state) => {
       return state.seller;
     });
   const getProduct = (id) => {
     setpoping(true);
-    const oneItem = myCollection.filter((oneProduct,index) => {
-      return id === index
-    })
-    setItem(oneItem)
-    return oneItem
+    const oneItem = myCollection.filter((oneProduct, index) => {
+      return id === index;
+    });
+    setItem(oneItem);
+    return oneItem;
   };
 
   const [page, setpage] = useState(1);
@@ -70,11 +65,16 @@ const SellerProductsContainer = () => {
         </div>
         {poping && (
           <div className='sellingProd__singleView absolute top-[30%] left-[30%] bg-slate-50 border  w-[55%] pb-8 flex flex-row drop-shadow-md px-16'>
-              <div className="close_responsive justify-end">
-                <button className='' onClick={()=>{return setpoping(false)}}> 
-                 <AiOutlineCloseCircle />
-                </button>
-              </div>
+            <div className='close_responsive justify-end'>
+              <button
+                className=''
+                onClick={() => {
+                  return setpoping(false);
+                }}
+              >
+                <AiOutlineCloseCircle />
+              </button>
+            </div>
             <div className='imageField w-[50%] flex flex-row justify-around items-center pr-4'>
               <div className='four_img flex flex-col items-center justify-center'>
                 <img
@@ -95,28 +95,41 @@ const SellerProductsContainer = () => {
               </div>
               <div className='flex items-center'>
                 <img
-                className='w-[270px] h-[200px] drop-shadow-md  bg-white'
-                src={items[0].image[0]}
-                alt=''
-              />
+                  className='w-[270px] h-[200px] drop-shadow-md  bg-white'
+                  src={items[0].image[0]}
+                  alt=''
+                />
               </div>
             </div>
             <div className='details flex flex-col w-[50%]  '>
-            <div className="close flex justify-end p-[20px]">
-                <button onClick={()=>{return setpoping(false)}}> 
-                 <AiOutlineCloseCircle />
+              <div className='close flex justify-end p-[20px]'>
+                <button
+                  onClick={() => {
+                    return setpoping(false);
+                  }}
+                >
+                  <AiOutlineCloseCircle />
                 </button>
               </div>
               <div className='inputField text-start h-[65%]'>
-              <p className='mx-4'>Name: <span>{items[0].name}</span></p>
-              <p className='mx-4'>Stock: <span>{items[0].quantity}</span></p>
-              <p className='mx-4'>Price: <span>{items[0].price}</span></p>
-              <p className='mx-4'>Expiry Date: <span>{items[0].expiryDate.split('T')[0]}</span></p>
-              <p className='mx-4'>Description: <br /><span>{items[0].description}</span></p>
+                <p className='mx-4'>
+                  Name: <span>{items[0].name}</span>
+                </p>
+                <p className='mx-4'>
+                  Stock: <span>{items[0].quantity}</span>
+                </p>
+                <p className='mx-4'>
+                  Price: <span>{items[0].price}</span>
+                </p>
+                <p className='mx-4'>
+                  Expiry Date: <span>{items[0].expiryDate.split('T')[0]}</span>
+                </p>
+                <p className='mx-4'>
+                  Description: <br />
+                  <span>{items[0].description}</span>
+                </p>
               </div>
             </div>
-          
-         
           </div>
         )}
         <div className='sellingProd__lists flex  justify-around flex-wrap py-7'>
@@ -135,12 +148,15 @@ const SellerProductsContainer = () => {
           )}
 
           {/* Product in my collection */}
-          {myCollection?.map((product,index) => {
+          {myCollection?.map((product, index) => {
             return (
-              <div key={product.id} className='sellingProd__card flex  mb-5 '
-              onClick={() => {
-                return getProduct(index);
-              }}>
+              <div
+                key={product.id}
+                className='sellingProd__card flex  mb-5 '
+                onClick={() => {
+                  return getProduct(index);
+                }}
+              >
                 <div className='sellingProd__cardImage flex '>
                   <img src={product.image[0]} alt='Product' />
                 </div>
