@@ -74,7 +74,7 @@ const App = () => {
           <Route path='/dashboard/users' element={<AdminManageUserPage />} />
           </Route>
         </Routes>
-        <div style={{ position: 'fixed', bottom: '4rem', right: '4rem' }}>
+        <div className='screen-base:right-6' style={{ position: 'fixed', bottom: '4rem', right: '4rem' }}>
           <ChatFloadtingButton />
         </div>
         <Footer />

@@ -8,3 +8,4 @@ export {
 } from './API';
 export { productImages, singleProductId } from './Products';
 export { defaultPhoto } from './Users';
+export { heroImages, description, newsOutlet } from './About';
