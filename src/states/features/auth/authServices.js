@@ -5,13 +5,21 @@ const login = async (data) => {
   const response = await API.post(`${API_URL}/users/login`, data);
 
   if (!response.data.user) {
-    localStorage.setItem('isSeller', 'true');
     localStorage.removeItem('myToken');
   } else {
-    const { id, name } = response.data.user;
-    localStorage.setItem('user', JSON.stringify({ id, name }));
-    localStorage.setItem('myToken', response.data.Authorization);
-    localStorage.removeItem('isSeller');
+    const { id, name, role } = response.data.user;
+    if (role.name === 'admin') {
+      localStorage.setItem('isAdmin', 'true');
+      localStorage.setItem('user', JSON.stringify({ id, name }));
+      localStorage.setItem('myToken', response.data.Authorization);
+      localStorage.removeItem('isSeller');
+    } else if (role.name === 'buyer') {
+      localStorage.setItem('user', JSON.stringify({ id, name }));
+      localStorage.setItem('myToken', response.data.Authorization);
+      localStorage.removeItem('isSeller');
+      localStorage.removeItem('isAdmin');
+      localStorage.removeItem('isSeller');
+    }
   }
   return response.data;
 };
@@ -22,6 +30,7 @@ const login2FA = async (data) => {
     const { id, name, email } = response.data.user;
     localStorage.setItem('user', JSON.stringify({ id, name, email }));
     localStorage.setItem('myToken', response.data.Authorization);
+    localStorage.setItem('isSeller', 'true');
   }
 
   return response.data.Authorization;

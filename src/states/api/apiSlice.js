@@ -46,7 +46,7 @@ export const apiSlice = createApi({
             method: 'POST',
             body: data,
             headers: {
-              'Content-Type': 'application/json',
+              'Content-Type': 'application/json'
             }
           };
         }
@@ -85,6 +85,43 @@ export const apiSlice = createApi({
         query: ({ size, page }) => {
           return `products/?size=${size}&page=${page}`;
         }
+      }),
+      createOrder: builder.mutation({
+        query: ({ desiredQuantity, productId, amount }) => {
+          return {
+            url: 'orders',
+            method: 'POST',
+            body: { desiredQuantity, productId, amount },
+            headers: {
+              'Content-Type': 'application/json',
+              authorization: `${token}`
+            }
+          };
+        }
+      }),
+      getSingleOrder: builder.query({
+        query: (id) => {
+          return {
+            url: `orders/single/${id}`,
+            headers: {
+              'Content-Type': 'application/json',
+              authorization: `${token}`
+            }
+          };
+        }
+      }),
+      postOrderPayment: builder.mutation({
+        query: ({ orderId, card }) => {
+          return {
+            url: `orders/${orderId}/checkout`,
+            method: 'POST',
+            body: card,
+            headers: {
+              'Content-Type': 'application/json',
+              authorization: `${token}`
+            }
+          };
+        }
       })
     };
   }
@@ -99,5 +136,8 @@ export const {
   usePostProductSearchMutation,
   useLazyGetProductsCategoryQuery,
   useLazyGetAllProductsQuery,
-  usePutUserRoleMutation
+  usePutUserRoleMutation,
+  useCreateOrderMutation,
+  useGetSingleOrderQuery,
+  usePostOrderPaymentMutation
 } = apiSlice;

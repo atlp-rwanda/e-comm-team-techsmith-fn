@@ -1,13 +1,19 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { useSelector, useDispatch } from 'react-redux';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCartShopping, faCreditCard } from '@fortawesome/free-solid-svg-icons';
 import { faHeart } from '@fortawesome/free-regular-svg-icons';
 import { primaryColor } from '../constants';
 import Rating from './Rating';
 import Button from './Button';
+import ValidateOrder from './ValidateOrder';
+import { updateModelVisility } from '../states/features/orders/orderSlice';
 
 const ProductDetails = ({ product }) => {
-  const { name, image, price, condition, description, user } = product;
+  const { id, name, image, price, condition, description, user } = product;
+  const validateOrder = useSelector((state) => {return state.orders.validateOrderModel});
+  const dispatch = useDispatch();
 
   return (
     <div className='product_container flex items-center justify-between gap-12 w-10/12 mx-auto my-12 screen-mid:flex-col'>
@@ -53,19 +59,29 @@ const ProductDetails = ({ product }) => {
             <Rating rating={4} />
           </div>
         </div>
-        <div className='product_details_cta flex items-center gap-8 w-full my-4 mx-auto screen-mid:flex-col'>
-          <Button value='Add to Cart' className='primary-btn w-full' />
+        <div className='product_details_cta flex items-center gap-8 justify-between w-full my-4 mx-auto screen-mid:flex-col'>
+          <Button value={<span className='text-[1.6rem] flex items-center gap-4'>
+            <FontAwesomeIcon icon={faCartShopping} />
+            Add to cart
+          </span>} className='primary-btn w-full py-4 normal-case text-[1.8rem]' />
+          <Button value={<span className='items-center text-[1.6rem] flex gap-4'>
+            <FontAwesomeIcon icon={faCreditCard} />
+            Buy now
+          </span>} className='primary-btn w-full py-4 normal-case text-[1.8rem]' onClick={() => {
+            dispatch(updateModelVisility(true))
+          }}/>
           <FontAwesomeIcon
             icon={faHeart}
             id='product_add_wishlist'
             className='w-fit'
             style={{
-              fontSize: '5rem',
+              fontSize: '4rem',
               color: primaryColor,
               cursor: 'pointer'
             }}
           />
         </div>
+        <ValidateOrder visible={validateOrder} productId={id} productName={name} price={price} />
         <hr className='px-4 my-4 bg-black w-11/12 mx-auto' />
         <div className='product_seller w-full flex flex-col items-start justify-center my-4 mx-auto screen-mid:items-center'>
           <div className='product_seller_description flex gap-4 items-center screen-base:flex-col'>
@@ -75,7 +91,7 @@ const ProductDetails = ({ product }) => {
             <Button
               to='#'
               href='#'
-              className='product_seller_details'
+              className='product_seller_details bg-white text-black'
               value={
                 <span className='flex items-center gap-4 my-4'>
                   <img

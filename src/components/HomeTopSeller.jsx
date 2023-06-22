@@ -27,7 +27,7 @@ const HomeTopSeller = ({
             <Button
               key={category}
               value={category}
-              className='home_seller_category'
+              className='home_seller_category bg-transparent'
               route='#'
             />
           );

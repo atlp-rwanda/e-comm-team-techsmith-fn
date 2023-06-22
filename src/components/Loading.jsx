@@ -1,9 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const Loading = ({ color, width }) => {
+const Loading = ({ color, width, className }) => {
   return (
-    <div className='loader'>
+    <div className={`${className} loader`}>
       <svg
         aria-hidden='true'
         className={`w-${width} h-${width} w-[${width}] mr-2 text-white animate-spin fill-${color}`}
@@ -29,12 +29,14 @@ const Loading = ({ color, width }) => {
 
 Loading.propTypes = {
   color: PropTypes.string,
-  width: PropTypes.number
+  width: PropTypes.number,
+  className: PropTypes.string
 };
 
 Loading.defaultProps = {
   color: '#243665',
-  width: 5
+  width: 5,
+  className: ''
 };
 
 export default Loading;
