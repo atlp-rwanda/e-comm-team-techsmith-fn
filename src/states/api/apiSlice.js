@@ -117,7 +117,18 @@ export const apiSlice = createApi({
             method: 'POST',
             body: card,
             headers: {
-              'Content-Type': 'application/json',
+              'Content-Type': 'application/json'
+            }
+          };
+        }
+      }),
+      deleteProduct: builder.mutation({
+        query: ({ productId }) => {
+          console.log(productId);
+          return {
+            url: `/products/${productId}`,
+            method: 'DELETE',
+            headers: {
               authorization: `${token}`
             }
           };
@@ -139,5 +150,6 @@ export const {
   usePutUserRoleMutation,
   useCreateOrderMutation,
   useGetSingleOrderQuery,
-  usePostOrderPaymentMutation
+  usePostOrderPaymentMutation,
+  useDeleteProductMutation
 } = apiSlice;
