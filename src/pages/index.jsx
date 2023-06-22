@@ -77,7 +77,6 @@ const SingleProductPage = () => {
 const AdminManageUserPage = () => {
   return <AdminManageUserContainer />;
 };
-
 const SellerProductsPage = () => {
   return <SellerProductsContainer />;
 };

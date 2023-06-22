@@ -10,6 +10,7 @@ const checkIsLogged = () => {
   const { id } = JSON.parse(localStorage.getItem('user'));
   const profileName = fLetter + sLetter;
   const data = { id, token, profileName };
+
   return data;
 };
 export default checkIsLogged;

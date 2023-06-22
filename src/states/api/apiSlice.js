@@ -124,7 +124,6 @@ export const apiSlice = createApi({
       }),
       deleteProduct: builder.mutation({
         query: ({ productId }) => {
-          console.log(productId);
           return {
             url: `/products/${productId}`,
             method: 'DELETE',
@@ -133,6 +132,20 @@ export const apiSlice = createApi({
             }
           };
         }
+      }),
+      updateProduct: builder.mutation({
+        query: ({ data, id }) => {
+          return {
+            url: `products/${id}`,
+            method: 'PUT',
+            body: data,
+            headers: {
+              'Content-Type': 'application/json',
+              authorization: `${token}`
+            }
+          };
+        },
+        invalidatesTags: ['Products']
       })
     };
   }
@@ -151,5 +164,6 @@ export const {
   useCreateOrderMutation,
   useGetSingleOrderQuery,
   usePostOrderPaymentMutation,
-  useDeleteProductMutation
+  useDeleteProductMutation,
+  useUpdateProductMutation
 } = apiSlice;

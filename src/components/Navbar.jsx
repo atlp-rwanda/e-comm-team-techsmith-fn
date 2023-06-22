@@ -153,7 +153,7 @@ const Navbar = () => {
     pathname === '/dashboard/users' ||
     pathname.startsWith('/signup') ||
     pathname.startsWith('/reset-password') ||
-    pathname === '/dashboard/seller'
+    pathname === '/dashboard/seller' 
   )
     return null;
   const changeIcon = () => {
@@ -266,6 +266,14 @@ const Navbar = () => {
                   value='Cart'
                   className='primary-btn-no-hover-scale'
                   onClick={showCart}
+                />
+              </div>
+              <div>
+                <Button
+                  route='/dashboard/seller'
+                  value='Dashboard'
+                  className='primary-btn-no-hover-scale'
+                  
                 />
               </div>
               <div>
