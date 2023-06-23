@@ -5,6 +5,7 @@ const login = async (data) => {
   const response = await API.post(`${API_URL}/users/login`, data);
 
   if (!response.data.user) {
+    localStorage.setItem('isSeller', 'true');
     localStorage.removeItem('myToken');
   } else {
     const { id, name, role } = response.data.user;

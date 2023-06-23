@@ -273,7 +273,7 @@ const Navbar = () => {
              { !localStorage.getItem('isBuyer') &&
               <div>
                <Button
-                route={localStorage.getItem(isSeller)?`dashboard/isSeller`:`dashboard/users`}
+                route={localStorage.getItem('isSeller')?`dashboard/seller`:`dashboard/users`}
                 value='Dashboard'
                 className='primary-btn-no-hover-scale'
               />
