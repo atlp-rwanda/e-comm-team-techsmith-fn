@@ -48,7 +48,9 @@ const NavigationDashboardSmall = () => {
         <DashButton
           className='secondary-btn-small '
           route='/login'
-          onClick={() => {logOut()}}
+          onClick={() => {
+            logOut();
+          }}
           svg={<FontAwesomeIcon icon='fa-solid fa-sign-out' />}
         />
         <p>Logout</p>

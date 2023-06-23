@@ -109,7 +109,14 @@ const Categories = () => {
   const [selectedCategoryId, setSelectedCategoryId] = useState(null);
   const dispatch = useDispatch();
 
-  const [getProductsCategory, { data: categoryProducts, isLoading: productLoading, isSuccess: productsSuccess }] = useLazyGetProductsCategoryQuery();
+  const [
+    getProductsCategory,
+    {
+      data: categoryProducts,
+      isLoading: productLoading,
+      isSuccess: productsSuccess
+    }
+  ] = useLazyGetProductsCategoryQuery();
 
   useEffect(() => {
     if (isSuccess) {
@@ -119,18 +126,18 @@ const Categories = () => {
 
   useEffect(() => {
     if (productsSuccess) {
-      dispatch(setProductCategoriesLoading(false))
+      dispatch(setProductCategoriesLoading(false));
       dispatch(setCategoryProducts(categoryProducts.data.rows));
     }
   }, [productsSuccess, categoryProducts]);
 
   useEffect(() => {
     if (productLoading) {
-      dispatch(setProductCategoriesLoading(true))
+      dispatch(setProductCategoriesLoading(true));
     }
     return () => {
-      dispatch(setProductCategoriesLoading(false))
-    }
+      dispatch(setProductCategoriesLoading(false));
+    };
   }, [productLoading]);
 
   if (isLoading) {
@@ -166,10 +173,10 @@ const Categories = () => {
                   if (isSelected) {
                     setSelectedCategoryId(null);
                   } else {
-                    setProductCategoriesLoading(true)
+                    setProductCategoriesLoading(true);
                     const size = 20;
                     const page = 1;
-                    getProductsCategory({ categoryId: id, size, page })
+                    getProductsCategory({ categoryId: id, size, page });
                   }
                 }}
                 checked={isSelected}

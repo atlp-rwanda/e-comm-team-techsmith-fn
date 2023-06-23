@@ -20,7 +20,7 @@ const LoginContainer = () => {
   const [openPopUp, setOpenPopUp] = React.useState(false);
   const { register, handleSubmit, formState } = form;
   const { errors } = formState;
-  const { isLoading, isError, isSuccess,token } = useSelector((state) => {
+  const { isLoading, isError, isSuccess, token } = useSelector((state) => {
     return state.auth;
   });
   const mySubmit = async (data) => {
@@ -28,26 +28,24 @@ const LoginContainer = () => {
   };
 
   useEffect(() => {
-   
     if (isSuccess) {
       // is he a seller
       if (localStorage.getItem('isSeller')) {
         // create popup
         document.querySelector('.overlay').style.display = 'flex';
       } else {
-        if(localStorage.getItem('isBuyer')){
-          
+        if (localStorage.getItem('isBuyer')) {
           navigate('/');
         }
-        if(localStorage.getItem('isSeller')){
-          navigate('/dashboard/seller')
+        if (localStorage.getItem('isSeller')) {
+          navigate('/dashboard/seller');
         }
-        if(localStorage.getItem('isAdmin')){
-          navigate('/dashboard/users')
+        if (localStorage.getItem('isAdmin')) {
+          navigate('/dashboard/users');
         }
       }
     }
-  }, [dispatch, isSuccess,token]);
+  }, [dispatch, isSuccess, token]);
   const showForgotPass = () => {
     setOpenPopUp(true);
   };
@@ -77,10 +75,14 @@ Authentication process.'
           <div className='loginPage__parent'>
             <div className='loginPage__mobileHeader'>
               <div className='loginPage__imgHeader'>
-                <Link to='/'><img src={TLogo} alt='' /></Link>
+                <Link to='/'>
+                  <img src={TLogo} alt='' />
+                </Link>
               </div>
               <div className='loginPage__signInHeader'>
-                <Button variant='contained'><Link to='/signup'>Sign up</Link></Button>
+                <Button variant='contained'>
+                  <Link to='/signup'>Sign up</Link>
+                </Button>
               </div>
             </div>
             <div className='loginPage__title'>

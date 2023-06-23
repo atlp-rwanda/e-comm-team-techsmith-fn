@@ -3,7 +3,7 @@ import { Typography, Button } from '@mui/material';
 import { useForm } from 'react-hook-form';
 import { ToastContainer } from 'react-toastify';
 import { useDispatch, useSelector } from 'react-redux';
-import { useNavigate,Link } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import { signup, reset } from '../states/features/auth/authSlice';
 import TLogo from '../assets/images/T_Logo.png';
 import Loading from '../components/Loading';
@@ -66,10 +66,14 @@ const SignupContainer = () => {
       <div>
         <div className='signupPage__mobileHeader'>
           <div className='signupPage__imgHeader'>
-            <Link to='/'><img src={TLogo} alt='' /></Link>
+            <Link to='/'>
+              <img src={TLogo} alt='' />
+            </Link>
           </div>
           <div className='signupPage__signInHeader'>
-            <Button variant='contained'><Link to='/login'>Sign in</Link></Button>
+            <Button variant='contained'>
+              <Link to='/login'>Sign in</Link>
+            </Button>
           </div>
         </div>
         <div className='signupPage__title'>

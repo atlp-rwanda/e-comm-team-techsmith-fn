@@ -9,7 +9,9 @@ const AuthBlueSide = ({ button, heading, description, onClick }) => {
     <div className='blueSide'>
       <div className='blueSide--width'>
         <div className='blueSide__logo flex justify-center'>
-          <Link to='/'><img src={TlogoW} alt='' /></Link>
+          <Link to='/'>
+            <img src={TlogoW} alt='' />
+          </Link>
         </div>
         <div className='blueSide__details '>
           <div className='blueSide__title pb-12'>
