@@ -12,7 +12,8 @@ import {
 } from '../states/api/apiSlice';
 import {
   setCategories,
-  setCategoryProducts
+  setCategoryProducts,
+  setProductCategoriesLoading
 } from '../states/features/categories/categorySlice';
 import { getCatName } from '../utils/categories';
 
@@ -20,10 +21,23 @@ const ViewAllProductsContainer = () => {
   const [getAllProducts] = useLazyGetAllProductsQuery();
   const [products, setProducts] = useState([]);
   const [productCategories, setProductCategories] = useState([]);
+  const [productsLoading, setProductsLoading] = useState(false);
   const categoryProducts = useSelector((state) => {
     return state.categories.products;
   });
   const { data: categories, isSuccess } = useGetAllCategoriesQuery();
+
+  const categoryProductsLoading = useSelector((state) => {
+    return state.categories.categoryProductsLoading;
+  });
+
+  useEffect(() => {
+    if (categoryProductsLoading) {
+      setProductsLoading(true);
+    } else {
+      setProductsLoading(false);
+    }
+  }, [categoryProductsLoading]);
 
   useEffect(() => {
     const size = 20;
@@ -46,6 +60,14 @@ const ViewAllProductsContainer = () => {
       setProductCategories(categories.data);
     }
   }, [categories]);
+
+  if (productsLoading) {
+    return (
+      <div className='w-full max-w-[100%] min-w-[50%] min-h-[100vh] flex items-center justify-center'>
+        <Loading width={50} />
+      </div>
+    );
+  }
 
   return (
     <div>
@@ -87,13 +109,29 @@ const Categories = () => {
   const [selectedCategoryId, setSelectedCategoryId] = useState(null);
   const dispatch = useDispatch();
 
-  const [getProductsCategory] = useLazyGetProductsCategoryQuery();
+  const [getProductsCategory, { data: categoryProducts, isLoading: productLoading, isSuccess: productsSuccess }] = useLazyGetProductsCategoryQuery();
 
   useEffect(() => {
     if (isSuccess) {
       setCategories(categories.data);
     }
   }, [categories]);
+
+  useEffect(() => {
+    if (productsSuccess) {
+      dispatch(setProductCategoriesLoading(false))
+      dispatch(setCategoryProducts(categoryProducts.data.rows));
+    }
+  }, [productsSuccess, categoryProducts]);
+
+  useEffect(() => {
+    if (productLoading) {
+      dispatch(setProductCategoriesLoading(true))
+    }
+    return () => {
+      dispatch(setProductCategoriesLoading(false))
+    }
+  }, [productLoading]);
 
   if (isLoading) {
     return (
@@ -128,22 +166,14 @@ const Categories = () => {
                   if (isSelected) {
                     setSelectedCategoryId(null);
                   } else {
+                    setProductCategoriesLoading(true)
                     const size = 20;
                     const page = 1;
                     getProductsCategory({ categoryId: id, size, page })
-                      .then(({ data: categoryProducts }) => {
-                        dispatch(
-                          setCategoryProducts(categoryProducts.data.rows)
-                        );
-                        setCategories(categories.data);
-                        setSelectedCategoryId(id);
-                      })
-                      .catch((err) => {
-                        return err;
-                      });
                   }
                 }}
                 checked={isSelected}
+                readOnly
               />
               <label htmlFor='' className='text-[1.6rem]'>
                 {name}

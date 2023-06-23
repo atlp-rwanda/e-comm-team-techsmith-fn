@@ -93,6 +93,7 @@ const ProductDetails = ({ product }) => {
             style={{
               fontSize: '4rem',
               color: primaryColor,
+              height: '4rem',
               cursor: 'pointer'
             }}
           />
