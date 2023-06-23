@@ -146,6 +146,27 @@ export const apiSlice = createApi({
           };
         },
         invalidatesTags: ['Products']
+      }),
+      getAllWishlist: builder.query({
+        query: () => {
+          return {
+            url: 'wishlist',
+            headers: {
+              authorization: `${token}`
+            }
+          };
+        }
+      }),
+      postAddToWishlist: builder.mutation({
+        query: ({ productId }) => {
+          return {
+            url: `wishlist/${productId}`,
+            method: 'POST',
+            headers: {
+              authorization: `${token}`
+            }
+          };
+        }
       })
     };
   }
@@ -165,5 +186,7 @@ export const {
   useGetSingleOrderQuery,
   usePostOrderPaymentMutation,
   useDeleteProductMutation,
-  useUpdateProductMutation
+  useUpdateProductMutation,
+  useGetAllWishlistQuery,
+  usePostAddToWishlistMutation
 } = apiSlice;

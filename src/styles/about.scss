@@ -1,7 +1,7 @@
 @media screen and (max-width: 900px) {
   .about_hero_cta {
     span {
-        font-size: 1.4rem;
+      font-size: 1.4rem;
     }
   }
 }
@@ -12,27 +12,27 @@
     flex-wrap: wrap;
 
     img {
-        width: 100%;
-        max-width: 30rem;
+      width: 100%;
+      max-width: 30rem;
     }
   }
 }
 
 @layer utilities {
-    .hero-images-sm {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        flex-wrap: wrap;
-        max-width: 80%;
+  .hero-images-sm {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    max-width: 80%;
 
-        img {
-            width: 100%;
-            max-width: 30rem;
-        }
+    img {
+      width: 100%;
+      max-width: 30rem;
     }
+  }
 
-    .about-hero-text-sm {
-        max-width: 80%;
-    }
+  .about-hero-text-sm {
+    max-width: 80%;
+  }
 }

@@ -37,7 +37,7 @@ const ValidateOrder = ({ visible, productName, productId, price }) => {
       productId: formData.productId,
       amount: formData.amount
     });
-    if(isSuccess) {
+    if (isSuccess) {
       dispatch(setOrderId(orderData.data.id));
       navigate(`/order/${orderData.data.id}`);
     }

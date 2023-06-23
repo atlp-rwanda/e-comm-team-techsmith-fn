@@ -47,7 +47,6 @@ const PaymentContainer = forwardRef(({ order }, ref) => {
     postOrderPayment({ orderId: order.id, card });
   };
 
-
   return (
     <div className='payment_information_container w-full flex flex-col gap-8 screen-base:items-center'>
       <h1 className='text-[3rem] font-bold'>Payment information</h1>
@@ -185,7 +184,8 @@ const PaymentContainer = forwardRef(({ order }, ref) => {
                   target
                   onClick={() => {
                     if (isError) {
-                    return window.location.reload()}
+                      return window.location.reload();
+                    }
                     return null;
                   }}
                 />

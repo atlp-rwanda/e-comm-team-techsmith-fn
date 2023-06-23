@@ -33,7 +33,9 @@ const ProductReviewContainer = ({ id }) => {
   if (feedbacks.data.rows.length === 0) {
     return (
       <div className='min-h-[30vh] flex items-center justify-center'>
-        <h1 className='text-[2rem]'>This product does not have any reviews yet!</h1>
+        <h1 className='text-[2rem]'>
+          This product does not have any reviews yet!
+        </h1>
       </div>
     );
   }

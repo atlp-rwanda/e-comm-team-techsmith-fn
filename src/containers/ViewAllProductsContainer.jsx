@@ -63,6 +63,7 @@ const ViewAllProductsContainer = () => {
                   category={getCatName(item.categoryId, productCategories)}
                   price={item.price}
                   quantity={item.quantity}
+                  pId={item.id}
                 />
               );
             })}
@@ -190,6 +191,7 @@ const RevisitCollections = () => {
           }
         />
         <Button
+          route='/wishlist'
           className='primary-btn home_revisit_collections_button'
           value={
             <span className='button_with_icon'>

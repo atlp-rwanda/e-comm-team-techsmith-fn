@@ -18,6 +18,7 @@ import ResetPasswordContainer from '../containers/ResetPasswordContainer';
 import SellerProductsContainer from '../containers/SellerProductsContainer';
 import ViewAllProductsContainer from '../containers/ViewAllProductsContainer';
 import CheckoutContainer from '../containers/CheckoutContainer';
+import BuyerWishlistContainer from '../containers/BuyerWishlistContainer';
 
 const HomePage = () => {
   return <HomeContainer />;
@@ -46,9 +47,13 @@ const ProfilePage = () => {
 const SellerPage = () => {
   return <SellerContainer />;
 };
+const WishlistPage = () => {
+  return <BuyerWishlistContainer />;
+};
 const SearchPage = () => {
   return <SearchContainer />;
 };
+
 const ChatPage = () => {
   return <ChatContainer />;
 };
@@ -96,5 +101,6 @@ export {
   ResetPasswordPage,
   AdminManageUserPage,
   SellerProductsPage,
-  CheckoutPage
+  CheckoutPage,
+  WishlistPage
 };

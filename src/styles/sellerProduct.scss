@@ -3,128 +3,129 @@ $lightBorder: 1px solid rgba(0, 0, 0, 0.154);
 .sellingProd {
   position: relative;
 }
-  .sellingProd__subtitle {
-    p {
-      font-size: 18px;
-      font-weight: 500;
-    }
-    .sellingProd-createbtn {
-      padding: 1rem;
-    }
+.sellingProd__subtitle {
+  p {
+    font-size: 18px;
+    font-weight: 500;
   }
-  .sellingProd__card {
-    background-color: #fff;
-    padding: 15px;
-    width: 43%;
-    height: 25rem;
-    border-radius: 10px;
-    cursor: pointer;
+  .sellingProd-createbtn {
+    padding: 1rem;
   }
-  .sellingProd__singleView {
-    background-color: #fff;
+}
+.sellingProd__card {
+  background-color: #fff;
+  padding: 15px;
+  width: 43%;
+  height: 25rem;
+  border-radius: 10px;
+  cursor: pointer;
+}
+.sellingProd__singleView {
+  background-color: #fff;
+  border-radius: 5px;
+}
+.load {
+  position: absolute;
+  top: 45%;
+  left: 45%;
+}
+.four_img img {
+  object-fit: contain;
+}
+.inputField {
+  p {
+    background-color: #eee;
+    padding: 0.5rem 0.7rem;
+    margin-bottom: 2rem;
     border-radius: 5px;
+    font-size: 1.3rem;
   }
-  .load{
-    position: absolute;
-    top: 45%;
-    left: 45%;
+  span {
+    font-size: 1.3rem;
   }
-  .four_img img{
-    object-fit: contain;
+}
+.details_icons {
+  padding: 1.5rem;
+}
+
+.sellingProd__cardImage {
+  background-color: white;
+  height: 100%;
+  width: 40%;
+  img {
+    height: 100%;
+    width: 100%;
+    padding: 0px 1.5rem;
   }
-  .inputField {
-    p {
-      background-color: #eee;
-      padding: 0.5rem 0.7rem;
-      margin-bottom: 2rem;
-      border-radius: 5px;
-      font-size: 1.3rem;
-    }
+}
+.sellingProd__cardDetails {
+  .sellingProd__cardDetailsPara {
+    margin-top: 1rem;
+    padding-left: 2.3rem;
+  }
+  p {
+    border-radius: 5px;
+    background-color: #eee;
+    margin-bottom: 2rem;
+    font-size: 1.3rem;
     span {
       font-size: 1.3rem;
     }
   }
-  .details_icons{
-    padding: 1.5rem;
+}
+.close_responsive {
+  display: none;
+}
+.edit {
+  padding: 10px 0 !important;
+}
+.updateForm_Product {
+  position: relative;
+  gap: 1rem;
+  width: 100%;
+  label {
+    position: absolute;
+    top: 0.2remrem;
+    padding-left: 0.7rem;
+    font-size: 1.3rem;
+    z-index: 999;
+    border: none;
   }
 
-  .sellingProd__cardImage {
-    background-color: white;
-    height: 100%;
-    width: 40%;
-    img {
-      height: 100%;
+  .inputs {
+    width: 50%;
+    padding-bottom: 2rem;
+    input,
+    select {
       width: 100%;
-      padding: 0px 1.5rem;
-    }
-  }
-  .sellingProd__cardDetails {
-    .sellingProd__cardDetailsPara {
-      margin-top: 1rem;
-      padding-left: 2.3rem;
-    }
-    p {
-      border-radius: 5px;
       background-color: #eee;
-      margin-bottom: 2rem;
-      font-size: 1.3rem;
-      span {
-        font-size: 1.3rem;
-      }
-    }
-  }
-  .close_responsive {
-    display: none;
-  }
-  .edit {
-    padding: 10px 0 !important;
-  }
-  .updateForm_Product{
-    position:relative;
-    gap: 1rem;
-    width: 100%;
-    label{
-      position: absolute;
-      top:0.2remrem;
-      padding-left: 0.7rem;
-      font-size: 1.3rem;
-      z-index: 999;
       border: none;
+      border-radius: 0.5rem;
+      font-size: 1.5rem;
+      outline: none;
     }
-    
-    .inputs{
-      width: 50%;
-      padding-bottom: 2rem;
-      input,select{
-        width: 100%;
-        background-color: #eee;
-        border: none;
-        border-radius: 0.5rem;
-        font-size: 1.5rem;
-        outline: none;
-      }
-      input{
-        padding: 1.7rem 0.7rem 1rem 0.8rem;
-      }
-      input[type="file"]{
-        padding: 1rem 0.7rem 1rem 0.8rem;
-      }
-      select{
-        padding: 1.2rem 0.7rem 1rem 0.8rem;
-        font-size: 1.5rem;
-        height: 45px;
-      }
-      :focus {
-         outline: 2px solid transparent;
-       }
+    input {
+      padding: 1.7rem 0.7rem 1rem 0.8rem;
+    }
+    input[type='file'] {
+      padding: 1rem 0.7rem 1rem 0.8rem;
+    }
+    select {
+      padding: 1.2rem 0.7rem 1rem 0.8rem;
+      font-size: 1.5rem;
+      height: 45px;
+    }
+    :focus {
+      outline: 2px solid transparent;
     }
   }
-  .savingUpdate{
-    transition: all 0.5s;
-    :hover{
-      background-color: #eee;
-    }
+}
+.savingUpdate {
+  transition: all 0.5s;
+  :hover {
+    background-color: #eee;
   }
+}
 
 @media (max-width: 1000px) {
   .sellingProd__card {

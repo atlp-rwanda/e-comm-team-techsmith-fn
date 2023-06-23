@@ -16,7 +16,7 @@ module.exports = {
     'jsx-a11y/no-static-element-interactions': 'off',
     'jsx-a11y/interactive-supports-focus': 'off',
     'jsx-a11y/mouse-events-have-key-events': 'off',
-    ' import/no-unresolved':'off',
+    ' import/no-unresolved': 'off',
     'react/button-has-type': 'off',
     'no-use-before-define': 'off',
     'import/no-named-as-default-member': 'off',

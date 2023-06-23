@@ -8,7 +8,6 @@ import TopMerchants from './TopMerchants';
 import Hero from './Hero';
 
 const HomeContainer = () => {
-
   return (
     <>
       <Hero />
@@ -30,7 +29,7 @@ const Banner = () => {
           OUR BIGGEST PROMOTION EVER IS HAPPENING NOW!
         </h2>
         <p className='max-w-10/12 screen-base:max-w-9/12'>
-          GET UP TO 50% OFF EVEYR PURCHASE YOU MAKE
+          GET UP TO 50% OFF EVERY PURCHASE YOU MAKE
         </p>
       </section>
       <section>
