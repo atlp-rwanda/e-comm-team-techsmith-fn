@@ -1,5 +1,6 @@
 import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import logOut from '../utils/logOut';
 
 import DashButton from '../components/DashButton';
 
@@ -38,7 +39,7 @@ const NavigationDashbooard = () => {
         className='secondary-btn mt-[300px] '
         value='Logout'
         route='/login'
-        onClick={() => {}}
+        onClick={() => {logOut()}}
         svg={<FontAwesomeIcon icon='fa-solid fa-sign-out' />}
       />
     </div>

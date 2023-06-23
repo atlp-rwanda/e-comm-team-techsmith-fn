@@ -14,6 +14,7 @@ const login = async (data) => {
       localStorage.setItem('myToken', response.data.Authorization);
       localStorage.removeItem('isSeller');
     } else if (role.name === 'buyer') {
+      localStorage.setItem('isBuyer', 'true');
       localStorage.setItem('user', JSON.stringify({ id, name }));
       localStorage.setItem('myToken', response.data.Authorization);
       localStorage.removeItem('isSeller');

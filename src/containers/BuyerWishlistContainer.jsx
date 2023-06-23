@@ -56,7 +56,7 @@ const BuyerWishlistContainer = () => {
           </div>
         </div>
         <div className='flex flex-wrap w-[90%] justify-evenly mx-auto h-full gap-8 p-12 items-start'>
-          {data.data.availableProducts ? (
+          {(data.data) ? (
             data.data.availableProducts.map((prod) => {
               return (
                 <section className='prod_wishlist_container shadow-lg p-8 h-full max-h-[37rem] w-[30%] min-w-[30rem] flex flex-col gap-8 items-center bg-white rounded-lg'>
