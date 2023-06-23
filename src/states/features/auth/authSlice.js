@@ -9,16 +9,20 @@ const initialState = {
   email: false,
   isError: false,
   isSuccess: false,
+  isSuccessPassword: false,
   isLoading: false,
   isSeller: role,
+  changePassword: false,
   message: ''
 };
 
 const resetStates = {
   email: false,
   incorrectCred: false,
+  changePassword: false,
   isError: false,
   isSuccess: false,
+  isSuccessPassword: false,
   isLoading: false,
   isSeller: false
 };
@@ -41,7 +45,8 @@ export const authSlice = createSlice({
         state.isLoading = false;
         state.isSuccess = true;
         state.isError = false;
-        state.token = payload;
+        state.token = payload.Authorization;
+        state.changePassword = payload.changePassword;
       })
       .addCase(login.rejected, (state, { payload }) => {
         state.isLoading = false;
@@ -57,7 +62,8 @@ export const authSlice = createSlice({
         state.isSuccess = true;
         state.isSeller = true;
         state.isError = false;
-        state.token = payload;
+        state.token = payload.Authorization;
+        state.changePassword = payload.changePassword;
       })
       .addCase(login2FA.rejected, (state, { payload }) => {
         state.isLoading = false;
@@ -88,14 +94,14 @@ export const authSlice = createSlice({
       })
       .addCase(requestPasswordReset.fulfilled, (state, { payload }) => {
         state.isLoading = false;
-        state.isSuccess = true;
+        state.isSuccessPassword = true;
         state.isError = false;
         state.message = payload;
       })
       .addCase(requestPasswordReset.rejected, (state, { payload }) => {
         state.isLoading = false;
         state.isError = true;
-        state.isSuccess = false;
+        state.isSuccessPassword = false;
         state.message = payload;
       })
       //RESET PASSWORD
@@ -106,14 +112,29 @@ export const authSlice = createSlice({
       .addCase(resetPassword.fulfilled, (state, { payload }) => {
         state.isLoading = true;
         state.isError = false;
-        state.isSuccess = true;
+        state.isSuccessPassword = true;
         state.message = payload;
       })
       .addCase(resetPassword.rejected, (state, { payload }) => {
         state.isLoading = false;
         state.isError = true;
-        state.isSuccess = false;
+        state.isSuccessPassword = false;
 
+        state.message = payload;
+      })
+      .addCase(changePasssword.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(changePasssword.fulfilled, (state, { payload }) => {
+        state.isLoading = true;
+        state.isError = false;
+        state.isSuccessPassword = true;
+        state.message = payload;
+      })
+      .addCase(changePasssword.rejected, (state, { payload }) => {
+        state.isLoading = false;
+        state.isError = true;
+        state.isSuccessPassword = false;
         state.message = payload;
       });
   }
@@ -189,6 +210,22 @@ export const resetPassword = createAsyncThunk(
     const { token, password } = data;
     try {
       return await authServices.resetPassword(token, password);
+    } catch (error) {
+      let message;
+      if (error.code === 'ERR_NETWORK') {
+        message = 'Make sure you are connected to the internet';
+      } else if (error.response) {
+        message = error.response.data.message;
+      }
+      return thunkAPI.rejectWithValue(message);
+    }
+  }
+);
+export const changePasssword = createAsyncThunk(
+  'auth/changePassword',
+  async (data, thunkAPI) => {
+    try {
+      return await authServices.changePassword(data);
     } catch (error) {
       let message;
       if (error.code === 'ERR_NETWORK') {

@@ -51,6 +51,11 @@ const Navbar = () => {
     useSelector((state) => {
       return state.seller;
     });
+    const google=localStorage.getItem('googleLogin')
+    if(google){
+      localStorage.removeItem('googleLogin')
+      window.location.reload()
+    }
   useEffect(() => {
     displayNotifications();
   }, [newUnread, message]);
@@ -196,7 +201,7 @@ const Navbar = () => {
           </section>
           <div className='navbar-allMenuPro  flex justify-between items-center'>
             <div>
-              <ul className='flex  items-center '>
+              <ul className='flex  items-center whitespace-nowrap '>
                 <li>
                   <Link to='category'>Categories</Link>
                 </li>

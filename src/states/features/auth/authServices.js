@@ -55,13 +55,18 @@ const resetPassword = async (token, password) => {
   );
   return response.data;
 };
+const changePassword = async (data) => {
+  const response = await API.put(`${API_URL}/users/update/password`, data);
+  return response.data;
+};
 
 const authServices = {
   login,
   login2FA,
   signup,
   requestPasswordReset,
-  resetPassword
+  resetPassword,
+  changePassword
 };
 
 export default authServices;
