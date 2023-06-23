@@ -4,7 +4,8 @@ const categorySlice = createSlice({
   name: 'categories',
   initialState: {
     categories: [],
-    products: []
+    products: [],
+    categoryProductsLoading: false
   },
   reducers: {
     setCategoryProducts: (state, action) => {
@@ -12,9 +13,16 @@ const categorySlice = createSlice({
     },
     setCategories: (state, { payload }) => {
       state.categories = payload;
+    },
+    setProductCategoriesLoading: (state, { payload }) => {
+      state.categoryProductsLoading = payload;
     }
   }
 });
 
-export const { setCategoryProducts, setCategories } = categorySlice.actions;
+export const {
+  setCategoryProducts,
+  setCategories,
+  setProductCategoriesLoading
+} = categorySlice.actions;
 export default categorySlice.reducer;

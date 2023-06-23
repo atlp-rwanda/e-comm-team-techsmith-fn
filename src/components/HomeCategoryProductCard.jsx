@@ -25,7 +25,7 @@ const HomeCategoryProductCard = ({
 }) => {
   const [isWishListed, setIsWishListed] = useState(false);
 
-  const [postAddToWishList, { isSuccess }] = usePostAddToWishlistMutation();
+  const [postAddToWishList, { isSuccess, isLoading }] = usePostAddToWishlistMutation();
 
   const { data: wishListData, isSuccess: wishListSuccess } =
     useGetAllWishlistQuery();
@@ -71,8 +71,9 @@ const HomeCategoryProductCard = ({
         />
       </section>
       <section className='product_category_cta'>
-        <Button value='Buy now' className={`primary-btn ${buttonClassName}`} />
+        <Button value='Buy' route={`/product/${pId}`} className={`primary-btn ${buttonClassName}`} />
         <FontAwesomeIcon
+        id='category_wishlist_icon'
           style={
             isSuccess || isWishListed
               ? {
@@ -91,7 +92,9 @@ const HomeCategoryProductCard = ({
                   width: '3rem',
                   maxWidth: '3rem',
                   fontWeight: 'light',
-                  color: primaryColor,
+                  color: 'white',
+                  stroke: 'black',
+                  strokeWidth: '2rem',
                   cursor: 'pointer',
                   '&:hover': {
                     transform: 'scale(1.02)'
@@ -106,6 +109,11 @@ const HomeCategoryProductCard = ({
           className='bg-transparent'
         />
       </section>
+      <div className='add_wishlist_feedback'>
+        <p className={isLoading ? 'flex text-[1.2rem] my-4 transition-all duration-100 text-gray-800' : 'hidden'}>
+          Adding product to wishlist
+        </p>
+      </div>
     </div>
   );
 };

@@ -469,7 +469,7 @@ const Search = () => {
         name='name'
         placeholder='Enter product name'
         backgroundColor='white'
-        className='outline-none border-none text-sm rounded-none rounded-l-lg focus:border-none'
+        className='outline-none border-none text-sm rounded-none rounded-l-[5rem] focus:border-none'
         onChange={(e) => {
           setFormData({ ...formData, name: e.target.value });
         }}

@@ -180,6 +180,7 @@ export const {
   useGetAllCategoriesQuery,
   usePostProductSearchMutation,
   useLazyGetProductsCategoryQuery,
+  useGetProductsCategoryQuery,
   useLazyGetAllProductsQuery,
   usePutUserRoleMutation,
   useCreateOrderMutation,
