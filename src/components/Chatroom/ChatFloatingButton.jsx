@@ -7,7 +7,7 @@ import Button from '../Button';
 const ChatFloadtingButton = () => {
   const { pathname } = useLocation();
 
-  if (pathname === '/chat' || pathname === 'chat/room') return null;
+  if (pathname === '/chat' || pathname === 'chat/room' || pathname === '/login' || pathname === '/signup') return null;
 
   return (
     <div className='w-fit rounded-[50%] z-999'>

@@ -32,9 +32,11 @@ const HomeCategoryProductCard = ({
 
   useEffect(() => {
     if (wishListSuccess) {
-      const id = findInArrayWishList(wishListData.data.availableProducts, pId);
-      if (id) {
-        setIsWishListed(true);
+      if(wishListData.data){
+        const id = findInArrayWishList(wishListData.data.availableProducts, pId);
+        if (id) {
+          setIsWishListed(true);
+        }
       }
     }
     if (isSuccess) {

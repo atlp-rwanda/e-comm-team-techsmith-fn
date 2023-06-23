@@ -41,9 +41,10 @@
       width: 60%;
     }
   }
-  @media (max-width: 831px) {
-    .blueSide {
-      display: none;
-    }
+}
+
+@media (max-width: 831px) {
+  .blueSide {
+    display: none !important;
   }
 }

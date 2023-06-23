@@ -16,7 +16,7 @@ import Button from './Button';
 import logOut from '../utils/logOut';
 import Loading from './Loading';
 import { useGetAllCategoriesQuery } from '../states/api/apiSlice';
-import { currentToken as Auth } from '../states/features/auth/authSlice';
+import { currentToken as Auth,reset } from '../states/features/auth/authSlice';
 import Input from './Input';
 import { successNotification } from './Notification';
 import {
@@ -145,6 +145,7 @@ const Navbar = () => {
     return state.auth;
   });
   const loggingOut = () => {
+    dispatch(reset())
     logOut();
   };
   if (
@@ -269,13 +270,15 @@ const Navbar = () => {
                   onClick={showCart}
                 />
               </div>
+             { !localStorage.getItem('isBuyer') &&
               <div>
-                <Button
-                  route='/dashboard/seller'
-                  value='Dashboard'
-                  className='primary-btn-no-hover-scale'
-                />
-              </div>
+               <Button
+                route={localStorage.getItem(isSeller)?`dashboard/isSeller`:`dashboard/users`}
+                value='Dashboard'
+                className='primary-btn-no-hover-scale'
+              />
+            </div>
+             }
               <div>
                 <Button
                   route='/login'

@@ -10,7 +10,7 @@ import Loading from '../components/Loading';
 import InputPopup from '../components/InputPopup';
 import PopupMaker from '../components/PopupMaker';
 import ForgetPassword from '../components/ForgetPassword';
-import { login, reset } from '../states/features/auth/authSlice';
+import { login } from '../states/features/auth/authSlice';
 import { API_URL } from '../constants';
 
 const LoginContainer = () => {
@@ -20,7 +20,7 @@ const LoginContainer = () => {
   const [openPopUp, setOpenPopUp] = React.useState(false);
   const { register, handleSubmit, formState } = form;
   const { errors } = formState;
-  const { isLoading, isError, isSuccess } = useSelector((state) => {
+  const { isLoading, isError, isSuccess,token } = useSelector((state) => {
     return state.auth;
   });
   const mySubmit = async (data) => {
@@ -28,19 +28,26 @@ const LoginContainer = () => {
   };
 
   useEffect(() => {
+   
     if (isSuccess) {
       // is he a seller
       if (localStorage.getItem('isSeller')) {
         // create popup
         document.querySelector('.overlay').style.display = 'flex';
       } else {
-        navigate('/');
-        window.location.reload();
+        if(localStorage.getItem('isBuyer')){
+          
+          navigate('/');
+        }
+        if(localStorage.getItem('isSeller')){
+          navigate('/dashboard/seller')
+        }
+        if(localStorage.getItem('isAdmin')){
+          navigate('/dashboard/users')
+        }
       }
-
-      dispatch(reset());
     }
-  }, [dispatch, isSuccess]);
+  }, [dispatch, isSuccess,token]);
   const showForgotPass = () => {
     setOpenPopUp(true);
   };
@@ -70,10 +77,10 @@ Authentication process.'
           <div className='loginPage__parent'>
             <div className='loginPage__mobileHeader'>
               <div className='loginPage__imgHeader'>
-                <img src={TLogo} alt='' />
+                <Link to='/'><img src={TLogo} alt='' /></Link>
               </div>
               <div className='loginPage__signInHeader'>
-                <Button variant='contained'>Sign up</Button>
+                <Button variant='contained'><Link to='/signup'>Sign up</Link></Button>
               </div>
             </div>
             <div className='loginPage__title'>

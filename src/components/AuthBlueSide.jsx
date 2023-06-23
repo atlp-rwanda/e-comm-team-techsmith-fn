@@ -1,5 +1,6 @@
 import React from 'react';
 import { Typography } from '@mui/material';
+import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { TlogoW } from '../assets';
 
@@ -8,7 +9,7 @@ const AuthBlueSide = ({ button, heading, description, onClick }) => {
     <div className='blueSide'>
       <div className='blueSide--width'>
         <div className='blueSide__logo flex justify-center'>
-          <img src={TlogoW} alt='' />
+          <Link to='/'><img src={TlogoW} alt='' /></Link>
         </div>
         <div className='blueSide__details '>
           <div className='blueSide__title pb-12'>

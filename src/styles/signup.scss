@@ -41,14 +41,17 @@ $border_color: 1px solid rgba(0, 0, 0, 0.25);
     display: flex;
     justify-content: space-between;
     width: 100%;
-    select {
-      width: 100%;
-      padding: 13px 120px 13px 10px;
-      border: $border_color;
-      border-radius: 10px;
-      color: #243665ba;
-      margin-bottom: 25px;
+    .input-label-group,.signupPage__input{
+      width: 48%;
+      select {
+        height:4rem;
+        border: $border_color;
+        border-radius: 10px;
+        color: #243665ba;
+        margin-bottom: 25px;
+      }
     }
+ 
     label {
       color: #243665ba;
     }
@@ -79,7 +82,7 @@ $border_color: 1px solid rgba(0, 0, 0, 0.25);
       }
       label {
         position: absolute;
-        top: 12px;
+        top:13px;
         font-size: 12px;
         z-index: 10;
         left: 10px;
@@ -145,14 +148,7 @@ $border_color: 1px solid rgba(0, 0, 0, 0.25);
         margin-top: 30px;
         width: 70%;
       }
-      .gender_role_box,
-      .password_confirmPassword_form {
-        display: flex;
-        justify-content: space-between;
-        select {
-          padding: 13px 90px 10px 8px;
-        }
-      }
+      
       .signup_response {
         width: 65%;
       }
@@ -179,20 +175,14 @@ $border_color: 1px solid rgba(0, 0, 0, 0.25);
         padding: 5px;
         border: 2px solid base.$primary-color;
       }
+      label {
+        padding-bottom: 1rem;
+      }
 
       button {
         background-color: base.$primary-color;
         border-radius: 10px;
         font-weight: bold; /* Added bold font weight */
-      }
-    }
-    .gender_role_box,
-    .password_confirmPassword_form {
-      display: flex;
-      justify-content: space-between;
-      width: 100%;
-      select {
-        padding: 13px 126px 13px 10px;
       }
     }
     .signupPage__form {
@@ -212,6 +202,33 @@ $border_color: 1px solid rgba(0, 0, 0, 0.25);
       padding: 0px;
       text-align: center;
       margin-bottom: 20px;
+    }
+  }
+}
+
+@media (max-width: 600px) {
+  .signupPage{
+    .signupPage__mobileHeader{
+      padding: 1rem 2rem;
+    }
+    .signupPage__title{
+      padding: 1rem 2rem;
+    }
+    .signupPage__form{
+      form{
+        width: 75%;
+        .signupPage__input{
+          label{
+            top:7px
+          }
+          input:valid + label,input:focus + label{
+            top: -17px !important;
+          }
+        }
+        .signupPage_label,.input-label label{
+          padding-bottom: 0px;
+        }
+      }
     }
   }
 }

@@ -1,6 +1,5 @@
 import API from '../../api';
 import { API_URL } from '../../../constants';
-import checkIsLogged from '../../../utils/isLoggedin';
 
 const disable = async (id) => {
   const response = await API.put(`${API_URL}/users/disable/${id}`);
@@ -17,13 +16,13 @@ const allusers = async (page) => {
 };
 
 const userInfo = async () => {
-  const { id } = checkIsLogged();
+  const { id } = JSON.parse(localStorage.getItem('user'));
   const response = await API.get(`${API_URL}/users/${id}`);
   return response.data;
 };
 
 const updateUser = async (data) => {
-  const { id } = checkIsLogged();
+  const { id } = JSON.parse(localStorage.getItem('user'));
   const response = await API.put(`${API_URL}/users/${id}`, data);
   return response.data;
 };
