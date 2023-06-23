@@ -44,7 +44,7 @@ const ProfileContainer = () => {
     editValues();
   };
 
-  const handleSave =async(data) => {
+  const handleSave = async (data) => {
     dispatch(updateUser(data));
     await setEditing(false);
     successNotification('Successfully updated!');

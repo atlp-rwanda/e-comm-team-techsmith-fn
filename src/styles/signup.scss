@@ -41,17 +41,18 @@ $border_color: 1px solid rgba(0, 0, 0, 0.25);
     display: flex;
     justify-content: space-between;
     width: 100%;
-    .input-label-group,.signupPage__input{
+    .input-label-group,
+    .signupPage__input {
       width: 48%;
       select {
-        height:4rem;
+        height: 4rem;
         border: $border_color;
         border-radius: 10px;
         color: #243665ba;
         margin-bottom: 25px;
       }
     }
- 
+
     label {
       color: #243665ba;
     }
@@ -82,7 +83,7 @@ $border_color: 1px solid rgba(0, 0, 0, 0.25);
       }
       label {
         position: absolute;
-        top:13px;
+        top: 13px;
         font-size: 12px;
         z-index: 10;
         left: 10px;
@@ -148,7 +149,7 @@ $border_color: 1px solid rgba(0, 0, 0, 0.25);
         margin-top: 30px;
         width: 70%;
       }
-      
+
       .signup_response {
         width: 65%;
       }
@@ -207,25 +208,27 @@ $border_color: 1px solid rgba(0, 0, 0, 0.25);
 }
 
 @media (max-width: 600px) {
-  .signupPage{
-    .signupPage__mobileHeader{
+  .signupPage {
+    .signupPage__mobileHeader {
       padding: 1rem 2rem;
     }
-    .signupPage__title{
+    .signupPage__title {
       padding: 1rem 2rem;
     }
-    .signupPage__form{
-      form{
+    .signupPage__form {
+      form {
         width: 75%;
-        .signupPage__input{
-          label{
-            top:7px
+        .signupPage__input {
+          label {
+            top: 7px;
           }
-          input:valid + label,input:focus + label{
+          input:valid + label,
+          input:focus + label {
             top: -17px !important;
           }
         }
-        .signupPage_label,.input-label label{
+        .signupPage_label,
+        .input-label label {
           padding-bottom: 0px;
         }
       }

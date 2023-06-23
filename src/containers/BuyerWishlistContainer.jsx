@@ -1,15 +1,28 @@
 import React from 'react';
+import { useDispatch } from 'react-redux';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrash } from '@fortawesome/free-solid-svg-icons';
 import BuyerNavbar from './BuyerNavbar';
 import Button from '../components/Button';
+import {
+  deleteAllWishlist,
+  deleteWishlist
+} from '../states/features/wishlist/wishlistSlice';
 import { useGetAllWishlistQuery } from '../states/api/apiSlice';
 import Loading from '../components/Loading';
 import Navigate from '../outlets/Navigate';
 
 const BuyerWishlistContainer = () => {
+  const dispatch = useDispatch();
   const { data, isError, isLoading } = useGetAllWishlistQuery();
 
+
+  const deleteSingleItem = (id) => {
+    dispatch(deleteWishlist(id));
+  };
+  const deletingAll = () => {
+    dispatch(deleteAllWishlist());
+  };
   if (isLoading)
     return (
       <div className='min-h-[80vh] flex items-center justify-center'>
@@ -26,7 +39,7 @@ const BuyerWishlistContainer = () => {
   }
 
   return (
-    <div className='flex '>
+    <div className='flex'>
       <div>
         <BuyerNavbar />
       </div>
@@ -37,26 +50,29 @@ const BuyerWishlistContainer = () => {
               Shopping Wishlist
             </h1>
           </div>
-          <div className='wishlist-btn-create'>
-            <Button
-              value={
-                <span className='button_with_icon'>
-                  Delete All{' '}
-                  <FontAwesomeIcon
-                    style={{
-                      width: '2rem',
-                      height: '2rem'
-                    }}
-                    icon={faTrash}
-                  />
-                </span>
-              }
-              className=' primary-btn'
-            />
-          </div>
+          {data.data && (
+            <div className='wishlist-btn-create'>
+              <Button
+                value={
+                  <span className='button_with_icon'>
+                    Delete All{' '}
+                    <FontAwesomeIcon
+                      style={{
+                        width: '2rem',
+                        height: '2rem'
+                      }}
+                      icon={faTrash}
+                    />
+                  </span>
+                }
+                onClick={deletingAll}
+                className=' primary-btn'
+              />
+            </div>
+          )}
         </div>
         <div className='flex flex-wrap w-[90%] justify-evenly mx-auto h-full gap-8 p-12 items-start'>
-          {(data.data) ? (
+          {data.data ? (
             data.data.availableProducts.map((prod) => {
               return (
                 <section className='prod_wishlist_container shadow-lg p-8 h-full max-h-[37rem] w-[30%] min-w-[30rem] flex flex-col gap-8 items-center bg-white rounded-lg'>
@@ -92,6 +108,9 @@ const BuyerWishlistContainer = () => {
                           Remove
                         </span>
                       }
+                      onClick={()=>{
+                        return deleteSingleItem(prod.productId)
+                      }}
                     />
                   </div>
                 </section>

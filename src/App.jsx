@@ -44,6 +44,8 @@ const App = () => {
         <Cart />
         <Routes>
           <Route path='/' element={<HomePage />} />
+          <Route path='/wishlist' element={<WishlistPage />} />
+
           <Route path='/about' element={<AboutPage />} />
           <Route path='/contact' element={<ContactPage />} />
           <Route path='/category' element={<CategoryPage />} />
@@ -63,7 +65,6 @@ const App = () => {
           <Route path='/seller/unauthorized' element={<SellerNavigation />} />
           <Route path='/admin/unauthorized' element={<AdminNavigation />} />
           <Route element={<ProtectedRoutes />}>
-            <Route path='/wishlist/' element={<WishlistPage />} />
             <Route path='/chat' element={<JoinChat />} />
             <Route path='/chat/room' element={<ChatPage />} />
             <Route path='/order/:id' element={<CheckoutPage />} />

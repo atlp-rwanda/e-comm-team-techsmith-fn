@@ -6,10 +6,24 @@ const getAllWishlist = async () => {
 
   return response.data;
 };
-const addToWishlist = async (id) => {
-  const response = await API.post(`${API_URL}/wishlist/${id}`);
+const addToWishlist = async () => {
+  const response = await API.delete(`${API_URL}/wishlist`);
 
   return response.data;
 };
-const wishlistServices = { getAllWishlist, addToWishlist };
+const deleteWishlist = async (id) => {
+  const response = await API.delete(`${API_URL}/wishlist/${id}`);
+
+  return response.data;
+};
+const deleteAllWishlist = async () => {
+  const response = await API.delete(`${API_URL}/wishlist`);
+  return response.data;
+};
+const wishlistServices = {
+  getAllWishlist,
+  addToWishlist,
+  deleteAllWishlist,
+  deleteWishlist
+};
 export default wishlistServices;

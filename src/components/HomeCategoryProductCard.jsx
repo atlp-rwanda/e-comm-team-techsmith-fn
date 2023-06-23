@@ -25,15 +25,19 @@ const HomeCategoryProductCard = ({
 }) => {
   const [isWishListed, setIsWishListed] = useState(false);
 
-  const [postAddToWishList, { isSuccess, isLoading }] = usePostAddToWishlistMutation();
+  const [postAddToWishList, { isSuccess, isLoading }] =
+    usePostAddToWishlistMutation();
 
   const { data: wishListData, isSuccess: wishListSuccess } =
     useGetAllWishlistQuery();
 
   useEffect(() => {
     if (wishListSuccess) {
-      if(wishListData.data){
-        const id = findInArrayWishList(wishListData.data.availableProducts, pId);
+      if (wishListData.data) {
+        const id = findInArrayWishList(
+          wishListData.data.availableProducts,
+          pId
+        );
         if (id) {
           setIsWishListed(true);
         }
@@ -71,9 +75,13 @@ const HomeCategoryProductCard = ({
         />
       </section>
       <section className='product_category_cta'>
-        <Button value='Buy' route={`/product/${pId}`} className={`primary-btn ${buttonClassName}`} />
+        <Button
+          value='Buy'
+          route={`/product/${pId}`}
+          className={`primary-btn ${buttonClassName}`}
+        />
         <FontAwesomeIcon
-        id='category_wishlist_icon'
+          id='category_wishlist_icon'
           style={
             isSuccess || isWishListed
               ? {
@@ -110,7 +118,13 @@ const HomeCategoryProductCard = ({
         />
       </section>
       <div className='add_wishlist_feedback'>
-        <p className={isLoading ? 'flex text-[1.2rem] my-4 transition-all duration-100 text-gray-800' : 'hidden'}>
+        <p
+          className={
+            isLoading
+              ? 'flex text-[1.2rem] my-4 transition-all duration-100 text-gray-800'
+              : 'hidden'
+          }
+        >
           Adding product to wishlist
         </p>
       </div>
