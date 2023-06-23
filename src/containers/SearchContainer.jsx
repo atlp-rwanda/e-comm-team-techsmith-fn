@@ -106,6 +106,7 @@ const SearchContainer = () => {
                 route={`products/${product.id}`}
                 image={product.image[0]}
                 category={getCatName(product.categoryId, categories.data)}
+                pId={product.id}
               />
             );
           })}

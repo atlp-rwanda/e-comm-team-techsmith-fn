@@ -8,8 +8,7 @@ const ChatFloadtingButton = () => {
   const { pathname } = useLocation();
 
   if (
-    pathname === '/chat' ||
-    pathname === 'chat/room' ||
+    pathname.startsWith('/chat') ||
     pathname === '/login' ||
     pathname === '/signup'
   )
@@ -22,11 +21,12 @@ const ChatFloadtingButton = () => {
           <span>
             <FontAwesomeIcon
               icon={faMessage}
-              className='w-[3rem] h-[3rem] text-[3rem]'
+              id='chat_float_btn'
+              className='h-[3rem] text-[3rem]'
             />
           </span>
         }
-        className='primary-btn p-8 w-fit rounded-[50%]'
+        className='primary-btn p-8 w-fit rounded-[50%] shadown-lg'
         route='/chat'
       />
     </div>

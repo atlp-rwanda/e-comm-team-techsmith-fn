@@ -114,7 +114,7 @@ const SellerProductsContainer = () => {
     <>
       <div className='sellingProd flex '>
         <SellerNavigationDashbooard />
-        <div className='selllingProd__maintitle text-center pt-10 flex-col w-[100%] bg-[#f1f1f1]'>
+        <div className='selllingProd__maintitle text-center pt-10 flex flex-col min-h-[80vh] w-[100%] bg-[#f1f1f1]'>
           <p className='text-2xl font-semibold'>Manage Products</p>
           <div className='sellingProd__subheading flex justify-between items-center my-5 px-24 '>
             <div className='sellingProd__subtitle '>
@@ -139,25 +139,25 @@ const SellerProductsContainer = () => {
               />
             </div>
           </div>
-          <div className='sellingProd__lists flex  justify-around flex-wrap py-7'>
+          <div className='sellingProd__lists flex flex-col h-[80vh] justify-evenly gap-12 py-7'>
             {isPending && (
-              <div className='loading_div flex justify-center z-10'>
+              <div className='loading_div flex z-10 min-h-[50%] my-12 justify-center gap-12 w-[80%]'>
                 Loading...
                 <img src={loading} alt='' />
               </div>
             )}
 
             {isLoading && (
-              <div className='loading_div flex justify-center z-10'>
+              <div className='loading_div flex  z-10 min-h-[50%] my-12 justify-center gap-12 w-[80%]'>
                 Loading...
                 <img src={loading} alt='' />
               </div>
             )}
 
             {networkError && (
-              <div className='loading_div flex justify-center w-[84%] '>
-                Server or Network Error{' '}
-                <FontAwesomeIcon icon='fa-solid fa-exclamation-circle' />
+              <div className='loading_div flex items-center min-h-[50%] my-12 justify-center gap-12 w-[80%]'>
+                Could not retrieve products. You may not have any products in your catalogue{' '}
+                <Button className='primary-btn px-8 py-4' value='Add products' route='/seller/add-product' />
               </div>
             )}
 
