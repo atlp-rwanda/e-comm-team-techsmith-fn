@@ -44,8 +44,6 @@ const App = () => {
         <Cart />
         <Routes>
           <Route path='/' element={<HomePage />} />
-          <Route path='/wishlist' element={<WishlistPage />} />
-
           <Route path='/about' element={<AboutPage />} />
           <Route path='/contact' element={<ContactPage />} />
           <Route path='/category' element={<CategoryPage />} />
@@ -58,7 +56,6 @@ const App = () => {
             element={<ResetPasswordPage />}
           />
           <Route path='/product/:id' element={<SingleProductPage />} />
-          <Route path='/users/:id' element={<ProfilePage />} />
           <Route path='/search' element={<SearchPage />} />
           <Route path='*' element={<NotFoundPage />} />
           <Route path='/unauthorized' element={<Navigate />} />
@@ -68,6 +65,8 @@ const App = () => {
             <Route path='/chat' element={<JoinChat />} />
             <Route path='/chat/room' element={<ChatPage />} />
             <Route path='/order/:id' element={<CheckoutPage />} />
+            <Route path='/wishlist' element={<WishlistPage />} />
+            <Route path='/users/:id' element={<ProfilePage />} />
           </Route>
           <Route element={<SellerRoutes />}>
             <Route path='/seller/add-product' element={<SellerPage />} />

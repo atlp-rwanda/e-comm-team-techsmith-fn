@@ -1,29 +1,35 @@
-import React from 'react';
-import HomePopularProductCard from '../components/HomePopularProductCard';
+import React, { useEffect, useState } from 'react';
+import { useSelector } from 'react-redux';
+import HomeCategoryProductCard from '../components/HomeCategoryProductCard';
 import Button from '../components/Button';
+import { useLazyGetAllWishlistAllUsersQuery } from '../states/api/apiSlice';
+import { removeDuplicates } from '../utils/Arrays';
+import Loading from '../components/Loading';
 
-// POPULAR PRODUCTS
 const PopularProducts = () => {
-  // RENDER PRODUCT CARD
-  const renderProductCard = (count) => {
-    const componentProps = {
-      image:
-        'https://res.cloudinary.com/nishimweprince/image/upload/v1685095429/ecommerce/iphone_se_hero__gd586pazxqqa_medium_2x_vcu3nz.jpg',
-      description: 'Brand new iPhone 14 Plus, 256GB',
-      rating: {
-        rating: 4,
-        count: 5
-      },
-      price: '$1499',
-      name: 'iPhone 14 Pro',
-      category: 'Electronics'
-    };
-    const cards = [];
-    for (let i = 0; i < count; i++) {
-      cards.push(<HomePopularProductCard key={i} {...componentProps} />);
+
+  const [allWishlistData, setAllWishlistData] = useState([])
+
+  const newWishlist = useSelector((state) => {
+    return state.wishlist.newWishlist;
+  });
+
+  const [getAllWishlistAllUsers, { data: allWishlist, isLoading, isSuccess }] = useLazyGetAllWishlistAllUsersQuery();
+
+  useEffect(() => {
+    getAllWishlistAllUsers({ size: 5, page: 1 });
+    if (isSuccess) {
+      setAllWishlistData(removeDuplicates(allWishlist.data?.availableProducts))
     }
-    return cards;
-  };
+  }, []);
+
+  useEffect(() => {
+    getAllWishlistAllUsers({ size: 5, page: 1 });
+    if (isSuccess) {
+      setAllWishlistData(removeDuplicates(allWishlist.data?.availableProducts))
+    }
+  }, [newWishlist, allWishlist]);
+
 
   return (
     <div className='popular_products'>
@@ -39,7 +45,18 @@ const PopularProducts = () => {
         />
       </section>
       <section className='popular_product_container flex flex-wrap justify-around'>
-        {renderProductCard(5)}
+        { isLoading && <div className='min-h-[30vh] flex items-center justify-center'><Loading width={50} /></div>}
+        {allWishlistData?.map((wishlist) => {
+          return (
+            <HomeCategoryProductCard
+            key={wishlist.id}
+            name={wishlist.product.name}
+            price={wishlist.product.price}
+            pId={wishlist.productId}
+            image={wishlist.product.image[0]}
+            />
+          );
+        })}
       </section>
     </div>
   );

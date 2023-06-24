@@ -6,10 +6,11 @@ import Rating from './Rating';
 import Button from './Button';
 import { primaryColor } from '../constants';
 import {
-  useGetAllWishlistQuery,
+  useLazyGetAllWishlistQuery,
   usePostAddToWishlistMutation
 } from '../states/api/apiSlice';
 import { findInArrayWishList } from '../utils/Arrays';
+import Loading from './Loading';
 
 const HomeCategoryProductCard = ({
   className,
@@ -28,8 +29,12 @@ const HomeCategoryProductCard = ({
   const [postAddToWishList, { isSuccess, isLoading }] =
     usePostAddToWishlistMutation();
 
-  const { data: wishListData, isSuccess: wishListSuccess } =
-    useGetAllWishlistQuery();
+  const [getAllWishlist ,{ data: wishListData, isSuccess: wishListSuccess }] =
+    useLazyGetAllWishlistQuery();
+
+    useEffect(() => {
+      getAllWishlist();
+    }, [])
 
   useEffect(() => {
     if (wishListSuccess) {
@@ -80,8 +85,13 @@ const HomeCategoryProductCard = ({
           route={`/product/${pId}`}
           className={`primary-btn ${buttonClassName}`}
         />
-        <FontAwesomeIcon
+        {
+          isLoading ? (
+            <Loading />
+          ) : (
+            <FontAwesomeIcon
           id='category_wishlist_icon'
+          className='hover:scale-105'
           style={
             isSuccess || isWishListed
               ? {
@@ -102,7 +112,7 @@ const HomeCategoryProductCard = ({
                   fontWeight: 'light',
                   color: 'white',
                   stroke: 'black',
-                  strokeWidth: '2rem',
+                  strokeWidth: '3rem',
                   cursor: 'pointer',
                   '&:hover': {
                     transform: 'scale(1.02)'
@@ -112,16 +122,17 @@ const HomeCategoryProductCard = ({
           icon={faHeart}
           onClick={(e) => {
             e.preventDefault();
-            postAddToWishList({ productId: pId });
+            postAddToWishList({ productId: pId })
           }}
-          className='bg-transparent'
         />
+          )
+        }
       </section>
       <div className='add_wishlist_feedback'>
         <p
           className={
             isLoading
-              ? 'flex text-[1.2rem] my-4 transition-all duration-100 text-gray-800'
+              ? 'flex text-[1.2rem] my-2 transition-all duration-100 text-gray-800'
               : 'hidden'
           }
         >

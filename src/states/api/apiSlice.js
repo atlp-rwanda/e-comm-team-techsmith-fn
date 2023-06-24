@@ -117,7 +117,8 @@ export const apiSlice = createApi({
             method: 'POST',
             body: card,
             headers: {
-              'Content-Type': 'application/json'
+              'Content-Type': 'application/json',
+              authorization: `${token}`
             }
           };
         }
@@ -167,6 +168,33 @@ export const apiSlice = createApi({
             }
           };
         }
+      }),
+      deleteSingleWishlist: builder.mutation({
+        query: ({ productId }) => {
+          return {
+            url: `wishlist/${productId}`,
+            method: 'DELETE',
+            headers: {
+              authorization: `${token}`
+            }
+          };
+        }
+      }),
+      deleteAllWishlist: builder.mutation({
+        query: () => {
+          return {
+            url: 'wishlist',
+            method: 'DELETE',
+            headers: {
+              authorization: `${token}`
+            }
+          };
+        }
+      }),
+      getAllWishlistAllUsers: builder.query({
+        query: ({ page, size }) => {
+          return `wishlist/allWishlists/?size=${size}&page=${page}`;
+        }
       })
     };
   }
@@ -188,6 +216,9 @@ export const {
   usePostOrderPaymentMutation,
   useDeleteProductMutation,
   useUpdateProductMutation,
-  useGetAllWishlistQuery,
-  usePostAddToWishlistMutation
+  useLazyGetAllWishlistQuery,
+  usePostAddToWishlistMutation,
+  useDeleteSingleWishlistMutation,
+  useDeleteAllWishlistMutation,
+  useLazyGetAllWishlistAllUsersQuery
 } = apiSlice;

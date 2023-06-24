@@ -70,6 +70,7 @@ const RevisitCollections = () => {
         />
         <Button
           className='primary-btn home_revisit_collections_button'
+          route='/wishlist'
           value={
             <span className='button_with_icon'>
               Go to your wishlist{' '}

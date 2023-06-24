@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Typography, Button } from '@mui/material';
 import { useForm } from 'react-hook-form';
 import { useDispatch, useSelector } from 'react-redux';
@@ -17,7 +17,7 @@ const LoginContainer = () => {
   const form = useForm();
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const [openPopUp, setOpenPopUp] = React.useState(false);
+  const [openPopUp, setOpenPopUp] = useState(false);
   const { register, handleSubmit, formState } = form;
   const { errors } = formState;
   const { isLoading, isError, isSuccess, token } = useSelector((state) => {
@@ -35,10 +35,9 @@ const LoginContainer = () => {
         document.querySelector('.overlay').style.display = 'flex';
       } else {
         if (localStorage.getItem('isBuyer')) {
-          navigate('/');
-        }
-        if (localStorage.getItem('isSeller')) {
-          navigate('/dashboard/seller');
+          const user = JSON.parse(localStorage.getItem('user'));
+          navigate(`/users/${user.id}`);
+          window.location.reload();
         }
         if (localStorage.getItem('isAdmin')) {
           navigate('/dashboard/users');
