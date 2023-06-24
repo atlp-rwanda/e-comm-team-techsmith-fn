@@ -84,11 +84,12 @@ To update the Techsmith Frontend codebase, follow these steps:
 
 For any inquiries or feedback, please reach out to our team at `https://atlp-workspace.slack.com/archives/C04K7P2AA5D`.
 
-## Viewing product per category
+## Viewing product per category and recommended products
 
 One of the schema to view products on the landing page from Techsmith App
 
 1. From this app , the user on anding page should be abe to view products in the same category
 2. Once no category specified, a user can view the products from different categories randomly on landing page
+3. User should be able to view the most wanted products or recommended products
 
 For any inquiries or feedback, please reach out to our team at `https://atlp-workspace.slack.com/archives/C04K7P2AA5D`.

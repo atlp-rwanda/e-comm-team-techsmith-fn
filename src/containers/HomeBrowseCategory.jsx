@@ -1,26 +1,26 @@
-import React, { useEffect } from 'react';
+import React, { useEffect,useState } from 'react';
 import Button from '../components/Button';
 import Loading from '../components/Loading';
 import HomeCategoryProductCard from '../components/HomeCategoryProductCard';
-import { useGetAllCategoriesQuery } from '../states/api/apiSlice';
+import { useGetAllCategoriesQuery,useLazyGetAllProductsQuery } from '../states/api/apiSlice';
 import { setCategories } from '../states/features/categories/categorySlice';
 
 // BROWSE BY CATEGORY
 const BrowseByCategory = () => {
-  const props = {
-    image:
-      'https://res.cloudinary.com/nishimweprince/image/upload/v1685229667/ecommerce/c08012248_thyevv.png',
-    description: 'Brand new HP Envy 15, 256GB',
-    price: '$1499',
-    name: 'HP All-in-One',
-    category: 'Electronics',
-    rating: {
-      rating: 3,
-      count: 5
-    },
-    className:
-      'home_category_product_card flex flex-col justify-between my-4 w-fit max-w-1/5'
-  };
+  const[getAllProducts]=useLazyGetAllProductsQuery();
+  const [populars,setPopulars]=useState([]);
+  const category='BEAUTY';
+  useEffect(() => {
+    const size = 5;
+    const page = randomProduct(20);
+    getAllProducts({size,page})
+      .then(({ data }) => {
+        setPopulars(data.data.products);
+      })
+      .catch((err) => {
+        return err
+      });
+  }, []);
 
   return (
     <div className='home_browse_category'>
@@ -30,11 +30,19 @@ const BrowseByCategory = () => {
       </section>
       <Categories />
       <section className='home_browse_category_container flex flex-wrap justify-around'>
-        <HomeCategoryProductCard {...props} />
-        <HomeCategoryProductCard {...props} />
-        <HomeCategoryProductCard {...props} />
-        <HomeCategoryProductCard {...props} />
-        <HomeCategoryProductCard {...props} />
+      {populars.map((item) => {
+        return (
+          <HomeCategoryProductCard
+          image={item.image[randomProduct(item.image.length)]}
+          key={item.id}
+            description={item.description}
+            name={item.name}
+            category={category}
+            price={item.price}
+            quantity={item.quantity}
+          />
+        );
+      })}
       </section>
       <section className='home_browse_category_categories flex flex-wrap justify-center'>
         <Button
@@ -97,3 +105,8 @@ const Categories = () => {
 
   return null;
 };
+
+const randomProduct=(size)=>{
+  return(Math.floor(Math.random() * size));
+}
+
