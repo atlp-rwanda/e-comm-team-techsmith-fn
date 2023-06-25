@@ -6,7 +6,8 @@ export const orderSlice = createSlice({
     orders: [],
     orderId: null,
     validateOrderModel: false,
-    singleOrder: {}
+    singleOrder: {},
+    ordersCheckout: []
   },
   reducers: {
     setOrderId: (state, { payload }) => {
@@ -17,11 +18,26 @@ export const orderSlice = createSlice({
     },
     updateSingleOrder: (state, { payload }) => {
       state.singleOrder = payload;
+    },
+    updateOrders: (state, { payload }) => {
+      state.orders = payload;
+    },
+    setOrdersCheckout: (state, { payload }) => {
+      state.ordersCheckout = payload;
+    },
+    updateOrdersCheckout: (state, { payload }) => {
+      state.ordersCheckout = [...state.ordersCheckout, payload];
     }
   }
 });
 
 export default orderSlice.reducer;
 
-export const { setOrderId, updateModelVisility, updateSingleOrder } =
-  orderSlice.actions;
+export const {
+  setOrderId,
+  updateModelVisility,
+  updateSingleOrder,
+  updateOrders,
+  setOrdersCheckout,
+  updateOrdersCheckout
+} = orderSlice.actions;

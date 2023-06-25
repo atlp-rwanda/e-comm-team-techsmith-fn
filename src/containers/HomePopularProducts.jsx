@@ -2,9 +2,10 @@ import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import HomeCategoryProductCard from '../components/HomeCategoryProductCard';
 import Button from '../components/Button';
-import { useLazyGetAllWishlistAllUsersQuery } from '../states/api/apiSlice';
+import { useGetAllCategoriesQuery, useLazyGetAllWishlistAllUsersQuery } from '../states/api/apiSlice';
 import { removeDuplicates } from '../utils/Arrays';
 import Loading from '../components/Loading';
+import { getCatName } from '../utils/categories';
 
 const PopularProducts = () => {
 
@@ -13,6 +14,15 @@ const PopularProducts = () => {
   const newWishlist = useSelector((state) => {
     return state.wishlist.newWishlist;
   });
+
+  const { data, isLoading: categoriesLoading } = useGetAllCategoriesQuery();
+  const [categories, setCategories] = useState([]);
+
+  useEffect(() => {
+    if (data) {
+      setCategories(data.data);
+    }
+  }, [data]);
 
   const [getAllWishlistAllUsers, { data: allWishlist, isLoading, isSuccess }] = useLazyGetAllWishlistAllUsersQuery();
 
@@ -29,6 +39,7 @@ const PopularProducts = () => {
       setAllWishlistData(removeDuplicates(allWishlist.data?.availableProducts))
     }
   }, [newWishlist, allWishlist]);
+
   return (
     <div className='popular_products'>
       <section className='popular_product_header'>
@@ -47,11 +58,18 @@ const PopularProducts = () => {
         {allWishlistData?.map((wishlist) => {
           return (
             <HomeCategoryProductCard
-            key={wishlist.id}
-            name={wishlist.product.name}
-            price={wishlist.product.price}
-            pId={wishlist.productId}
-            image={wishlist.product.image[random(wishlist.product.image.length)]}
+              key={wishlist.id}
+              name={wishlist.product.name}
+              price={wishlist.product.price}
+              category={
+                categoriesLoading
+                  ? 'Loading...'
+                  : getCatName(wishlist.product.categoryId, categories)
+              }
+              pId={wishlist.productId}
+              image={
+                wishlist.product.image[random(wishlist.product.image.length)]
+              }
             />
           );
         })}

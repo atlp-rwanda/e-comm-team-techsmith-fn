@@ -121,14 +121,14 @@ const ProductDetails = ({ product }) => {
                     alt='Product seller avatar'
                     className='w-8 h-8 rounded-full'
                   />
-                  <p>{user.name}</p>
+                  <p>{user?.name || 'User'}</p>
                 </span>
               }
             />
           </div>
           <div className='product_seller_cta'>
             <Button
-              value={`Browse ${user.name.split(' ')[0]}'s collection `}
+              value={`Browse ${user?.name.split(' ')[0]}'s collection ` || 'Browse collection'}
               className='primary-btn rounded-[.5rem] py-[1rem] w-full normal-case screen-base:text-sm'
             />
           </div>

@@ -19,6 +19,7 @@ import SellerProductsContainer from '../containers/SellerProductsContainer';
 import ViewAllProductsContainer from '../containers/ViewAllProductsContainer';
 import CheckoutContainer from '../containers/CheckoutContainer';
 import BuyerWishlistContainer from '../containers/BuyerWishlistContainer';
+import MultipleOrdersContainer from '../containers/MultipleOrdersContainer';
 
 const HomePage = () => {
   return <HomeContainer />;
@@ -68,6 +69,11 @@ const CheckoutPage = () => {
   return <CheckoutContainer id={id} />;
 };
 
+const MultipleCheckoutPage = () => {
+
+  return <MultipleOrdersContainer />;
+};
+
 const SingleProductPage = () => {
   const { id } = useParams();
 
@@ -102,5 +108,6 @@ export {
   AdminManageUserPage,
   SellerProductsPage,
   CheckoutPage,
-  WishlistPage
+  WishlistPage,
+  MultipleCheckoutPage,
 };

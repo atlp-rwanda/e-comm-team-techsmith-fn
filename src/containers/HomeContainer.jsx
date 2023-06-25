@@ -2,7 +2,7 @@ import React,{useEffect} from 'react';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useNavigate } from 'react-router-dom';
-import { faCartShopping, faHeart } from '@fortawesome/free-solid-svg-icons';
+import { faCartShopping, faShoppingBag } from '@fortawesome/free-solid-svg-icons';
 import Button from '../components/Button';
 import PopularProducts from './HomePopularProducts';
 import BrowseByCategory from './HomeBrowseCategory';
@@ -85,16 +85,16 @@ const RevisitCollections = () => {
         />
         <Button
           className='primary-btn home_revisit_collections_button'
-          route='/wishlist'
+          route='/orders'
           value={
             <span className='button_with_icon'>
-              Go to your wishlist{' '}
+              Find all your orders{' '}
               <FontAwesomeIcon
                 style={{
                   width: '3rem',
                   height: '3rem'
                 }}
-                icon={faHeart}
+                icon={faShoppingBag}
               />
             </span>
           }

@@ -52,6 +52,6 @@ module.exports = {
     'react/jsx-props-no-spreading': 'off',
     'react/no-array-index-key': 'off',
     'react/no-unescaped-entities': 'off',
-    'eol-last': ['error', 'always']
+    'no-nested-ternary': 'off',
   }
 };
