@@ -21,7 +21,8 @@ import {
   SearchPage,
   SellerProductsPage,
   CheckoutPage,
-  WishlistPage
+  WishlistPage,
+  MultipleCheckoutPage
 } from './pages';
 import Footer from './components/Footer';
 import Navbar from './components/Navbar';
@@ -63,6 +64,7 @@ const App = () => {
           <Route path='/admin/unauthorized' element={<AdminNavigation />} />
           <Route element={<ProtectedRoutes />}>
             <Route path='/chat' element={<JoinChat />} />
+            <Route path='/orders' element={<MultipleCheckoutPage />} />
             <Route path='/chat/room' element={<ChatPage />} />
             <Route path='/order/:id' element={<CheckoutPage />} />
             <Route path='/wishlist' element={<WishlistPage />} />

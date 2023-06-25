@@ -40,6 +40,7 @@ const BrowseByCategory = () => {
             category={category}
             price={item.price}
             quantity={item.quantity}
+            pId={item.id}
           />
         );
       })}

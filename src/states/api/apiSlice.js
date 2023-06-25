@@ -195,6 +195,28 @@ export const apiSlice = createApi({
         query: ({ page, size }) => {
           return `wishlist/allWishlists/?size=${size}&page=${page}`;
         }
+      }),
+      getAllOrdersUser: builder.query({
+        query: ({ page, size }) => {
+          return {
+            url: `orders/user/?size=${size}&page=${page}`,
+            headers: {
+              authorization: `${token}`
+            }
+          };
+        }
+      }),
+      postOrderBulkPayment: builder.mutation({
+        query: ({ ordersCheckout, card }) => {
+          return {
+            url: 'orders/checkout',
+            method: 'POST',
+            body: { ordersCheckout, card },
+            headers: {
+              authorization: `${token}`
+            }
+          };
+        }
       })
     };
   }
@@ -220,5 +242,7 @@ export const {
   usePostAddToWishlistMutation,
   useDeleteSingleWishlistMutation,
   useDeleteAllWishlistMutation,
-  useLazyGetAllWishlistAllUsersQuery
+  useLazyGetAllWishlistAllUsersQuery,
+  useLazyGetAllOrdersUserQuery,
+  usePostOrderBulkPaymentMutation
 } = apiSlice;
