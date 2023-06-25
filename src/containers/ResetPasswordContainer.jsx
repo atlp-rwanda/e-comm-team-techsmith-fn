@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect,useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { useForm } from 'react-hook-form';
@@ -6,7 +6,7 @@ import { ToastContainer } from 'react-toastify';
 import AuthBlueSide from '../components/AuthBlueSide';
 import TLogo from '../assets/images/T_Logo.png';
 import Loading from '../components/Loading';
-import { reset, resetPassword } from '../states/features/auth/authSlice';
+import {  resetPassword,changePasssword } from '../states/features/auth/authSlice';
 
 import {
   ErrorNotification,
@@ -19,41 +19,61 @@ const ResetPasswordContainer = () => {
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const [securityChange, setChangePassword] = useState(false);
   const {
     register,
     handleSubmit,
     formState: { errors }
   } = useForm();
-  const { isLoading, isError, isSuccess, message } = useSelector((state) => {
+  const { isLoading, isError, isSuccessPassword, message } = useSelector((state) => {
     return state.auth;
   });
+  useEffect(() => {
+  
+    if (localStorage.getItem('changePassword')) {
+      setChangePassword(true);
+    }
+    if (isSuccessPassword) {
+      successNotification(message);
+      localStorage.removeItem('changePassword')
+      navigate('/login')
+
+    } else if (isError) {
+      ErrorNotification(message);
+    }
+  }, [isSuccessPassword, isError]);
 
   const onSubmit = (data) => {
     const { password, confirmPassword } = data;
 
     if (password.length < 8) {
-      return;
+      return  ErrorNotification("Password must be at least 8 characters");
     }
 
     if (password !== confirmPassword) {
-      return;
+      return  ErrorNotification("Password doesn't match");
     }
-
-    dispatch(resetPassword({ token: RealToken, password }));
+    
+      return dispatch(resetPassword({ password, token: RealToken }));
+    
   };
+  const onSubmit2 = (data) => {
+    const email = localStorage.getItem('email')
+    const { password, confirmPassword,OldPassword } = data;
 
-  useEffect(() => {
-    if (isSuccess) {
-      successNotification(message.message);
-    } else if (isError) {
-      ErrorNotification(message);
+    if (password.length < 8) {
+
+      return ErrorNotification("Password must be at least 8 characters");
     }
-    if (isSuccess || isError) {
-      setTimeout(() => {
-        dispatch(reset());
-      }, 5000);
+    if (password !==confirmPassword) {
+      return ErrorNotification("Password doesn't match");
     }
-  }, [isSuccess, isError, dispatch, navigate]);
+    
+     return dispatch(changePasssword({ email,newPassword: password, confPassword: confirmPassword, oldPassword:OldPassword  }));
+    
+  }
+
+ 
 
   return (
     <div className='loginPage'>
@@ -73,11 +93,26 @@ const ResetPasswordContainer = () => {
             </div>
           </div>
           <div className='loginPage__title'>
-            <h4 className='text-xl'>RESET PASSWORD</h4>
+            {securityChange ? (<h4 className='text-xl'>CHANGE PASSWORD</h4>):(<h4 className='text-xl'>RESET PASSWORD</h4>)}
           </div>
 
           <div className='loginPage__form'>
-            <form onSubmit={handleSubmit(onSubmit)} noValidate>
+            <form onSubmit={handleSubmit(securityChange ? onSubmit2 : onSubmit)} noValidate>
+            {securityChange &&(<div className='loginPage__input'>
+                <input
+                  type='password'
+                  id='Oldpassword'
+                  {...register('OldPassword', { required: true, minLength: 8 })}
+                  placeholder=''
+                  className='text-xl'
+                />
+                <label htmlFor='new-password'>Old Password</label>
+                {errors.password && (
+                  <p className='loginPage__error'>
+                    Password must be at least 8 characters long.
+                  </p>
+                )}
+              </div>)}
               <div className='loginPage__input'>
                 <input
                   type='password'
@@ -116,7 +151,7 @@ const ResetPasswordContainer = () => {
                 </button>
               </div>
             </form>
-            {isSuccess && <ToastContainer />}
+            {isSuccessPassword && <ToastContainer />}
             {isError && <ToastContainer />}
           </div>
         </div>

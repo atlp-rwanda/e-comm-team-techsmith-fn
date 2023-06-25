@@ -1,5 +1,7 @@
-import React from 'react';
+import React,{useEffect} from 'react';
+
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { useNavigate } from 'react-router-dom';
 import { faCartShopping, faHeart } from '@fortawesome/free-solid-svg-icons';
 import Button from '../components/Button';
 import PopularProducts from './HomePopularProducts';
@@ -8,6 +10,19 @@ import TopMerchants from './TopMerchants';
 import Hero from './Hero';
 
 const HomeContainer = () => {
+  const navigate = useNavigate();
+ 
+  
+
+  useEffect(() => {
+    if(localStorage.getItem('changePassword')){
+      localStorage.clear()
+      navigate('/login')
+    }
+    
+
+  },[])
+
   return (
     <>
       <Hero />

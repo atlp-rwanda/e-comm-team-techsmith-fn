@@ -1,4 +1,5 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect,useState } from 'react';
+import { decodeToken } from "react-jwt";
 import { Typography, Button } from '@mui/material';
 import { useForm } from 'react-hook-form';
 import { useDispatch, useSelector } from 'react-redux';
@@ -12,39 +13,109 @@ import PopupMaker from '../components/PopupMaker';
 import ForgetPassword from '../components/ForgetPassword';
 import { login } from '../states/features/auth/authSlice';
 import { API_URL } from '../constants';
+import { ChangePassword } from '../components/changePassword';
+// import { ChangePassword } from '../components/changePassword';
 
 const LoginContainer = () => {
   const form = useForm();
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const [openPopUp, setOpenPopUp] = useState(false);
+  const [openChangePassword, setOpenChangePassword] = useState(false);
   const { register, handleSubmit, formState } = form;
   const { errors } = formState;
-  const { isLoading, isError, isSuccess, token } = useSelector((state) => {
+  const { isLoading, isError, isSuccess,changePassword, reset } = useSelector((state) => {
     return state.auth;
   });
+  const urlParams = new URLSearchParams(window.location.search);
+  const token = urlParams.get('token');
+  
+  
+ 
   const mySubmit = async (data) => {
+    const { email} = data;
+    localStorage.setItem('email',email)
     dispatch(login(data));
   };
+ 
 
-  useEffect(() => {
-    if (isSuccess) {
-      // is he a seller
-      if (localStorage.getItem('isSeller')) {
-        // create popup
-        document.querySelector('.overlay').style.display = 'flex';
-      } else {
-        if (localStorage.getItem('isBuyer')) {
-          const user = JSON.parse(localStorage.getItem('user'));
-          navigate(`/users/${user.id}`);
-          window.location.reload();
+ useEffect(() => {
+  if(token !== null){
+    const decodedToken = decodeToken(token)
+    const { roleId, userName, userId } = decodedToken;
+    const user={
+      "id":userId,
+      "name":userName,
+    }
+    localStorage.setItem('user',JSON.stringify(user))
+    localStorage.setItem('myToken',(token))
+    if(roleId === 1){
+      localStorage.setItem('isAdmin','true')
+      navigate('/dashboard/users')
+    }
+    else if(roleId === 2){
+      localStorage.setItem('isSeller','true')
+      navigate('/dashboard/seller')
+    }
+    else if(roleId === 3){
+      
+      localStorage.setItem('isBuyer','true')
+      navigate(`/users/${userId}`)
+    }
+    
+   }
+  if (isSuccess) {
+    // is he a seller
+    if (localStorage.getItem('isSeller')) {
+      // create popup
+      document.querySelector('.overlay').style.display = 'flex';
+      if(changePassword){
+        setOpenChangePassword(true);
+
+        setTimeout(() => {
+          navigate(`/reset-password/passsword`)
+        localStorage.setItem('changePassword',true)
+        
+        }, 8000);
+      }
+      else{
+        navigate('/dashboard/seller');
+      }
+    } else {
+      if (localStorage.getItem('isBuyer')) {
+        if(changePassword){
+          setOpenChangePassword(true);
+
+          setTimeout(() => {
+            navigate(`/reset-password/${encodeURIComponent(token)}`)
+          localStorage.setItem('changePassword',true)
+          }, 8000);
         }
-        if (localStorage.getItem('isAdmin')) {
+        else{
+          const user = JSON.parse(localStorage.getItem('user'));
+        navigate(`/users/${user.id}`);
+        }
+        
+      }
+      if (localStorage.getItem('isAdmin')) {
+        if(changePassword){
+          setOpenChangePassword(true);
+
+          setTimeout(() => {
+            navigate(`/reset-password/${encodeURIComponent(token)}`)
+          localStorage.setItem('changePassword',true)
+          }, 8000);
+        }
+        else{
           navigate('/dashboard/users');
         }
+        
       }
     }
-  }, [dispatch, isSuccess, token]);
+  }
+}, [dispatch, isSuccess, token]);
+
+
   const showForgotPass = () => {
     setOpenPopUp(true);
   };
@@ -58,7 +129,9 @@ const LoginContainer = () => {
           setOpen={setOpenPopUp}
         />
       )}
+  
       <div>
+
         <InputPopup
           title='2FA Verification'
           details='Please check your email for the token to complete the Two-Factor
@@ -89,6 +162,10 @@ Authentication process.'
                 Sign In
               </Typography>
             </div>
+            {openChangePassword && (
+              
+              <ChangePassword/>
+              )}
 
             <div className='loginPage__form'>
               <form onSubmit={handleSubmit(mySubmit)} noValidate>
@@ -146,7 +223,7 @@ Authentication process.'
                 </div>
               </form>
             </div>
-            <Link to={`${API_URL}/auth/google`}>
+            <Link to={`${API_URL}/auth/google`} onClick={()=>{ return localStorage.setItem('googleLogin','true')}}>
               <div className='loginPage__googleAuth'>
                 <div className='loginPage__googleButton'>
                   <div>
