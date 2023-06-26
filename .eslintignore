@@ -4,6 +4,9 @@
 # Vite config
 vite.config.js
 
+# Tests
+/src/__tests__
+
 #Build
 dist/
 ```

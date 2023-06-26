@@ -59,7 +59,7 @@ const ResetPasswordContainer = () => {
   };
   const onSubmit2 = (data) => {
     const email = localStorage.getItem('email')
-    const { password, confirmPassword,OldPassword } = data;
+    const { password, confirmPassword, OldPassword } = data;
 
     if (password.length < 8) {
 
@@ -69,7 +69,7 @@ const ResetPasswordContainer = () => {
       return ErrorNotification("Password doesn't match");
     }
     
-     return dispatch(changePasssword({ email,newPassword: password, confPassword: confirmPassword, oldPassword:OldPassword  }));
+     return dispatch(changePasssword({ email, newPassword: password, confPassword: confirmPassword, oldPassword:OldPassword  }));
     
   }
 

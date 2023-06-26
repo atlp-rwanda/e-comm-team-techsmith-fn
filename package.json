@@ -9,15 +9,20 @@
     "preview": "vite preview",
     "prettier:fix": "prettier --write .",
     "lint": "npm run prettier:fix && eslint --fix --ext .js,.jsx .",
-    "test": "nyc jest --watchAll=false --testTimeout 10000 --verbose",
-    "coverage": "nyc -t coverage npm run test -- --coverage",
+    "test": "vitest",
+    "coverage": "vitest run --coverage",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",
     "prepare": "husky install"
   },
   "jest": {
+    "preset": "vitest",
     "transform": {
-      "^.+\\.jsx?$": "babel-jest"
+      "^.+\\.jsx?$": "babel-jest",
+      "testEnvironment": "jsdom",
+      "setupFilesAfterEnv": [
+        "./setupTests.js"
+      ]
     },
     "transformIgnorePatterns": [
       "node_modules/(?!axios)",
@@ -68,6 +73,8 @@
     "@reduxjs/toolkit": "^1.9.5",
     "@tailwindcss/forms": "^0.4.1",
     "axios": "^1.4.0",
+    "jest-resolve": "^29.5.0",
+    "jsdom": "^22.1.0",
     "moment": "^2.29.4",
     "prop-types": "^15.8.1",
     "react": "^18.2.0",
@@ -86,6 +93,7 @@
     "tailwindcss": "^3.3.2"
   },
   "devDependencies": {
+    "@babel/core": "^7.22.5",
     "@babel/preset-env": "^7.21.5",
     "@babel/preset-react": "^7.18.6",
     "@storybook/addon-essentials": "^7.0.12",
@@ -95,9 +103,13 @@
     "@storybook/react": "^7.0.12",
     "@storybook/react-vite": "^7.0.12",
     "@storybook/testing-library": "^0.0.14-next.2",
+    "@testing-library/jest-dom": "^5.16.5",
+    "@testing-library/react": "^14.0.0",
+    "@testing-library/user-event": "^14.4.3",
     "@types/react": "^18.0.28",
     "@types/react-dom": "^18.0.11",
     "@vitejs/plugin-react-swc": "^3.0.0",
+    "@vitest/coverage-v8": "^0.32.2",
     "autoprefixer": "10.4.5",
     "babel-jest": "^29.5.0",
     "eslint": "^8.41.0",
@@ -109,13 +121,15 @@
     "eslint-plugin-react-hooks": "^4.6.0",
     "husky": "^8.0.3",
     "jest": "^29.5.0",
+    "jest-environment-jsdom": "^29.5.0",
     "lint-staged": "^13.2.2",
     "nyc": "^15.1.0",
     "postcss-import": "^15.1.0",
     "prettier": "^2.8.8",
     "storybook": "^7.0.12",
     "vite": "^4.3.2",
-    "vite-plugin-eslint": "^1.8.1"
+    "vite-plugin-eslint": "^1.8.1",
+    "vitest": "^0.32.2"
   },
   "lint-staged": {
     "*.{js,jsx}": "eslint --cache --fix",
