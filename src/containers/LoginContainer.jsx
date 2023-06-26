@@ -24,17 +24,14 @@ const LoginContainer = () => {
   const [openChangePassword, setOpenChangePassword] = useState(false);
   const { register, handleSubmit, formState } = form;
   const { errors } = formState;
-  const { isLoading, isError, isSuccess,changePassword, reset } = useSelector((state) => {
+  const { isLoading, isError, isSuccess,changePassword } = useSelector((state) => {
     return state.auth;
   });
   const urlParams = new URLSearchParams(window.location.search);
   const token = urlParams.get('token');
-  
-  
  
   const mySubmit = async (data) => {
-    const { email} = data;
-    localStorage.setItem('email',email)
+    localStorage.setItem('email', data.email)
     dispatch(login(data));
   };
  
@@ -78,9 +75,7 @@ const LoginContainer = () => {
         
         }, 8000);
       }
-      else{
-        navigate('/dashboard/seller');
-      }
+
     } else {
       if (localStorage.getItem('isBuyer')) {
         if(changePassword){

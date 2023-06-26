@@ -7,6 +7,7 @@ const login = async (data) => {
   if (!response.data.user) {
     localStorage.setItem('isSeller', 'true');
     localStorage.removeItem('myToken');
+    localStorage.setItem('email', data.email);
   } else {
     const { id, name, role } = response.data.user;
     if (role.name === 'admin') {
@@ -27,12 +28,18 @@ const login = async (data) => {
 };
 
 const login2FA = async (data) => {
-  const response = await API.get(`${API_URL}/users/login/${data}`);
+  const userEmail = localStorage.getItem('email');
+  const response = await API.get(
+    `${API_URL}/users/login/${data}/?email=${userEmail}`
+  );
   if (response.data.user) {
     const { id, name, email } = response.data.user;
     localStorage.setItem('user', JSON.stringify({ id, name, email }));
     localStorage.setItem('myToken', response.data.Authorization);
     localStorage.setItem('isSeller', 'true');
+    localStorage.removeItem('isAdmin');
+    localStorage.removeItem('isBuyer');
+    localStorage.removeItem('email');
   }
 
   return response.data.Authorization;

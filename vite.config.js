@@ -6,7 +6,12 @@ export default defineConfig({
   resolve: {
     extensions: ['.js', '.jsx', '.ts', '.tsx', '.json', 'scss'],
   },
-  build: {
-    chunkSizeWarningLimit: 10000, // Adjust the limit to your desired value
+  test: {
+    globals: true,
+    environment: 'jsdom',
+    setupFiles: './setupTests.js',
+    coverage: {
+      reporter: ['text', 'json', 'html', 'lcov'],
+    },
   }
 });
