@@ -36,7 +36,6 @@ module.exports = {
     'jsx-quotes': 'off',
     'react/forbid-prop-types': ['error', { forbid: [] }],
     'arrow-parens': ['error', 'always'],
-    'eol-last': 'off',
     'arrow-body-style': ['error', 'always'],
     'react/function-component-definition': [
       2,

@@ -28,9 +28,9 @@ const BuyerWishlistContainer = () => {
 
   useEffect(() => {
     getAllWishlist();
-      if (isSuccess && data.data?.availableProducts) {
-        dispatch(updateWishlist(data.data.availableProducts));
-      }
+    if (isSuccess && data.data?.availableProducts) {
+      dispatch(updateWishlist(data.data.availableProducts));
+    }
   }, []);
 
   useEffect(() => {

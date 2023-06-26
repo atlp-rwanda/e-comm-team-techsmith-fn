@@ -8,13 +8,15 @@ const ContactContainer = () => {
           <div className='w-full  px-16 lg:w-1/4 xl:w-6/12'>
             <div className='mb-12 max-w-[570px] lg:mb-0'>
               <span className='text-primary mb-4 block text-base font-semibold'>
-                Contact Us 
+                Contact Us
               </span>
               <h2 className='text-dark mb-6 text-[32px] font-bold uppercase sm:text-[40px] lg:text-[36px] xl:text-[40px]'>
                 GET IN TOUCH WITH US
               </h2>
               <p className='text-body-color mb-9 text-base leading-relaxed'>
-              Techsmiths Stores is a student-built ecommerce gem from Andela's ATLP. Seamless shopping, cutting-edge tech products, and global reach. Innovation at your fingertips.
+                Techsmiths Stores is a student-built ecommerce gem from Andela's
+                ATLP. Seamless shopping, cutting-edge tech products, and global
+                reach. Innovation at your fingertips.
               </p>
               <div className='mb-8 flex w-full max-w-[370px]'>
                 <div className='bg-primary text-primary mr-6 flex h-[60px] w-full max-w-[60px] items-center justify-center overflow-hidden rounded bg-opacity-5 sm:h-[70px] sm:max-w-[70px]'>
@@ -32,7 +34,7 @@ const ContactContainer = () => {
                     Our Location
                   </h4>
                   <p className='text-body-color text-base'>
-                  1 KN 78 St, Kigali
+                    1 KN 78 St, Kigali
                   </p>
                 </div>
               </div>
@@ -53,9 +55,7 @@ const ContactContainer = () => {
                   <h4 className='text-dark mb-1 text-xl font-bold'>
                     Phone Number
                   </h4>
-                  <p className='text-body-color text-base'>
-                  0784 420 396
-                  </p>
+                  <p className='text-body-color text-base'>0784 420 396</p>
                 </div>
               </div>
               <div className='mb-8 flex w-full max-w-[370px]'>
@@ -74,7 +74,7 @@ const ContactContainer = () => {
                     Email Address
                   </h4>
                   <p className='text-body-color text-base'>
-                  support@techsmith.com
+                    support@techsmith.com
                   </p>
                 </div>
               </div>

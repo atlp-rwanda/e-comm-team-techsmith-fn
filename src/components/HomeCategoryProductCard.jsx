@@ -1,7 +1,10 @@
 import PropTypes from 'prop-types';
 import React, { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { ToastContainer } from 'react-toastify';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHeart } from '@fortawesome/free-solid-svg-icons';
+import { BsCartPlus } from 'react-icons/bs';
 import Rating from './Rating';
 import Button from './Button';
 import { primaryColor } from '../constants';
@@ -10,6 +13,7 @@ import {
   usePostAddToWishlistMutation
 } from '../states/api/apiSlice';
 import { findInArrayWishList } from '../utils/Arrays';
+import { addToCart, getCart } from '../states/features/cart/cartSlice';
 import Loading from './Loading';
 
 const HomeCategoryProductCard = ({
@@ -29,12 +33,12 @@ const HomeCategoryProductCard = ({
   const [postAddToWishList, { isSuccess, isLoading }] =
     usePostAddToWishlistMutation();
 
-  const [getAllWishlist ,{ data: wishListData, isSuccess: wishListSuccess }] =
+  const [getAllWishlist, { data: wishListData, isSuccess: wishListSuccess }] =
     useLazyGetAllWishlistQuery();
 
-    useEffect(() => {
-      getAllWishlist();
-    }, [])
+  useEffect(() => {
+    getAllWishlist();
+  }, []);
 
   useEffect(() => {
     if (wishListSuccess) {
@@ -53,9 +57,51 @@ const HomeCategoryProductCard = ({
     }
   }, [isSuccess, wishListSuccess, wishListData]);
 
+  // ADD TO CART
+  const dispatch = useDispatch();
+
+  const { isAdded, cart } = useSelector((state) => {
+    return state.cart;
+  });
+  const notInCart =
+    'primary-btn border bg-white border-thickGrayText text-black h-[3.2rem] w-[7rem]';
+  const inCart =
+    'primary-btn bg-green-900 border text-white h-[3.2rem] w-[7rem]';
+  const [buttonStyle, setButtonStyle] = useState(notInCart);
+
+  const checkIsInCartStyles = (id) => {
+    const found = cart.filter((item) => {
+      return item.productId === id;
+    });
+    if (found.length > 0) {
+      setButtonStyle(notInCart);
+    } else {
+      setButtonStyle(inCart);
+    }
+  };
+  useEffect(() => {
+    dispatch(getCart());
+  }, [isAdded]);
+
+  useEffect(() => {
+    dispatch(getCart());
+  }, []);
+
+  useEffect(() => {
+    const id = findInArrayWishList(cart, pId);
+    if (id) {
+      setButtonStyle(inCart);
+    }
+  }, [cart]);
+
+  const handleAddToCart = (id) => {
+    checkIsInCartStyles(id);
+    dispatch(addToCart(id));
+  };
+
   return (
     <div className={`home_category_product_card ${className}`}>
-      <section className='category_product_image_container '>
+      <section className='category_product_image_container  overflow-hidden'>
         <img
           src={image}
           alt={name}
@@ -85,48 +131,60 @@ const HomeCategoryProductCard = ({
           route={`/product/${pId}`}
           className={`primary-btn ${buttonClassName}`}
         />
-        {
-          isLoading ? (
-            <Loading />
-          ) : (
-            <FontAwesomeIcon
-          id='category_wishlist_icon'
-          className='hover:scale-105'
-          style={
-            isSuccess || isWishListed
-              ? {
-                  height: '100%',
-                  width: '3rem',
-                  maxWidth: '3rem',
-                  fontWeight: 'light',
-                  color: 'tomato',
-                  cursor: 'pointer',
-                  '&:hover': {
-                    transform: 'scale(1.02)'
-                  }
-                }
-              : {
-                  height: '100%',
-                  width: '3rem',
-                  maxWidth: '3rem',
-                  fontWeight: 'light',
-                  color: 'white',
-                  stroke: 'black',
-                  strokeWidth: '3rem',
-                  cursor: 'pointer',
-                  '&:hover': {
-                    transform: 'scale(1.02)'
-                  }
-                }
-          }
-          icon={faHeart}
-          onClick={(e) => {
-            e.preventDefault();
-            postAddToWishList({ productId: pId })
+
+        {/* ____________- button ________________________________  */}
+
+        <button
+          className={`${buttonStyle}`}
+          id={pId}
+          onClick={() => {
+            handleAddToCart(pId);
           }}
-        />
-          )
-        }
+        >
+          {' '}
+          <BsCartPlus />
+        </button>
+
+        {isLoading ? (
+          <Loading />
+        ) : (
+          <FontAwesomeIcon
+            id='category_wishlist_icon'
+            className='hover:scale-105'
+            style={
+              isSuccess || isWishListed
+                ? {
+                    height: '100%',
+                    width: '3rem',
+                    maxWidth: '3rem',
+                    fontWeight: 'light',
+                    color: 'tomato',
+                    cursor: 'pointer',
+                    '&:hover': {
+                      transform: 'scale(1.02)'
+                    }
+                  }
+                : {
+                    height: '100%',
+                    width: '3rem',
+                    maxWidth: '3rem',
+                    fontWeight: 'light',
+                    color: 'white',
+                    stroke: 'black',
+                    strokeWidth: '3rem',
+                    cursor: 'pointer',
+                    '&:hover': {
+                      transform: 'scale(1.02)'
+                    }
+                  }
+            }
+            icon={faHeart}
+            onClick={(e) => {
+              e.preventDefault();
+              postAddToWishList({ productId: pId });
+            }}
+          />
+        )}
       </section>
       <div className='add_wishlist_feedback'>
         <p
@@ -139,6 +197,8 @@ const HomeCategoryProductCard = ({
           Adding product to wishlist
         </p>
       </div>
+
+      <ToastContainer />
     </div>
   );
 };

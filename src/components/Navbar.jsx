@@ -275,15 +275,19 @@ const Navbar = () => {
                   onClick={showCart}
                 />
               </div>
-             { !localStorage.getItem('isBuyer') &&
-              <div>
-               <Button
-                route={localStorage.getItem('isSeller')?`dashboard/seller`:`dashboard/users`}
-                value='Dashboard'
-                className='primary-btn-no-hover-scale'
-              />
-            </div>
-             }
+              {!localStorage.getItem('isBuyer') && (
+                <div>
+                  <Button
+                    route={
+                      localStorage.getItem('isSeller')
+                        ? `dashboard/seller`
+                        : `dashboard/users`
+                    }
+                    value='Dashboard'
+                    className='primary-btn-no-hover-scale'
+                  />
+                </div>
+              )}
               <div>
                 <Button
                   route='/login'

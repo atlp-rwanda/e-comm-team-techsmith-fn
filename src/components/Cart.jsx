@@ -62,7 +62,6 @@ const SubTotal = ({ cart, sum }) => {
 
 const Cart = () => {
   const dispatch = useDispatch();
-
   const { cart, isLoading, isClearing } = useSelector((state) => {
     return state.cart;
   });
@@ -73,6 +72,7 @@ const Cart = () => {
 
   function closeCart() {
     document.querySelector('.cart_overlay').style.display = 'none';
+    window.location.reload();
   }
 
   const handleMouseOver = () => {
@@ -93,7 +93,7 @@ const Cart = () => {
           <Loading />{' '}
         </span>
       ) : (
-        <div className='cart_container bg-[#f2f1ef] w-[100%] sm:w-[60%] h-full absolute right-0'>
+        <div className='cart_container bg-[#f2f1ef] w-[100%] sm:w-[66%] h-full absolute right-0'>
           <div
             role='button'
             className='absolute right-10 top-10 bg-primary px-10 py-2 cursor-pointer rounded-md'
@@ -116,7 +116,7 @@ const Cart = () => {
             <div className='h-[60vh] overflow-y-scroll'>
               {cart.length === 0 ? (
                 <h1 className='text-thickGrayText text-lg font-bold my-[30%]'>
-                  {isClearing ? <Loading /> : 'No items in cart'}
+                  No items in cart
                 </h1>
               ) : (
                 cart.map((item) => {
@@ -124,6 +124,8 @@ const Cart = () => {
                     <SingleProduct
                       name={item.name}
                       key={item.name}
+                      image={item.image[0]}
+                      prodId={item.productId}
                       quantity={1}
                       details='Get this quality product by from your fingertip. Order it now.'
                       piecePrice='USD 122.00'
@@ -150,7 +152,9 @@ const Cart = () => {
                   dispatch(clearCart());
                 }}
               >
-                <p className='text-center text-sm'>Clear Cart</p>
+                <p className='text-center text-sm'>
+                  {isClearing ? <Loading /> : 'Clear Cart'}
+                </p>
                 {dangerous && (
                   <h1 className='text-center text-xs'>
                     **This action cannot be undone!**

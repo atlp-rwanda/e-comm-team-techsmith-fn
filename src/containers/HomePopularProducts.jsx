@@ -8,8 +8,7 @@ import Loading from '../components/Loading';
 import { getCatName } from '../utils/categories';
 
 const PopularProducts = () => {
-
-  const [allWishlistData, setAllWishlistData] = useState([])
+  const [allWishlistData, setAllWishlistData] = useState([]);
 
   const newWishlist = useSelector((state) => {
     return state.wishlist.newWishlist;
@@ -29,14 +28,14 @@ const PopularProducts = () => {
   useEffect(() => {
     getAllWishlistAllUsers({ size: 5, page: 1 });
     if (isSuccess) {
-      setAllWishlistData(removeDuplicates(allWishlist.data?.availableProducts))
+      setAllWishlistData(removeDuplicates(allWishlist.data?.availableProducts));
     }
   }, []);
 
   useEffect(() => {
     getAllWishlistAllUsers({ size: 5, page: 1 });
     if (isSuccess) {
-      setAllWishlistData(removeDuplicates(allWishlist.data?.availableProducts))
+      setAllWishlistData(removeDuplicates(allWishlist.data?.availableProducts));
     }
   }, [newWishlist, allWishlist]);
 
@@ -54,7 +53,11 @@ const PopularProducts = () => {
         />
       </section>
       <section className='popular_product_container flex flex-wrap justify-around'>
-        { isLoading && <div className='min-h-[30vh] flex items-center justify-center'><Loading width={50} /></div>}
+        {isLoading && (
+          <div className='min-h-[30vh] flex items-center justify-center'>
+            <Loading width={50} />
+          </div>
+        )}
         {allWishlistData?.map((wishlist) => {
           return (
             <HomeCategoryProductCard
