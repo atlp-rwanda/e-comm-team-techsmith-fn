@@ -219,3 +219,4 @@ WishlistCard.propTypes = {
 };
 
 export default BuyerWishlistContainer;
+export { WishlistCard }

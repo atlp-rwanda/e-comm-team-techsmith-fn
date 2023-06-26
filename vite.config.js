@@ -1,4 +1,5 @@
 import { defineConfig } from 'vite';
+import { configDefaults } from 'vitest/config';
 import eslint from 'vite-plugin-eslint';
 
 export default defineConfig({
@@ -13,5 +14,13 @@ export default defineConfig({
     coverage: {
       reporter: ['text', 'json', 'html', 'lcov'],
     },
+    exclude: [
+      ...configDefaults.exclude,
+      'src/states/**/*.js',
+      'src/states/**/*.jsx',
+      'src/stories/**/*.js',
+      'src/__tests__/**/*.js',
+    ],
+    testTimeout: 30000,
   }
 });

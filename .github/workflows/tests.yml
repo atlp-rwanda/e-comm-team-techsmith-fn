@@ -1,30 +1,16 @@
-# Description: Run tests on push
-
-# Workflow name
 name: Github actions tests
-# Workflow run name that will be displayed in the Actions tab.
-# Uses the name of the actor that triggered the workflow and the name of the repository.
 run-name: ${{ github.actor }} contributes to ${{ github.repository }}
-
-# Workflow triggers
 on:
-  # Trigger the workflow on push events on all branches
   push:
-    branches-ignore:
-      - '*'
+    branches:
+      - '**'
 
 jobs:
-  # Name of the job
   github_tests:
-    # Job runs on Ubuntu
     runs-on: ubuntu-latest
-
-    # Job runs on the latest version of Node.js 18.x
     strategy:
       matrix:
         node-version: [18.x]
-
-    # Job steps
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
@@ -34,9 +20,17 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
 
-        # Install dependencies and run tests
       - name: Install dependencies
         run: npm ci
 
       - name: Run tests and generate coverage
-        run: npm run coverage
+        env:  # Define environment variables for secrets
+          VITE_API_URL: ${{ secrets.VITE_API_URL }}
+          VITE_LOCAL_API_URL: ${{ secrets.VITE_LOCAL_API_URL }}
+          VITE_WEBSOCKET_URL: ${{ secrets.VITE_WEBSOCKET_URL }}
+          VITE_WEBSOCKET_LOCAL_URL: ${{ secrets.VITE_WEBSOCKET_LOCAL_URL }}
+          VITE_CLOUDINARY_CLOUD_NAME: ${{ secrets.VITE_CLOUDINARY_CLOUD_NAME }}
+          VITE_CLOUDINARY_API_KEY: ${{ secrets.VITE_CLOUDINARY_API_KEY }}
+          VITE_CLOUDINARY_API_SECRET: ${{ secrets.VITE_CLOUDINARY_API_SECRET }}
+        run: |
+          npm run coverage

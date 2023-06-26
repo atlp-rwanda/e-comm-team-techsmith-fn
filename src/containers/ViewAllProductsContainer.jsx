@@ -251,3 +251,5 @@ const RevisitCollections = () => {
 const randomImage = (size) => {
   return Math.floor(Math.random() * size);
 };
+
+export { Categories }

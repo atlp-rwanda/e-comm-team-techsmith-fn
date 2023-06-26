@@ -67,7 +67,6 @@ const ChatBox = () => {
   useEffect(() => {
     socket.on('serverMessages', (data) => {
       dispatch(setServerMessages(data));
-      participantsRef.current.scrollTop = participantsRef.current.scrollHeight;
     });
   }, []);
 
@@ -91,6 +90,8 @@ const ChatBox = () => {
       }
     });
   }, []);
+
+  console.log(activeUsers)
 
   return (
     <div className='chatbox_container sticky z-999 w-10/12 mx-auto h-[90vh] flex flex-col items-center my-8 shadow-md rounded-lg screen-mid:w-[95%] screen-base:h-[120vh]'>
@@ -266,7 +267,7 @@ const MessageList = ({ messages }) => {
     >
       {messages.map((message, i) => {
         const { user: sender, messageBody, createdAt } = message;
-        const own = message.user.id === user.id;
+        const own = message?.user?.id === user?.id;
         return (
           <Message
             key={i}
@@ -296,3 +297,4 @@ MessageList.propTypes = {
 };
 
 export default ChatBox;
+export { Message, MessageList }

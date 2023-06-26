@@ -5,7 +5,6 @@
 vite.config.js
 
 #Tests
-/src/__tests__
 ```
 
 #Coverage
