@@ -15,3 +15,4 @@ export { default as Left } from './svg/Left.svg';
 export { default as Right } from './svg/Right.svg';
 export { default as whiteshoes } from './whiteshoes.png';
 export { default as wis } from './images/wis.jpg';
+export { default as notFound } from './svg/NotFound.svg';

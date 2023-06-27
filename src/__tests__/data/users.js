@@ -28,6 +28,19 @@ const users = [
     }
   }
 ];
+const userList = [
+  // Example user data
+  {
+    id: 1,
+    name: 'John Doe',
+    email: 'john@example.com',
+    createdAt: '2023-06-28',
+    role: {
+      name: 'Admin'
+    },
+    isActive: true
+  }
+];
 
 const userDetails = [
   {
