@@ -1,6 +1,23 @@
 import React from 'react';
+import { useForm } from 'react-hook-form';
+import { useSubmitContactFormMutation } from '../states/api/apiSlice';
+import Loading from '../components/Loading';
 
-const ContactContainer = () => {
+  const ContactContainer = () => {
+
+    const { register, handleSubmit } = useForm();
+    const [submitContactForm, { isLoading, isSuccess, isError }] = useSubmitContactFormMutation();
+
+    const handleSubmitForm = (data) => {
+      submitContactForm({
+        name: data.name,
+        email: data.email,
+        phone: data.phone,
+        message: data.message,
+      });
+    };
+
+
   return (
     <section className='relative z-10 overflow-hidden bg-white py-20 lg:py-[120px]'>
       <div className=' container mx-auto'>
@@ -82,12 +99,13 @@ const ContactContainer = () => {
           </div>
           <div className='w-full px-4 lg:w-1/2 xl:w-6/12'>
             <div className='relative rounded-lg bg-white p-8 shadow-lg sm:p-12'>
-              <form>
+              <form onSubmit={handleSubmit(handleSubmitForm)}>
                 <div className='mb-6'>
                   <input
                     type='text'
                     placeholder='Your Name'
                     className='text-body-color border-[f0f0f0] focus:border-primary w-full rounded border py-3 px-[14px] text-base outline-none focus-visible:shadow-none'
+                    {...register('name', { required: true })}
                   />
                 </div>
                 <div className='mb-6'>
@@ -95,6 +113,7 @@ const ContactContainer = () => {
                     type='email'
                     placeholder='Your Email'
                     className='text-body-color border-[f0f0f0] focus:border-primary w-full rounded border py-3 px-[14px] text-base outline-none focus-visible:shadow-none'
+                    {...register('email', { required: true })}
                   />
                 </div>
                 <div className='mb-6'>
@@ -102,6 +121,7 @@ const ContactContainer = () => {
                     type='text'
                     placeholder='Your Phone'
                     className='text-body-color border-[f0f0f0] focus:border-primary w-full rounded border py-3 px-[14px] text-base outline-none focus-visible:shadow-none'
+                    {...register('phone', { required: false })}
                   />
                 </div>
                 <div className='mb-6'>
@@ -109,14 +129,15 @@ const ContactContainer = () => {
                     rows='6'
                     placeholder='Your Message'
                     className='text-body-color border-[f0f0f0] focus:border-primary w-full resize-none rounded border py-3 px-[14px] text-base outline-none focus-visible:shadow-none'
+                    {...register('message', { required: true })}
                   />
                 </div>
                 <div>
                   <button
                     type='submit'
-                    className='bg-primary border-primary w-full rounded border p-5 text-white transition hover:bg-opacity-90'
+                    className={`${isSuccess ? 'bg-green-600' : isError ? 'bg-red-500' : 'bg-primary'} border-primary w-full rounded-mid border-none p-5 text-white text-[1.5rem] transition hover:bg-opacity-90`}
                   >
-                    <p>Send Message</p>
+                    {isLoading ? <Loading width={20} /> : isSuccess ? 'Message Sent' : 'Send Message'}
                   </button>
                 </div>
               </form>

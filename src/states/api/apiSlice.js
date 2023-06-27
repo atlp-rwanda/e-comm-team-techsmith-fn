@@ -217,6 +217,18 @@ export const apiSlice = createApi({
             }
           };
         }
+      }),
+      submitContactForm: builder.mutation({
+        query: ({ name, email, phone, message }) => {
+          return {
+            url: `/users/contact`,
+            method: 'POST',
+            body: { name, email, phone, message },
+            headers: {
+              'Content-Type': 'application/json'
+            }
+          };
+        }
       })
     };
   }
@@ -244,5 +256,6 @@ export const {
   useDeleteAllWishlistMutation,
   useLazyGetAllWishlistAllUsersQuery,
   useLazyGetAllOrdersUserQuery,
-  usePostOrderBulkPaymentMutation
+  usePostOrderBulkPaymentMutation,
+  useSubmitContactFormMutation
 } = apiSlice;
