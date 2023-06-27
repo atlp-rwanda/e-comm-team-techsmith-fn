@@ -84,7 +84,6 @@ const Cart = () => {
   };
 
   const [dangerous, setDangerous] = useState(false);
-
   return (
     <div className='cart_overlay overflow-x-scroll'>
       {isLoading ? (

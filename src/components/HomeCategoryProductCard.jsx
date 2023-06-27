@@ -100,7 +100,7 @@ const HomeCategoryProductCard = ({
   };
 
   return (
-    <div className={`home_category_product_card ${className}`}>
+    <div className={`home_category_product_card ${className}` }>
       <section className='category_product_image_container  overflow-hidden'>
         <img
           src={image}
