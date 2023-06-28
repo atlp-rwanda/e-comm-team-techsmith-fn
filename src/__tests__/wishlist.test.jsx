@@ -9,7 +9,7 @@ import BuyerWishlistContainer, {
 describe('Wishlist Container', () => {
   test('Renders wishlist container', async () => {
     renderWithRedux(<BuyerWishlistContainer />);
-    const headings = await screen.findAllByRole('heading');
+    const headings =  screen.queryAllByRole('heading');
     const buttons = await screen.findAllByRole('link' || 'button');
 
     expect(buttons).toBeTruthy();

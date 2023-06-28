@@ -84,7 +84,7 @@ const ProfileContainer = () => {
           <div className='myprofile__information '>
             <div className='myProfile__formsection px-4 py-3'>
               <div className='flex myprofilee__formsection_input items-center'>
-                <label>Username</label>
+                <label htmlFor='name'>Username</label>
                 <div>
                   <input
                     type='text'
@@ -99,7 +99,7 @@ const ProfileContainer = () => {
               </div>
 
               <div className='flex myprofilee__formsection_input items-center'>
-                <label>Gender</label>
+                <label htmlFor='gender'>Gender</label>
                 <div>
                   <div className=''>
                     <select
@@ -118,7 +118,7 @@ const ProfileContainer = () => {
               </div>
 
               <div className='flex myprofilee__formsection_input items-center'>
-                <label>PreferredLanguage</label>
+                <label htmlFor='preferredLanguage'>PreferredLanguage</label>
                 <div className=''>
                   <select
                     id='preferredLanguage'
@@ -135,7 +135,7 @@ const ProfileContainer = () => {
               </div>
 
               <div className='flex myprofilee__formsection_input items-center'>
-                <label>Physical Address</label>
+                <label htmlFor='physicalAddress'>Physical Address</label>
                 <div>
                   <input
                     type='text'
@@ -149,7 +149,7 @@ const ProfileContainer = () => {
               </div>
 
               <div className='flex myprofilee__formsection_input items-center'>
-                <label>Preferred currency</label>
+                <label  htmlFor='preferredCurrency'>Preferred currency</label>
                 <div>
                   <select
                     id='preferredCurrency'

@@ -210,7 +210,7 @@ Authentication process.'
                 </div>
                 <div className='loginPage__button'>
                   <button
-                    type='submit'
+                    type='submit' data-testid='log_in'
                     className='bg-blue-500 hover:bg-blue-700 text-white font-medium py-2 px-4 border border-blue-200 rounded'
                   >
                     {isLoading ? <Loading /> : 'SIGN IN'}
