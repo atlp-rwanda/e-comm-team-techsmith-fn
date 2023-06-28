@@ -19,7 +19,7 @@ const SubTotal = ({ cart, sum }) => {
               Product
             </th>
             <th className='border border-gray-300 px-4 py-2 text-sm'>
-              Price(USD)
+              Price
             </th>
           </tr>
         </thead>
@@ -175,3 +175,5 @@ SubTotal.propTypes = {
 };
 
 export default Cart;
+export {SubTotal}
+

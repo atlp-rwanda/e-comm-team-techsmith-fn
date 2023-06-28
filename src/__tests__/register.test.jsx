@@ -7,3 +7,4 @@ test('renders Register component', () => {
     const linkElement = screen.getByText(/Register/i);
     expect(linkElement).toBeInTheDocument();
 });
+

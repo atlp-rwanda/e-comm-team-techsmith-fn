@@ -3,6 +3,7 @@ import { API_URL } from '../../../constants';
 
 const getCart = async () => {
   const response = await API.get(`${API_URL}/cart`);
+  console.log(response.data.data.itemsInCart);
   return response.data.data.itemsInCart;
 };
 
