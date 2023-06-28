@@ -64,7 +64,7 @@ const HomeCategoryProductCard = ({
     return state.cart;
   });
   const notInCart =
-    'primary-btn border bg-white border-thickGrayText text-black h-[3.2rem] w-[7rem]';
+    'primary-btn border bg-white border-thickGrayText text-black h-[3.2rem] ease-in-out duration-10 w-[7rem] hover:text-white';
   const inCart =
     'primary-btn bg-green-900 border text-white h-[3.2rem] w-[7rem]';
   const [buttonStyle, setButtonStyle] = useState(notInCart);

@@ -35,6 +35,7 @@ const MessageField = () => {
       />
       <Button
         type='submit'
+        id='send-message'
         value={
           <FontAwesomeIcon
             icon={faPaperPlane}

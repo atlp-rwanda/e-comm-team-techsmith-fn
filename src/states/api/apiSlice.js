@@ -1,12 +1,18 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 import { API_URL } from '../../constants';
 
-const token = `token=${localStorage.getItem('myToken')}`;
-
 export const apiSlice = createApi({
   reducerPath: 'api',
-  baseQuery: fetchBaseQuery({ baseUrl: API_URL }),
-  tags: ['Products'],
+  baseQuery: fetchBaseQuery({
+    baseUrl: API_URL,
+    prepareHeaders: (headers) => {
+      const token = `token=${localStorage.getItem('myToken')}`;
+      if (token) {
+        headers.set('authorization', token);
+      }
+      return headers;
+    }
+  }),
   endpoints: (builder) => {
     return {
       getSingleProduct: builder.query({
@@ -19,11 +25,7 @@ export const apiSlice = createApi({
           return {
             url: `feedback/${id}`,
             method: 'POST',
-            body: review,
-            headers: {
-              'Content-Type': 'application/json',
-              authorization: `${token}`
-            }
+            body: review
           };
         },
         invalidatesTags: ['Products']
@@ -31,11 +33,7 @@ export const apiSlice = createApi({
       getProductReviews: builder.query({
         query: ({ id }) => {
           return {
-            url: `feedback/${id}?size=${40}&page=${3}`,
-            headers: {
-              'Content-Type': 'application/json',
-              authorization: `${token}`
-            }
+            url: `feedback/${id}?size=${40}&page=${3}`
           };
         }
       }),
@@ -55,10 +53,7 @@ export const apiSlice = createApi({
         query: ({ id, roleId }) => {
           return {
             url: `users/${id}/role/${roleId}`,
-            method: 'PUT',
-            headers: {
-              authorization: `${token}`
-            }
+            method: 'PUT'
           };
         }
       }),
@@ -91,22 +86,14 @@ export const apiSlice = createApi({
           return {
             url: 'orders',
             method: 'POST',
-            body: { desiredQuantity, productId, amount },
-            headers: {
-              'Content-Type': 'application/json',
-              authorization: `${token}`
-            }
+            body: { desiredQuantity, productId, amount }
           };
         }
       }),
       getSingleOrder: builder.query({
         query: (id) => {
           return {
-            url: `orders/single/${id}`,
-            headers: {
-              'Content-Type': 'application/json',
-              authorization: `${token}`
-            }
+            url: `orders/single/${id}`
           };
         }
       }),
@@ -115,11 +102,7 @@ export const apiSlice = createApi({
           return {
             url: `orders/${orderId}/checkout`,
             method: 'POST',
-            body: card,
-            headers: {
-              'Content-Type': 'application/json',
-              authorization: `${token}`
-            }
+            body: card
           };
         }
       }),
@@ -127,10 +110,7 @@ export const apiSlice = createApi({
         query: ({ productId }) => {
           return {
             url: `/products/${productId}`,
-            method: 'DELETE',
-            headers: {
-              authorization: `${token}`
-            }
+            method: 'DELETE'
           };
         }
       }),
@@ -139,11 +119,7 @@ export const apiSlice = createApi({
           return {
             url: `products/${id}`,
             method: 'PUT',
-            body: data,
-            headers: {
-              'Content-Type': 'application/json',
-              authorization: `${token}`
-            }
+            body: data
           };
         },
         invalidatesTags: ['Products']
@@ -151,10 +127,7 @@ export const apiSlice = createApi({
       getAllWishlist: builder.query({
         query: () => {
           return {
-            url: 'wishlist',
-            headers: {
-              authorization: `${token}`
-            }
+            url: 'wishlist'
           };
         }
       }),
@@ -162,10 +135,7 @@ export const apiSlice = createApi({
         query: ({ productId }) => {
           return {
             url: `wishlist/${productId}`,
-            method: 'POST',
-            headers: {
-              authorization: `${token}`
-            }
+            method: 'POST'
           };
         }
       }),
@@ -173,10 +143,7 @@ export const apiSlice = createApi({
         query: ({ productId }) => {
           return {
             url: `wishlist/${productId}`,
-            method: 'DELETE',
-            headers: {
-              authorization: `${token}`
-            }
+            method: 'DELETE'
           };
         }
       }),
@@ -184,10 +151,7 @@ export const apiSlice = createApi({
         query: () => {
           return {
             url: 'wishlist',
-            method: 'DELETE',
-            headers: {
-              authorization: `${token}`
-            }
+            method: 'DELETE'
           };
         }
       }),
@@ -199,10 +163,7 @@ export const apiSlice = createApi({
       getAllOrdersUser: builder.query({
         query: ({ page, size }) => {
           return {
-            url: `orders/user/?size=${size}&page=${page}`,
-            headers: {
-              authorization: `${token}`
-            }
+            url: `orders/user/?size=${size}&page=${page}`
           };
         }
       }),
@@ -211,10 +172,7 @@ export const apiSlice = createApi({
           return {
             url: 'orders/checkout',
             method: 'POST',
-            body: { ordersCheckout, card },
-            headers: {
-              authorization: `${token}`
-            }
+            body: { ordersCheckout, card }
           };
         }
       }),

@@ -20,7 +20,7 @@ const Hero = () => {
           </div>
           <p>$24</p>
           <Button
-            route='/login'
+            route='/category'
             className='hero-btn primary-btn'
             value='Buy now'
           />

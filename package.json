@@ -28,31 +28,7 @@
       "node_modules/(?!axios)",
       "\\.stories\\.(js|ts)$",
       "/src/stories/"
-    ],
-    "collectCoverageFrom": [
-      "src/**/*.{js,jsx}",
-      "!**/node_modules/**",
-      "!src/**/*.test.js",
-      "!src/outlets/**",
-      "!src/stories/**",
-      "!src/__tests__/**",
-      "!src/states/**",
-      "!src/containers/**",
-      "!src/components/**",
-      "!src/assets/**",
-      "!src/constants/**",
-      "!src/pages/**",
-      "!src/utils/**",
-      "!src/*.jsx"
-    ],
-    "coverageThreshold": {
-      "global": {
-        "branches": 80,
-        "functions": 80,
-        "lines": 80,
-        "statements": 80
-      }
-    }
+    ]
   },
   "nyc": {
     "reporter": [

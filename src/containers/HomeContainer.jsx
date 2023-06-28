@@ -105,3 +105,4 @@ const RevisitCollections = () => {
 };
 
 export default HomeContainer;
+export { Banner, RevisitCollections }

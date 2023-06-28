@@ -9,26 +9,26 @@ const OrderDetails = ({ order, className, checkoutPage }) => {
     >
       <div className='order_details_image_container h-full w-[60%]'>
         <img
-          src={order.product?.image[0]}
-          alt={order.product?.name}
+          src={order?.product?.image[0]}
+          alt={order?.product?.name}
           className='w-full max-w-[20rem] h-full object-cover rounded-lg'
         />
       </div>
       <div className='order_details_info_container w-[40%] flex flex-col h-full justify-between gap-4'>
         <h2 className='text-[1.8rem] font-bold truncate text-ellipsis'>
-          {order.product.name}
+          {order?.product?.name}
         </h2>
         <span className='flex items-center w-full justify-between gap-6'>
         <p>
           <span className='text-[1.5rem] font-light'>Price</span>:{' '}
-          {order.product.price}
+          {order?.product?.price}
         </p>
-        <p>X{order.quantity}</p>
+        <p>X{order?.quantity}</p>
         </span>
-        <h3 className='text-[2rem] font-black'>Total: {order.amount}</h3>
+        <h3 className='text-[2rem] font-black'>Total: {order?.amount}</h3>
         <Button
           value='Buy now'
-          route={`/order/${order.id}`}
+          route={`/order/${order?.id?.toString()}`}
           className={`primary-btn px-6 py-2 w-fit text-[1.5rem] normal-case ${checkoutPage ? 'hidden' : ''}`}
         />
       </div>
