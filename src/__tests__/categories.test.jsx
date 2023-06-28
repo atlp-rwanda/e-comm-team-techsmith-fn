@@ -1,7 +1,7 @@
 import React from 'react';
 import { screen, waitFor } from '@testing-library/react';
 import { renderWithRedux } from '../utils/TestUtils';
-import HomeCategoryProductCard from '../components/HomeCategoryProductCard';
+import ProductCard from '../components/ProductCard';
 import { singleProduct } from './products';
 import ViewAllProductsContainer, {
   Categories
@@ -11,7 +11,7 @@ test('View products by category', async () => {
   renderWithRedux(
     <>
       <ViewAllProductsContainer />
-      <HomeCategoryProductCard
+      <ProductCard
         image={singleProduct.image[0]}
         name={singleProduct.name}
         price={singleProduct.price}

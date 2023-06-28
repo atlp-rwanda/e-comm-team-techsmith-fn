@@ -5,7 +5,8 @@ const categorySlice = createSlice({
   initialState: {
     categories: [],
     products: [],
-    categoryProductsLoading: false
+    categoryProductsLoading: false,
+    selectedCategory: null
   },
   reducers: {
     setCategoryProducts: (state, action) => {
@@ -16,6 +17,9 @@ const categorySlice = createSlice({
     },
     setProductCategoriesLoading: (state, { payload }) => {
       state.categoryProductsLoading = payload;
+    },
+    updateSelectedCategory: (state, { payload }) => {
+      state.selectedCategory = payload;
     }
   }
 });
@@ -23,6 +27,7 @@ const categorySlice = createSlice({
 export const {
   setCategoryProducts,
   setCategories,
-  setProductCategoriesLoading
+  setProductCategoriesLoading,
+  updateSelectedCategory
 } = categorySlice.actions;
 export default categorySlice.reducer;

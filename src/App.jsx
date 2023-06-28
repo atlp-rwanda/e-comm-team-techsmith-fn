@@ -22,7 +22,8 @@ import {
   SellerProductsPage,
   CheckoutPage,
   WishlistPage,
-  MultipleCheckoutPage
+  MultipleCheckoutPage,
+  SingleSellerContainer
 } from './pages';
 import Footer from './components/Footer';
 import Navbar from './components/Navbar';
@@ -79,6 +80,7 @@ const App = () => {
           </Route>
           <Route path='/unauthorized' element={<Navigate />} />
           <Route path='/seller/unauthorized' element={<SellerNavigation />} />
+          <Route path='/seller/:id' element={<SingleSellerContainer />} />
 
           <Route path='*' element={<NotFoundPage />} />
         </Routes>

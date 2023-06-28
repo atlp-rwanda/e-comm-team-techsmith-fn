@@ -25,20 +25,13 @@ const SignupContainer = () => {
   const [, setEmail] = useState(' ');
   const [, setName] = useState(' ');
 
-  const { isLoading, isSuccess, isError } = useSelector((state) => {
+  const { isLoading, isSuccess, isError,message } = useSelector((state) => {
     return state.auth;
   });
 
   const mySubmit = async (data) => {
     if (password === confirmPassword) {
       dispatch(signup(data));
-
-      if (isError) {
-        ErrorNotification('Error try again!');
-      } else {
-        successNotification('Successfully created!');
-      }
-
       setOpen(true);
     }
   };
@@ -53,13 +46,19 @@ const SignupContainer = () => {
     setEmail(decodedEmail);
     setName(decodedName);
 
-    if (isSuccess || isError) {
-      setTimeout(() => {
-        dispatch(reset());
-        navigate('/login');
-      }, 5000);
+    if (message !== "") {
+      if (isError) {
+        ErrorNotification(message);
+      } else {
+        successNotification(message);
+        setTimeout(() => {
+          dispatch(reset());
+          navigate('/login');
+        }, 5000);
+      }
+   
     }
-  }, [dispatch, isSuccess]);
+  }, [dispatch, isSuccess,isError]);
 
   return (
     <div className='signupPage'>
@@ -81,8 +80,6 @@ const SignupContainer = () => {
             Create your account on Techsmiths!
           </Typography>
         </div>
-        {isSuccess && <ToastContainer />}
-        {isError && <ToastContainer />}
         <div className='signupPage__form'>
           <form onSubmit={handleSubmit(mySubmit)}>
             <div className='signupPage__input'>
@@ -294,6 +291,7 @@ const SignupContainer = () => {
         }}
         description='To keep connected with us please login in here!'
       />
+       <ToastContainer />
     </div>
   );
 };

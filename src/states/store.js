@@ -9,6 +9,7 @@ import categorySlice from './features/categories/categorySlice';
 import cartReducer from './features/cart/cartSlice';
 import orderSlice from './features/orders/orderSlice';
 import wishlistReducer from './features/wishlist/wishlistSlice';
+import paginationSlice from './features/pagination/paginationSlice';
 
 const store = configureStore({
   reducer: {
@@ -21,7 +22,8 @@ const store = configureStore({
     seller: sellerReducer,
     categories: categorySlice,
     orders: orderSlice,
-    wishlist: wishlistReducer
+    wishlist: wishlistReducer,
+    pagination: paginationSlice
   },
   middleware: (getDefaultMiddleware) => {
     return getDefaultMiddleware().concat(apiSlice.middleware);

@@ -82,6 +82,9 @@ const RevisitCollections = () => {
               />
             </span>
           }
+          onClick={()=>{
+              document.querySelector('.cart_overlay').style.display = 'flex';
+          }}
         />
         <Button
           className='primary-btn home_revisit_collections_button'

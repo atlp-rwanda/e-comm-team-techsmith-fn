@@ -167,7 +167,8 @@ const SellerProductsContainer = () => {
             )}
 
             {/* Product in my collection */}
-            {myCollection?.map((product, index) => {
+           <div className='flex flex-wrap justify-evenly mt-5'>
+             {myCollection?.map((product, index) => {
               return (
                 <div
                   key={product.id}
@@ -201,6 +202,7 @@ const SellerProductsContainer = () => {
                 </div>
               );
             })}
+            </div>
             {!isPending && (
               <div className='pagination justify-center pt-6'>
                 <button

@@ -8,6 +8,7 @@ import { setOrdersCheckout, updateOrders } from '../states/features/orders/order
 import Button from '../components/Button';
 import ShippingDetails from '../components/ShippingDetails';
 import PaymentContainer from '../components/PaymentContainer';
+import Pagination from '../components/Pagination';
 
 const MultipleOrdersContainer = () => {
   const dispatch = useDispatch();
@@ -29,16 +30,20 @@ const MultipleOrdersContainer = () => {
     user: {},
   })
 
+  const { page, size } = useSelector((state) => {
+    return state.pagination;
+  })
+
   useEffect(() => {
-    getAllOrdersUser({ size: 3, page: 1 });
+    getAllOrdersUser({ size, page });
     if(isSuccess && data.data.rows.length > 0){
       dispatch(updateOrders(data.data.rows));
     }
   }, []);
 
   useEffect(() => {
-    getAllOrdersUser({ size: 3, page: 1 });
-  }, [singleOrder]);
+    getAllOrdersUser({ size, page });
+  }, [singleOrder, size, page]);
 
   useEffect(() => {
     if (isSuccess && data.data.rows.length > 0) {
@@ -113,13 +118,21 @@ const MultipleOrdersContainer = () => {
   return (
     <section className='flex items-start w-[90%] mx-auto justify-between gap-12 my-12 p-8 screen-mid:flex-col-reverse screen-base:mutliple-checkout-base'>
       <div className='flex flex-col items-center justify-between gap-12 screen-mid:multiple-checkout-information-mid screen-base:flex-col'>
-      <div className='shipping_container flex flex-col gap-8'>
-        <h1 className='text-[3rem] font-bold'>Shipping address</h1>
-        {isLoading ? <Loading width={50} /> : <ShippingDetails order={orders[0]} />}
-      </div>
-      <div className='payment_container w-full'>
-        {isLoading ? <Loading width={50} /> : <PaymentContainer multiple ordersCheckout={ordersToPay} />}
-      </div>
+        <div className='shipping_container flex flex-col gap-8'>
+          <h1 className='text-[3rem] font-bold'>Shipping address</h1>
+          {isLoading ? (
+            <Loading width={50} />
+          ) : (
+            <ShippingDetails order={orders[0]} />
+          )}
+        </div>
+        <div className='payment_container w-full'>
+          {isLoading ? (
+            <Loading width={50} />
+          ) : (
+            <PaymentContainer multiple ordersCheckout={ordersToPay} />
+          )}
+        </div>
       </div>
       <div className='multiple_checkout_container h-full flex w-full max-w-[50%] gap-8 flex-col items-start min-h-[80vh] screen-mid:max-w-[80%]'>
         <h1 className='text-[3rem] font-bold text-start'>Your orders:</h1>
@@ -138,6 +151,7 @@ const MultipleOrdersContainer = () => {
             })}
           </div>
         )}
+        <Pagination totalPages={data?.data?.totalPages} className='max-w-[50%]' />
       </div>
     </section>
   );

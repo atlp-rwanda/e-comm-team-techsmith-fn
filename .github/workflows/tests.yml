@@ -10,7 +10,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        node-version: [18.x]
+        node-version: [18]
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
@@ -24,7 +24,7 @@ jobs:
         run: npm ci
 
       - name: Run tests and generate coverage
-        env:  # Define environment variables for secrets
+        env:
           VITE_API_URL: ${{ secrets.VITE_API_URL }}
           VITE_LOCAL_API_URL: ${{ secrets.VITE_LOCAL_API_URL }}
           VITE_WEBSOCKET_URL: ${{ secrets.VITE_WEBSOCKET_URL }}

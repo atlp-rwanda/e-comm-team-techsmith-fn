@@ -11,7 +11,7 @@ import {
   AiOutlineUser,
   AiOutlineCloseCircle
 } from 'react-icons/ai';
-import { searchlog, techLogW } from '../assets';
+import { techLogW } from '../assets';
 import Button from './Button';
 import logOut from '../utils/logOut';
 import Loading from './Loading';
@@ -83,7 +83,7 @@ const Navbar = () => {
   };
   socket.on('createProductSuccess', (data) => {
     successNotification('New Product Created');
-    unreadNotifications.push(removeDuplicates(data));
+    unreadNotifications.push(removeDuplicates(data?.data));
   });
   socket.on('productExpired', (data) => {
     successNotification('Product expired');
@@ -201,7 +201,7 @@ const Navbar = () => {
           </section>
           <div className='navbar-allMenuPro  flex justify-between items-center'>
             <div>
-              <ul className='flex  items-center whitespace-nowrap '>
+              <ul className='flex items-center whitespace-nowrap gap-6'>
                 <li>
                   <Link to='category'>Categories</Link>
                 </li>
@@ -214,14 +214,16 @@ const Navbar = () => {
               </ul>
             </div>
           </div>
+          <div className='search_container'>
           <Search />
+          </div>
 
           {token ? (
             <div
-              className='navbar__profile__letter flex justify-center items-center'
+              className='navbar__profile__letter flex justify-center items-center cursor-pointer'
               onClick={viewProfile}
             >
-              <div className='navbar__profile flex justify-center items-center'>
+              <div className='navbar__profile flex justify-center items-center cursor-pointer'>
                 <div>
                   <AiOutlineUser />
                 </div>
@@ -256,7 +258,7 @@ const Navbar = () => {
           {token && (
             <div
               className='navbar__profileView absolute'
-              onMouseLeave={hideprofile}
+              onClick={hideprofile}
             >
               <div>
                 <Button
@@ -269,7 +271,6 @@ const Navbar = () => {
               </div>
               <div>
                 <Button
-                  route='#'
                   value='Cart'
                   className='primary-btn-no-hover-scale'
                   onClick={showCart}
@@ -320,20 +321,7 @@ const Navbar = () => {
           <div className='navbar__dropdown rm flex justify-end flex-col'>
             <ul className='flex justify-end flex-col'>
               <li className='navbar__dropdown_search'>
-                <div className='navbar__dropdown_input'>
-                  <input
-                    type='text'
-                    placeholder='Search...'
-                    className='buttonSearchResp'
-                  />
-                </div>
-                <div className='navbar__dropdown_input_Img'>
-                  <img
-                    src={searchlog}
-                    alt='searchImage'
-                    className='navbar__dropdown_input_Icon'
-                  />
-                </div>
+                <Search />
               </li>
               <li>Category</li>
               <li>About </li>
@@ -472,19 +460,18 @@ const Search = () => {
 
   const navigate = useNavigate();
   return (
-    <form className='nav-search2 screen-mid:ml-[-15px] divide-white flex items-center p-0 h-full'>
+    <form className=' divide-white flex items-center h-fit w-full p-0'>
       <Input
         type='text'
         name='name'
         placeholder='Enter product name'
-        backgroundColor='white'
-        className='outline-none border-none text-sm rounded-none rounded-l-[5rem] focus:border-none'
+        className='outline-none border-none px-8 text-sm py-5 rounded-none h-fit w-full min-w-[15rem] rounded-l-[5rem] focus:border-none'
         onChange={(e) => {
           setFormData({ ...formData, name: e.target.value });
         }}
       />
       <select
-        className='w-fit text-[1rem] h-full py-4 outline-none border-none rounded-0 border-l-[.2rem] border-l-primary focus:border-none'
+        className='w-full text-[1.2rem] text-black py-5 min-w-[5rem] max-w-[20rem] outline-none border-none h-fit rounded-0 border-l-[.2rem] border-l-primary focus:border-none'
         onChange={(e) => {
           setFormData({ ...formData, categoryIds: Number(e.target.value) });
         }}
@@ -505,10 +492,7 @@ const Search = () => {
       </select>
       <Button
         value='SEARCH'
-        style={{
-          border: '1px solid white'
-        }}
-        className='btn-search2 text-white px-8 flex items-center justify-center border-2/4 border-white bg-primary h-full rounded-r-[5rem] hover:scale-102 p-2.5'
+        className='text-white px-8 flex items-center py-3 p-4 w-fit justify-center border-[1px] border-white bg-primary rounded-r-[5rem] hover:scale-102 screen-mid:py-5'
         onClick={(e) => {
           e.preventDefault();
           if (formData.name !== '' && formData.name !== 'Product') {

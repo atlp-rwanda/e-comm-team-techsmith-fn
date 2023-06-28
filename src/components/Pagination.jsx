@@ -1,59 +1,95 @@
 import React from 'react';
-import { usePagination, DOTS } from '../utils/Pagination';
+import { useDispatch, useSelector } from 'react-redux';
+import PropTypes from 'prop-types';
+import { useForm } from 'react-hook-form';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import Button from './Button';
+import {
+  setPage,
+  setSize
+} from '../states/features/pagination/paginationSlice';
 
-const Pagination = ({
-  onPageChange,
-  totalCount,
-  siblingCount = 1,
-  currentPage,
-  pageSize,
-  className
-}) => {
-  const paginationRange = usePagination({
-    currentPage,
-    totalCount,
-    siblingCount,
-    pageSize
+const Pagination = ({ className, totalPages }) => {
+  const { page } = useSelector((state) => {
+    return state.pagination;
   });
 
-  if (currentPage === 0 || paginationRange.length < 2) {
-    return null;
-  }
+  const dispatch = useDispatch();
+  const { register } = useForm();
 
-  const onNext = () => {
-    onPageChange(currentPage + 1);
-  };
-
-  const onPrevious = () => {
-    onPageChange(currentPage - 1);
-  };
-
-  const lastPage = paginationRange[paginationRange.length - 1];
   return (
-    <ul>
-      <li onClick={onPrevious}>
-        <div className='arrow left' />
-      </li>
-      {paginationRange.map((pageNumber) => {
-        if (pageNumber === DOTS) {
-          return <li className='pagination-item dots'>&#8230;</li>;
-        }
+    <nav
+      className={`flex items-center justify-between gap-6 w-full ${className}`}
+    >
+      <select
+        className='w-fit text-[1.3rem] rounded-md'
+        {...register('size', {
+          defaultValue: 5,
+          onChange: (e) => {
+            dispatch(setSize(e.target.value));
+          }
+        })}
+      >
+        <option value={3}>Show 3</option>
+        <option value={5}>Show 5</option>
+        <option value={10}>Show 10</option>
+        <option value={20}>Show 20</option>
+        <option value={50}>Show 50</option>
+      </select>
+      <div className='flex items-center justify-center gap-6'>
+        <Button
+          onClick={() => {
+            dispatch(setPage(page - 1));
+          }}
+          className='w-fit p-3 rounded-lg bg-primary text-white shadow-lg'
+          value={
+            <FontAwesomeIcon
+              className='text-[1.4rem] text-white'
+              icon={['fas', 'chevron-left']}
+            />
+          }
+        />
+        <ul className='flex items-center justify-center gap-4'>
+          {Array.from(Array(totalPages).keys()).map((index) => {
+            return (
+              <li className='w-fit'>
+                <Button
+                  value={index + 1}
+                  className={`w-fit px-4 py-2 rounded-lg ${index === page ? 'bg-primary text-white' : 'bg-white text-primary'} shadow-lg'}`}
+                  onClick={() => {
+                    dispatch(setPage(index));
+                  }}
+                />
+              </li>
+            );
+          })}
+        </ul>
 
-        return (
-          <li
-            onClick={() => {
-              return onPageChange(pageNumber);
-            }}
-          >
-            {pageNumber}
-          </li>
-        );
-      })}
-      <li onClick={onNext}>
-        <div className='arrow right' />
-      </li>
-    </ul>
+        <Button
+          className='w-fit p-3 rounded-lg bg-primary text-white shadow-lg'
+          onClick={() => {
+            dispatch(setPage(page + 1));
+          }}
+          value={
+            <FontAwesomeIcon
+              className='text-[1.4rem] text-white'
+              icon={['fas', 'chevron-right']}
+            />
+          }
+        />
+      </div>
+    </nav>
   );
+};
+
+Pagination.propTypes = {
+  className: PropTypes.string,
+  totalPages: PropTypes.oneOfType([PropTypes.string, PropTypes.number])
+};
+
+Pagination.defaultProps = {
+  className: '',
+  totalPages: 1,
 };
 
 export default Pagination;

@@ -16,7 +16,7 @@ import { findInArrayWishList } from '../utils/Arrays';
 import { addToCart, getCart } from '../states/features/cart/cartSlice';
 import Loading from './Loading';
 
-const HomeCategoryProductCard = ({
+const ProductCard = ({
   className,
   buttonClassName,
   price,
@@ -203,7 +203,7 @@ const HomeCategoryProductCard = ({
   );
 };
 
-HomeCategoryProductCard.propTypes = {
+ProductCard.propTypes = {
   className: PropTypes.string,
   buttonClassName: PropTypes.string,
   price: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
@@ -226,7 +226,7 @@ HomeCategoryProductCard.propTypes = {
   })
 };
 
-HomeCategoryProductCard.defaultProps = {
+ProductCard.defaultProps = {
   className: 'home_category_product_card',
   buttonClassName: 'home_product_category_button',
   description: 'Brand new product',
@@ -246,4 +246,4 @@ HomeCategoryProductCard.defaultProps = {
   pId: 0
 };
 
-export default HomeCategoryProductCard;
+export default ProductCard;

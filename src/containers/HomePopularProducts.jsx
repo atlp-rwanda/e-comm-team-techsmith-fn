@@ -1,8 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
-import HomeCategoryProductCard from '../components/HomeCategoryProductCard';
+import ProductCard from '../components/ProductCard';
 import Button from '../components/Button';
-import { useGetAllCategoriesQuery, useLazyGetAllWishlistAllUsersQuery } from '../states/api/apiSlice';
+import {
+  useGetAllCategoriesQuery,
+  useLazyGetAllWishlistAllUsersQuery
+} from '../states/api/apiSlice';
 import { removeDuplicates } from '../utils/Arrays';
 import Loading from '../components/Loading';
 import { getCatName } from '../utils/categories';
@@ -23,7 +26,8 @@ const PopularProducts = () => {
     }
   }, [data]);
 
-  const [getAllWishlistAllUsers, { data: allWishlist, isLoading, isSuccess }] = useLazyGetAllWishlistAllUsersQuery();
+  const [getAllWishlistAllUsers, { data: allWishlist, isLoading, isSuccess }] =
+    useLazyGetAllWishlistAllUsersQuery();
 
   useEffect(() => {
     getAllWishlistAllUsers({ size: 5, page: 1 });
@@ -38,6 +42,20 @@ const PopularProducts = () => {
       setAllWishlistData(removeDuplicates(allWishlist.data?.availableProducts));
     }
   }, [newWishlist, allWishlist]);
+
+
+  if (isLoading) {
+    return (
+      <div className='min-h-[30vh] flex items-center justify-center'>
+        <Loading width={50} />
+      </div>
+    );
+  }
+
+
+  if (allWishlistData.length === 0) {
+    return null;
+  }
 
   return (
     <div className='popular_products'>
@@ -60,18 +78,20 @@ const PopularProducts = () => {
         )}
         {allWishlistData?.map((wishlist) => {
           return (
-            <HomeCategoryProductCard
-              key={wishlist.id}
-              name={wishlist.product.name}
-              price={wishlist.product.price}
+            <ProductCard
+              key={wishlist?.id}
+              name={wishlist?.product?.name || 'Loading...'}
+              price={wishlist?.product?.price || 'Loading...'}
               category={
                 categoriesLoading
                   ? 'Loading...'
-                  : getCatName(wishlist.product.categoryId, categories)
+                  : getCatName(wishlist?.product?.categoryId, categories)
               }
-              pId={wishlist.productId}
+              pId={wishlist?.productId}
               image={
-                wishlist.product.image[random(wishlist.product.image.length)]
+                wishlist?.product?.image[
+                  random(wishlist?.product?.image.length)
+                ]
               }
             />
           );
@@ -82,6 +102,6 @@ const PopularProducts = () => {
 };
 export default PopularProducts;
 
-const random=(size)=>{
-  return(Math.floor(Math.random() * size));
-}
+const random = (size) => {
+  return Math.floor(Math.random() * size);
+};

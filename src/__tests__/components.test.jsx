@@ -2,11 +2,11 @@ import React from 'react';
 import { screen } from '@testing-library/react';
 import { renderWithRedux } from '../utils/TestUtils';
 import { singleProduct } from './products';
-import HomeCategoryProductCard from '../components/HomeCategoryProductCard';
+import ProductCard from '../components/ProductCard';
 
 test('Home Category Product Card', () => {
   renderWithRedux(
-    <HomeCategoryProductCard
+    <ProductCard
       image={singleProduct.image[0]}
       name={singleProduct.name}
       price={singleProduct.price}

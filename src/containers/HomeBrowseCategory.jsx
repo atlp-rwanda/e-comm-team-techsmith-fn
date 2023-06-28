@@ -1,24 +1,27 @@
-import React, { useEffect,useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Button from '../components/Button';
 import Loading from '../components/Loading';
-import HomeCategoryProductCard from '../components/HomeCategoryProductCard';
-import { useGetAllCategoriesQuery,useLazyGetAllProductsQuery } from '../states/api/apiSlice';
+import ProductCard from '../components/ProductCard';
+import {
+  useGetAllCategoriesQuery,
+  useLazyGetAllProductsQuery
+} from '../states/api/apiSlice';
 import { setCategories } from '../states/features/categories/categorySlice';
 
 // BROWSE BY CATEGORY
 const BrowseByCategory = () => {
-  const[getAllProducts]=useLazyGetAllProductsQuery();
-  const [populars,setPopulars]=useState([]);
-  const category='BEAUTY';
+  const [getAllProducts] = useLazyGetAllProductsQuery();
+  const [populars, setPopulars] = useState([]);
+  const category = 'BEAUTY';
   useEffect(() => {
     const size = 5;
     const page = randomProduct(20);
-    getAllProducts({size,page})
+    getAllProducts({ size, page })
       .then(({ data }) => {
         setPopulars(data.data.products);
       })
       .catch((err) => {
-        return err
+        return err;
       });
   }, []);
 
@@ -30,20 +33,20 @@ const BrowseByCategory = () => {
       </section>
       <Categories />
       <section className='home_browse_category_container flex flex-wrap justify-around'>
-      {populars.map((item) => {
-        return (
-          <HomeCategoryProductCard
-          image={item.image[randomProduct(item.image.length)]}
-          key={item.id}
-            description={item.description}
-            name={item.name}
-            category={category}
-            price={item.price}
-            quantity={item.quantity}
-            pId={item.id}
-          />
-        );
-      })}
+        {populars.map((item) => {
+          return (
+            <ProductCard
+              image={item.image[randomProduct(item.image.length)]}
+              key={item.id}
+              description={item.description}
+              name={item.name}
+              category={category}
+              price={item.price}
+              quantity={item.quantity}
+              pId={item.id}
+            />
+          );
+        })}
       </section>
       <section className='home_browse_category_categories flex flex-wrap justify-center'>
         <Button
@@ -107,7 +110,6 @@ const Categories = () => {
   return null;
 };
 
-const randomProduct=(size)=>{
-  return(Math.floor(Math.random() * size));
-}
-
+const randomProduct = (size) => {
+  return Math.floor(Math.random() * size);
+};

@@ -5,6 +5,7 @@
 [![Maintainability](https://api.codeclimate.com/v1/badges/5758ec3353e0560c2e43/maintainability)](https://codeclimate.com/github/atlp-rwanda/e-comm-team-techsmith-fn/maintainability)
 [![Test Coverage](https://api.codeclimate.com/v1/badges/5758ec3353e0560c2e43/test_coverage)](https://codeclimate.com/github/atlp-rwanda/e-comm-team-techsmith-fn/test_coverage)
 [![Netlify Status](https://api.netlify.com/api/v1/badges/b43f0980-25a4-439c-b8b4-2c7fa5fd3984/deploy-status)](https://app.netlify.com/sites/techsmiths/deploys)
+[![Github actions tests](https://github.com/atlp-rwanda/e-comm-team-techsmith-fn/actions/workflows/tests.yml/badge.svg)](https://github.com/atlp-rwanda/e-comm-team-techsmith-fn/actions/workflows/tests.yml)
 
 "Shop with ease and confidence - Your ultimate online shopping destination!"
 

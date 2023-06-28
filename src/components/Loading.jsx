@@ -6,7 +6,7 @@ const Loading = ({ color, width, className }) => {
     <div className={`${className} loader`}>
       <svg
         aria-hidden='true'
-        className={`w-${width} h-${width} w-[${width}] mr-2 text-white animate-spin fill-${color}`}
+        className={`!w-${width} !h-[${width}] !w-[${width}] mr-2 text-white animate-spin fill-${color}`}
         viewBox='0 0 100 101'
         fill={color}
         xmlns='http://www.w3.org/2000/svg'

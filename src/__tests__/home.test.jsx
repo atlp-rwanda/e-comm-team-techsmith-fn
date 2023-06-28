@@ -2,7 +2,7 @@ import React from 'react';
 import { screen } from '@testing-library/react';
 import { renderWithRedux } from '../utils/TestUtils';
 import HomeContainer from '../containers/HomeContainer';
-import HomeCategoryProductCard from '../components/HomeCategoryProductCard';
+import ProductCard from '../components/ProductCard';
 import { singleProduct } from './products';
 import BrowseByCategory from '../containers/HomeBrowseCategory';
 
@@ -12,7 +12,7 @@ describe('Home Container', () => {
             <>
             <HomeContainer />
             <BrowseByCategory />
-            <HomeCategoryProductCard
+            <ProductCard
             image={singleProduct.image[0]}
             name={singleProduct.name}
             price={singleProduct.price}

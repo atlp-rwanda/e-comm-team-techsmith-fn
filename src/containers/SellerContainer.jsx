@@ -1,15 +1,42 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import moment from 'moment';
-import { useCreateProductMutation } from '../states/api/apiSlice';
+import { useDispatch, useSelector } from 'react-redux';
+import {
+  useCreateProductMutation,
+  useGetAllCategoriesQuery
+} from '../states/api/apiSlice';
 import Button from '../components/Button';
+import Loading from '../components/Loading';
+import { setCategories } from '../states/features/categories/categorySlice';
 
 const SellerContainer = () => {
   const [formData, setFormData] = useState({
     condition: '',
     categoryId: ''
   });
+
+  const dispatch = useDispatch();
+
+  const categories = useSelector((state) => {
+    return state.categories.categories;
+  });
+
+  const {
+    data: categoriesData,
+    isLoading: categoriesLoading,
+    isSuccess: categoriesSuccess,
+    isError: categoriesError
+  } = useGetAllCategoriesQuery();
+
+  useEffect(() => {
+    if (categoriesSuccess) {
+      dispatch(setCategories(categoriesData.data));
+    }
+  }, [categoriesData]);
+
   const { register, handleSubmit } = useForm();
+
   const fileUploader = (file) => {
     return new Promise((resolve, reject) => {
       const fileReader = new FileReader();
@@ -22,6 +49,7 @@ const SellerContainer = () => {
       };
     });
   };
+
   const [createProduct, { isLoading, isSuccess, isError }] =
     useCreateProductMutation();
   const addProduct = async (productData) => {
@@ -78,8 +106,19 @@ const SellerContainer = () => {
                   valueAsNumber: true
                 })}
               >
-                <option value={1}>Appliance</option>
-                <option value={2}>Technology</option>
+                {categoriesLoading ? (
+                  <option value={null}>Loading...</option>
+                ) : categoriesError ? (
+                  <option value={null}>No categories</option>
+                ) : (
+                  categories.map((category) => {
+                    return (
+                      <option value={category.id} key={category.id}>
+                        {category.name}
+                      </option>
+                    );
+                  })
+                )}
               </select>
             </label>
           </div>
@@ -228,7 +267,8 @@ const SellerContainer = () => {
         </div>
         <div className='containerButton'>
           <Button
-            value={isLoading ? 'Loading...' : 'Create Product'}
+            input
+            value={isLoading ? <Loading width={50} /> : 'Create Product'}
             className='primary-btn py-4 px-8 w-fit'
           />
         </div>

@@ -10,7 +10,8 @@ const HomeTopSeller = ({
   rating,
   categories,
   buttonClassName,
-  className
+  className,
+  id
 }) => {
   return (
     <div className={className}>
@@ -36,6 +37,7 @@ const HomeTopSeller = ({
       <section className='home_seller_cta'>
         <Button
           value='Check them out'
+          route={`/seller/${id}`}
           className={`primary-btn ${buttonClassName}`}
         />
       </section>
@@ -44,6 +46,7 @@ const HomeTopSeller = ({
 };
 
 HomeTopSeller.propTypes = {
+  id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
   name: PropTypes.string.isRequired,
   image: PropTypes.string,
   rating: PropTypes.shape({
