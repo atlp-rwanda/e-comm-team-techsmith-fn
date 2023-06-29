@@ -7,7 +7,7 @@
   position: relative;
   z-index: 999;
   .navbar_logoContainerNavbar-menuList {
-    gap: 6rem;
+    gap: 3rem;
     background-color: base.$primary-color;
     padding: 15px 20px;
     width: 100%;
@@ -29,12 +29,10 @@
   }
   ul li a {
     color: white;
-    padding: 14px 16px;
     font-size: 1.6rem;
   }
   .navbar__authBtn {
     gap: 30px;
-    padding-left: 4rem;
     p {
       color: white;
     }
@@ -50,19 +48,6 @@
       background-color: white;
       color: base.$primary-color;
     }
-  }
-  input.buttonSearch {
-    padding: 0.7rem 0rem 0.7rem 0.8rem;
-    color: base.$primary-color;
-    border-radius: 8rem;
-    font-size: 1.5rem;
-    width: 25rem;
-  }
-  .searchbtnLogo {
-    right: 0.5rem;
-    width: 2.5rem;
-    height: 2.5rem;
-    padding: 0.3rem;
   }
   .profileIcon {
     width: 3rem;
@@ -83,26 +68,6 @@
     background-color: base.$primary-color;
     padding-left: 3rem;
     transition: all 0.8s;
-    li.navbar__dropdown_search {
-      position: relative;
-      color: base.$primary-color;
-      font-size: 1.5rem;
-      .navbar__dropdown_input input {
-        width: 95%;
-        border-radius: 2rem;
-        font-size: 1.5rem;
-        padding: 15px;
-      }
-      .navbar__dropdown_input_Img {
-        position: absolute;
-        top: 2rem;
-        right: 4rem;
-        width: 3.5rem;
-        height: 10rem;
-
-        padding: 0.5rem;
-      }
-    }
     li {
       font-size: 1.3rem;
       padding: 1.2rem;
@@ -113,6 +78,7 @@
   .rm {
     right: 0;
     transform: translateY(-200%);
+    display: block;
   }
   .navbar-profileMenu a {
     color: white;
@@ -121,7 +87,7 @@
     font-size: 2rem;
     text-align: center !important;
     font-family: 'poppins', sans-serif;
-    padding: 15px 90px 15px 45px !important;
+    padding: 15px 90px 15px 45px;
   }
   #navbar-Psubmenu {
     left: 0;
@@ -192,22 +158,21 @@
   .navbar_logoContainer {
     width: 9rem;
   }
-  .navbar input.buttonSearch {
-    width: 15rem;
-  }
   .navbar ul li a {
     font-size: 1rem;
-  }
-  .navbar input.buttonSearch {
-    padding: 0.3rem 0rem 0.3rem 0.8rem;
   }
   .navbar .navbar__authBtn .navBtn {
     padding: 0.3rem 2rem;
   }
 }
-@media (max-width: 600px) {
+@media (max-width: 860px) {
+
   .navbar {
     padding: 0.6rem 0rem;
+
+    .search_container {
+      display: none;
+    }
   }
   .navbar__dropdown {
     display: block;

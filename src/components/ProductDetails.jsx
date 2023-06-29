@@ -130,6 +130,7 @@ const ProductDetails = ({ product }) => {
             <Button
               value={`Browse ${user?.name.split(' ')[0]}'s collection ` || 'Browse collection'}
               className='primary-btn rounded-[.5rem] py-[1rem] w-full normal-case screen-base:text-sm'
+              route={user && `/seller/${user.id}`}
             />
           </div>
         </div>
@@ -143,7 +144,8 @@ ProductDetails.propTypes = {
     id: PropTypes.number.isRequired,
     user: PropTypes.shape({
       name: PropTypes.string.isRequired,
-      email: PropTypes.string.isRequired
+      email: PropTypes.string.isRequired,
+      id: PropTypes.oneOfType([PropTypes.number, PropTypes.string]).isRequired
     }).isRequired,
     description: PropTypes.string.isRequired,
     image: PropTypes.arrayOf(PropTypes.string).isRequired,

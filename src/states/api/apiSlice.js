@@ -187,6 +187,20 @@ export const apiSlice = createApi({
             }
           };
         }
+      }),
+      getAllSellers: builder.query({
+        query: ({ size, page }) => {
+          return {
+            url: `sellers/?size=${size}&page=${page}`
+          };
+        }
+      }),
+      getSingleSeller: builder.query({
+        query: (id) => {
+          return {
+            url: `sellers/${id}`
+          };
+        }
       })
     };
   }
@@ -215,5 +229,7 @@ export const {
   useLazyGetAllWishlistAllUsersQuery,
   useLazyGetAllOrdersUserQuery,
   usePostOrderBulkPaymentMutation,
-  useSubmitContactFormMutation
+  useSubmitContactFormMutation,
+  useLazyGetAllSellersQuery,
+  useLazyGetSingleSellerQuery
 } = apiSlice;

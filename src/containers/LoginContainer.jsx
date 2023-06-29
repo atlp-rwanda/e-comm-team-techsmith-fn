@@ -1,5 +1,5 @@
-import React, { useEffect,useState } from 'react';
-import { decodeToken } from "react-jwt";
+import React, { useEffect, useState } from 'react';
+import { decodeToken } from 'react-jwt';
 import { Typography, Button } from '@mui/material';
 import { useForm } from 'react-hook-form';
 import { useDispatch, useSelector } from 'react-redux';
@@ -24,92 +24,81 @@ const LoginContainer = () => {
   const [openChangePassword, setOpenChangePassword] = useState(false);
   const { register, handleSubmit, formState } = form;
   const { errors } = formState;
-  const { isLoading, isError, isSuccess,changePassword } = useSelector((state) => {
-    return state.auth;
-  });
+  const { isLoading, isError, isSuccess, changePassword } = useSelector(
+    (state) => {
+      return state.auth;
+    }
+  );
   const urlParams = new URLSearchParams(window.location.search);
   const token = urlParams.get('token');
- 
+
   const mySubmit = async (data) => {
-    localStorage.setItem('email', data.email)
+    localStorage.setItem('email', data.email);
     dispatch(login(data));
   };
- 
 
- useEffect(() => {
-  if(token !== null){
-    const decodedToken = decodeToken(token)
-    const { roleId, userName, userId } = decodedToken;
-    const user={
-      "id":userId,
-      "name":userName,
-    }
-    localStorage.setItem('user',JSON.stringify(user))
-    localStorage.setItem('myToken',(token))
-    if(roleId === 1){
-      localStorage.setItem('isAdmin','true')
-      navigate('/dashboard/users')
-    }
-    else if(roleId === 2){
-      localStorage.setItem('isSeller','true')
-      navigate('/dashboard/seller')
-    }
-    else if(roleId === 3){
-      
-      localStorage.setItem('isBuyer','true')
-      navigate(`/users/${userId}`)
-    }
-    
-   }
-  if (isSuccess) {
-    // is he a seller
-    if (localStorage.getItem('isSeller')) {
-      // create popup
-      document.querySelector('.overlay').style.display = 'flex';
-      if(changePassword){
-        setOpenChangePassword(true);
-
-        setTimeout(() => {
-          navigate(`/reset-password/passsword`)
-        localStorage.setItem('changePassword',true)
-        
-        }, 8000);
+  useEffect(() => {
+    if (token !== null) {
+      const decodedToken = decodeToken(token);
+      const { roleId, userName, userId } = decodedToken;
+      const user = {
+        id: userId,
+        name: userName
+      };
+      localStorage.setItem('user', JSON.stringify(user));
+      localStorage.setItem('myToken', token);
+      if (roleId === 1) {
+        localStorage.setItem('isAdmin', 'true');
+        navigate('/dashboard/users');
+      } else if (roleId === 2) {
+        localStorage.setItem('isSeller', 'true');
+        navigate('/dashboard/seller');
+      } else if (roleId === 3) {
+        localStorage.setItem('isBuyer', 'true');
+        navigate(`/`);
       }
-
-    } else {
-      if (localStorage.getItem('isBuyer')) {
-        if(changePassword){
+    }
+    if (isSuccess) {
+      // is he a seller
+      if (localStorage.getItem('isSeller')) {
+        // create popup
+        document.querySelector('.overlay').style.display = 'flex';
+        if (changePassword) {
           setOpenChangePassword(true);
 
           setTimeout(() => {
-            navigate(`/reset-password/${encodeURIComponent(token)}`)
-          localStorage.setItem('changePassword',true)
+            navigate(`/reset-password/passsword`);
+            localStorage.setItem('changePassword', true);
           }, 8000);
         }
-        else{
-          const user = JSON.parse(localStorage.getItem('user'));
-        navigate(`/users/${user.id}`);
-        }
-        
-      }
-      if (localStorage.getItem('isAdmin')) {
-        if(changePassword){
-          setOpenChangePassword(true);
+      } else {
+        if (localStorage.getItem('isBuyer')) {
+          if (changePassword) {
+            setOpenChangePassword(true);
 
-          setTimeout(() => {
-            navigate(`/reset-password/${encodeURIComponent(token)}`)
-          localStorage.setItem('changePassword',true)
-          }, 8000);
+            setTimeout(() => {
+              navigate(`/reset-password/${encodeURIComponent(token)}`);
+              localStorage.setItem('changePassword', true);
+            }, 8000);
+          } else {
+            navigate(`/`);
+          }
         }
-        else{
-          navigate('/dashboard/users');
+        if (localStorage.getItem('isAdmin')) {
+          if (changePassword) {
+            setOpenChangePassword(true);
+
+            setTimeout(() => {
+              navigate(`/reset-password/${encodeURIComponent(token)}`);
+              localStorage.setItem('changePassword', true);
+            }, 8000);
+          } else {
+            navigate('/dashboard/users');
+          }
         }
-        
       }
     }
-  }
-}, [dispatch, isSuccess, token]);
-
+  }, [dispatch, isSuccess, token]);
 
   const showForgotPass = () => {
     setOpenPopUp(true);
@@ -124,9 +113,8 @@ const LoginContainer = () => {
           setOpen={setOpenPopUp}
         />
       )}
-  
-      <div>
 
+      <div>
         <InputPopup
           title='2FA Verification'
           details='Please check your email for the token to complete the Two-Factor
@@ -157,10 +145,7 @@ Authentication process.'
                 Sign In
               </Typography>
             </div>
-            {openChangePassword && (
-              
-              <ChangePassword/>
-              )}
+            {openChangePassword && <ChangePassword />}
 
             <div className='loginPage__form'>
               <form onSubmit={handleSubmit(mySubmit)} noValidate>
@@ -218,7 +203,12 @@ Authentication process.'
                 </div>
               </form>
             </div>
-            <Link to={`${API_URL}/auth/google`} onClick={()=>{ return localStorage.setItem('googleLogin','true')}}>
+            <Link
+              to={`${API_URL}/auth/google`}
+              onClick={() => {
+                return localStorage.setItem('googleLogin', 'true');
+              }}
+            >
               <div className='loginPage__googleAuth'>
                 <div className='loginPage__googleButton'>
                   <div>

@@ -32,12 +32,14 @@ const Input = forwardRef(
           required={required}
           ref={ref}
         />
-        <label
-          htmlFor='floating_outlined'
-          className={`absolute cursor-text rounded-md text-[1.6rem] text-gray-600 dark:text-gray-600 duration-300 transform -translate-y-0 scale-75 top-2 z-10 origin-[0] bg-${backgroundColor} dark:bg-${backgroundColor} px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-6 left-1`}
-        >
-          {label}
-        </label>
+        {label && (
+          <label
+            htmlFor='floating_outlined'
+            className={`absolute cursor-text rounded-md text-[1.6rem] text-gray-600 dark:text-gray-600 duration-300 transform -translate-y-0 scale-75 top-2 z-10 origin-[0] bg-${backgroundColor} dark:bg-${backgroundColor} px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-6 left-1`}
+          >
+            {label}
+          </label>
+        )}
       </div>
     );
   }

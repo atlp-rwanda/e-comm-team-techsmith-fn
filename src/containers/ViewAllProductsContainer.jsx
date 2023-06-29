@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCartShopping, faHeart } from '@fortawesome/free-solid-svg-icons';
 import Button from '../components/Button';
 import Loading from '../components/Loading';
-import HomeCategoryProductCard from '../components/HomeCategoryProductCard';
+import ProductCard from '../components/ProductCard';
 import {
   useGetAllCategoriesQuery,
   useLazyGetAllProductsQuery,
@@ -13,7 +13,8 @@ import {
 import {
   setCategories,
   setCategoryProducts,
-  setProductCategoriesLoading
+  setProductCategoriesLoading,
+  updateSelectedCategory
 } from '../states/features/categories/categorySlice';
 import { getCatName } from '../utils/categories';
 
@@ -30,6 +31,8 @@ const ViewAllProductsContainer = () => {
   const categoryProductsLoading = useSelector((state) => {
     return state.categories.categoryProductsLoading;
   });
+
+  
 
   useEffect(() => {
     if (categoryProductsLoading) {
@@ -77,7 +80,7 @@ const ViewAllProductsContainer = () => {
           <div className='home_browse_category_container flex flex-wrap justify-around'>
             {products.map((item) => {
               return (
-                <HomeCategoryProductCard
+                <ProductCard
                   image={item.image[randomImage(item.image.length)]}
                   key={item.id}
                   description={item.description}
@@ -106,8 +109,11 @@ const Categories = () => {
     isError,
     isSuccess
   } = useGetAllCategoriesQuery();
-  const [selectedCategoryId, setSelectedCategoryId] = useState(null);
   const dispatch = useDispatch();
+
+  const selectedCategory = useSelector((state) => {
+    return state.categories.selectedCategory;
+  });
 
   const [
     getProductsCategory,
@@ -158,36 +164,26 @@ const Categories = () => {
         <h1 className='category_title text-left text-[2.5rem] font-bold'>
           All Categories
         </h1>
+        <ul className='flex flex-col gap-8 items-start'>
         {categories.data.map((category) => {
           const { id, name } = category;
-          const isSelected = selectedCategoryId === id;
           return (
-            <div
-              key={id}
-              className='category_container flex items-center gap-4 text-[1.6rem]'
-            >
-              <input
-                type='checkbox'
-                className='cursor-pointer w-6 h-6 text-blue-600 border-gray-300 rounded focus:text-primary dark:focus:ring-blue-600 focus:ring-2'
+            <li key={id} className='w-full'>
+              <Button
+                value={name}
+                key={id}
+                className={`py-2 px-6 border-none w-full shadow-md text-[1.5rem] rounded-md hover:scale-105 ${selectedCategory === id ? 'bg-primary text-white' : 'bg-transparent'}`}
                 onClick={() => {
-                  if (isSelected) {
-                    setSelectedCategoryId(null);
-                  } else {
-                    setProductCategoriesLoading(true);
-                    const size = 20;
-                    const page = 1;
-                    getProductsCategory({ categoryId: id, size, page });
-                  }
+                  dispatch(updateSelectedCategory(id));
+                  const size = 20;
+                  const page = 1;
+                  getProductsCategory({ categoryId: id, size, page });
                 }}
-                checked={isSelected}
-                readOnly
               />
-              <label htmlFor='' className='text-[1.6rem]'>
-                {name}
-              </label>
-            </div>
+            </li>
           );
         })}
+        </ul>
       </div>
     );
   }
@@ -201,6 +197,10 @@ const Categories = () => {
   }
 
   return null;
+};
+
+const showCart = () => {
+  document.querySelector('.cart_overlay').style.display = 'flex';
 };
 
 // REVISIT YOUR COLLECTIONS
@@ -226,7 +226,9 @@ const RevisitCollections = () => {
               />
             </span>
           }
+          onClick={showCart}
         />
+
         <Button
           route='/wishlist'
           className='primary-btn home_revisit_collections_button'

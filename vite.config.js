@@ -21,6 +21,6 @@ export default defineConfig({
       'src/stories/**/*.js',
       'src/__tests__/**/*.js',
     ],
-    testTimeout: 30000,
+    testTimeout: 10000,
   }
 });

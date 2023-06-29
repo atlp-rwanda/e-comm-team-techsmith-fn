@@ -13,7 +13,9 @@ const initialState = {
   myCollection: [],
   notifications: [],
   unreadNotifications: [],
-  newUnread: 0
+  newUnread: 0,
+  sellers: [],
+  seller: {}
 };
 
 const resetStates = {
@@ -31,6 +33,12 @@ export const sellerSlice = createSlice({
   reducers: {
     reset: () => {
       return resetStates;
+    },
+    setSellers: (state, { payload }) => {
+      state.sellers = payload;
+    },
+    updateSeller: (state, { payload }) => {
+      state.seller = payload;
     }
   },
   extraReducers: (builder) => {
@@ -236,5 +244,5 @@ export const deleteSingleNotification = createAsyncThunk(
 );
 
 // export auth slice
-export const { reset } = sellerSlice.actions;
+export const { reset, setSellers, updateSeller } = sellerSlice.actions;
 export default sellerSlice.reducer;

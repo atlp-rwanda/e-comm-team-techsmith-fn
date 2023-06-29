@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
-import HomeCategoryProductCard from '../components/HomeCategoryProductCard';
+import ProductCard from '../components/ProductCard';
 import {
   useGetAllCategoriesQuery,
   usePostProductSearchMutation
@@ -13,7 +13,7 @@ const SearchContainer = () => {
     return state.search.searchData;
   });
 
-  const { data: categories, isLoading: loading } = useGetAllCategoriesQuery();
+  const { data: categories} = useGetAllCategoriesQuery();
 
   const [postProductSearch, { isLoading, isError }] =
     usePostProductSearchMutation();
@@ -58,35 +58,6 @@ const SearchContainer = () => {
 
   return (
     <div className='search_results_container flex items-start my-12 w-11/12 mx-auto min-h-[80vh] screen-mid:mid-category '>
-      <section className='flex flex-col items-center mb-4 my-12'>
-        <div className='category_title py-5'>
-          <h1 className='text-[2rem]  font-normal'>Filter by category</h1>
-        </div>
-        <div className='category_options'>
-          {loading ? (
-            <Loading width={50} />
-          ) : (
-            categories.data.map((category) => {
-              return (
-                <div
-                  className='category_option flex items-center gap-4'
-                  key={category.id}
-                >
-                  <input
-                    type='checkbox'
-                    name='category'
-                    id={category.id}
-                    className='w-6 h-6 rounded-[.5rem] cursor-pointer'
-                  />
-                  <label className='py-0' htmlFor={category.id}>
-                    {category.name}
-                  </label>
-                </div>
-              );
-            })
-          )}
-        </div>
-      </section>
       <div className='search_products_container w-full flex flex-col items-center my-12'>
         <div className='search_products_header flex items-center justify-between'>
           {products.length > 0 && (
@@ -98,7 +69,7 @@ const SearchContainer = () => {
         <div className='product_card_container flex items-center flex-wrap gap-6'>
           {products.map((product) => {
             return (
-              <HomeCategoryProductCard
+              <ProductCard
                 className='py-8 px-6'
                 key={product.id}
                 price={product.price}
