@@ -90,9 +90,6 @@ const ChatBox = () => {
       }
     });
   }, []);
-
-  console.log(activeUsers)
-
   return (
     <div className='chatbox_container sticky z-999 w-10/12 mx-auto h-[90vh] flex flex-col items-center my-8 shadow-md rounded-lg screen-mid:w-[95%] screen-base:h-[120vh]'>
       <div className='chatbox_notifications my-6 hidden w-fit items-center justify-center duration-100 ease-in-out'>

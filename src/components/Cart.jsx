@@ -175,3 +175,4 @@ SubTotal.propTypes = {
 };
 
 export default Cart;
+export{SubTotal};

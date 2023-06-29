@@ -16,6 +16,7 @@ describe('Wishlist Container', () => {
     expect(headings).toBeTruthy();
   });
 
+  
   test('renders WishlistCard component', async () => {
     renderWithRedux(<WishlistCard prod={{}} />);
     const images = await screen.findAllByRole('img');
