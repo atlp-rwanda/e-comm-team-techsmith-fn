@@ -9,6 +9,7 @@ import MultipleOrdersContainer from '../containers/MultipleOrdersContainer';
 import OrderDetails from '../components/OrderDetails';
 import Loading from '../components/Loading';
 import { orderDetails, ordersToPay } from './data/order';
+import Pagination from '../components/Pagination';
 
 describe('Checkout Container', () => {
 
@@ -38,6 +39,7 @@ describe('Checkout Container', () => {
         renderWithRedux(<MultipleOrdersContainer />)
         renderWithRedux(<ShippingDetails order={orderDetails} />)
         renderWithRedux(<OrderDetails order={orderDetails} checkoutPage={false} />);
+        renderWithRedux(<Pagination totalPages={5} />);
         const buttons = await screen.findAllByRole('link' || 'button');
         const images = await screen.findAllByRole('img');
         const headings = await screen.findAllByRole('heading');

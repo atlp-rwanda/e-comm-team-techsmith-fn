@@ -286,9 +286,7 @@ const SignupContainer = () => {
       <AuthBlueSide
         heading='Already have an account'
         button='SIGN IN'
-        onClick={() => {
-          navigate('/login');
-        }}
+        route='/login'
         description='To keep connected with us please login in here!'
       />
        <ToastContainer />

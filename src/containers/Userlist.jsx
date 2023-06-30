@@ -1,8 +1,9 @@
 import React from 'react';
 import { ToastContainer } from 'react-toastify';
+import moment from 'moment';
 import PropTypes from 'prop-types';
 import { useDispatch, useSelector } from 'react-redux';
-import { defaultProfilePic, lock, unlock } from '../assets';
+import { lock, unlock } from '../assets';
 import { successNotification } from '../components/Notification';
 import { disableUser, enableUser } from '../states/features/users/usersSlice';
 import Loading from '../components/Loading';
@@ -38,10 +39,7 @@ export const Userlist = ({ userList }) => {
             key={user.email}
             className='w-full p-0 pl-10  theUser grid gap-0  '
           >
-            <span className='userprofile flex justify-center max-w-[150px]'>
-              <img src={defaultProfilePic} alt='' />
-            </span>
-            <span id='username' className='username flex max-w-[150px] '>
+            <span id='username' className='username flex max-w-[300px] '>
               <p>{user.name}</p>
             </span>
             <span className='useremail flex text-ellipsis overflow-hidden ... max-w-[180px] '>
@@ -49,9 +47,9 @@ export const Userlist = ({ userList }) => {
             </span>
             <span
               id='date'
-              className=' userdate flex  max-w-[24rem] overflow-hidden ... max-w-[180px] '
+              className=' userdate flex max-w-[24rem] overflow-hidden'
             >
-              <p>{user.createdAt}</p>
+              <p>{moment(user.createdAt).format('YYYY-MM-DD hh:mm:ss')}</p>
             </span>
             <span className='userrole flex justify-center  '>
               {isSuccess}

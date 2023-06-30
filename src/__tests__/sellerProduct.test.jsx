@@ -24,14 +24,9 @@ describe('sellerProductsContainer', ()=> {
 
           test('renders sellingProd component', async () => {
             renderWithRedux(<SellerNavigationDashbooard />);
-            const images =  screen.findAllByRole('img');
-            const headings =  screen.findAllByRole('heading');
-            const buttons =  screen.findAllByRole('link');
+            const buttons = await screen.findAllByRole('link');
             const texts = screen.queryAllByRole('p');
-        
-            expect(images).toBeTruthy();
             expect(buttons).toBeTruthy();
-            expect(headings).toBeTruthy();
             expect(texts).toBeTruthy();
           });   
 

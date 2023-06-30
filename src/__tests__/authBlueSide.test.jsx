@@ -20,13 +20,13 @@ describe("Testing auth blueside page",()=>{
         render(
          <Provider store={store}>
             <BrowserRouter>
-                 <AuthBlueSide button='SIGN UP' heading='Create Your Accounts' description='hello there create your account'/>
+                 <AuthBlueSide button='SIGN UP' route='/signup' heading='Create Your Accounts' description='hello there create your account'/>
             </BrowserRouter>
          </Provider>
           );
       
           // Assertions
-          expect(screen.getByRole('button',{value:'SIGN UP'})).toBeInTheDocument();
+          expect(screen.getAllByRole('link')).toBeTruthy();
           expect(screen.getByRole('heading',{value:'Create Your Account'})).toBeInTheDocument();
           expect(screen.getByText('hello there create your account')).toBeInTheDocument();
     }); 

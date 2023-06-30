@@ -2,7 +2,7 @@ import React from 'react';
 import { screen, waitFor } from '@testing-library/react';
 import { renderWithRedux } from '../utils/TestUtils';
 import ProductCard from '../components/ProductCard';
-import { singleProduct } from './products';
+import { singleProduct } from './data/products';
 import ViewAllProductsContainer, {
   Categories
 } from '../containers/ViewAllProductsContainer';

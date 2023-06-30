@@ -45,9 +45,6 @@ const AdminManageUserContainer = () => {
         </div>
         <div className='manage_accounts_content_table h-4.5/6'>
           <div className='table_titles p-0 pl-10 grid gap-0  '>
-            <span className='flex justify-center max-w-[150px]'>
-              <p>Profile</p>
-            </span>
             <span className='max-w-[150px] username'>
               <p>Name</p>
             </span>

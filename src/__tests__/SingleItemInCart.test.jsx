@@ -1,7 +1,7 @@
 import React from 'react';
 import { screen } from '@testing-library/react';
 import { renderWithRedux } from '../utils/TestUtils';
-import { singleProduct } from './products';
+import { singleProduct } from './data/products';
 import SingleProductCart from '../components/SingleProductCart';
 
 

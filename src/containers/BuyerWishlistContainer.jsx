@@ -157,51 +157,51 @@ const WishlistCard = ({ prod }) => {
   return (
     <section
       key={prod.productId}
-      className='prod_wishlist_container shadow-lg p-8 h-full max-h-[37rem] w-[30%] min-w-[30rem] flex flex-col gap-8 items-center bg-white rounded-lg'
+      className='prod_wishlist_container shadow-lg p-8 h-[35rem] w-[30%] min-w-[30rem] flex flex-col gap-8 items-center bg-white rounded-lg cursor-pointer hover:shadow-xl transition-all hover:scale-102'
     >
-      <div className='w-full flex flex-col items-center h-full justify-between gap-8'>
-        <div className='produ_image_container w-full h-full min-h-[20rem] bg-gray-100'>
+      <div className='w-full flex flex-col items-center h-[80%] gap-8'>
+        <div className='produ_image_container w-full h-[70%] bg-gray-100 flex items-center justify-center rounded-lg'>
           <img
             alt='Wishlist avatar'
-            className='w-full h-full object-contain'
+            className='h-full max-w-full object-contain rounded-lg'
             src={prod.product?.image[0]}
           />
         </div>
-        <div className='prod_details w-full h-full flex flex-col items-center justify-between'>
+        <div className='prod_details w-full h-fit flex flex-col items-center justify-center gap-4'>
           <h3 className='max-w-[90%] text-[2rem] font-bold truncate text-ellipsis'>
             {prod.product?.name}
           </h3>
           <p className='text-[1.6rem] font-medium'>{prod.product?.price}</p>
         </div>
       </div>
-      <div>
-        <Button
-          className='primary-btn bg-red-600 text-white normal-case hover:bg-red-600 px-4 py-4 cursor-pointer'
-          value={
-            wishlistLoading ? (
-              <Loading width={20} />
-            ) : (
-              <span className='text-[1.5rem] cursor-pointer flex items-center gap-4'>
-                <FontAwesomeIcon
-                  icon={faTrash}
-                  className='bg-red-600 w-[1.5rem] h-[1.5rem]'
-                />{' '}
-                Remove
-              </span>
-            )
-          }
-          onClick={async () => {
-            deleteSingleWishlist({ productId: prod.productId })
-              .unwrap()
-              .then(() => {
-                dispatch(removeFromWishlist(prod.productId));
-              })
-              .catch((err) => {
-                return err;
-              });
-          }}
-        />
-      </div>
+      <Button
+        className='primary-btn bg-red-600 text-white w-fit normal-case hover:bg-red-600 px-4 py-4 cursor-pointer'
+        value={
+          wishlistLoading ? (
+            <div>
+              <Loading width={20} className='w-fit max-w-4' />
+            </div>
+          ) : (
+            <span className='text-[1.5rem] cursor-pointer flex items-center gap-4'>
+              <FontAwesomeIcon
+                icon={faTrash}
+                className='bg-red-600 w-[1.5rem] h-[1.5rem]'
+              />{' '}
+              Remove
+            </span>
+          )
+        }
+        onClick={async () => {
+          deleteSingleWishlist({ productId: prod.productId })
+            .unwrap()
+            .then(() => {
+              dispatch(removeFromWishlist(prod.productId));
+            })
+            .catch((err) => {
+              return err;
+            });
+        }}
+      />
     </section>
   );
 };
