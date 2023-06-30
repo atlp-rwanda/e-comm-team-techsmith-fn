@@ -52,7 +52,7 @@ const ValidateOrder = ({ visible, productName, productId, price }) => {
   return (
     <section
       className={`overlay_container ${
-        visible ? 'flex' : 'collapse'
+        visible ? 'flex' : 'hidden'
       } absolute right-2 left-2 bottom-2 top-2 shadow-2xl z-999 rounded-lg py-12 m-auto flex flex-col items-center justify-center`}
       style={{
         background: 'rgba(0,0,0,0.5)'
@@ -74,12 +74,20 @@ const ValidateOrder = ({ visible, productName, productId, price }) => {
         </div>
         <div className='overlay_form_container w-full h-full flex flex-col items-center justify-center'>
           <form className='validate_order_form w-[60%] flex flex-col items-center gap-6'>
+            <label className='order_input_container w-full flex flex-col items-start'>
+              <p className='text-[1.5rem]'>Product Name</p>
             <Input type='text' label='' value={productName} readOnly />
+            </label>
+            <label className='order_input_container w-full flex flex-col items-start'>
+              <p className='text-[1.5rem]'>Price</p>
             <Input type='text' label='' value={price} readOnly />
+            </label>
+            <label className='order_input_container w-full flex flex-col items-start'>
+              <p className='text-[1.5rem]'>Quantity</p>
             <Input
               type='text'
-              label='Quantity'
               color='black'
+              placeholder='Quantity'
               value={1}
               onChange={(e) => {
                 setFormData({
@@ -89,6 +97,8 @@ const ValidateOrder = ({ visible, productName, productId, price }) => {
                 });
               }}
             />
+            <p className='text-[1rem] text-slate-700'>The default quantity is 1. Update it to the number of products you are buying!</p>
+            </label>
             <div className='order_amount'>
               <p className='text-2xl font-bold text-center'>
                 Total: ${formData.amount}

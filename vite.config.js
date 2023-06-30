@@ -17,9 +17,10 @@ export default defineConfig({
     exclude: [
       ...configDefaults.exclude,
       'src/states/**/*.js',
-      'src/states/**/*.jsx',
+      'src/states/**/*.js',
       'src/stories/**/*.js',
       'src/__tests__/**/*.js',
+      'src/utils/*.js',
     ],
     testTimeout: 10000,
   }

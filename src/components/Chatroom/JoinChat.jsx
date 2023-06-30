@@ -82,9 +82,6 @@ const JoinChat = () => {
           className='primary-btn normal-case py-4 px-8 w-[1/4] rounded-[2rem]'
           route='/chat/room'
           onClick={() => {
-            socket.on('serverMessages', (data) => {
-              dispatch(setServerMessages(data));
-            });
             socket.emit('userLogin', user);
           }}
         />

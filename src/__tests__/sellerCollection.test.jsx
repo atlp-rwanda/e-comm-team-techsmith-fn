@@ -18,10 +18,4 @@ describe('Testing ManageProduct component', () => {
    
   });
 
-  
-  
-
-  
-
-  // Additional test cases can be added to cover form validation, input values, etc.
 });

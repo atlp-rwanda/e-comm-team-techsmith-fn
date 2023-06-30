@@ -12,7 +12,7 @@ import InputPopup from '../components/InputPopup';
 import PopupMaker from '../components/PopupMaker';
 import ForgetPassword from '../components/ForgetPassword';
 import { login } from '../states/features/auth/authSlice';
-import { API_URL } from '../constants';
+import { GOOGLE_AUTH_URL } from '../constants';
 import { ChangePassword } from '../components/changePassword';
 // import { ChangePassword } from '../components/changePassword';
 
@@ -204,7 +204,7 @@ Authentication process.'
               </form>
             </div>
             <Link
-              to={`${API_URL}/auth/google`}
+              to={`${GOOGLE_AUTH_URL}/api/auth/google`}
               onClick={() => {
                 return localStorage.setItem('googleLogin', 'true');
               }}
@@ -224,9 +224,7 @@ Authentication process.'
         </div>
         <AuthBlueSide
           button='SIGN UP'
-          onClick={() => {
-            navigate('/signup');
-          }}
+          route='/signup'
           heading='Create Your Account'
         />
       </div>

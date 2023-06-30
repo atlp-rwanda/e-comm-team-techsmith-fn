@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { ToastContainer } from 'react-toastify';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faShoppingCart } from '@fortawesome/free-solid-svg-icons';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { GiHamburgerMenu } from 'react-icons/gi';
-import { BiDownArrow } from 'react-icons/bi';
 import { BsCheckCircle } from 'react-icons/bs';
 import { IoIosNotificationsOutline } from 'react-icons/io';
 import {
@@ -215,28 +216,27 @@ const Navbar = () => {
             </div>
           </div>
           <div className='search_container'>
-          <Search />
+            <Search />
           </div>
 
           {token ? (
-            <div
-              className='navbar__profile__letter flex justify-center items-center cursor-pointer'
-              onClick={viewProfile}
-            >
-              <div className='navbar__profile flex justify-center items-center cursor-pointer'>
-                <div>
-                  <AiOutlineUser />
-                </div>
-              </div>
-              <div>
-                <BiDownArrow
-                  style={{
-                    color: 'white',
-                    width: '1.5rem',
-                    height: '1.5rem',
-                    paddingLeft: '0.2rem'
-                  }}
+            <div className='w-fit flex items-center gap-6'>
+              <div className='nav_cart_container'>
+                <Button
+                  value={<FontAwesomeIcon icon={faShoppingCart} />}
+                  className='primary-btn p-4 rounded-[50%] w-fit'
+                  onClick={showCart}
                 />
+              </div>
+              <div
+                className='navbar__profile__letter flex justify-center items-center cursor-pointer'
+                onClick={viewProfile}
+              >
+                <div className='navbar__profile flex justify-center items-center cursor-pointer'>
+                  <div className='shadow-lg rounded-[50%] bg-white p-2'>
+                    <AiOutlineUser />
+                  </div>
+                </div>
               </div>
             </div>
           ) : (
@@ -256,46 +256,61 @@ const Navbar = () => {
           )}
 
           {token && (
-            <div
-              className='navbar__profileView absolute'
-              onClick={hideprofile}
-            >
-              <div>
-                <Button
-                  route={`/users/${
-                    JSON.parse(localStorage.getItem('user')).id
-                  }`}
-                  className='primary-btn-no-hover-scale'
-                  value='Profile'
-                />
-              </div>
-              <div>
-                <Button
-                  value='Cart'
-                  className='primary-btn-no-hover-scale'
-                  onClick={showCart}
-                />
-              </div>
-              {!localStorage.getItem('isBuyer') && (
+            <div>
+              <div
+                className='navbar__profileView absolute'
+                onClick={hideprofile}
+              >
                 <div>
                   <Button
-                    route={
-                      localStorage.getItem('isSeller')
-                        ? `dashboard/seller`
-                        : `dashboard/users`
-                    }
-                    value='Dashboard'
+                    route={`/users/${
+                      JSON.parse(localStorage.getItem('user')).id
+                    }`}
                     className='primary-btn-no-hover-scale'
+                    value='Profile'
                   />
                 </div>
-              )}
-              <div>
-                <Button
-                  route='/login'
-                  value='Sign out'
-                  className='primary-btn-no-hover-scale'
-                  onClick={loggingOut}
-                />
+                <div>
+                  <Button
+                    value='Wishlist'
+                    className='primary-btn-no-hover-scale'
+                    route='/wishlist'
+                    onClick={() => {
+                      navigate('/wishlist');
+                    }}
+                  />
+                </div>
+                <div>
+                  <Button
+                    value='Orders'
+                    className='primary-btn-no-hover-scale'
+                    route='/orders'
+                    onClick={() => {
+                      navigate('/orders');
+                    }}
+                  />
+                </div>
+                {!localStorage.getItem('isBuyer') && (
+                  <div>
+                    <Button
+                      route={
+                        localStorage.getItem('isSeller')
+                          ? `dashboard/seller`
+                          : `dashboard/users`
+                      }
+                      value='Dashboard'
+                      className='primary-btn-no-hover-scale'
+                    />
+                  </div>
+                )}
+                <div>
+                  <Button
+                    route='/login'
+                    value='Sign out'
+                    className='primary-btn-no-hover-scale'
+                    onClick={loggingOut}
+                  />
+                </div>
               </div>
             </div>
           )}

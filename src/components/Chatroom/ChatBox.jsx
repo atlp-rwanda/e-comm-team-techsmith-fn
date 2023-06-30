@@ -68,7 +68,7 @@ const ChatBox = () => {
     socket.on('serverMessages', (data) => {
       dispatch(setServerMessages(data));
     });
-  }, []);
+  }, [serverMessages]);
 
   useEffect(() => {
     socket.on('newMessage', (data) => {
