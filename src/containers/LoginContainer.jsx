@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { decodeToken } from 'react-jwt';
 import { Typography, Button } from '@mui/material';
 import { useForm } from 'react-hook-form';
+import { ToastContainer } from 'react-toastify';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
 import Google from '../assets/images/google.png';
@@ -14,7 +15,7 @@ import ForgetPassword from '../components/ForgetPassword';
 import { login } from '../states/features/auth/authSlice';
 import { GOOGLE_AUTH_URL } from '../constants';
 import { ChangePassword } from '../components/changePassword';
-// import { ChangePassword } from '../components/changePassword';
+import { ErrorNotification } from '../components/Notification';
 
 const LoginContainer = () => {
   const form = useForm();
@@ -24,17 +25,19 @@ const LoginContainer = () => {
   const [openChangePassword, setOpenChangePassword] = useState(false);
   const { register, handleSubmit, formState } = form;
   const { errors } = formState;
-  const { isLoading, isError, isSuccess, changePassword } = useSelector(
-    (state) => {
+  const { isLoading, isError, isSuccess, changePassword, message } =
+    useSelector((state) => {
       return state.auth;
-    }
-  );
+    });
   const urlParams = new URLSearchParams(window.location.search);
   const token = urlParams.get('token');
 
   const mySubmit = async (data) => {
     localStorage.setItem('email', data.email);
     dispatch(login(data));
+    if (isError) {
+      ErrorNotification(message);
+    }
   };
 
   useEffect(() => {
@@ -146,6 +149,7 @@ Authentication process.'
               </Typography>
             </div>
             {openChangePassword && <ChangePassword />}
+            {message && <ToastContainer />}
 
             <div className='loginPage__form'>
               <form onSubmit={handleSubmit(mySubmit)} noValidate>
@@ -195,7 +199,8 @@ Authentication process.'
                 </div>
                 <div className='loginPage__button'>
                   <button
-                    type='submit' data-testid='log_in'
+                    type='submit'
+                    data-testid='log_in'
                     className='bg-blue-500 hover:bg-blue-700 text-white font-medium py-2 px-4 border border-blue-200 rounded'
                   >
                     {isLoading ? <Loading /> : 'SIGN IN'}

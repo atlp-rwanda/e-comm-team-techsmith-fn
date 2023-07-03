@@ -13,7 +13,7 @@ const SearchContainer = () => {
     return state.search.searchData;
   });
 
-  const { data: categories} = useGetAllCategoriesQuery();
+  const { data: categories } = useGetAllCategoriesQuery();
 
   const [postProductSearch, { isLoading, isError }] =
     usePostProductSearchMutation();

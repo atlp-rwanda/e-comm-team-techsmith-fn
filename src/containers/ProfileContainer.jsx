@@ -149,7 +149,7 @@ const ProfileContainer = () => {
               </div>
 
               <div className='flex myprofilee__formsection_input items-center'>
-                <label  htmlFor='preferredCurrency'>Preferred currency</label>
+                <label htmlFor='preferredCurrency'>Preferred currency</label>
                 <div>
                   <select
                     id='preferredCurrency'

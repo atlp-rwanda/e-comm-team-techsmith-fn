@@ -3,20 +3,19 @@ import { useForm } from 'react-hook-form';
 import { useSubmitContactFormMutation } from '../states/api/apiSlice';
 import Loading from '../components/Loading';
 
-  const ContactContainer = () => {
+const ContactContainer = () => {
+  const { register, handleSubmit } = useForm();
+  const [submitContactForm, { isLoading, isSuccess, isError }] =
+    useSubmitContactFormMutation();
 
-    const { register, handleSubmit } = useForm();
-    const [submitContactForm, { isLoading, isSuccess, isError }] = useSubmitContactFormMutation();
-
-    const handleSubmitForm = (data) => {
-      submitContactForm({
-        name: data.name,
-        email: data.email,
-        phone: data.phone,
-        message: data.message,
-      });
-    };
-
+  const handleSubmitForm = (data) => {
+    submitContactForm({
+      name: data.name,
+      email: data.email,
+      phone: data.phone,
+      message: data.message
+    });
+  };
 
   return (
     <section className='relative z-10 overflow-hidden bg-white py-20 lg:py-[120px]'>
@@ -135,21 +134,37 @@ import Loading from '../components/Loading';
                 <div>
                   <button
                     type='submit'
-                    className={`${isSuccess ? 'bg-green-600' : isError ? 'bg-red-500' : 'bg-primary'} border-primary w-full rounded-mid border-none p-5 text-white text-[1.5rem] transition hover:bg-opacity-90`}
+                    className={`${
+                      isSuccess
+                        ? 'bg-green-600'
+                        : isError
+                        ? 'bg-red-500'
+                        : 'bg-primary'
+                    } border-primary w-full rounded-mid border-none p-5 text-white text-[1.5rem] transition hover:bg-opacity-90`}
                   >
                     {isLoading ? <Loading width={20} /> : 'Send Message'}
                   </button>
                 </div>
-                {isError || isSuccess && (
-                  <div className='contact_form_feedbacks my-6 flex flex-col items-center gap-4'>
-                  <article className={isError ? 'text-[1.5rem] text-red-600' : 'hidden'}>
-                    Could not send message. Try refreshing the page and send again.
-                  </article>
-                  <article className={isSuccess ? 'text-[1.5rem] text-green-600' : 'hidden'}>
-                    Message sent successfully.
-                  </article>
-                </div>
-                )}
+                {isError ||
+                  (isSuccess && (
+                    <div className='contact_form_feedbacks my-6 flex flex-col items-center gap-4'>
+                      <article
+                        className={
+                          isError ? 'text-[1.5rem] text-red-600' : 'hidden'
+                        }
+                      >
+                        Could not send message. Try refreshing the page and send
+                        again.
+                      </article>
+                      <article
+                        className={
+                          isSuccess ? 'text-[1.5rem] text-green-600' : 'hidden'
+                        }
+                      >
+                        Message sent successfully.
+                      </article>
+                    </div>
+                  ))}
               </form>
             </div>
           </div>

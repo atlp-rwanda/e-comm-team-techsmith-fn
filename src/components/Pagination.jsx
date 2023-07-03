@@ -55,7 +55,11 @@ const Pagination = ({ className, totalPages }) => {
               <li className='w-fit'>
                 <Button
                   value={index + 1}
-                  className={`w-fit px-4 py-2 rounded-lg ${index === page ? 'bg-primary text-white' : 'bg-white text-primary'} shadow-lg'}`}
+                  className={`w-fit px-4 py-2 rounded-lg ${
+                    index === page
+                      ? 'bg-primary text-white'
+                      : 'bg-white text-primary'
+                  } shadow-lg'}`}
                   onClick={() => {
                     dispatch(setPage(index));
                   }}
@@ -89,7 +93,7 @@ Pagination.propTypes = {
 
 Pagination.defaultProps = {
   className: '',
-  totalPages: 1,
+  totalPages: 1
 };
 
 export default Pagination;

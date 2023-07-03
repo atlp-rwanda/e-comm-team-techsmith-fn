@@ -1,7 +1,9 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
+import { useTable } from 'react-table';
 import { useDispatch, useSelector } from 'react-redux';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
+import { COLUMNS } from './Column';
 import NavigationDashbooard from './UsersNavigationBigScreen';
 import Button from '../components/Button';
 import { Userlist } from './Userlist';
@@ -23,6 +25,11 @@ const AdminManageUserContainer = () => {
   useEffect(() => {
     dispatch(fetchingAllUsers(page));
   }, [page]);
+  const columns = useMemo(() => {return (COLUMNS, [])});
+  const data = useMemo(() =>{ return (Userlist, [])});
+  const tableInstance = useTable({ columns: columns, data: data });
+  const { getTableProps, getTableBodyProps, headerGroups, rows, prepareRow  } =
+    tableInstance;
   return (
     <div className='manage_accounts_wrapper h-screen'>
       <NavigationDashbooard />
@@ -44,23 +51,39 @@ const AdminManageUserContainer = () => {
           />
         </div>
         <div className='manage_accounts_content_table h-4.5/6'>
-          <div className='table_titles p-0 pl-10 grid gap-0  '>
-            <span className='max-w-[150px] username'>
-              <p>Name</p>
-            </span>
-            <span className=''>
-              <p>Email</p>
-            </span>
-            <span className='max-w-[24rem] userdate '>
-              <p>Subscription Date</p>
-            </span>
-            <span className='flex justify-center  '>
-              <p>Role</p>
-            </span>
-            <span className='flex justify-center '>
-              <p>Actions</p>
-            </span>
-          </div>
+
+
+          <table {...getTableProps()}>
+            <thead>
+              {headerGroups.map((headerGroup) =>  { return(
+                <tr {...headerGroup.getHeaderGroupProps()}>
+                  {headerGroup.headers.map((column) => {return(
+                    <th {...column.getHeaderProps()}>
+                      {column.render('Header')}
+                    </th>
+                  )})}
+                </tr>
+              )})}
+            </thead>
+
+            <tbody {...getTableBodyProps()}>
+               {rows.map((row) => {
+        prepareRow(row)
+        return(
+          <tr {...row.getRowProps()}>
+
+            {row.cells.map((cell) => {
+
+            return <td {...cell.getCellProps()}>{cell.render('Cell')}</td>
+
+            })}
+       
+          </tr>
+        )
+      })}
+              {/* {{ userList } && <Userlist rows={rows} prepareRow={prepareRow} userList={userList} />} */}
+            </tbody>
+          </table>
 
           {isPending && (
             <div className='loading_div w-full'>
@@ -74,11 +97,7 @@ const AdminManageUserContainer = () => {
               <FontAwesomeIcon icon='fa-solid fa-exclamation-circle' />
             </div>
           )}
-          {{ userList } && (
-            <div>
-              <Userlist userList={userList} />
-            </div>
-          )}
+
           {!isPending && (
             <div className='pagination'>
               <button

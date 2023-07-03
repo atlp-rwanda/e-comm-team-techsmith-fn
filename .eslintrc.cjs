@@ -23,6 +23,7 @@ module.exports = {
     'import/no-named-as-default': 'off',
     'react/prop-types': 'warn',
     'default-param-last': 'off',
+    "object-shorthand": 0,
     'no-self-compare': 'off',
     'eact/jsx-filename-extension': 'off',
     'react/jsx-no-constructed-context-values': 'off',
@@ -52,6 +53,13 @@ module.exports = {
     'react/no-array-index-key': 'off',
     'react/no-unescaped-entities': 'off',
     'no-nested-ternary': 'off',
-    "import/no-extraneous-dependencies": ["error", {"devDependencies": true, "optionalDependencies": false, "peerDependencies": false}]
+    'import/no-extraneous-dependencies': [
+      'error',
+      {
+        devDependencies: true,
+        optionalDependencies: false,
+        peerDependencies: false
+      }
+    ]
   }
 };

@@ -43,7 +43,6 @@ const PopularProducts = () => {
     }
   }, [newWishlist, allWishlist]);
 
-
   if (isLoading) {
     return (
       <div className='min-h-[30vh] flex items-center justify-center'>
@@ -51,7 +50,6 @@ const PopularProducts = () => {
       </div>
     );
   }
-
 
   if (allWishlistData.length === 0) {
     return null;

@@ -32,8 +32,6 @@ const ViewAllProductsContainer = () => {
     return state.categories.categoryProductsLoading;
   });
 
-  
-
   useEffect(() => {
     if (categoryProductsLoading) {
       setProductsLoading(true);
@@ -165,24 +163,28 @@ const Categories = () => {
           All Categories
         </h1>
         <ul className='flex flex-col gap-8 items-start'>
-        {categories.data.map((category) => {
-          const { id, name } = category;
-          return (
-            <li key={id} className='w-full'>
-              <Button
-                value={name}
-                key={id}
-                className={`py-2 px-6 border-none w-full shadow-md text-[1.5rem] rounded-md hover:scale-105 ${selectedCategory === id ? 'bg-primary text-white' : 'bg-transparent'}`}
-                onClick={() => {
-                  dispatch(updateSelectedCategory(id));
-                  const size = 20;
-                  const page = 1;
-                  getProductsCategory({ categoryId: id, size, page });
-                }}
-              />
-            </li>
-          );
-        })}
+          {categories.data.map((category) => {
+            const { id, name } = category;
+            return (
+              <li key={id} className='w-full'>
+                <Button
+                  value={name}
+                  key={id}
+                  className={`py-2 px-6 border-none w-full shadow-md text-[1.5rem] rounded-md hover:scale-105 ${
+                    selectedCategory === id
+                      ? 'bg-primary text-white'
+                      : 'bg-transparent'
+                  }`}
+                  onClick={() => {
+                    dispatch(updateSelectedCategory(id));
+                    const size = 20;
+                    const page = 1;
+                    getProductsCategory({ categoryId: id, size, page });
+                  }}
+                />
+              </li>
+            );
+          })}
         </ul>
       </div>
     );
@@ -254,4 +256,4 @@ const randomImage = (size) => {
   return Math.floor(Math.random() * size);
 };
 
-export { Categories }
+export { Categories };

@@ -294,4 +294,4 @@ MessageList.propTypes = {
 };
 
 export default ChatBox;
-export { Message, MessageList }
+export { Message, MessageList };

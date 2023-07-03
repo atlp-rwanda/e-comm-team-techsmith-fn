@@ -128,7 +128,10 @@ const ProductDetails = ({ product }) => {
           </div>
           <div className='product_seller_cta'>
             <Button
-              value={`Browse ${user?.name.split(' ')[0]}'s collection ` || 'Browse collection'}
+              value={
+                `Browse ${user?.name.split(' ')[0]}'s collection ` ||
+                'Browse collection'
+              }
               className='primary-btn rounded-[.5rem] py-[1rem] w-full normal-case screen-base:text-sm'
               route={user && `/seller/${user.id}`}
             />

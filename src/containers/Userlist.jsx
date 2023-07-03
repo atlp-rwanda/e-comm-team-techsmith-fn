@@ -1,6 +1,5 @@
 import React from 'react';
 import { ToastContainer } from 'react-toastify';
-import moment from 'moment';
 import PropTypes from 'prop-types';
 import { useDispatch, useSelector } from 'react-redux';
 import { lock, unlock } from '../assets';
@@ -9,7 +8,7 @@ import { disableUser, enableUser } from '../states/features/users/usersSlice';
 import Loading from '../components/Loading';
 import { usePutUserRoleMutation } from '../states/api/apiSlice';
 
-export const Userlist = ({ userList }) => {
+export const Userlist = ({ userList, rows,prepareRow  }) => {
   const dispatch = useDispatch();
   const { isLoading, accountStatus, message } = useSelector((state) => {
     return state.users;
@@ -30,10 +29,27 @@ export const Userlist = ({ userList }) => {
     }
   };
   return (
-    <div>
+    <>
       {message && <ToastContainer />}
       {isLoading && <Loading />}
-      {userList?.map((user) => {
+      {rows.map((row) => {
+        prepareRow(row)
+        return(
+          <tr {...row.getRowProps()}>
+
+            {row.cells.map((cell) => {
+
+            return <td {...cell.getCellProps()}>{cell.render('Cell')}</td>
+
+            })}
+       
+          </tr>
+        )
+      })}
+ 
+     
+
+      {/* {userList?.map((user) => {
         return (
           <div
             key={user.email}
@@ -51,7 +67,7 @@ export const Userlist = ({ userList }) => {
             >
               <p>{moment(user.createdAt).format('YYYY-MM-DD hh:mm:ss')}</p>
             </span>
-            <span className='userrole flex justify-center  '>
+            < span className='userrole flex justify-center  '>
               {isSuccess}
               <select
                 onChange={(e) => {
@@ -104,8 +120,8 @@ export const Userlist = ({ userList }) => {
             </button>
           </div>
         );
-      })}
-    </div>
+      })} */}
+    </>
   );
 };
 

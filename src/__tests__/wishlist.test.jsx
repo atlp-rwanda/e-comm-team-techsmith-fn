@@ -9,14 +9,13 @@ import BuyerWishlistContainer, {
 describe('Wishlist Container', () => {
   test('Renders wishlist container', async () => {
     renderWithRedux(<BuyerWishlistContainer />);
-    const headings =  screen.queryAllByRole('heading');
+    const headings = screen.queryAllByRole('heading');
     const buttons = await screen.findAllByRole('link');
 
     expect(buttons).toBeTruthy();
     expect(headings).toBeTruthy();
   });
 
-  
   test('renders WishlistCard component', async () => {
     renderWithRedux(<WishlistCard prod={{}} />);
     const images = await screen.findAllByRole('img');
