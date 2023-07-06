@@ -52,6 +52,7 @@ Button.propTypes = {
   target: PropTypes.bool
 };
 
+
 Button.defaultProps = {
   route: '',
   className: 'primary-btn',

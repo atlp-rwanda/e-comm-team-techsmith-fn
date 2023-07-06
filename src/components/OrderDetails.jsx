@@ -19,17 +19,19 @@ const OrderDetails = ({ order, className, checkoutPage }) => {
           {order?.product?.name}
         </h2>
         <span className='flex items-center w-full justify-between gap-6'>
-        <p>
-          <span className='text-[1.5rem] font-light'>Price</span>:{' '}
-          {order?.product?.price}
-        </p>
-        <p>X{order?.quantity}</p>
+          <p>
+            <span className='text-[1.5rem] font-light'>Price</span>:{' '}
+            {order?.product?.price}
+          </p>
+          <p>X{order?.quantity}</p>
         </span>
         <h3 className='text-[2rem] font-black'>Total: {order?.amount}</h3>
         <Button
           value='Buy now'
           route={`/order/${order?.id?.toString()}`}
-          className={`primary-btn px-6 py-2 w-fit text-[1.5rem] normal-case ${checkoutPage ? 'hidden' : ''}`}
+          className={`primary-btn px-6 py-2 w-fit text-[1.5rem] normal-case ${
+            checkoutPage ? 'hidden' : ''
+          }`}
         />
       </div>
     </div>
@@ -48,12 +50,12 @@ OrderDetails.propTypes = {
     amount: PropTypes.number.isRequired
   }).isRequired,
   className: PropTypes.string,
-checkoutPage: PropTypes.bool
+  checkoutPage: PropTypes.bool
 };
 
 OrderDetails.defaultProps = {
-    className: '',
-    checkoutPage: true
+  className: '',
+  checkoutPage: true
 };
 
 export default OrderDetails;

@@ -28,7 +28,7 @@
       "node_modules/(?!axios)",
       "\\.stories\\.(js|ts)$",
       "/src/stories/",
-      "/src/states/.*" ,
+      "/src/states/.*",
       "src/states/features/auth",
       "src/states/features/seller"
     ]
