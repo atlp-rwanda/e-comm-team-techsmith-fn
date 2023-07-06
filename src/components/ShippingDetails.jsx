@@ -5,10 +5,9 @@ import Input from './Input';
 import Button from './Button';
 
 const ShippingDetails = ({ order }) => {
-
-    const inputsClassName = 'py-4 px-8 w-full';
-    const [saveDetails, setSaveDetails] = useState(false);
-    const navigate = useNavigate();
+  const inputsClassName = 'py-4 px-8 w-full';
+  const [saveDetails, setSaveDetails] = useState(false);
+  const navigate = useNavigate();
 
   return (
     <form className='user_shipping_address h-full w-full flex flex-col gap-8'>
@@ -72,9 +71,9 @@ ShippingDetails.propTypes = {
     quantity: PropTypes.number,
     amount: PropTypes.number,
     user: PropTypes.shape({
-        name: PropTypes.string.isRequired
+      name: PropTypes.string.isRequired
     }),
-    productId: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+    productId: PropTypes.oneOfType([PropTypes.string, PropTypes.number])
   }).isRequired
 };
 

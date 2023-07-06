@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import ProductCard from '../components/ProductCard';
 import Button from '../components/Button';
+
 import {
   useGetAllCategoriesQuery,
   useLazyGetAllWishlistAllUsersQuery
@@ -42,7 +43,6 @@ const PopularProducts = () => {
       setAllWishlistData(removeDuplicates(allWishlist.data?.availableProducts));
     }
   }, [newWishlist, allWishlist]);
-
 
   if (isLoading) {
     return (

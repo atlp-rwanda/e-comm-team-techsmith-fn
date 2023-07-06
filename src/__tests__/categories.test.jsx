@@ -23,11 +23,11 @@ test('View products by category', async () => {
     </>
   );
 
-    const headings = screen.queryAllByRole('heading');
-    const images = screen.queryAllByRole('img');
-    const buttons = screen.queryAllByRole('link' || 'button');
+  const headings = screen.queryAllByRole('heading');
+  const images = screen.queryAllByRole('img');
+  const buttons = screen.queryAllByRole('link' || 'button');
 
-    expect(buttons).toBeTruthy();
-    expect(headings).toBeTruthy();
-    expect(images).toBeTruthy();
+  expect(buttons).toBeTruthy();
+  expect(headings).toBeTruthy();
+  expect(images).toBeTruthy();
 });
