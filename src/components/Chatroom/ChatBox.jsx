@@ -1,74 +1,34 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef } from 'react';
 import PropTypes from 'prop-types';
 import { useDispatch, useSelector } from 'react-redux';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faComments } from '@fortawesome/free-solid-svg-icons';
 import { useNavigate } from 'react-router-dom';
 import Button from '../Button';
-import Participants from './Participants';
 import { defaultPhoto } from '../../constants';
 import {
   user,
-  setServerMessages,
-  updateMessages,
-  updateActiveUsers,
   removeActiveUser,
-  addActiveUser
+  setMessages,
+  updateMessages,
+  setConversationModal
 } from '../../states/features/chat/chatSlice';
 import { socket } from '../../socket';
-import { removeDuplicates } from '../../utils/Arrays';
 import { MessageField } from './Message';
-import Loading from '../Loading';
+import { removeDuplicateMessages, removeDuplicates } from '../../utils/Arrays';
+import Rooms from './Rooms';
 
 const ChatBox = () => {
-  const participantsRef = useRef(null);
-  const [messages, setMessages] = useState([]);
-  const [activeUsers, setActiveUsers] = useState([]);
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const users = useSelector((state) => {
-    return state.chat.activeUsers;
+  const { messages, roomId, conversationModal } = useSelector((state) => {
+    return state.chat;
   });
-
-  const newUser = useSelector((state) => {
-    return state.chat.newUser;
-  });
-
-  const serverMessages = useSelector((state) => {
-    return state.chat.messages;
-  });
-
-  const displayNotification = () => {
-    const notification = document.querySelector('.chatbox_notifications');
-    const chatroomMain = document.querySelector('.chatroom_main');
-    notification.classList.remove('hidden');
-    chatroomMain.classList.remove('h-[90%]');
-    chatroomMain.classList.add('h-[75%]');
-    setTimeout(() => {
-      notification.classList.add('hidden');
-      chatroomMain.classList.remove('h-[75%]');
-      chatroomMain.classList.add('h-[90%]');
-    }, 3000);
-  };
 
   useEffect(() => {
-    socket.emit('joinChat', user);
-    socket.on('activeUsers', (data) => {
-      dispatch(updateActiveUsers(data));
-      setActiveUsers(removeDuplicates(data));
+    socket.on('roomMessages', (data) => {
+      dispatch(setMessages(data));
     });
-  }, []);
-
-  useEffect(() => {
-    setActiveUsers(removeDuplicates(users));
-  }, [users]);
-
-  useEffect(() => {
-    socket.on('serverMessages', (data) => {
-      dispatch(setServerMessages(data));
-    });
-  }, [serverMessages]);
+  }, [roomId]);
 
   useEffect(() => {
     socket.on('newMessage', (data) => {
@@ -76,28 +36,9 @@ const ChatBox = () => {
     });
   }, []);
 
-  useEffect(() => {
-    const nonDuplicateMessages = removeDuplicates(serverMessages);
-    setMessages(nonDuplicateMessages);
-  }, [serverMessages]);
-
-  useEffect(() => {
-    socket.on('newUser', (data) => {
-      dispatch(addActiveUser(data));
-      setActiveUsers([...activeUsers, data]);
-      if (data.user.email !== user.email) {
-        displayNotification();
-      }
-    });
-  }, []);
   return (
-    <div className='chatbox_container sticky z-999 w-10/12 mx-auto h-[90vh] flex flex-col items-center my-8 shadow-md rounded-lg screen-mid:w-[95%] screen-base:h-[120vh]'>
-      <div className='chatbox_notifications my-6 hidden w-fit items-center justify-center duration-100 ease-in-out'>
-        <p className='p-4 rounded-lg bg-green-500 text-white text-[1.6rem]'>
-          {newUser ? newUser.user.name : 'A user'} has joined that chat!
-        </p>
-      </div>
-      <section className='chatbox_header w-full flex items-center h-full max-h-[15rem] justify-between px-8 py-6 bg-slate-500 screen-mid:flex-col gap-4'>
+    <div className='chatbox_container sticky z-999 w-10/12 mx-auto h-[85vh] flex flex-col items-center my-8 shadow-md rounded-lg screen-mid:w-[95%] screen-base:h-[120vh]'>
+      <section className='chatbox_header w-full flex items-center h-[10rem] max-h-[10rem] justify-between px-8 py-6 bg-slate-500 screen-mid:flex-col gap-4'>
         <h1 className='text-[2.5rem] items-start font-black text-white screen-mid:text-[2rem] screen-base:text-[1.8rem]'>
           Techsmith Chatroom
         </h1>
@@ -111,62 +52,48 @@ const ChatBox = () => {
           value='Leave chat'
           className='primary-btn py-4 px-8 w-fit text-[1.6rem] bg-primary text-white hover:bg-red-500 normal-case screen-mid:py-2'
         />
-        <p className='participant_room_item hidden py-2 px-8 w-fit rounded-[1rem] bg-white items-center text-[1.6rem] screen-mid:flex justify-center'>
-          Techsmith Community
-        </p>
       </section>
       <section
-        className='chatbox_chatroom w-full h-full grid grid-cols-3 p-8 screen-mid:flex screen-base:base-chatroom'
+        className='chatbox_chatroom w-full h-full grid grid-cols-2 p-8 screen-mid:flex screen-base:base-chatroom'
         style={{
-          gridTemplateColumns: '20% 60% 20%'
+          gridTemplateColumns: '30% 70%'
         }}
       >
-        <div className='chatroom_rooms screen-mid:hidden'>
+        <div className='chatroom_rooms w-full screen-mid:hidden'>
           <Rooms />
         </div>
-        <section className='chatroom_main flex flex-col justify-between gap-4 px-4 border-x-2 border-primary h-[90%] overflow-y-hidden screen-mid:mid-chatbox screen-base:h-[80%]'>
-          {messages.length <= 0 ? (
-            <div className='min-h-[80vh] flex items-center justify-center'>
-              <Loading width={50} />
-            </div>
+        {roomId ? (
+          <section className='chatroom_main flex flex-col justify-between gap-4 px-4 border-x-2 border-primary h-[90%] overflow-y-hidden screen-mid:mid-chatbox screen-base:h-[80%]'>
+            {messages.length <= 0 ? (
+            <div className='min-h-[50vh] h-full flex flex-col gap-8 items-center justify-center'>
+            <h3 className='text-[2rem] font-medium] text-center'>This one looks dry!! Send a message to break the ice</h3>
+          </div>
           ) : (
-            <MessageList messages={messages} />
+            <MessageList messages={removeDuplicateMessages(messages)} />
           )}
           <div>
             <MessageField />
           </div>
-        </section>
-        <div className='chatroom_participants w-full px-4'>
-          <Participants ref={participantsRef} active users={activeUsers} />
-        </div>
+          </section>
+        ) : (
+          <section className='chatroom_main flex flex-col justify-between gap-4 px-4 border-x-2 border-primary h-[90%] overflow-y-hidden screen-mid:mid-chatbox screen-base:h-[80%]'>
+            {messages.length <= 0 ? (
+            <div className='min-h-[50vh] h-full flex flex-col gap-8 items-center justify-center'>
+            <h3 className='text-[2rem] font-medium] text-center'>Click on a user to start a conversation</h3>
+            <Button value='Start a conversation' className='primary-btn normal-case text-[1.5rem] w-fit px-8 py-4' onClick={(e) => {
+              e.preventDefault();
+              dispatch(setConversationModal(!conversationModal));
+            }} />
+          </div>
+          ) : (
+            <MessageList messages={removeDuplicateMessages(messages)} />
+          )}
+          <div>
+            <MessageField />
+          </div>
+          </section>
+        )}
       </section>
-    </div>
-  );
-};
-
-const Rooms = () => {
-  return (
-    <div className='participants_container w-full max-w-[60rem] flex flex-col items-center gap-8 px-8 screen-mid:hidden'>
-      <div className='participants_room flex flex-col gap-4 my-6'>
-        <h3 className='text-[2.2rem] flex text-start items-center gap-4 font-bold screen-mid:flex-col'>
-          <FontAwesomeIcon icon={faComments} />
-          Chat rooms
-        </h3>
-        <ul className='participants_room_list flex flex-col items-start'>
-          {Array(1)
-            .fill()
-            .map((_, i) => {
-              return (
-                <li
-                  key={i}
-                  className='participant_room_item w-full flex items-center text-[1.6rem]'
-                >
-                  Techsmith Community
-                </li>
-              );
-            })}
-        </ul>
-      </div>
     </div>
   );
 };
@@ -259,11 +186,11 @@ const MessageList = ({ messages }) => {
   return (
     <div
       ref={messagesContainerRef}
-      className='chatroom_main_messages w-full flex flex-col gap-6 h-full overflow-y-auto'
+      className='chatroom_main_messages w-full flex flex-col gap-6 h-[90%] overflow-y-auto'
       onScroll={handleScroll}
     >
-      {messages.map((message, i) => {
-        const { user: sender, messageBody, createdAt } = message;
+      {removeDuplicates(messages).map((message, i) => {
+        const { user: sender, messageBody, timestamp } = message;
         const own = message?.user?.id === user?.id;
         return (
           <Message
@@ -271,7 +198,7 @@ const MessageList = ({ messages }) => {
             own={own}
             avatar={defaultPhoto}
             message={messageBody}
-            timestamp={createdAt}
+            timestamp={timestamp}
             sender={sender.name}
           />
         );
@@ -294,4 +221,4 @@ MessageList.propTypes = {
 };
 
 export default ChatBox;
-export { Message, MessageList }
+export { Message, MessageList };

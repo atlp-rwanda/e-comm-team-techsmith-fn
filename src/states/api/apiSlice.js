@@ -201,6 +201,31 @@ export const apiSlice = createApi({
             url: `sellers/${id}`
           };
         }
+      }),
+      getRoomList: builder.query({
+        query: ({ userId, page, size }) => {
+          return {
+            url: `chat/rooms/${userId}/?size=${size}&page=${page}`
+          };
+        }
+      }),
+      getChatRoom: builder.query({
+        query: (id) => {
+          return {
+            url: `chat/chats/${id}`
+          };
+        }
+      }),
+      postCreateRoomWithParticipant: builder.mutation({
+        query: ({ creatorId, recipientId, roomName }) => {
+          return {
+            url: `chat/rooms/participants/?creatorId=${creatorId}&recipientId=${recipientId}`,
+            method: 'POST',
+            body: {
+              name: roomName || ''
+            }
+          };
+        }
       })
     };
   }
@@ -231,5 +256,7 @@ export const {
   usePostOrderBulkPaymentMutation,
   useSubmitContactFormMutation,
   useLazyGetAllSellersQuery,
-  useLazyGetSingleSellerQuery
+  useLazyGetSingleSellerQuery,
+  useLazyGetRoomListQuery,
+  usePostCreateRoomWithParticipantMutation
 } = apiSlice;

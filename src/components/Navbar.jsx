@@ -186,7 +186,7 @@ const Navbar = () => {
   };
 
   return (
-    <div>
+    <div className='mb-12'>
       <div className='navbar py-0 mb-4'>
         <div className='navbar_logoContainerNavbar-menuList flex justify-around items-center'>
           <section className='navbar_logoContainer'>

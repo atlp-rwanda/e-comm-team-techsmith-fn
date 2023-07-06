@@ -13,7 +13,7 @@ const downloadHelper = async (url, name) => {
       window.URL.revokeObjectURL(urlDownload);
     })
     .catch((error) => {
-      console.log(error);
+      return error;
     });
 };
 
