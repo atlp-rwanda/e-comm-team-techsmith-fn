@@ -167,42 +167,44 @@ const SellerProductsContainer = () => {
             )}
 
             {/* Product in my collection */}
-           <div className='flex flex-wrap justify-evenly mt-5'>
-             {myCollection?.map((product, index) => {
-              return (
-                <div
-                  key={product.id}
-                  className='sellingProd__card flex  mb-5 '
-                  onClick={() => {
-                    return getProduct(index);
-                  }}
-                >
-                  <div className='sellingProd__cardImage flex '>
-                    <img src={product.image[0]} alt='Product' />
-                  </div>
-                  <div className='sellingProd__cardDetails flex grow justify-between flex-col'>
-                    <div className='sellingProd__cardDetailsPara'>
-                      <div>
-                        <p className='flex justify-start items-center pl-[10px] py-4'>
-                          <span> {product.name}</span>
-                        </p>
-                      </div>
-                      <div>
-                        <p className='flex justify-start items-center pl-[10px] py-4'>
-                          $<span> {product.price}</span>
-                        </p>
-                      </div>
-                      <div>
-                        <p className='flex justify-start items-center pl-[10px] py-4'>
-                          Exp:<span> {product.expiryDate}</span>
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              );
-            })}
+            <div className='flex flex-wrap justify-evenly mt-5'>
+  {myCollection
+    ?.filter((product) => {return product.quantity > 0}) // Filter products with quantity > 0
+    .map((product, index) => {
+     return (
+      <div
+          key={product.id}
+          className='sellingProd__card flex  mb-5 '
+          onClick={() => {
+            return getProduct(index);
+          }}
+        >
+          <div className='sellingProd__cardImage flex '>
+            <img src={product.image[0]} alt='Product' />
+          </div>
+          <div className='sellingProd__cardDetails flex grow justify-between flex-col'>
+            <div className='sellingProd__cardDetailsPara'>
+              <div>
+                <p className='flex justify-start items-center pl-[10px] py-4'>
+                  <span> {product.name}</span>
+                </p>
+              </div>
+              <div>
+                <p className='flex justify-start items-center pl-[10px] py-4'>
+                  $<span> {product.price}</span>
+                </p>
+              </div>
+              <div>
+                <p className='flex justify-start items-center pl-[10px] py-4'>
+                  Exp:<span> {product.expiryDate}</span>
+                </p>
+              </div>
             </div>
+          </div>
+      </div>
+    )})}
+</div>
+
             {!isPending && (
               <div className='pagination justify-center pt-6'>
                 <button
@@ -498,3 +500,4 @@ const SellerProductsContainer = () => {
   );
 };
 export default SellerProductsContainer;
+
