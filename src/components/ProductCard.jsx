@@ -2,10 +2,10 @@ import PropTypes from 'prop-types';
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { ToastContainer } from 'react-toastify';
+import {Rating as MRating} from '@mui/material';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHeart } from '@fortawesome/free-solid-svg-icons';
 import { BsCartPlus } from 'react-icons/bs';
-import Rating from './Rating';
 import Button from './Button';
 import { primaryColor } from '../constants';
 import {
@@ -117,7 +117,20 @@ const ProductCard = ({
           {description}
         </p>
         <div className='product_category_rating'>
-          <Rating rating={rating.rating} performrating={rating.performRating} />
+
+        <MRating
+          sx={{
+            margin: "4% 0% 1%",
+            fontSize:  "100px" ,
+            display: "flex",
+            justifyContent: "center",
+          }}
+          name="half-rating-read"
+          value={rating}
+          precision={0.5}
+          readOnly
+        />
+
         </div>
         <Button
           className='home_product_category bg-transparent'

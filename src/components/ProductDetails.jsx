@@ -2,26 +2,34 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { useSelector, useDispatch } from 'react-redux';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import {Rating as MRating} from '@mui/material';
 import {
   faCartShopping,
   faCreditCard
 } from '@fortawesome/free-solid-svg-icons';
 import { faHeart } from '@fortawesome/free-regular-svg-icons';
 import { primaryColor } from '../constants';
-import Rating from './Rating';
 import Button from './Button';
 import ValidateOrder from './ValidateOrder';
 import { updateModelVisility } from '../states/features/orders/orderSlice';
 
 const ProductDetails = ({ product }) => {
-  const { id, name, image, price, condition, description, user } = product;
+  const { id, name, image, price, condition, description,user,  averageRating} = product;
+
   const validateOrder = useSelector((state) => {
     return state.orders.validateOrderModel;
   });
   const dispatch = useDispatch();
+  const findRate = (avg) => {
+    const rates = [1.5,2,2.5,3,3.5]
+    if(avg == null || avg < 1){
+      return rates[Math.floor(Math.random() * rates.length)]
+    }
+    return avg  
+  }
 
   return (
-    <div className='product_container flex items-center justify-between gap-12 w-10/12 mx-auto my-12 screen-mid:flex-col'>
+    <div className='product_container flex items-center justify-between gap-12 w-10/12 mx-auto my-12 screen-mid:flex-col pt-12'>
       <section className='product_images_container flex items-center gap-6 w-full h-full my-8 mx-4 p-8'>
         <ul className='product_images_small flex flex-col w-1/3 justify-between gap-4 h-full'>
           {image &&
@@ -61,7 +69,24 @@ const ProductDetails = ({ product }) => {
           </div>
           <div className='product_reviews flex gap-2 items-center'>
             <p>Ratings:</p>
-            <Rating rating={4} />
+
+            <MRating
+              sx={{
+                margin: "4% 0% 1%",
+                fontSize:  "100px" ,
+                display: "flex",
+                justifyContent: "center",
+              }}
+              name="half-rating-read"
+              value={findRate(averageRating)}
+              // value={4}
+              precision={0.5}
+              readOnly
+                    />
+
+
+
+            
           </div>
         </div>
         <div className='product_details_cta flex items-center gap-8 justify-between w-full my-4 mx-auto screen-mid:flex-col'>
@@ -121,16 +146,16 @@ const ProductDetails = ({ product }) => {
                     alt='Product seller avatar'
                     className='w-8 h-8 rounded-full'
                   />
-                  <p>{user?.name || 'User'}</p>
+                  <p>{product['user.name'] || 'User'}</p>
                 </span>
               }
             />
           </div>
           <div className='product_seller_cta'>
             <Button
-              value={`Browse ${user?.name.split(' ')[0]}'s collection ` || 'Browse collection'}
+              value={`Browse ${product['user.name'].split(' ')[0]}'s collection ` || 'Browse collection'}
               className='primary-btn rounded-[.5rem] py-[1rem] w-full normal-case screen-base:text-sm'
-              route={user && `/seller/${user.id}`}
+              route={user && `/seller/${product['user.id']}`}
             />
           </div>
         </div>
@@ -148,6 +173,7 @@ ProductDetails.propTypes = {
       id: PropTypes.oneOfType([PropTypes.number, PropTypes.string]).isRequired
     }).isRequired,
     description: PropTypes.string.isRequired,
+    averageRating: PropTypes.number.isRequired,
     image: PropTypes.arrayOf(PropTypes.string).isRequired,
     name: PropTypes.string.isRequired,
     price: PropTypes.number.isRequired,
@@ -157,4 +183,7 @@ ProductDetails.propTypes = {
   }).isRequired
 };
 
-export default ProductDetails;
+export default ProductDetails; 
+
+
+
