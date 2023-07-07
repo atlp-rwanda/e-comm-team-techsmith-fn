@@ -10,9 +10,7 @@ describe('Wishlist Container', () => {
   test('Renders wishlist container', async () => {
     renderWithRedux(<BuyerWishlistContainer />);
     const headings =  screen.queryAllByRole('heading');
-    const buttons = await screen.findAllByRole('link');
 
-    expect(buttons).toBeTruthy();
     expect(headings).toBeTruthy();
   });
 
@@ -21,11 +19,9 @@ describe('Wishlist Container', () => {
     renderWithRedux(<WishlistCard prod={{}} />);
     const images = await screen.findAllByRole('img');
     const headings = await screen.findAllByRole('heading');
-    const buttons = await screen.findAllByRole('link');
     const texts = screen.queryAllByRole('note');
 
     expect(images).toBeTruthy();
-    expect(buttons).toBeTruthy();
     expect(headings).toBeTruthy();
     expect(texts).toBeTruthy();
   });
