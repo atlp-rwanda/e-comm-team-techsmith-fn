@@ -38,7 +38,7 @@ const JoinChat = () => {
               src={defaultPhoto}
             />
           </span>
-          <p className='text-[2rem]'>User Demo</p>
+          <p className='text-[2rem]'>User</p>
         </div>
         <div className='user_info_description flex justify-center'>
           <h3 className='info_description_heading text-[3rem] font-black screen-mid:text-[2.4rem]'>
