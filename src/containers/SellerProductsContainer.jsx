@@ -114,7 +114,7 @@ const SellerProductsContainer = () => {
     <>
       <div className='sellingProd flex '>
         <SellerNavigationDashbooard />
-        <div className='selllingProd__maintitle text-center pt-10 flex flex-col min-h-[80vh] w-[100%] bg-[#f1f1f1]'>
+        <div className='selllingProd__maintitle text-center pt-10 flex flex-col  w-[100%] bg-[#f1f1f1]'>
           <p className='text-2xl font-semibold'>Manage Products</p>
           <div className='sellingProd__subheading flex justify-between items-center my-5 px-24 '>
             <div className='sellingProd__subtitle '>
@@ -139,7 +139,7 @@ const SellerProductsContainer = () => {
               />
             </div>
           </div>
-          <div className='sellingProd__lists flex flex-col h-[80vh] justify-evenly gap-12 py-7'>
+          <div className='sellingProd__lists  flex-col sm-flex h-[80vh]  gap-12 py-7'>
             {isPending && (
               <div className='loading_div flex z-10 min-h-[50%] my-12 justify-center gap-12 w-[80%]'>
                 Loading...
@@ -192,6 +192,11 @@ const SellerProductsContainer = () => {
               <div>
                 <p className='flex justify-start items-center pl-[10px] py-4'>
                   $<span> {product.price}</span>
+                </p>
+              </div>
+               <div>
+                <p className='flex justify-start items-center pl-[10px] py-4'>
+                  $<span> {product.quantity}</span>
                 </p>
               </div>
               <div>
