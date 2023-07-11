@@ -22,7 +22,6 @@ import BuyerWishlistContainer from '../containers/BuyerWishlistContainer';
 import MultipleOrdersContainer from '../containers/MultipleOrdersContainer';
 import SingleSellerPage from '../containers/SingleSellerPage';
 
-
 const HomePage = () => {
   return <HomeContainer />;
 };
@@ -72,12 +71,10 @@ const CheckoutPage = () => {
 };
 
 const MultipleCheckoutPage = () => {
-
   return <MultipleOrdersContainer />;
 };
 
 const SingleSellerContainer = () => {
-
   const { id } = useParams();
 
   return <SingleSellerPage id={id} />;

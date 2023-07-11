@@ -15,7 +15,5 @@ describe('Testing ManageProduct component', () => {
     expect(screen.getByText('Expiration Date')).toBeInTheDocument();
     expect(screen.getByText('Description')).toBeInTheDocument();
     expect(screen.getByText('Upload images')).toBeInTheDocument();
-   
   });
-
 });

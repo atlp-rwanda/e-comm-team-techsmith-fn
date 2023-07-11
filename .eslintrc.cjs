@@ -52,6 +52,13 @@ module.exports = {
     'react/no-array-index-key': 'off',
     'react/no-unescaped-entities': 'off',
     'no-nested-ternary': 'off',
-    "import/no-extraneous-dependencies": ["error", {"devDependencies": true, "optionalDependencies": false, "peerDependencies": false}]
+    'import/no-extraneous-dependencies': [
+      'error',
+      {
+        devDependencies: true,
+        optionalDependencies: false,
+        peerDependencies: false
+      }
+    ]
   }
 };

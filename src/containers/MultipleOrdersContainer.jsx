@@ -1,10 +1,12 @@
-
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useLazyGetAllOrdersUserQuery } from '../states/api/apiSlice';
 import Loading from '../components/Loading';
 import OrderDetails from '../components/OrderDetails';
-import { setOrdersCheckout, updateOrders } from '../states/features/orders/orderSlice';
+import {
+  setOrdersCheckout,
+  updateOrders
+} from '../states/features/orders/orderSlice';
 import Button from '../components/Button';
 import ShippingDetails from '../components/ShippingDetails';
 import PaymentContainer from '../components/PaymentContainer';
@@ -27,16 +29,16 @@ const MultipleOrdersContainer = () => {
   const [ordersToPay, setOrdersToPay] = useState({
     ids: [],
     amount: 0,
-    user: {},
-  })
+    user: {}
+  });
 
   const { page, size } = useSelector((state) => {
     return state.pagination;
-  })
+  });
 
   useEffect(() => {
     getAllOrdersUser({ size, page });
-    if(isSuccess && data.data.rows.length > 0){
+    if (isSuccess && data.data.rows.length > 0) {
       dispatch(updateOrders(data.data.rows));
     }
   }, []);
@@ -55,8 +57,8 @@ const MultipleOrdersContainer = () => {
         amount: data.data.rows.reduce((acc, order) => {
           return acc + order.amount;
         }, 0),
-        user: data.data.rows[0].user,
-      })
+        user: data.data.rows[0].user
+      });
       dispatch(setOrdersCheckout(ordersToPay));
     }
   }, [data]);
@@ -72,7 +74,6 @@ const MultipleOrdersContainer = () => {
       </section>
     );
   }
-
 
   if (isError) {
     if (error.status === 404) {
@@ -108,7 +109,8 @@ const MultipleOrdersContainer = () => {
     return (
       <section className='flex flex-col justify-center gap-12 items-center h-[50vh]'>
         <h1 className='text-[3rem] font-bold text-center'>
-          You have not made any orders yet. Checkout our catalogue in the meantime.
+          You have not made any orders yet. Checkout our catalogue in the
+          meantime.
         </h1>
         <Button value='Browse products' route='/category' />
       </section>
@@ -151,7 +153,10 @@ const MultipleOrdersContainer = () => {
             })}
           </div>
         )}
-        <Pagination totalPages={data?.data?.totalPages} className='max-w-[50%]' />
+        <Pagination
+          totalPages={data?.data?.totalPages}
+          className='max-w-[50%]'
+        />
       </div>
     </section>
   );

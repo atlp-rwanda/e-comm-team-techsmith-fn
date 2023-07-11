@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import ProductCard from '../components/ProductCard';
 import Button from '../components/Button';
+
 import {
   useGetAllCategoriesQuery,
   useLazyGetAllWishlistAllUsersQuery
@@ -43,7 +44,6 @@ const PopularProducts = () => {
     }
   }, [newWishlist, allWishlist]);
 
-
   if (isLoading) {
     return (
       <div className='min-h-[30vh] flex items-center justify-center'>
@@ -51,7 +51,6 @@ const PopularProducts = () => {
       </div>
     );
   }
-
 
   if (allWishlistData.length === 0) {
     return null;
