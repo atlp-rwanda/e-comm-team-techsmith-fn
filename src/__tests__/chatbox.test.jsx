@@ -36,6 +36,8 @@ describe('ChatBox', () => {
     );
     const messages = screen.queryAllByRole('note');
 
+    
+
     expect(headings).toBeTruthy();
     expect(images).toBeTruthy();
     expect(texts).toBeTruthy();

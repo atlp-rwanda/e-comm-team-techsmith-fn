@@ -55,12 +55,10 @@ $lightBorder: 1px solid rgba(0, 0, 0, 0.154);
   img {
     height: 100%;
     width: 100%;
-    padding: 0px 1.5rem;
   }
 }
 .sellingProd__cardDetails {
   .sellingProd__cardDetailsPara {
-    margin-top: 1rem;
     padding-left: 2.3rem;
   }
   p {
@@ -157,7 +155,8 @@ $lightBorder: 1px solid rgba(0, 0, 0, 0.154);
   .sellingProd__card {
     display: block !important;
     width: 70% !important;
-    height: auto !important;
+    height: 100%;
+    padding: 13px 13px 0px 13px;
     background-color: #fff !important;
   }
   .sellingProd__cardDetailsPara {

@@ -23,5 +23,8 @@ export default defineConfig({
       'src/utils/*.js',
     ],
     testTimeout: 10000,
+  },
+  optimizeDeps: {
+    exclude: ['js-big-decimal']
   }
 });
