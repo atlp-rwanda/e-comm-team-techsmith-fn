@@ -9,7 +9,7 @@ import {
   setSize
 } from '../states/features/pagination/paginationSlice';
 
-const Pagination = ({ className, totalPages }) => {
+const Pagination = ({ className, totalPages, pageOptions }) => {
   const { page } = useSelector((state) => {
     return state.pagination;
   });
@@ -19,7 +19,7 @@ const Pagination = ({ className, totalPages }) => {
 
   return (
     <nav
-      className={`flex items-center justify-between gap-6 w-full ${className}`}
+      className={`flex items-center gap-6 w-full ${className}`}
     >
       <select
         className='w-fit text-[1.3rem] rounded-md'
@@ -30,11 +30,9 @@ const Pagination = ({ className, totalPages }) => {
           }
         })}
       >
-        <option value={3}>Show 3</option>
-        <option value={5}>Show 5</option>
-        <option value={10}>Show 10</option>
-        <option value={20}>Show 20</option>
-        <option value={50}>Show 50</option>
+        {pageOptions.map((option) => {
+          return <option key={option} value={option}>Show {option}</option>;
+        })}
       </select>
       <div className='flex items-center justify-center gap-6'>
         <Button
@@ -55,6 +53,7 @@ const Pagination = ({ className, totalPages }) => {
               <li className='w-fit'>
                 <Button
                   value={index + 1}
+                  key={index}
                   className={`w-fit px-4 py-2 rounded-lg ${index === page ? 'bg-primary text-white' : 'bg-white text-primary'} shadow-lg'}`}
                   onClick={() => {
                     dispatch(setPage(index));
@@ -84,12 +83,16 @@ const Pagination = ({ className, totalPages }) => {
 
 Pagination.propTypes = {
   className: PropTypes.string,
-  totalPages: PropTypes.oneOfType([PropTypes.string, PropTypes.number])
+  totalPages: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+  pageOptions: PropTypes.arrayOf(PropTypes.number),
 };
 
 Pagination.defaultProps = {
   className: '',
   totalPages: 1,
+  pageOptions: [
+    3, 5, 10, 20, 50
+  ],
 };
 
 export default Pagination;

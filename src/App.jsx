@@ -28,7 +28,6 @@ import {
 import Footer from './components/Footer';
 import Navbar from './components/Navbar';
 import Cart from './components/Cart';
-import JoinChat from './components/Chatroom/JoinChat';
 import Navigate from './outlets/Navigate';
 import ProtectedRoutes from './outlets/ProtectedRoutes';
 import SellerRoutes from './outlets/SellerRoutes';
@@ -64,9 +63,8 @@ const App = () => {
           <Route path='/seller/unauthorized' element={<SellerNavigation />} />
           <Route path='/admin/unauthorized' element={<AdminNavigation />} />
           <Route element={<ProtectedRoutes />}>
-            <Route path='/chat' element={<JoinChat />} />
             <Route path='/orders' element={<MultipleCheckoutPage />} />
-            <Route path='/chat/room' element={<ChatPage />} />
+            <Route path='/chat' element={<ChatPage />} />
             <Route path='/order/:id' element={<CheckoutPage />} />
             <Route path='/wishlist' element={<WishlistPage />} />
             <Route path='/users/:id' element={<ProfilePage />} />

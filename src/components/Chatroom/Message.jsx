@@ -21,7 +21,7 @@ const MessageField = () => {
 
   return (
     <form
-      className='message_field_container w-full flex items-center gap-4 px-8 py-6'
+      className='message_field_container w-full flex h-full items-center gap-4 px-8 py-6'
       onSubmit={handleSubmit(onSubmit)}
     >
       <Controller
