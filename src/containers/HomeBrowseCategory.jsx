@@ -34,6 +34,18 @@ const BrowseByCategory = () => {
       <Categories />
       <section className='home_browse_category_container flex flex-wrap justify-around'>
         {populars.map((item) => {
+          let averageRating = 3.5;
+          const rates = [1.5,2,2.5,3,3.5,4,4.5]
+          
+          if(item.reviews.length === 0){
+            averageRating = rates[Math.floor(Math.random() * rates.length)]
+          }else{
+            averageRating = item.reviews.reduce((acc, item1) => { 
+              return acc + item1.rating
+            }
+            , 0) / item.reviews.length
+          }
+
           return (
             <ProductCard
               image={item.image[randomProduct(item.image.length)]}
@@ -44,6 +56,7 @@ const BrowseByCategory = () => {
               price={item.price}
               quantity={item.quantity}
               pId={item.id}
+              rating={averageRating}
             />
           );
         })}

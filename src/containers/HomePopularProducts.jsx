@@ -77,6 +77,7 @@ const PopularProducts = () => {
           </div>
         )}
         {allWishlistData?.map((wishlist) => {
+          const rates = [1.5,2,2.5,3,3.5,4,4.5]
           return (
             <ProductCard
               key={wishlist?.id}
@@ -93,6 +94,7 @@ const PopularProducts = () => {
                   random(wishlist?.product?.image.length)
                 ]
               }
+              rating={rates[Math.floor(Math.random() * rates.length)]}
             />
           );
         })}
