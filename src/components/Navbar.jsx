@@ -338,9 +338,16 @@ const Navbar = () => {
               <li className='navbar__dropdown_search'>
                 <Search />
               </li>
-              <li>Category</li>
-              <li>About </li>
-              <li>Contact</li>
+              <li>
+              <Link to='category'>Categories</Link>
+              </li>
+              <li>
+              <Link to='about'>About us</Link>
+               </li>
+              <li> 
+              <Link to='contact'>Contact us</Link>
+              
+              </li>
             </ul>
           </div>
         </div>

@@ -8,7 +8,7 @@
   position: relative;
   z-index: 999;
   .navbar_logoContainerNavbar-menuList {
-    position: sticky;
+    position: fixed;
     top: 0;
     gap: 3rem;
     background-color: base.$primary-color;
