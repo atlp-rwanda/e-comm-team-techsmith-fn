@@ -85,6 +85,8 @@ const Cart = () => {
 
   const [dangerous, setDangerous] = useState(false);
 
+ 
+
   return (
     <div className='cart_overlay overflow-x-scroll'>
       {isLoading ? (
@@ -143,7 +145,8 @@ const Cart = () => {
                 }, 0)}
               />
 
-              <div
+      { cart.length !==0 && (      
+          <div
                 role='button'
                 className='my-7 border bg-white rounded-md py-4 hover:bg-red-800 hover:text-white relative'
                 onMouseOver={handleMouseOver}
@@ -157,10 +160,10 @@ const Cart = () => {
                 </p>
                 {dangerous && (
                   <h1 className='text-center text-xs'>
-                    **This action cannot be undone!**
+                    *This action cannot be undone!*
                   </h1>
                 )}
-              </div>
+              </div>)}
             </div>
           </div>
         </div>
