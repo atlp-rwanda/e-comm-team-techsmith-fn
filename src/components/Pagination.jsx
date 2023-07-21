@@ -50,9 +50,9 @@ const Pagination = ({ className, totalPages, pageOptions }) => {
         <ul className='flex items-center justify-center gap-4'>
           {Array.from(Array(totalPages).keys()).map((index) => {
             return (
-              <li className='w-fit'>
+              <li className='w-fit' key={index}>
                 <Button
-                  value={index + 1}
+                  value={String(index + 1)}
                   key={index}
                   className={`w-fit px-4 py-2 rounded-lg ${index === page ? 'bg-primary text-white' : 'bg-white text-primary'} shadow-lg'}`}
                   onClick={() => {

@@ -37,13 +37,13 @@ const ChatBox = () => {
   }, []);
 
   return (
-    <div className='chatbox_container sticky z-999 w-10/12 mx-auto h-[85vh] flex flex-col items-center my-8 shadow-md rounded-lg screen-mid:w-[95%] screen-base:h-[120vh]'>
+    <div className='chatbox_container sticky z-999 w-10/12 mx-auto h-[85vh] flex flex-col items-center my-12 shadow-md rounded-lg screen-mid:w-[95%] screen-base:h-[120vh]'>
       <section className='chatbox_header w-full flex items-center h-[10rem] max-h-[10rem] justify-between px-8 py-6 bg-slate-500 screen-mid:flex-col gap-4'>
         <h1 className='text-[2.5rem] items-start font-black text-white screen-mid:text-[2rem] screen-base:text-[1.8rem]'>
           Techsmith Chatroom
         </h1>
         <Button
-          route='/chat'
+          route='/'
           onClick={() => {
             socket.emit('leave', user);
             dispatch(removeActiveUser(user));
