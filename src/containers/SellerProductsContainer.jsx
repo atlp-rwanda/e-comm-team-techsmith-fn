@@ -10,6 +10,8 @@ import Button from '../components/Button';
 import { loading, Left, Right } from '../assets';
 import { fetchingMyCollection } from '../states/features/seller/sellerSlice';
 import SellerNavigationDashbooard from './SellerNavigation';
+import { socket } from '../socket';
+
 import {
   useDeleteProductMutation,
   useUpdateProductMutation
@@ -39,6 +41,8 @@ const SellerProductsContainer = () => {
     return oneItem;
   };
 
+
+  
   const [deleteProduct, { isError }] = useDeleteProductMutation();
   const idProductRef = useRef();
   const handleDialog = () => {
@@ -110,6 +114,12 @@ const SellerProductsContainer = () => {
     document.querySelector('.sellingProd').classList.remove('blurry');
   }, [page, isSuccess]);
 
+const prodQuantity = {}
+useEffect(() => {
+  socket.on('QuantityUpdated', (prodUpdate) => {
+    return (prodUpdate);
+  });
+},[prodQuantity])
   return (
     <>
       <div className='sellingProd flex '>
@@ -168,47 +178,59 @@ const SellerProductsContainer = () => {
 
             {/* Product in my collection */}
             <div className='flex flex-wrap justify-evenly mt-5'>
-  {myCollection
-    ?.filter((product) => {return product.quantity > 0}) // Filter products with quantity > 0
-    .map((product, index) => {
-     return (
-      <div
-          key={product.id}
-          className='sellingProd__card flex flex-col sm:flex-row  mb-5'
-          onClick={() => {
-            return getProduct(index);
-          }}
-        >
-          <div className='sellingProd__cardImage flex '>
-            <img  src={product.image[0]} alt='Product' />
-          </div>
-          <div className='sellingProd__cardDetails flex grow justify-between flex-col'>
-            <div className='sellingProd__cardDetailsPara'>
-              <div>
-                <p className='flex justify-start items-center pl-[10px] py-4'>
-                  <span> {product.name}</span>
-                </p>
-              </div>
-              <div>
-                <p className='flex justify-start items-center pl-[10px] py-4'>
-                  $<span> {product.price}</span>
-                </p>
-              </div>
-               <div>
-                <p className='flex justify-start items-center pl-[10px] py-4'>
-                  <span> {product.quantity>1 ? `${product.quantity} products`:`${product.quantity} product`}</span> 
-                </p>
-              </div>
-              <div>
-                <p className='flex justify-start items-center pl-[10px] py-4'>
-                  <span>Exp: {product.expiryDate.split('T')[0]}</span>
-                </p>
-              </div>
+              {myCollection
+              
+              ?.filter((product) => {
+                return product.quantity > 0;
+              }) 
+              // Filter products with quantity > 0
+                .map((product, index) => {
+                  return (
+                    <div
+                      key={product.id}
+                      className='sellingProd__card flex flex-col sm:flex-row  mb-5'
+                      onClick={() => {
+                        return getProduct(index);
+                      }}
+                    >
+                      <div className='sellingProd__cardImage flex '>
+                        <img src={product.image[0]} alt='Product' />
+                      </div>
+                      <div className='sellingProd__cardDetails flex grow justify-between flex-col overflow-hidden'>
+                        <div className='sellingProd__cardDetailsPara '>
+                          <div>
+                            <p className='flex justify-start items-center pl-[10px] py-4'>
+                              <span> {product.name}</span>
+                            </p>
+                          </div>
+                          <div>
+                            <p className='flex justify-start items-center pl-[10px] py-4'>
+                              $<span> {product.price}</span>
+                            </p>
+                          </div>
+                          <div>
+                            <p className='flex justify-start items-center pl-[10px] py-4'>
+                              <span>
+                                {' '}
+                                {product.quantity > 1
+                                  ? `${product.quantity} products`
+                                  : `${product.quantity} product`}
+                              </span>
+                            </p>
+                          </div>
+                          <div>
+                            <p className='flex justify-start items-center pl-[10px] py-2'>
+                              <span>
+                                Exp: {product.expiryDate.split('T')[0]}
+                              </span>
+                            </p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  );
+                })}
             </div>
-          </div>
-      </div>
-    )})}
-</div>
 
             {!isPending && (
               <div className='pagination justify-center pt-6'>

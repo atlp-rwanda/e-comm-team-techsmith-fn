@@ -52,11 +52,11 @@ const Navbar = () => {
     useSelector((state) => {
       return state.seller;
     });
-    const google=localStorage.getItem('googleLogin')
-    if(google){
-      localStorage.removeItem('googleLogin')
-      window.location.reload()
-    }
+  const google = localStorage.getItem('googleLogin');
+  if (google) {
+    localStorage.removeItem('googleLogin');
+    window.location.reload();
+  }
   useEffect(() => {
     displayNotifications();
   }, [newUnread, message]);

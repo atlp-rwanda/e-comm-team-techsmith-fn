@@ -5,7 +5,7 @@ export {
   LOCAL_API_URL,
   WEBSOCKET_URL,
   WEBSOCKET_LOCAL_URL,
-  GOOGLE_AUTH_URL,
+  GOOGLE_AUTH_URL
 } from './API';
 export { productImages, singleProductId } from './Products';
 export { defaultPhoto } from './Users';

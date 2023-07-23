@@ -8,10 +8,10 @@ import { defaultPhoto } from '../constants';
 
 // TOP MERCHANTS
 const TopMerchants = () => {
-
   const dispatch = useDispatch();
 
-  const [getAllSellers, { data, isLoading, isError, isSuccess }] = useLazyGetAllSellersQuery();
+  const [getAllSellers, { data, isLoading, isError, isSuccess }] =
+    useLazyGetAllSellersQuery();
   const sellers = useSelector((state) => {
     return state.seller.sellers;
   });
@@ -31,13 +31,12 @@ const TopMerchants = () => {
       <div className='min-h-30vh w-full flex items-center justify-between'>
         <Loading width={50} />
       </div>
-    )
+    );
   }
 
   if (isError) {
-    return null
+    return null;
   }
-
 
   return (
     <div className='home_top_merchants'>
@@ -54,7 +53,7 @@ const TopMerchants = () => {
               image={defaultPhoto}
               id={seller.id}
             />
-          )
+          );
         })}
       </section>
     </div>

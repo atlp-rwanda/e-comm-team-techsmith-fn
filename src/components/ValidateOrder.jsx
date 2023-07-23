@@ -76,28 +76,31 @@ const ValidateOrder = ({ visible, productName, productId, price }) => {
           <form className='validate_order_form w-[60%] flex flex-col items-center gap-6'>
             <label className='order_input_container w-full flex flex-col items-start'>
               <p className='text-[1.5rem]'>Product Name</p>
-            <Input type='text' label='' value={productName} readOnly />
+              <Input type='text' label='' value={productName} readOnly />
             </label>
             <label className='order_input_container w-full flex flex-col items-start'>
               <p className='text-[1.5rem]'>Price</p>
-            <Input type='text' label='' value={price} readOnly />
+              <Input type='text' label='' value={price} readOnly />
             </label>
             <label className='order_input_container w-full flex flex-col items-start'>
               <p className='text-[1.5rem]'>Quantity</p>
-            <Input
-              type='text'
-              color='black'
-              placeholder='Quantity'
-              value={1}
-              onChange={(e) => {
-                setFormData({
-                  ...formData,
-                  quantity: e.target.value,
-                  amount: price * e.target.value
-                });
-              }}
-            />
-            <p className='text-[1rem] text-slate-700'>The default quantity is 1. Update it to the number of products you are buying!</p>
+              <Input
+                type='text'
+                color='black'
+                placeholder='Quantity'
+                value={1}
+                onChange={(e) => {
+                  setFormData({
+                    ...formData,
+                    quantity: e.target.value,
+                    amount: price * e.target.value
+                  });
+                }}
+              />
+              <p className='text-[1rem] text-slate-700'>
+                The default quantity is 1. Update it to the number of products
+                you are buying!
+              </p>
             </label>
             <div className='order_amount'>
               <p className='text-2xl font-bold text-center'>

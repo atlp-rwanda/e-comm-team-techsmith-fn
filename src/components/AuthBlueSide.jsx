@@ -23,7 +23,11 @@ const AuthBlueSide = ({ button, heading, description, route }) => {
           </div>
         </div>
         <div className='blueSide__button'>
-          <Button value={button} route={route} className='font-medium mt-3 bg-white rounded-lg px-8 py-4 w-fit text-primary' />
+          <Button
+            value={button}
+            route={route}
+            className='font-medium mt-3 bg-white rounded-lg px-8 py-4 w-fit text-primary'
+          />
         </div>
       </div>
     </div>
@@ -34,11 +38,11 @@ AuthBlueSide.propTypes = {
   button: PropTypes.string.isRequired,
   heading: PropTypes.string.isRequired,
   description: PropTypes.string,
-  route: PropTypes.string.isRequired,
+  route: PropTypes.string.isRequired
 };
 
 AuthBlueSide.defaultProps = {
-  description: 'Enter your personal details and start your journey with us',
+  description: 'Enter your personal details and start your journey with us'
 };
 
 export default AuthBlueSide;

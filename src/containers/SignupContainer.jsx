@@ -25,7 +25,7 @@ const SignupContainer = () => {
   const [, setEmail] = useState(' ');
   const [, setName] = useState(' ');
 
-  const { isLoading, isSuccess, isError,message } = useSelector((state) => {
+  const { isLoading, isSuccess, isError, message } = useSelector((state) => {
     return state.auth;
   });
 
@@ -46,7 +46,7 @@ const SignupContainer = () => {
     setEmail(decodedEmail);
     setName(decodedName);
 
-    if (message !== "") {
+    if (message !== '') {
       if (isError) {
         ErrorNotification(message);
       } else {
@@ -56,9 +56,8 @@ const SignupContainer = () => {
           navigate('/login');
         }, 5000);
       }
-   
     }
-  }, [dispatch, isSuccess,isError]);
+  }, [dispatch, isSuccess, isError]);
 
   return (
     <div className='signupPage'>
@@ -289,7 +288,7 @@ const SignupContainer = () => {
         route='/login'
         description='To keep connected with us please login in here!'
       />
-       <ToastContainer />
+      <ToastContainer />
     </div>
   );
 };

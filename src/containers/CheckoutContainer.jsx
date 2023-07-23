@@ -10,7 +10,6 @@ import { updateSingleOrder } from '../states/features/orders/orderSlice';
 import ShippingDetails from '../components/ShippingDetails';
 
 const CheckoutContainer = ({ id }) => {
-
   const dispatch = useDispatch();
 
   const {
@@ -27,12 +26,13 @@ const CheckoutContainer = ({ id }) => {
     }
   }, [orderDetails]);
 
-
   if (isError) {
     if (error.status === 404) {
       return (
         <section className='flex flex-col justify-center gap-12 items-center h-[50vh]'>
-          <h1 className='text-[3rem] font-bold text-center'>We cannot find this order. Checkout our catalogue in the meantime.</h1>
+          <h1 className='text-[3rem] font-bold text-center'>
+            We cannot find this order. Checkout our catalogue in the meantime.
+          </h1>
           <Button value='Browse products' route='/category' />
         </section>
       );
@@ -52,11 +52,17 @@ const CheckoutContainer = ({ id }) => {
     <section className='flex gap-12 justify-between h-auto min-h-[50vh] w-[90%] mx-auto my-12 screen-base:checkout-container-base'>
       <div className='order_shipping_address_container flex flex-col justify-between items-center gap-12 h-full w-full max-w-[50%] p-8 screen-mid:max-w-[70%] screen-base:max-w-[90%]'>
         <div className='shipping_details_container flex flex-col w-full max-w-[70%] items-start gap-8 screen-mid:max-w-[90%]'>
-          {isLoading ? <Loading width={50} /> : <OrderDetails order={orderDetails.data} />}
+          {isLoading ? (
+            <Loading width={50} />
+          ) : (
+            <OrderDetails order={orderDetails.data} />
+          )}
           <h1 className='text-[3rem] font-bold'>Shipping address</h1>
-          {
-            isLoading ? <Loading width={50} /> : <ShippingDetails order={orderDetails.data} />
-          }
+          {isLoading ? (
+            <Loading width={50} />
+          ) : (
+            <ShippingDetails order={orderDetails.data} />
+          )}
         </div>
       </div>
       <div className='payment_details_container w-full p-8 flex items-center justify-evenly'>
