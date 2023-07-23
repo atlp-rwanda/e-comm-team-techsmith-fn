@@ -45,7 +45,7 @@ const PaymentContainer = forwardRef(
         isLoading: isBulkLoading,
         data: bulkPaymentData,
         isSuccess: isBulkSuccess,
-        isError: isBulkError,
+        isError: isBulkError
       }
     ] = usePostOrderBulkPaymentMutation();
 
@@ -120,7 +120,9 @@ const PaymentContainer = forwardRef(
                     <Input
                       className='py-4 px-8 w-full'
                       placeholder={
-                        multiple ? ordersCheckout?.user?.name : order?.user?.name
+                        multiple
+                          ? ordersCheckout?.user?.name
+                          : order?.user?.name
                       }
                       {...field}
                       ref={field.ref}
@@ -185,11 +187,12 @@ const PaymentContainer = forwardRef(
                     } text-center`}
                   >
                     {isSuccess || isBulkSuccess || isBulkError
-                      ? isSuccess ? `You have successfully paid for ${order?.product?.name}. Get your receipt below.`
-                      : isBulkSuccess
-                      ? `You have successfully paid for ${ordersCheckout?.ids?.length} orders. Get your receipt below.`
-                      : 'An error occurred while processing your payment. Please double check your information and try again.'
-                      :   'An error occurred while processing your payment. Please double check your information and try again.'}
+                      ? isSuccess
+                        ? `You have successfully paid for ${order?.product?.name}. Get your receipt below.`
+                        : isBulkSuccess
+                        ? `You have successfully paid for ${ordersCheckout?.ids?.length} orders. Get your receipt below.`
+                        : 'An error occurred while processing your payment. Please double check your information and try again.'
+                      : 'An error occurred while processing your payment. Please double check your information and try again.'}
                   </p>
                   <Button
                     value={

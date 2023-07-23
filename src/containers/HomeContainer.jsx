@@ -1,8 +1,11 @@
-import React,{useEffect} from 'react';
+import React, { useEffect } from 'react';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useNavigate } from 'react-router-dom';
-import { faCartShopping, faShoppingBag } from '@fortawesome/free-solid-svg-icons';
+import {
+  faCartShopping,
+  faShoppingBag
+} from '@fortawesome/free-solid-svg-icons';
 import Button from '../components/Button';
 import PopularProducts from './HomePopularProducts';
 import BrowseByCategory from './HomeBrowseCategory';
@@ -11,17 +14,13 @@ import Hero from './Hero';
 
 const HomeContainer = () => {
   const navigate = useNavigate();
- 
-  
 
   useEffect(() => {
-    if(localStorage.getItem('changePassword')){
-      localStorage.clear()
-      navigate('/login')
+    if (localStorage.getItem('changePassword')) {
+      localStorage.clear();
+      navigate('/login');
     }
-    
-
-  },[])
+  }, []);
 
   return (
     <>
@@ -82,8 +81,8 @@ const RevisitCollections = () => {
               />
             </span>
           }
-          onClick={()=>{
-              document.querySelector('.cart_overlay').style.display = 'flex';
+          onClick={() => {
+            document.querySelector('.cart_overlay').style.display = 'flex';
           }}
         />
         <Button
@@ -108,4 +107,4 @@ const RevisitCollections = () => {
 };
 
 export default HomeContainer;
-export { Banner, RevisitCollections }
+export { Banner, RevisitCollections };
