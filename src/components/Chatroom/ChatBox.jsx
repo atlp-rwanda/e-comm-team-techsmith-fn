@@ -9,29 +9,32 @@ import {
   removeActiveUser,
   setMessages,
   updateMessages,
-  setConversationModal
+  setCreateConversationOptions
 } from '../../states/features/chat/chatSlice';
 import { socket } from '../../socket';
 import { MessageField } from './Message';
 import { removeDuplicateMessages, removeDuplicates } from '../../utils/Arrays';
 import Rooms from './Rooms';
+import { CreateNewGroup } from './CreateGroup';
 
 const ChatBox = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const { messages, roomId, conversationModal } = useSelector((state) => {
+  const { messages, roomId, createNewGroupModal } = useSelector((state) => {
     return state.chat;
   });
 
   useEffect(() => {
     socket.on('roomMessages', (data) => {
+      console.log(data)
       dispatch(setMessages(data));
     });
   }, [roomId]);
 
   useEffect(() => {
     socket.on('newMessage', (data) => {
+      console.log(data)
       dispatch(updateMessages(data));
     });
   }, []);
@@ -59,6 +62,7 @@ const ChatBox = () => {
           gridTemplateColumns: '30% 70%'
         }}
       >
+        <CreateNewGroup show={createNewGroupModal} />
         <div className='chatroom_rooms w-full screen-mid:hidden'>
           <Rooms />
         </div>
@@ -82,7 +86,7 @@ const ChatBox = () => {
             <h3 className='text-[2rem] font-medium] text-center'>Click on a user to start a conversation</h3>
             <Button value='Start a conversation' className='primary-btn normal-case text-[1.5rem] w-fit px-8 py-4' onClick={(e) => {
               e.preventDefault();
-              dispatch(setConversationModal(!conversationModal));
+              dispatch(setCreateConversationOptions(true));
             }} />
           </div>
           ) : (

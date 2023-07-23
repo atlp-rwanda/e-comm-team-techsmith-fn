@@ -78,6 +78,7 @@ const SearchContainer = () => {
                 image={product.image[0]}
                 category={getCatName(product.categoryId, categories.data)}
                 pId={product.id}
+                rating={5}
               />
             );
           })}

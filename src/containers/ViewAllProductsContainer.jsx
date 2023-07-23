@@ -77,7 +77,7 @@ const ViewAllProductsContainer = () => {
       <div className='category_section px-10 '>
         <Categories />
         <div>
-          <div className='home_browse_category_container flex flex-wrap justify-around'>
+          <div className='home_browse_category_container flex flex-wrap justify-evenly gap-8'>
             {products.map((item) => {
               let averageRating = 3.5;
               const rates = [1.5,2,2.5,3,3.5,4,4.5]
@@ -93,7 +93,6 @@ const ViewAllProductsContainer = () => {
 
               return (
                 <ProductCard
-    
                   image={item.image[randomImage(item.image.length)]}
                   key={item.id}
                   description={item.description}

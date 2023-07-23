@@ -1,11 +1,11 @@
 const removeDuplicates = (array) => {
-  return array.filter((value, index) => {
-    return array.indexOf(value) === index;
+  return array?.filter((value, index) => {
+    return array?.indexOf(value) === index;
   });
 };
 
 const removeDuplicateMessages = (array) => {
-  return array.filter((value, index, arr) => {
+  return array?.filter((value, index, arr) => {
     return value.messageBody !== arr[index + 1]?.messageBody;
   });
 };

@@ -8,9 +8,10 @@ import Input from '../Input';
 import Button from '../Button';
 import {
   searchRoom,
-  setConversationModal,
+  setCreateUserModal,
+  setRoomId,
   setRoomParticipants,
-  setSearchResults,
+  setSearchRoomResults,
   user
 } from '../../states/features/chat/chatSlice';
 import { socket } from '../../socket';
@@ -18,7 +19,7 @@ import Pagination from '../Pagination';
 import { usePostCreateRoomWithParticipantMutation } from '../../states/api/apiSlice';
 import Loading from '../Loading';
 
-const AddConversation = ({ show }) => {
+const CreateUser = ({ show }) => {
   const { control, handleSubmit } = useForm();
   const dispatch = useDispatch();
 
@@ -48,14 +49,19 @@ const AddConversation = ({ show }) => {
 
   useEffect(() => {
     socket.on('searchResults', (data) => {
-      dispatch(setSearchResults(data));
+      const payload = {
+        users: data.rows,
+        totalPages: data.totalPages,
+      }
+      dispatch(setSearchRoomResults(payload));
     });
   }, []);
 
   useEffect(() => {
     if (roomParticipantSuccess) {
+      dispatch(setRoomId(roomParticipantData.data?.room?.id));
       dispatch(setRoomParticipants(roomParticipantData.data));
-      dispatch(setConversationModal(false));
+      dispatch(setCreateUserModal(false));
     }
   }, [roomParticipantData, roomParticipantSuccess, roomParticipantError]);
 
@@ -118,13 +124,12 @@ const AddConversation = ({ show }) => {
                 key={result.id}
               >
                 <Button
-                  value={`${result.name} ${result?.group ? '(Group)' : '(User)'}`}
+                  value={result.name}
                   className='w-full rounded-md bg-white py-4 px-6 shadow-md hover:bg-primary hover:text-white hover:shadow-lg transition-all ease-in-out'
                   onClick={(e) => {
                     e.preventDefault();
-                    const roomName = `${result?.group ? `${result.name}` : ''}`
                     postCreateRoomWithParticipant({
-                      roomName,
+                      roomName: '',
                       creatorId: user.id,
                       recipientId: result.id,
                     })
@@ -146,7 +151,7 @@ const AddConversation = ({ show }) => {
           value={<FontAwesomeIcon icon={faX} />}
           onClick={(e) => {
             e.preventDefault();
-            dispatch(setConversationModal(false));
+            dispatch(setCreateUserModal(false));
           }}
         />
       </article>
@@ -154,12 +159,12 @@ const AddConversation = ({ show }) => {
   );
 };
 
-AddConversation.propTypes = {
+CreateUser.propTypes = {
   show: PropTypes.bool
 };
 
-AddConversation.defaultProps = {
+CreateUser.defaultProps = {
   show: false
 };
 
-export default AddConversation;
+export default CreateUser;

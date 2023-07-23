@@ -9,7 +9,8 @@ const ProductReviewContainer = ({ id }) => {
   const {
     data: feedbacks,
     isLoading,
-    isError
+    isError,
+    error
   } = useGetProductReviewsQuery({ id });
 
   if (isLoading) {
@@ -20,7 +21,16 @@ const ProductReviewContainer = ({ id }) => {
     );
   }
 
-  if (isError) {
+  if (isError || error) {
+    if (error.status === 404) {
+      return (
+        <div className='min-h-[30vh] flex items-center justify-center'>
+          <h1 className='text-[2rem]'>
+            This product does not have any reviews yet!
+          </h1>
+        </div>
+      );
+    }
     return (
       <div className='min-h-[30vh] flex items-center justify-center'>
         <h1 className='text-[2rem]'>

@@ -10,7 +10,7 @@ const categorySlice = createSlice({
   },
   reducers: {
     setCategoryProducts: (state, action) => {
-      state.products = [...action.payload];
+      state.products = action.payload;
     },
     setCategories: (state, { payload }) => {
       state.categories = payload;
