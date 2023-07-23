@@ -105,7 +105,7 @@ const ProductCard = ({
         <img
           src={image}
           alt={name}
-          className='transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 duration-500'
+          className='transition ease-in-out delay-150 hover:-translate-y-1 object-cover hover:scale-110 duration-500'
         />
       </section>
       <section className='product_category_text_container'>
@@ -226,17 +226,11 @@ ProductCard.propTypes = {
   image: PropTypes.string,
   pId: PropTypes.number,
   route: PropTypes.string,
-  rating: PropTypes.shape({
-    rating: PropTypes.number,
-    count: PropTypes.number,
-    color: PropTypes.shape({
-      filled: PropTypes.string,
-      unfilled: PropTypes.string
-    }),
-    performRating: PropTypes.bool,
-    onRating: PropTypes.func,
-    className: PropTypes.string
-  })
+  rating: PropTypes.oneOfType([
+    PropTypes.number,
+    PropTypes.shape({}),
+    PropTypes.string
+  ]),
 };
 
 ProductCard.defaultProps = {

@@ -1,14 +1,27 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faAdd } from '@fortawesome/free-solid-svg-icons';
+import {
+  faAdd,
+  faUserPlus,
+  faUsersLine,
+  faX
+} from '@fortawesome/free-solid-svg-icons';
 import { useLazyGetRoomListQuery } from '../../states/api/apiSlice';
 import Loading from '../Loading';
 import Button from '../Button';
-import { setConversationModal, setRoomId, setRooms, user } from '../../states/features/chat/chatSlice';
+import {
+  setCreateConversationOptions,
+  setCreateGoupModal,
+  setCreateUserModal,
+  setRoomId,
+  setRooms,
+  user
+} from '../../states/features/chat/chatSlice';
 import { socket } from '../../socket';
-import AddConversation from './AddConversation';
+import CreateUser from './CreateUser';
 import Pagination from '../Pagination';
+import CreateGroup from './CreateGroup';
 
 const Rooms = () => {
   const [
@@ -17,13 +30,19 @@ const Rooms = () => {
       data: roomsData,
       isLoading: roomsLoading,
       isSuccess: roomsSuccess,
-      isError: roomsError,
+      isError: roomsError
     }
   ] = useLazyGetRoomListQuery();
 
   const dispatch = useDispatch();
 
-  const { rooms, roomId, conversationModal } = useSelector((state) => {
+  const {
+    rooms,
+    roomId,
+    createUserModal,
+    createGroupModal,
+    createConversationOptions
+  } = useSelector((state) => {
     return state.chat;
   });
 
@@ -32,11 +51,13 @@ const Rooms = () => {
   });
 
   useEffect(() => {
-    getRoomsList({userId: user?.id, page, size});
+    const roomSize = size > 4 ? size : 4;
+    getRoomsList({ userId: user?.id, page, size: roomSize });
   }, []);
 
   useEffect(() => {
-    getRoomsList({ userId: user?.id, page, size });
+    const roomSize = size > 4 ? size : 4;
+    getRoomsList({ userId: user?.id, page, size: roomSize });
   }, [rooms, roomId, page, size]);
 
   useEffect(() => {
@@ -45,24 +66,47 @@ const Rooms = () => {
     }
   }, [roomsData, roomsSuccess]);
 
-
   if (roomsError)
     return (
-      <article className='w-full flex items-center justify-evenly'>
-        <h1 className='text-xl font-bold text-red-500'>Could not load rooms</h1>
+      <article className='w-full flex items-center h-full justify-evenly'>
+        <h1 className='text-xl font-bold text-red-500 text-center'>
+          Could not load conversations
+        </h1>
       </article>
     );
 
   return (
     <div className='participants_container relative w-full flex flex-col h-[90%] items-center justify-between gap-8 px-0 screen-mid:hidden'>
-      <AddConversation show={conversationModal} />
+      <CreateUser show={createUserModal} />
+      <CreateGroup show={createGroupModal} />
       <section
-        className='participants_room flex flex-col gap-4 my-6 w-[95%] mx-auto'
+        className='participants_room h-full min-h-[30vh] flex flex-col gap-4 my-6 w-[95%] mx-auto'
         onClick={(e) => {
           e.preventDefault();
-          dispatch(setConversationModal(false));
+          dispatch(setCreateUserModal(false));
         }}
       >
+        {!roomsLoading && rooms.length === 0 && (
+          <div className='flex items-center justify-center h-full w-full flex-col gap-6'>
+            <h1 className='text-[2rem] text-primary font-bold text-bluewish text-center'>
+              No conversations found
+            </h1>
+            <Button
+              value={
+                <FontAwesomeIcon
+                  icon={createConversationOptions ? faX : faAdd}
+                />
+              }
+              className='primary-btn w-fit p-4 rounded-[50%] ml-4'
+              onClick={(e) => {
+                e.preventDefault();
+                dispatch(
+                  setCreateConversationOptions(!createConversationOptions)
+                );
+              }}
+            />
+          </div>
+        )}
         {roomsLoading ? (
           <Loading width={50} />
         ) : (
@@ -92,17 +136,43 @@ const Rooms = () => {
         )}
       </section>
       <Pagination
-        totalPages={2 || roomsData.data.totalPages}
-        pageOptions={[3, 4]}
+        totalPages={1 || roomsData.data.totalPages}
+        pageOptions={[4, 5]}
         className='flex items-center justify-center gap-4 mb-24'
       />
-      <article className='floating_button absolute right-8 bottom-6'>
+      <article className='floating_button absolute right-8 bottom-[-.5rem] flex flex-col items-center gap-4'>
+        <ul
+          className={`${
+            createConversationOptions ? 'flex' : 'hidden'
+          } create_conversation ease-in-out duration-300 flex flex-col gap-4 shadow-lg bg-white`}
+        >
+          <li>
+            <Button
+              value={<FontAwesomeIcon icon={faUserPlus} />}
+              onClick={(e) => {
+                e.preventDefault();
+                dispatch(setCreateUserModal(true));
+              }}
+            />
+          </li>
+          <li>
+            <Button
+              value={<FontAwesomeIcon icon={faUsersLine} />}
+              onClick={(e) => {
+                e.preventDefault();
+                dispatch(setCreateGoupModal(true));
+              }}
+            />
+          </li>
+        </ul>
         <Button
-          value={<FontAwesomeIcon icon={faAdd} />}
+          value={
+            <FontAwesomeIcon icon={createConversationOptions ? faX : faAdd} />
+          }
           className='primary-btn w-fit p-4 rounded-[50%]'
           onClick={(e) => {
             e.preventDefault();
-            dispatch(setConversationModal(true));
+            dispatch(setCreateConversationOptions(!createConversationOptions));
           }}
         />
       </article>

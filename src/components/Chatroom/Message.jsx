@@ -60,7 +60,7 @@ const MessageField = () => {
             className='primary-btn p-6 w-fit bg-primary text-white normal-case rounded-[50%]'
             value={
               <FontAwesomeIcon
-                className='text-[1.4rem] text-white'
+                className='text-[1.4rem] text-white w-6 h-6'
                 icon={faPaperPlane}
               />
             }

@@ -226,6 +226,37 @@ export const apiSlice = createApi({
             }
           };
         }
+      }),
+      getGroupsList: builder.query({
+        query: ({ page, size }) => {
+          return {
+            url: `chat/groups/?size=${size}&page=${page}`
+          };
+        }
+      }),
+      createParticipant: builder.mutation({
+        query: ({ roomId, userId }) => {
+          return {
+            url: `chat/participants`,
+            method: 'POST',
+            body: {
+              roomId,
+              userId
+            }
+          };
+        }
+      }),
+      createGroup: builder.mutation({
+        query: ({ name, participants }) => {
+          return {
+            url: `chat/groups`,
+            method: 'POST',
+            body: {
+              name,
+              participants
+            }
+          };
+        }
       })
     };
   }
@@ -258,5 +289,8 @@ export const {
   useLazyGetAllSellersQuery,
   useLazyGetSingleSellerQuery,
   useLazyGetRoomListQuery,
-  usePostCreateRoomWithParticipantMutation
+  usePostCreateRoomWithParticipantMutation,
+  useLazyGetGroupsListQuery,
+  useCreateParticipantMutation,
+  useCreateGroupMutation
 } = apiSlice;

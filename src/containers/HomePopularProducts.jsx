@@ -53,7 +53,7 @@ const PopularProducts = () => {
   }
 
 
-  if (allWishlistData.length === 0) {
+  if (allWishlistData?.length === 0) {
     return null;
   }
 

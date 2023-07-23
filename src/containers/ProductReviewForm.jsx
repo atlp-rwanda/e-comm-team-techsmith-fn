@@ -49,16 +49,6 @@ const ProductReviewForm = ({ id }) => {
         >
           <span className='grid grid-cols-2 gap-12 w-full justify-between screen-base:grid-cols-1 gap-8'>
             <label htmlFor='review_title' className={inputsContainerClassName}>
-              Name
-              <input
-                type='text'
-                name='name'
-                className={inputsClassName}
-                placeholder='Name'
-                {...register('name', { required: true })}
-              />
-            </label>
-            <label htmlFor='review_title' className={inputsContainerClassName}>
               Email
               <input
                 type='email'
@@ -66,15 +56,6 @@ const ProductReviewForm = ({ id }) => {
                 className={inputsClassName}
                 placeholder='Email'
                 {...register('email', { required: true })}
-              />
-            </label>
-            <label htmlFor='review_title' className={inputsContainerClassName}>
-              Comment
-              <textarea
-                name='comment'
-                className={`${inputsClassName} h-[10rem]`}
-                placeholder='Comment'
-                {...register('comment', { required: true })}
               />
             </label>
             <label
@@ -88,6 +69,15 @@ const ProductReviewForm = ({ id }) => {
                 onRating={(rate) => {
                   return setRating(rate);
                 }}
+              />
+            </label>
+            <label htmlFor='review_title' className={inputsContainerClassName}>
+              Comment
+              <textarea
+                name='comment'
+                className={`${inputsClassName} h-[10rem]`}
+                placeholder='Comment'
+                {...register('comment', { required: true })}
               />
             </label>
           </span>

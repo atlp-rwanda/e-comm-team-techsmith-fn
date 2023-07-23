@@ -11,12 +11,18 @@ export const chatSlice = createSlice({
     messages: [],
     activeUsers: [],
     rooms: [],
+    groups: [],
     roomId: null,
-    conversationModal: false,
+    createUserModal: false,
+    createGroupModal: false,
+    createNewGroupModal: false,
     searchResults: {
       users: [],
       totalPages: 1
-    }
+    },
+    groupUsers: [],
+    createConversationOptions: false,
+    user: {}
   },
   reducers: {
     createMessage: (state, { payload }) => {
@@ -25,6 +31,7 @@ export const chatSlice = createSlice({
         user,
         roomId: state.roomId
       };
+      console.log(message);
       socket.emit('createMessage', message);
     },
     updateMessages: (state, { payload }) => {
@@ -96,27 +103,14 @@ export const chatSlice = createSlice({
     setRoomId: (state, { payload }) => {
       state.roomId = payload;
     },
-    setConversationModal: (state, { payload }) => {
-      state.conversationModal = payload;
+    setCreateUserModal: (state, { payload }) => {
+      state.createUserModal = payload;
     },
     searchRoom: (state, { payload }) => {
       socket.emit('searchRoom', payload);
     },
-    setSearchResults: (state, { payload }) => {
-      const users = payload.searchResults.map((searchUser) => {
-        let group = false;
-        if (searchUser?.participants?.length > 2) {
-          group = true;
-        }
-        return {
-          ...searchUser,
-          group
-        };
-      });
-      state.searchResults = {
-        users,
-        totalPages: payload.totalPages
-      };
+    setSearchRoomResults: (state, { payload }) => {
+      state.searchResults = payload;
     },
     setRoomParticipants: (state, { payload }) => {
       state.roomId = payload?.room?.id;
@@ -125,6 +119,38 @@ export const chatSlice = createSlice({
         name: payload?.room?.name
       };
       state.rooms = [...state.rooms, room];
+    },
+    setCreateGoupModal: (state, { payload }) => {
+      state.createGroupModal = payload;
+    },
+    setGroupsList: (state, { payload }) => {
+      state.groups = payload;
+    },
+    setSearchGroupResults: (state, { payload }) => {
+      const groups = payload.map((group) => {
+        return {
+          id: group.id,
+          name: group.name,
+          group: true
+        };
+      });
+      state.searchResults = {
+        users: groups,
+        totalPages: 1
+      };
+    },
+    setCreateNewGroupModal: (state, { payload }) => {
+      state.createNewGroupModal = payload;
+    },
+    setGroupUsers: (state, { payload }) => {
+      state.groupUsers = [...state.groupUsers, payload];
+    },
+    setCreateConversationOptions: (state, { payload }) => {
+      state.createConversationOptions = payload;
+    },
+    setLocalStorageUser: (state, { payload }) => {
+      localStorage.setItem('user', JSON.stringify(payload));
+      state.user = payload;
     }
   }
 });
@@ -139,10 +165,17 @@ export const {
   addActiveUser,
   setRoomId,
   setRooms,
-  setConversationModal,
+  setCreateUserModal,
   searchRoom,
-  setSearchResults,
-  setRoomParticipants
+  setSearchRoomResults,
+  setRoomParticipants,
+  setCreateGoupModal,
+  setGroupsList,
+  setSearchGroupResults,
+  setCreateNewGroupModal,
+  setGroupUsers,
+  setCreateConversationOptions,
+  setLocalStorageUser
 } = chatSlice.actions;
 
 export default chatSlice.reducer;
