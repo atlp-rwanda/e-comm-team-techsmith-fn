@@ -8,7 +8,7 @@ import {
 import Loading from '../components/Loading';
 
 const SearchContainer = () => {
-  const [products, setProducts] = useState([]);
+  const [products, setProducts] = useState([]);    
   const searchData = useSelector((state) => {
     return state.search.searchData;
   });
